@@ -1,0 +1,71 @@
+<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50>
+
+            <ion-side-menus>
+                <ion-side-menu-content drag-content="true" edge-drag-threshold=50
+                                       style="margin-top: 0px;padding-top: 0px">
+
+                    <!--***************************************最右边的详情部分 ******************************************************-->
+
+                    <ion-view style="width:{{contentWidth}}px">
+                        <ion-header-bar align-title="center" class="bar-ipad-nav">
+                            <div class="button am-back" ng-click='goBack()'></div>
+                            <h1 class="title">增加日志</h1>
+                        </ion-header-bar>
+                        <ion-content class="gray-main">
+
+                            <ul class="am-input-list">
+                                <li>
+                                    <input class="am-text" type="text" placeholder="请输入日志摘要" ng-model="log.WorkBrief">
+                                    <!--<input  type="text" placeholder="请添写摘要" ng-model="log.WorkBrief" style= "font-size: 12px">-->
+                                </li>
+                                <li>
+                                    <select class="am-select" ng-model="ItemNo" id='worktype'
+                                            ng-options="option.ItemNO as option.ItemName for option in WorkType">
+                                        <option value="">请选择工作类型</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <h3>日志内容：</h3>
+                                </li>
+                                <li class="am-input-list_text">
+                                    <textarea class="am-text" type="text" placeholder="" ng-model="log.WorkContent"
+                                              style="height: 120px"></textarea>
+                                </li>
+                            </ul>
+                        </ion-content>
+                        <ion-footer-bar>
+                            <div class="btn-box row">
+                                <div class="col">
+                                    <button type="button" class="am-button am-button-blue" ng-click="dosave()">保存并提交
+                                    </button>
+                                </div>
+                            </div>
+                        </ion-footer-bar>
+                    </ion-view>
+
+                </ion-side-menu-content>
+
+
+                <ion-side-menu side="left" width="{{secondNavWidth}}" expose-aside-when="large"
+                               style="margin-top: 0px;padding-top: 0px">
+                    <!--***********************************************中间部分的二级导航栏--***********************************************-->
+                    <div ng-include="'templates/mine/my.html'"></div>
+
+                </ion-side-menu>
+            </ion-side-menus>
+        </ion-side-menu-content>
+
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'">
+            </div>
+        </ion-side-menu>
+
+
+    </ion-side-menus>
+
+</ion-view>
+
+  

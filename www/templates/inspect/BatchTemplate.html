@@ -1,0 +1,1222 @@
+<!-- yli18 2017年11月23日 批量业务类风险检查表 -->
+<div style="width:{{contentWidth}}px;position: absolute;top:50px">
+	<table class="table-border" width="{{contentWidth}}" align=center
+		border=1 cellspacing=0 cellpadding=2 bgcolor=white bordercolor=black
+		bordercolordark=black
+		data-ng-if="selectedListItem !== 'undefined' && selectedListItem !== null && selectedListItem !== '' ">
+		<tr>
+			<td style="font-size: 20pt; font-weight: bold; height: 35px;"
+				colspan="18" align="center">乌鲁木齐银行小企业贷后定期检查表（批量业务现场检查）</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;"><p>贷后检查机构</p></td>
+			<td style="font-size: 18;" colspan="2">{{SmeCheckedALSData.sOrgName}}&nbsp;</td>
+			<td style="font-size: 18;">贷后检查人员：</td>
+			<td style="font-size: 18;" colspan="4"><span
+				style="display: inline-block; width: 100% px; height: 100%;">
+					<pre data-ng-bind-html="ReportData.describe123"></pre>
+			</span>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;">填写日期</td>
+			<td style="font-size: 18;" colspan="2">{{SmeCheckedALSData.sNowDate}}&nbsp;</td>
+			<td style="font-size: 18;">检查日期：</td>
+			<td style="font-size: 18;" colspan="4"><pre
+					data-ng-bind-html="ReportData.describe124"></pre> &nbsp;</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8" align="center"><strong>批量业务情况说明</strong></td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="2">行业类型</td>
+			<td style="font-size: 18;" colspan="6">{{SmeCheckedALSData.IndustryType}}&nbsp;</td>
+		</tr>
+		<tr data-ng-repeat="i in SmeCheckedALSData.map9Count">
+			<td style="font-size: 18;" colspan="2">业务品种</td>
+			<td style="font-size: 18;">{{SmeCheckedALSData.map9['businessName'+i]}}&nbsp;</td>
+			<td style="font-size: 18;">授信总额</td>
+			<td style="font-size: 18;">{{SmeCheckedALSData.map9['BUSINESSSUM'+i]}}&nbsp;</td>
+			<td style="font-size: 18;">批单号</td>
+			<td style="font-size: 18;" colspan="2">{{SmeCheckedALSData.map9['ApproveName'+i]}}&nbsp;</td>
+		</tr>
+		<tr data-ng-if="SmeCheckedALSData.map9Count.length == 0">
+			<td style="font-size: 18;" colspan="2">业务品种</td>
+			<td style="font-size: 18;">&nbsp;</td>
+			<td style="font-size: 18;">授信总额</td>
+			<td style="font-size: 18;">&nbsp;</td>
+			<td style="font-size: 18;">批单号</td>
+			<td style="font-size: 18;" colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8">授信业务基本信息</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8">借款客户名称：{{SmeCheckedALSData.map2.EnterpriseName}}&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8"><span style="float: left"><strong>一、授信业务基本情况</strong></span><span
+				style="float: right"><strong>单位：万元 人民币</strong></span></td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="3">借款客户名称</td>
+			<td style="font-size: 18;" colspan="2">合同金额</td>
+			<td style="font-size: 18;" colspan="3">合同余额</td>
+		</tr>
+		<tr>
+			<td data-ng-if="SmeCheckedALSData.sCustType == '0301'"
+				style="font-size: 18;" colspan="3">
+				{{SmeCheckedALSData.map2.EnterpriseName}}&nbsp;</td>
+			<td
+				data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' "
+				style="font-size: 18;" colspan="3">
+				{{SmeCheckedALSData.map2.EnterpriseName}}&nbsp;</td>
+			<td
+				data-ng-if="SmeCheckedALSData.sCustType != '0302' && SmeCheckedALSData.sCustType != '04' && SmeCheckedALSData.sCustType != '0301'"
+				style="font-size: 18;" colspan="3">&nbsp;</td>
+			<td style="font-size: 18;" colspan="2">{{SmeCheckedALSData.map1.contractSum}}&nbsp;</td>
+			<td style="font-size: 18;" colspan="3">{{SmeCheckedALSData.map1.contractBalance}}&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" align="center" width="14%">发放日</td>
+			<td style="font-size: 18;" align="center" width="12%">到期日</td>
+			<td style="font-size: 18;" align="center" width="15%">出账金额</td>
+			<td style="font-size: 18;" align="center" width="13%">月利率(‰)</td>
+			<td style="font-size: 18;" align="center" width="14%">是否分期</td>
+			<td style="font-size: 18;" align="center" width="14%">主要担保方式</td>
+			<td style="font-size: 18;" align="center" width="9%">是否足值</td>
+			<td style="font-size: 18;" align="center" width="9%">五级分类结果</td>
+		</tr>
+		<tr data-ng-repeat="i in SmeCheckedALSData.map1Count">
+			<td style="font-size: 18;" align="left">{{SmeCheckedALSData.map1['putoutdate'+i]}}&nbsp;</td>
+			<td style="font-size: 18;" align="left">{{SmeCheckedALSData.map1['maturity'+i]}}&nbsp;</td>
+			<td style="font-size: 18;" align="center">{{SmeCheckedALSData.map1['businesssum'+i]}}&nbsp;</td>
+			<td style="font-size: 18;" align="center">{{SmeCheckedALSData.map1['putoutbusinessrate'+i]}}&nbsp;</td>
+			<td style="font-size: 18;" align="center">{{SmeCheckedALSData.map1['rpttermid'+i]}}&nbsp;</td>
+			<td style="font-size: 18;" align="center">{{SmeCheckedALSData.map1['VouchTypeName'+i]}}&nbsp;</td>
+			<td style="font-size: 18;" align="center">{{SmeCheckedALSData.map1['ISFULLVALUE'+i]}}&nbsp;</td>
+			<td style="font-size: 18;" align="center">{{SmeCheckedALSData.map1['classifyResult'+i]}}&nbsp;</td>
+		</tr>
+		<tr data-ng-if="SmeCheckedALSData.map1Count.length == 0">
+			<td style="font-size: 18;">&nbsp;</td>
+			<td style="font-size: 18;">&nbsp;</td>
+			<td style="font-size: 18;">&nbsp;</td>
+			<td style="font-size: 18;">&nbsp;</td>
+			<td style="font-size: 18;">&nbsp;</td>
+			<td style="font-size: 18;">&nbsp;</td>
+			<td style="font-size: 18;">&nbsp;</td>
+			<td style="font-size: 18;">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8">资金使用</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="2">借款实际用途是否与批单约定一致</td>
+			<td style="font-size: 18;">是<input
+				data-ng-if="ReportData.describe1" type="checkbox" disabled
+				id="check-box" value="checked" name="describe1" checked /> <input
+				data-ng-if="!ReportData.describe1" type="checkbox" disabled
+				id="check-box" value="checked" name="describe1" /> <br />否 <input
+				data-ng-if="ReportData.describe2" type="checkbox" disabled
+				id="check-box" value="checked" name="describe2" checked /> <input
+				data-ng-if="!ReportData.describe2" type="checkbox" disabled
+				id="check-box" value="checked" name="describe2" />
+			</td>
+			<td style="font-size: 18;" colspan="3">贷款是否全部支付给同一客户</td>
+			<td style="font-size: 18;" colspan="2">是 <input
+				data-ng-if="ReportData.describe3" type="checkbox" disabled
+				id="check-box" value="checked" name="describe3" checked /> <input
+				data-ng-if="!ReportData.describe3" type="checkbox" disabled
+				id="check-box" value="checked" name="describe3" /> <br /> 否 <input
+				data-ng-if="ReportData.describe4" type="checkbox" disabled
+				id="check-box" value="checked" name="describe4" checked /> <input
+				data-ng-if="!ReportData.describe4" type="checkbox" disabled
+				id="check-box" value="checked" name="describe4" />
+			</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="2">是否出现欠息情况</td>
+			<td style="font-size: 18;" colspan="2">是 <input
+				data-ng-if="ReportData.describe126" type="checkbox" disabled
+				id="check-box" value="checked" name="describe126" checked /> <input
+				data-ng-if="!ReportData.describe126" type="checkbox" disabled
+				id="check-box" value="checked" name="describe126" /> <br /> 否 <input
+				data-ng-if="ReportData.describe127" type="checkbox" disabled
+				id="check-box" value="checked" name="describe127" checked /> <input
+				data-ng-if="!ReportData.describe127" type="checkbox" disabled
+				id="check-box" value="checked" name="describe127" />
+			</td>
+			<td style="font-size: 18;" colspan="2">是否出现还款逾期情况</td>
+			<td style="font-size: 18;" colspan="2">是 <input
+				data-ng-if="ReportData.describe128" type="checkbox" disabled
+				id="check-box" value="checked" name="describe128" checked /> <input
+				data-ng-if="!ReportData.describe128" type="checkbox" disabled
+				id="check-box" value="checked" name="describe128" /> <br /> 否 <input
+				data-ng-if="ReportData.describe129" type="checkbox" disabled
+				id="check-box" value="checked" name="describe129" checked /> <input
+				data-ng-if="!ReportData.describe129" type="checkbox" disabled
+				id="check-box" value="checked" name="describe129" />
+			</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8">详细说明不符情况及应对办法：<br /> <pre
+					data-ng-bind-html="ReportData.describe5"></pre> &nbsp;
+			</td>
+		</tr>
+		<tr data-ng-if="SmeCheckedALSData.sCustType == '0301'">
+			<td style="font-size: 18;" colspan="8"><strong>二、企业基本信息</strong></td>
+		</tr>
+		<tr data-ng-if="SmeCheckedALSData.sCustType == '0301'">
+			<td style="font-size: 18;">组织机构代码</td>
+			<td style="font-size: 18;">营业执照</td>
+			<td style="font-size: 18;">税务登记证（国税）</td>
+			<td style="font-size: 18;">税务登记证（地税）</td>
+			<td style="font-size: 18;">注册资本</td>
+			<td style="font-size: 18;">法人代表/实际控制人</td>
+			<td style="font-size: 18;" colspan="2">联系电话</td>
+		</tr>
+		<tr data-ng-if="SmeCheckedALSData.sCustType == '0301'">
+			<td style="font-size: 18;">{{SmeCheckedALSData.map2.CorpID}}&nbsp;</td>
+			<td style="font-size: 18;">{{SmeCheckedALSData.map2.LicenseNo}}&nbsp;</td>
+			<td style="font-size: 18;">{{SmeCheckedALSData.map2.TaxNo}}&nbsp;</td>
+			<td style="font-size: 18;">{{SmeCheckedALSData.map2.TaxNo1}}&nbsp;</td>
+			<td style="font-size: 18;">{{SmeCheckedALSData.map2.RegisterCapital}}&nbsp;</td>
+			<td style="font-size: 18;">{{SmeCheckedALSData.map4.CustomerName}}
+				{{SmeCheckedALSData.map3.CustomerName}}&nbsp;</td>
+			<td style="font-size: 18;" colspan="2">{{SmeCheckedALSData.map4.Telephone}}
+				{{SmeCheckedALSData.map3.Telephone}}</td>
+		</tr>
+		<tr data-ng-if="SmeCheckedALSData.sCustType == '0301'">
+			<td style="font-size: 18;">是否变更 是 <input
+				data-ng-if="ReportData.describe6" type="checkbox" disabled
+				id="check-box" value="checked" name="describe6" checked /> <input
+				data-ng-if="!ReportData.describe6" type="checkbox" disabled
+				id="check-box" value="checked" name="describe6" /> <br /> 否 <input
+				data-ng-if="ReportData.describe7" type="checkbox" disabled
+				id="check-box" value="checked" name="describe7" checked /> <input
+				data-ng-if="!ReportData.describe7" type="checkbox" disabled
+				id="check-box" value="checked" name="describe7" />
+			</td>
+			<td style="font-size: 18;">是否变更 是 <input
+				data-ng-if="ReportData.describe8" type="checkbox" disabled
+				id="check-box" value="checked" name="describe8" checked /> <input
+				data-ng-if="!ReportData.describe8" type="checkbox" disabled
+				id="check-box" value="checked" name="describe8" /> <br /> 否 <input
+				data-ng-if="ReportData.describe9" type="checkbox" disabled
+				id="check-box" value="checked" name="describe9" checked /> <input
+				data-ng-if="!ReportData.describe9" type="checkbox" disabled
+				id="check-box" value="checked" name="describe9" />
+			</td>
+			<td style="font-size: 18;">是否变更 是 <input
+				data-ng-if="ReportData.describe10" type="checkbox" disabled
+				id="check-box" value="checked" name="describe10" checked /> <input
+				data-ng-if="!ReportData.describe10" type="checkbox" disabled
+				id="check-box" value="checked" name="describe10" /> <br /> 否 <input
+				data-ng-if="ReportData.describe11" type="checkbox" disabled
+				id="check-box" value="checked" name="describe11" checked /> <input
+				data-ng-if="!ReportData.describe11" type="checkbox" disabled
+				id="check-box" value="checked" name="describe11" />
+			</td>
+			<td style="font-size: 18;">是否变更 是 <input
+				data-ng-if="ReportData.describe12" type="checkbox" disabled
+				id="check-box" value="checked" name="describe12" checked /> <input
+				data-ng-if="!ReportData.describe12" type="checkbox" disabled
+				id="check-box" value="checked" name="describe12" /> <br /> 否 <input
+				data-ng-if="ReportData.describe13" type="checkbox" disabled
+				id="check-box" value="checked" name="describe13" checked /> <input
+				data-ng-if="!ReportData.describe13" type="checkbox" disabled
+				id="check-box" value="checked" name="describe13" />
+			</td>
+			<td style="font-size: 18;">是否变更 是 <input
+				data-ng-if="ReportData.describe14" type="checkbox" disabled
+				id="check-box" value="checked" name="describe14" checked /> <input
+				data-ng-if="!ReportData.describe14" type="checkbox" disabled
+				id="check-box" value="checked" name="describe14" /> <br /> 否 <input
+				data-ng-if="ReportData.describe15" type="checkbox" disabled
+				id="check-box" value="checked" name="describe15" checked /> <input
+				data-ng-if="!ReportData.describe15" type="checkbox" disabled
+				id="check-box" value="checked" name="describe15" />
+			</td>
+			<td style="font-size: 18;">是否变更 是 <input
+				data-ng-if="ReportData.describe16" type="checkbox" disabled
+				id="check-box" value="checked" name="describe16" checked /> <input
+				data-ng-if="!ReportData.describe16" type="checkbox" disabled
+				id="check-box" value="checked" name="describe16" /> <br /> 否 <input
+				data-ng-if="ReportData.describe17" type="checkbox" disabled
+				id="check-box" value="checked" name="describe17" checked /> <input
+				data-ng-if="!ReportData.describe17" type="checkbox" disabled
+				id="check-box" value="checked" name="describe17" />
+			</td>
+			<td style="font-size: 18;" colspan="2">是否变更 <br /> 是 <input
+				data-ng-if="ReportData.describe18" type="checkbox" disabled
+				id="check-box" value="checked" name="describe18" checked /> <input
+				data-ng-if="!ReportData.describe18" type="checkbox" disabled
+				id="check-box" value="checked" name="describe18" /> <br /> 否 <input
+				data-ng-if="ReportData.describe19" type="checkbox" disabled
+				id="check-box" value="checked" name="describe19" checked /> <input
+				data-ng-if="!ReportData.describe19" type="checkbox" disabled
+				id="check-box" value="checked" name="describe19" />
+			</td>
+		</tr>
+		<tr data-ng-if="SmeCheckedALSData.sCustType == '0301'">
+			<td style="font-size: 18;" colspan="2">经营地址是否发生变化</td>
+			<td style="font-size: 18;">是 <input
+				data-ng-if="ReportData.describe20" type="checkbox" disabled
+				id="check-box" value="checked" name="describe20" checked /> <input
+				data-ng-if="!ReportData.describe20" type="checkbox" disabled
+				id="check-box" value="checked" name="describe20" /> <br /> 否 <input
+				data-ng-if="ReportData.describe21" type="checkbox" disabled
+				id="check-box" value="checked" name="describe21" checked /> <input
+				data-ng-if="!ReportData.describe21" type="checkbox" disabled
+				id="check-box" value="checked" name="describe21" />
+			</td>
+			<td style="font-size: 18;" colspan="3">实际控制人或法人代表的联系方式是否发生变化</td>
+			<td style="font-size: 18;" colspan="2">是 <input
+				data-ng-if="ReportData.describe22" type="checkbox" disabled
+				id="check-box" value="checked" name="describe22" checked /> <input
+				data-ng-if="!ReportData.describe22" type="checkbox" disabled
+				id="check-box" value="checked" name="describe22" /> <br /> 否 <input
+				data-ng-if="ReportData.describe23" type="checkbox" disabled
+				id="check-box" value="checked" name="describe23" checked /> <input
+				data-ng-if="!ReportData.describe23" type="checkbox" disabled
+				id="check-box" value="checked" name="describe23" />
+			</td>
+		</tr>
+		<tr data-ng-if="SmeCheckedALSData.sCustType == '0301'">
+			<td style="font-size: 18;" colspan="2">经营范围是否发生变化</td>
+			<td style="font-size: 18;">是 <input
+				data-ng-if="ReportData.describe24" type="checkbox" disabled
+				id="check-box" value="checked" name="describe24" checked /> <input
+				data-ng-if="!ReportData.describe24" type="checkbox" disabled
+				id="check-box" value="checked" name="describe24" /> <br /> 否 <input
+				data-ng-if="ReportData.describe25" type="checkbox" disabled
+				id="check-box" value="checked" name="describe25" checked /> <input
+				data-ng-if="!ReportData.describe25" type="checkbox" disabled
+				id="check-box" value="checked" name="describe25" /> <input
+				type="checkbox" id="check-box" name="describe25" value="checked" "+InputCheckedBox+" />
+			</td>
+			<td style="font-size: 18;" colspan="3">注册资本或股权结构是否发生变化</td>
+			<td style="font-size: 18;" colspan="2">是 <input
+				data-ng-if="ReportData.describe26" type="checkbox" disabled
+				id="check-box" value="checked" name="describe26" checked /> <input
+				data-ng-if="!ReportData.describe26" type="checkbox" disabled
+				id="check-box" value="checked" name="describe26" /> <br /> 否 <input
+				data-ng-if="ReportData.describe27" type="checkbox" disabled
+				id="check-box" value="checked" name="describe27" checked /> <input
+				data-ng-if="!ReportData.describe27" type="checkbox" disabled
+				id="check-box" value="checked" name="describe27" />
+			</td>
+		</tr>
+		<tr data-ng-if="SmeCheckedALSData.sCustType == '0301'">
+			<td style="font-size: 18;" colspan="2">办公地址是否发生变化</td>
+			<td style="font-size: 18;">是 <input
+				data-ng-if="ReportData.describe28" type="checkbox" disabled
+				id="check-box" value="checked" name="describe28" checked /> <input
+				data-ng-if="!ReportData.describe28" type="checkbox" disabled
+				id="check-box" value="checked" name="describe28" /> <br /> 否 <input
+				data-ng-if="ReportData.describe29" type="checkbox" disabled
+				id="check-box" value="checked" name="describe29" checked /> <input
+				data-ng-if="!ReportData.describe29" type="checkbox" disabled
+				id="check-box" value="checked" name="describe29" />
+			</td>
+			<td style="font-size: 18;" colspan="3">实际控制人或法人代表的个人住址是否发生变化</td>
+			<td style="font-size: 18;" colspan="2">是 <input
+				data-ng-if="ReportData.describe30" type="checkbox" disabled
+				id="check-box" value="checked" name="describe30" checked /> <input
+				data-ng-if="!ReportData.describe30" type="checkbox" disabled
+				id="check-box" value="checked" name="describe30" /> <br /> 否 <input
+				data-ng-if="ReportData.describe31" type="checkbox" disabled
+				id="check-box" value="checked" name="describe31" checked /> <input
+				data-ng-if="!ReportData.describe31" type="checkbox" disabled
+				id="check-box" value="checked" name="describe31" />
+			</td>
+		</tr>
+		<tr data-ng-if="SmeCheckedALSData.sCustType == '0301'">
+			<td style="font-size: 18;" colspan="8">上述信息如有变化，请说明：<br /> <pre
+					data-ng-bind-html="ReportData.describe32"></pre> &nbsp;
+			</td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;" colspan="8"><strong>二、借款人基础信息</strong></td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;">姓名</td>
+			<td style="font-size: 18;" colspan="2">身份证号码</td>
+			<td style="font-size: 18;">性别</td>
+			<td style="font-size: 18;">民族</td>
+			<td style="font-size: 18;">联系方式</td>
+			<td style="font-size: 18;" colspan="2">居住地址</td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;">{{SmeCheckedALSData.map5.FULLNAME}}&nbsp;</td>
+			<td style="font-size: 18;" colspan="2">{{SmeCheckedALSData.map5.CERTID}}&nbsp;</td>
+			<td style="font-size: 18;">{{SmeCheckedALSData.map5.SEX}}&nbsp;</td>
+			<td style="font-size: 18;">{{SmeCheckedALSData.map5.SNATIONALITYEX}}&nbsp;</td>
+			<td style="font-size: 18;">{{SmeCheckedALSData.map5.MobileTelephone}}&nbsp;</td>
+			<td style="font-size: 18;" colspan="2">{{SmeCheckedALSData.map5.FAMILYADD}}&nbsp;</td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;">配偶姓名</td>
+			<td style="font-size: 18;" colspan="2">身份证号码</td>
+			<td style="font-size: 18;">性别</td>
+			<td style="font-size: 18;">民族</td>
+			<td style="font-size: 18;">联系方式</td>
+			<td style="font-size: 18;" colspan="2">居住地址</td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;">{{SmeCheckedALSData.map6.FULLNAME}}&nbsp;</td>
+			<td style="font-size: 18;" colspan="2">{{SmeCheckedALSData.map6.CERTID}}&nbsp;</td>
+			<td style="font-size: 18;">{{SmeCheckedALSData.map6.SEX}}&nbsp;</td>
+			<td style="font-size: 18;">{{SmeCheckedALSData.map6.NATIONALITY}}&nbsp;</td>
+			<td style="font-size: 18;">{{SmeCheckedALSData.map6.FAMILYTEL}}&nbsp;</td>
+			<td style="font-size: 18;" colspan="2">{{SmeCheckedALSData.map6.FAMILYADD}}&nbsp;</td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;" colspan="2">其他信息:</td>
+			<td style="font-size: 18;" colspan="6" width="543"><pre
+					data-ng-bind-html="ReportData.describe33"></pre> &nbsp;</td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;">经营主体</td>
+			<td style="font-size: 18;">经营地址</td>
+			<td style="font-size: 18;">经营场所取得方式</td>
+			<td style="font-size: 18;">经营范围</td>
+			<td style="font-size: 18;">从业时间</td>
+			<td style="font-size: 18;">主要结算行一</td>
+			<td style="font-size: 18;" colspan="2">主要结算行二</td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;"><pre
+					data-ng-bind-html="ReportData.describe34"></pre> &nbsp;</td>
+			<td style="font-size: 18;"><pre
+					data-ng-bind-html="BCReportData.describe8"></pre>&nbsp;</td>
+			<td style="font-size: 18;">自购 <input
+				data-ng-if="ReportData.describe37" type="checkbox" disabled
+				id="check-box" value="checked" name="describe37" checked /> <input
+				data-ng-if="!ReportData.describe37" type="checkbox" disabled
+				id="check-box" value="checked" name="describe37" /> <br /> 租赁 <input
+				data-ng-if="ReportData.describe125" type="checkbox" disabled
+				id="check-box" value="checked" name="describe125" checked /> <input
+				data-ng-if="!ReportData.describe125" type="checkbox" disabled
+				id="check-box" value="checked" name="describe125" />
+			</td>
+			<td style="font-size: 18;"><pre
+					data-ng-bind-html="BCReportData.describe7"></pre>&nbsp;</td>
+			<td style="font-size: 18;"><pre
+					data-ng-bind-html="BCReportData.describe1"></pre>&nbsp;</td>
+			<td style="font-size: 18;"><pre
+					data-ng-bind-html="ReportData.describe35"></pre>&nbsp;</td>
+			<td style="font-size: 18;" colspan="2"><pre
+					data-ng-bind-html="ReportData.describe36"></pre>&nbsp;</td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;" colspan="2">经营地址是否发生变化</td>
+			<td style="font-size: 18;">是 <input
+				data-ng-if="ReportData.describe38" type="checkbox" disabled
+				id="check-box" value="checked" name="describe38" checked /> <input
+				data-ng-if="!ReportData.describe38" type="checkbox" disabled
+				id="check-box" value="checked" name="describe38" /> <br /> 否 <input
+				data-ng-if="ReportData.describe39" type="checkbox" disabled
+				id="check-box" value="checked" name="describe39" checked /> <input
+				data-ng-if="!ReportData.describe39" type="checkbox" disabled
+				id="check-box" value="checked" name="describe39" />
+			</td>
+			<td style="font-size: 18;" colspan="3">经营范围是否发生变化</td>
+			<td style="font-size: 18;" colspan="2">是 <input
+				data-ng-if="ReportData.describe40" type="checkbox" disabled
+				id="check-box" value="checked" name="describe40" checked /> <input
+				data-ng-if="!ReportData.describe40" type="checkbox" disabled
+				id="check-box" value="checked" name="describe40" /> <br /> 否 <input
+				data-ng-if="ReportData.describe41" type="checkbox" disabled
+				id="check-box" value="checked" name="describe41" checked /> <input
+				data-ng-if="!ReportData.describe41" type="checkbox" disabled
+				id="check-box" value="checked" name="describe41" />
+			</td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;" colspan="8">上述信息如有变化，请说明：<br /> <pre
+					data-ng-bind-html="ReportData.describe42"></pre>
+			</td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;" colspan="8"><strong>三、个人家庭财产信息</strong></td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;">房产土地类：</td>
+			<td style="font-size: 18;" colspan="7"><pre
+					data-ng-bind-html="SmeCheckedALSData.map10.house"></pre>&nbsp;</td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;">车辆类：</td>
+			<td style="font-size: 18;" colspan="7"><pre
+					data-ng-bind-html="SmeCheckedALSData.map10.car"></pre>&nbsp;</td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;">其他：</td>
+			<td style="font-size: 18;" colspan="7"><pre
+					data-ng-bind-html="SmeCheckedALSData.map10.other"></pre>&nbsp;</td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;" colspan="8">家庭财产有无较大变化： 有 <input
+				data-ng-if="ReportData.describe43" type="checkbox" disabled
+				id="check-box" value="checked" name="describe43" checked /> <input
+				data-ng-if="!ReportData.describe43" type="checkbox" disabled
+				id="check-box" value="checked" name="describe43" /> 无 <input
+				data-ng-if="ReportData.describe44" type="checkbox" disabled
+				id="check-box" value="checked" name="describe44" checked /> <input
+				data-ng-if="!ReportData.describe44" type="checkbox" disabled
+				id="check-box" value="checked" name="describe44" />
+			</td>
+		</tr>
+		<tr
+			data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' ">
+			<td style="font-size: 18;" colspan="8">变化情况详情及分析：<br /> <pre
+					data-ng-bind-html="ReportData.describe45"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td data-ng-if="SmeCheckedALSData.sCustType == '0301'"
+				style="font-size: 18;" colspan="8"><strong>三、授信担保情况分析</strong></td>
+			<td
+				data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04' "
+				style="font-size: 18;" colspan="8"><strong>四、授信担保情况分析</strong></td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8">（一）担保类型</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8" align="center"><strong>担保是否有效</strong></td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;">国有担保公司担保</td>
+			<td style="font-size: 18;">民营担保公司担保</td>
+			<td style="font-size: 18;">法人企业担保</td>
+			<td style="font-size: 18;">抵押担保</td>
+			<td style="font-size: 18;">质押担保</td>
+			<td style="font-size: 18;">自然人担保</td>
+			<td style="font-size: 18;" colspan="2">其他担保</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;">是 <input
+				data-ng-if="ReportData.describe46" type="checkbox" disabled
+				id="check-box" value="checked" name="describe46" checked /> <input
+				data-ng-if="!ReportData.describe46" type="checkbox" disabled
+				id="check-box" value="checked" name="describe46" /> <br /> 否 <input
+				data-ng-if="ReportData.describe47" type="checkbox" disabled
+				id="check-box" value="checked" name="describe47" checked /> <input
+				data-ng-if="!ReportData.describe47" type="checkbox" disabled
+				id="check-box" value="checked" name="describe47" />
+			</td>
+			<td style="font-size: 18;">是 <input
+				data-ng-if="ReportData.describe48" type="checkbox" disabled
+				id="check-box" value="checked" name="describe48" checked /> <input
+				data-ng-if="!ReportData.describe48" type="checkbox" disabled
+				id="check-box" value="checked" name="describe48" /> <br /> 否 <input
+				data-ng-if="ReportData.describe49" type="checkbox" disabled
+				id="check-box" value="checked" name="describe49" checked /> <input
+				data-ng-if="!ReportData.describe49" type="checkbox" disabled
+				id="check-box" value="checked" name="describe49" />
+			</td>
+			<td style="font-size: 18;">是 <input
+				data-ng-if="ReportData.describe50" type="checkbox" disabled
+				id="check-box" value="checked" name="describe50" checked /> <input
+				data-ng-if="!ReportData.describe50" type="checkbox" disabled
+				id="check-box" value="checked" name="describe50" /> <br /> 否 <input
+				data-ng-if="ReportData.describe51" type="checkbox" disabled
+				id="check-box" value="checked" name="describe51" checked /> <input
+				data-ng-if="!ReportData.describe51" type="checkbox" disabled
+				id="check-box" value="checked" name="describe51" />
+			</td>
+			<td style="font-size: 18;">是 <input
+				data-ng-if="ReportData.describe52" type="checkbox" disabled
+				id="check-box" value="checked" name="describe52" checked /> <input
+				data-ng-if="!ReportData.describe52" type="checkbox" disabled
+				id="check-box" value="checked" name="describe52" /> <br /> 否 <input
+				data-ng-if="ReportData.describe53" type="checkbox" disabled
+				id="check-box" value="checked" name="describe53" checked /> <input
+				data-ng-if="!ReportData.describe53" type="checkbox" disabled
+				id="check-box" value="checked" name="describe53" />
+			</td>
+			<td style="font-size: 18;">是 <input
+				data-ng-if="ReportData.describe54" type="checkbox" disabled
+				id="check-box" value="checked" name="describe54" checked /> <input
+				data-ng-if="!ReportData.describe54" type="checkbox" disabled
+				id="check-box" value="checked" name="describe54" /> <br /> 否 <input
+				data-ng-if="ReportData.describe55" type="checkbox" disabled
+				id="check-box" value="checked" name="describe55" checked /> <input
+				data-ng-if="!ReportData.describe55" type="checkbox" disabled
+				id="check-box" value="checked" name="describe55" />
+			</td>
+			<td style="font-size: 18;">是 <input
+				data-ng-if="ReportData.describe56" type="checkbox" disabled
+				id="check-box" value="checked" name="describe56" checked /> <input
+				data-ng-if="!ReportData.describe56" type="checkbox" disabled
+				id="check-box" value="checked" name="describe56" /> <br /> 否 <input
+				data-ng-if="ReportData.describe57" type="checkbox" disabled
+				id="check-box" value="checked" name="describe57" checked /> <input
+				data-ng-if="!ReportData.describe57" type="checkbox" disabled
+				id="check-box" value="checked" name="describe57" />
+			</td>
+			<td style="font-size: 18;" colspan="2">是 <input
+				data-ng-if="ReportData.describe58" type="checkbox" disabled
+				id="check-box" value="checked" name="describe58" checked /> <input
+				data-ng-if="!ReportData.describe58" type="checkbox" disabled
+				id="check-box" value="checked" name="describe58" /> <br /> 否 <input
+				data-ng-if="ReportData.describe59" type="checkbox" disabled
+				id="check-box" value="checked" name="describe59" checked /> <input
+				data-ng-if="!ReportData.describe59" type="checkbox" disabled
+				id="check-box" value="checked" name="describe59" />
+			</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8">上述担保信息如有变化，请说明：<br /> <pre
+					data-ng-bind-html="ReportData.describe60"></pre> &nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8">（二）担保公司情况</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8">1.公司类保证人（含担保公司）</td>
+		</tr>
+		<tr>
+			<td colspan="8">
+				<table data-ng-repeat=" i in SmeCheckedALSData.map7Count">
+					<tr>
+						<td style="font-size: 18;">保证人名称</td>
+						<td style="font-size: 18;" colspan="3">{{SmeCheckedALSData.map7['GUARANTORNAME'+i]}}&nbsp;</td>
+						<td style="font-size: 18;">本行担保金额</td>
+						<td style="font-size: 18;" colspan="3">{{SmeCheckedALSData.map7['GUARANTYVALUE'+i]}}&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;">与借款人关系</td>
+						<td style="font-size: 18;" colspan="7">担保公司担保 <input
+							data-ng-if="ReportData['describe130A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe130A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe130A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe130A{{i}}' /> 股东 <input
+							data-ng-if="ReportData['describe131A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe131A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe131A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe131A{{i}}' /> 关联关系 <input
+							data-ng-if="ReportData['describe132A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe132A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe132A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe132A{{i}}' /> 一般担保 <input
+							data-ng-if="ReportData['describe133A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe133A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe133A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe133A{{i}}' /> 其他 <input
+							data-ng-if="ReportData['describe134A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe134A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe134A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe134A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8">（1）该保证企业在我行是否有授信： 是 <input
+							data-ng-if="ReportData['describe140A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe140A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe140A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe140A{{i}}' /> 否 <input
+							data-ng-if="ReportData['describe141A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe141A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe141A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe141A{{i}}' />
+						</td>
+					</tr>
+					<tr data-ng-if="ReportData['describe140A'+i] == 'checked'">
+						<td style="font-size: 18;">授信总额</td>
+						<td style="font-size: 18;" colspan="2">敞口额度</td>
+						<td style="font-size: 18;" colspan="2">当前余额</td>
+						<td style="font-size: 18;">担保方式</td>
+						<td style="font-size: 18;">是否逾期</td>
+						<td style="font-size: 18;">是否欠息</td>
+					</tr>
+					<tr data-ng-if="ReportData['describe140A'+i] == 'checked'">
+						<td style="font-size: 18;">{{SmeCheckedALSData.map7['contractSum'+i]}}&nbsp;</td>
+						<td style="font-size: 18;" colspan="2">{{SmeCheckedALSData.map7['balance'+i]}}&nbsp;</td>
+						<td style="font-size: 18;" colspan="2">{{SmeCheckedALSData.map7['contractBalance'+i]}}&nbsp;</td>
+						<td style="font-size: 18;">{{SmeCheckedALSData.map7['vouchtypename'+i]}}&nbsp;</td>
+						<td style="font-size: 18;">{{SmeCheckedALSData.map7['flag1'+i]}}&nbsp;</td>
+						<td style="font-size: 18;">{{SmeCheckedALSData.map7['flag2'+i]}}&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8">（2）该保证企业是否为我行其他客户进行担保：
+							是 <input data-ng-if="ReportData['describe142A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe142A{{i}}' checked /> <input
+							data-ng-if="!ReportData['describe142A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe142A{{i}}' />
+							否 <input data-ng-if="ReportData['describe143A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe143A{{i}}' checked /> <input
+							data-ng-if="!ReportData['describe143A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe143A{{i}}' />
+						</td>
+					</tr>
+					<tr data-ng-if="ReportData['describe142A'+i] == 'checked'">
+						<td style="font-size: 18;">被担保人的五级分类为正常以下的客户</td>
+						<td style="font-size: 18;" colspan="7">{{SmeCheckedALSData.map7['fivelevelname'+i]}}&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8">（3）保证企业征信情况</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">客户授信总余额是否大幅增加</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe83A'+i]" type="checkbox" disabled
+							id="check-box" value="checked" name='describe83A{{i}}' checked />
+							<input data-ng-if="!ReportData['describe83A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe83A{{i}}' />
+							否 <input data-ng-if="ReportData['describe84A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe84A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe84A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe84A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">客户是否出现欠息，逾期类、关注类、不良类等不良记录</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe66A'+i]" type="checkbox" disabled
+							id="check-box" value="checked" name='describe66A{{i}}' checked />
+							<input data-ng-if="!ReportData['describe66A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe66A{{i}}' />
+							否 <input data-ng-if="ReportData['describe67A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe67A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe67A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe67A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">客户对外担保总余额是否大幅增加</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe68A'+i]" type="checkbox" disabled
+							id="check-box" value="checked" name='describe68A{{i}}' checked />
+							<input data-ng-if="!ReportData['describe68A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe68A{{i}}' />
+							否 <input data-ng-if="ReportData['describe69A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe69A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe69A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe69A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">客户对外担保是否出现或增加不良记录</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe70A'+i]" type="checkbox" disabled
+							id="check-box" value="checked" name='describe70A{{i}}' checked />
+							<input data-ng-if="!ReportData['describe70A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe70A{{i}}' />
+							否 <input data-ng-if="ReportData['describe71A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe71A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe71A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe71A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">征信信息是否有其他异常情况</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe72A'+i]" type="checkbox" disabled
+							id="check-box" value="checked" name='describe72A{{i}}' checked />
+							<input data-ng-if="!ReportData['describe72A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe72A{{i}}' />
+							否 <input data-ng-if="ReportData['describe73A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe73A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe73A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe73A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8">对征信查询中的异常情况进行说明：</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8"><pre
+								data-bind-html="ReportData['describe74A'+i]"></pre> &nbsp;</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8">（4）保证企业涉诉情况</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">是否因金融债务纠纷被银行等金融机构起诉</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe75A'+i]" type="checkbox" disabled
+							id="check-box" value="checked" name='describe75A{{i}}' checked />
+							<input data-ng-if="!ReportData['describe75A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe75A{{i}}' />
+							否 <input data-ng-if="ReportData['describe76A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe76A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe76A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe76A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">是否涉及其他可能影响其偿债能力的诉讼案件</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe77A'+i]" type="checkbox" disabled
+							id="check-box" value="checked" name='describe77A{{i}}' checked />
+							<input data-ng-if="!ReportData['describe77A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe77A{{i}}' />
+							否 <input data-ng-if="ReportData['describe78A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe78A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe78A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe78A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">是否涉及执行中的诉讼案件</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe79A'+i]" type="checkbox" disabled
+							id="check-box" value="checked" name='describe79A{{i}}' checked />
+							<input data-ng-if="!ReportData['describe79A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe79A{{i}}' />
+							否 <input data-ng-if="ReportData['describe80A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe80A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe80A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe80A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8">对涉诉情况进行说明：</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8"><pre
+								data-bind-html="ReportData['describe81A'+i]"></pre> &nbsp;</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8">对该担保企业总体评价：</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8"><pre
+								data-bind-html="ReportData['describe82A'+i]"></pre></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr data-ng-if="SmeCheckedALSData.map7Count.length == 0">
+			<td style="font-size: 18;" colspan="8">无</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8">2.自然人担保</td>
+		</tr>
+		<tr>
+			<td colspan="8">
+				<table data-ng-repeat="i in SmeCheckedALSData.map8Count">
+					<tr>
+						<td style="font-size: 18;">保证人名称</td>
+						<td style="font-size: 18;" colspan="3">{{SmeCheckedALSData.map8['GUARANTORNAME'+i]}}&nbsp;</td>
+						<td style="font-size: 18;">本行担保金额</td>
+						<td style="font-size: 18;" colspan="3">{{SmeCheckedALSData.map8['GUARANTYVALUE'+i]}}&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;">与借款人关系</td>
+						<td style="font-size: 18;" colspan="7">担保公司担保 <input
+							data-ng-if="ReportData['describe135A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe135A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe135A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe135A{{i}}' /> 股东 <input
+							data-ng-if="ReportData['describe136A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe136A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe136A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe136A{{i}}' /> 关联关系 <input
+							data-ng-if="ReportData['describe137A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe137A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe137A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe137A{{i}}' /> 一般担保 <input
+							data-ng-if="ReportData['describe138A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe138A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe138A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe138A{{i}}' /> 其他 <input
+							data-ng-if="ReportData['describe139A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe139A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe139A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe139A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8">（1）该保证人在我行是否有授信： 是 <input
+							data-ng-if="ReportData['describe144A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe144A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe144A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe144A{{i}}' /> 否 <input
+							data-ng-if="ReportData['describe145A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe145A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe145A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe145A{{i}}' />
+						</td>
+					</tr>
+					<tr data-ng-if="ReportData['describe144A'+i] == 'checked'">
+						<td style="font-size: 18;">授信总额</td>
+						<td style="font-size: 18;" colspan="2">敞口额度</td>
+						<td style="font-size: 18;" colspan="2">当前余额</td>
+						<td style="font-size: 18;">担保方式</td>
+						<td style="font-size: 18;">是否逾期</td>
+						<td style="font-size: 18;">是否欠息</td>
+					</tr>
+					<tr data-ng-if="ReportData['describe144A'+i] == 'checked'">
+						<td style="font-size: 18;">{{SmeCheckedALSData.map8['contractSum'+i]}}</td>
+						<td style="font-size: 18;" colspan="2">{{SmeCheckedALSData.map8['balance'+i]}}</td>
+						<td style="font-size: 18;" colspan="2">{{SmeCheckedALSData.map8['contractBalance'+i]}}</td>
+						<td style="font-size: 18;">{{SmeCheckedALSData.map8['vouchtypename'+i]}}&nbsp;</td>
+						<td style="font-size: 18;">{{SmeCheckedALSData.map8['flag2'+i]}}</td>
+						<td style="font-size: 18;">{{SmeCheckedALSData.map8['flag1'+i]}}</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8">（2）该保证人是否为我行其他客户进行担保：
+							是 <input data-ng-if="ReportData['describe146A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe146A{{i}}' checked /> <input
+							data-ng-if="!ReportData['describe145A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe146A{{i}}' />
+							否 <input data-ng-if="ReportData['describe147A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe147A{{i}}' checked /> <input
+							data-ng-if="!ReportData['describe147A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe147A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="8">
+							<table data-ng-if="ReportData['describe146A'+i]">
+								<tr>
+									<td style="font-size: 18;" colspan="2">逾期的被担保人</td>
+									<td style="font-size: 18;" colspan="1">发放日</td>
+									<td style="font-size: 18;" colspan="1">到期日</td>
+									<td style="font-size: 18;" colspan="2">贷款余额</td>
+									<td style="font-size: 18;" colspan="2">5级分类状况</td>
+								</tr>
+								<!-- 	j->循环{{SmeCheckedALSData.map8['loanCount'+i]}}
+							       <tr> 
+							         <td style="font-size:18;"  colspan="2">"+(map8.get("loanName"+j+i) == null ? "" : map8.get("loanName")+j+i)+"&nbsp;</td> 
+							         <td style="font-size:18;"  colspan="1">"+(map8.get("loanPutOutDate"+j+i) == null ? "" : map8.get("loanPutOutDate")+j+i)+"&nbsp;</td>
+							         <td style="font-size:18;"  colspan="1">"+(map8.get("loanMaturityDate"+j+i) == null ? "loanMaturityDate" : map8.get("")+j+i)+"&nbsp;</td>
+							         <td style="font-size:18;"  colspan="2">"+(map8.get("loanBalance"+j+i) == null ? "" : map8.get("loanBalance")+j+i)+"&nbsp;</td>
+							         <td style="font-size:18;"  colspan="2">"+(map8.get(""+j+i) == null ? "" : map8.get("")+j+i)+"&nbsp;</td> 
+							       </tr> 
+	 							-->
+								<tr data-ng-if="SmeCheckedALSData.map8['loanCount'+i] == '0'">
+									<td style="font-size: 18;" colspan="2">&nbsp;</td>
+									<td style="font-size: 18;" colspan="1">&nbsp;</td>
+									<td style="font-size: 18;" colspan="1">&nbsp;</td>
+									<td style="font-size: 18;" colspan="2">&nbsp;</td>
+									<td style="font-size: 18;" colspan="2">&nbsp;</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8">（3）保证人征信情况</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">客户授信总余额是否大幅增加</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe88A'+i]" type="checkbox" disabled
+							id="check-box" value="checked" name='describe88A{{i}}' checked />
+							<input data-ng-if="!ReportData['describe88A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe88A{{i}}' />
+							否 <input data-ng-if="ReportData['describe89A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe89A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe89A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe89A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">客户是否出现欠息，逾期类、关注类、不良类等不良记录</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe90A'+i]" type="checkbox" disabled
+							id="check-box" value="checked" name='describe90A{{i}}' checked />
+							<input data-ng-if="!ReportData['describe90A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe90A{{i}}' />
+							否 <input data-ng-if="ReportData['describe91A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe90A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe91A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe91A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">客户对外担保总余额是否大幅增加</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe122A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe122A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe122A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe122A{{i}}' /> 否 <input
+							data-ng-if="ReportData['describe92A'+i]" type="checkbox" disabled
+							id="check-box" value="checked" name='describe92A{{i}}' checked />
+							<input data-ng-if="!ReportData['describe92A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe92A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">客户对外担保是否出现或增加不良记录</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe93A'+i]" type="checkbox" disabled
+							id="check-box" value="checked" name='describe93A{{i}}' checked />
+							<input data-ng-if="!ReportData['describe93A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe93A{{i}}' />
+							否 <input data-ng-if="ReportData['describe94A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe94A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe94A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe94A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">征信信息是否有其他异常情况</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe95A'+i]" type="checkbox" disabled
+							id="check-box" value="checked" name='describe95A{{i}}' checked />
+							<input data-ng-if="!ReportData['describe95A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe95A{{i}}' />
+							否 <input data-ng-if="ReportData['describe96A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe96A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe96A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe96A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8">对征信查询中的异常情况进行说明：<br />
+							<pre data-ng-bind-html="ReportData['describe97A'+i]"></pre>
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8">（4）保证人涉诉情况</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">是否因金融债务纠纷被银行等金融机构起诉</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe98A'+i]" type="checkbox" disabled
+							id="check-box" value="checked" name='describe98A{{i}}' checked />
+							<input data-ng-if="!ReportData['describe98A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe98A{{i}}' />
+							否 <input data-ng-if="ReportData['describe99A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe99A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe99A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe99A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">是否涉及其他可能影响其偿债能力的诉讼案件</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe100A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe100A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe100A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe100A{{i}}' /> 否 <input
+							data-ng-if="ReportData['describe101A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe101A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe101A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe101A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="5">是否涉及执行中的诉讼案件</td>
+						<td style="font-size: 18;" colspan="3">是 <input
+							data-ng-if="ReportData['describe102A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe102A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe102A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe102A{{i}}' /> 否 <input
+							data-ng-if="ReportData['describe103A'+i]" type="checkbox"
+							disabled id="check-box" value="checked" name='describe103A{{i}}'
+							checked /> <input data-ng-if="!ReportData['describe103A'+i]"
+							type="checkbox" disabled id="check-box" value="checked"
+							name='describe103A{{i}}' />
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8">对涉诉情况进行说明：<br /> <pre
+								data-ng-bind-html="ReportData['describe104A'+i]"></pre>
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 18;" colspan="8">对该担保人总体评价：<br /> <pre
+								data-ng-bind-html="ReportData['describe121A'+i]"></pre>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr data-ng-if="SmeCheckedALSData.map8Count.length == 0">
+			<td style="font-size: 18;" colspan="8">无</td>
+		</tr>
+		<tr>
+			<td data-ng-if="SmeCheckedALSData.sCustType == '0301'"
+				style="font-size: 18;" colspan="8"><strong>四、联保业务贷后检查</strong></td>
+			<td
+				data-ng-if="SmeCheckedALSData.sCustType == '0302' || SmeCheckedALSData.sCustType == '04'"
+				style="font-size: 18;" colspan="8"><strong>五、联保业务贷后检查</strong></td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8">联保企业贷后检查信息：
+				{{SmeCheckedALSData.UnionName}}</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8" algin="center"><strong>风险检查结论</strong></td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8">总体评价及贷款风险分析<br /> <pre
+					data-ng-bind-html="ReportData.describe106"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8">检查人建议采取的措施：</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="3"><input
+				data-ng-if="ReportData.describe107" type="checkbox" disabled
+				id="check-box" value="checked" name="describe107" checked /> <input
+				data-ng-if="!ReportData.describe107" type="checkbox" disabled
+				id="check-box" value="checked" name="describe107" /> 继续支持该客户</td>
+			<td style="font-size: 18;" colspan="5"><input
+				data-ng-if="ReportData.describe108" type="checkbox" disabled
+				id="check-box" value="checked" name="describe108" checked /> <input
+				data-ng-if="!ReportData.describe108" type="checkbox" disabled
+				id="check-box" value="checked" name="describe108" /> 停止发放新贷款</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="3"><input
+				data-ng-if="ReportData.describe109" type="checkbox" disabled
+				id="check-box" value="checked" name="describe109" checked /> <input
+				data-ng-if="!ReportData.describe109" type="checkbox" disabled
+				id="check-box" value="checked" name="describe109" /> 退出该客户</td>
+			<td style="font-size: 18;" colspan="5"><input
+				data-ng-if="ReportData.describe110" type="checkbox" disabled
+				id="check-box" value="checked" name="describe110" checked /> <input
+				data-ng-if="!ReportData.describe110" type="checkbox" disabled
+				id="check-box" value="checked" name="describe110" /> 追索保证单位连带责任</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="3"><input
+				data-ng-if="ReportData.describe111" type="checkbox" disabled
+				id="check-box" value="checked" name="describe111" checked /> <input
+				data-ng-if="!ReportData.describe111" type="checkbox" disabled
+				id="check-box" value="checked" name="describe111" /> 按常规实施贷后检查</td>
+			<td style="font-size: 18;" colspan="5"><input
+				data-ng-if="ReportData.describe112" type="checkbox" disabled
+				id="check-box" value="checked" name="describe112" checked /> <input
+				data-ng-if="!ReportData.describe112" type="checkbox" disabled
+				id="check-box" value="checked" name="describe112" />
+				依法处置贷款抵押物、质物、质押权利</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="3"><input
+				data-ng-if="ReportData.describe113" type="checkbox" disabled
+				id="check-box" value="checked" name="describe113" checked /> <input
+				data-ng-if="!ReportData.describe113" type="checkbox" disabled
+				id="check-box" value="checked" name="describe113" />
+				帮助借款人改善财务管理和经营管理</td>
+			<td style="font-size: 18;" colspan="5"><input
+				data-ng-if="ReportData.describe114" type="checkbox" disabled
+				id="check-box" value="checked" name="describe114" checked /> <input
+				data-ng-if="!ReportData.describe114" type="checkbox" disabled
+				id="check-box" value="checked" name="describe114" />
+				更换担保单位、补足抵（质）押物</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="3"><input
+				data-ng-if="ReportData.describe115" type="checkbox" disabled
+				id="check-box" value="checked" name="describe115" checked /> <input
+				data-ng-if="!ReportData.describe115" type="checkbox" disabled
+				id="check-box" value="checked" name="describe115" /> 要求借款人提出详细的还款计划</td>
+			<td style="font-size: 18;" colspan="5"><input
+				data-ng-if="ReportData.describe116" type="checkbox" disabled
+				id="check-box" value="checked" name="describe116" checked /> <input
+				data-ng-if="!ReportData.describe116" type="checkbox" disabled
+				id="check-box" value="checked" name="describe116" /> 依法提起诉讼</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="3"><input
+				data-ng-if="ReportData.describe117" type="checkbox" disabled
+				id="check-box" value="checked" name="describe117" checked /> <input
+				data-ng-if="!ReportData.describe117" type="checkbox" disabled
+				id="check-box" value="checked" name="describe117" />
+				列为重点关注对象，加大贷后检查频率</td>
+			<td style="font-size: 18;" colspan="5"><input
+				data-ng-if="ReportData.describe118" type="checkbox" disabled
+				id="check-box" value="checked" name="describe118" checked /> <input
+				data-ng-if="!ReportData.describe118" type="checkbox" disabled
+				id="check-box" value="checked" name="describe118" /> 提请法院宣告其破产还债</td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8"><input
+				data-ng-if="ReportData.describe119" type="checkbox" disabled
+				id="check-box" value="checked" name="describe119" checked /> <input
+				data-ng-if="!ReportData.describe119" type="checkbox" disabled
+				id="check-box" value="checked" name="describe119" /> 其他措施或建议：<br />
+				<pre data-ng-bind-html="ReportData.describe120"></pre></td>
+		</tr>
+		<tr>
+			<td style="font-size: 18; height: 50px;" colspan="8"><p>
+					<span style="width: 350px;">客户经理签字：<pre
+							data-ng-bind-html="SmeCheckedALSData.CusManInfo.sOptName"></pre></span><span
+						style="margin-left: 50px;"><pre
+							data-ng-bind-html="SmeCheckedALSData.CusManInfo.sEndTime"></pre>&nbsp;</span>
+				</p></td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8"><p>部门经理意见：
+				<pre data-ng-bind-html="SmeCheckedALSData.BranInfo.sOptOpin"></pre>
+				</p>
+				<p>
+					<span style="margin-left: 200px; width: 200px;">签字:<pre
+							data-ng-bind-html="SmeCheckedALSData.BranInfo.sOptName"></pre></span><span
+						style="margin-left: 100px"><pre
+							data-ng-bind-html="SmeCheckedALSData.BranInfo.sEndTime"></pre>&nbsp;</span>
+				</p></td>
+		</tr>
+		<tr>
+			<td style="font-size: 18;" colspan="8"><p>经营机构负责人意见：
+				<pre data-ng-bind-html="SmeCheckedALSData.PresiderInfo.sOptOpin"></pre>
+				</p>
+				<p>
+					<span style="margin-left: 200px; width: 200px;">签字:<pre
+							data-ng-bind-html="SmeCheckedALSData.PresiderInfo.sOptName"></pre></span><span
+						style="margin-left: 100px;"><pre
+							data-ng-bind-html="SmeCheckedALSData.PresiderInfo.sEndTime"></pre>&nbsp;</span>
+				</p></td>
+		</tr>
+	</table>
+</div>
+

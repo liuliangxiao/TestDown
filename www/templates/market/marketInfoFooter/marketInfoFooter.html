@@ -1,0 +1,26 @@
+
+    <div class="btn-box row" ng-if="selectedMenuItem.ColId == '10'
+	&& selectedMenuItem.GroupId == 'marketingTask'" ng-controller = "marketInfoFooterController">
+        <div class="col col-40">
+            <button type="button" class="am-button am-button-blue" ng-click="updateData()">保存</button>
+         </div>
+         <div class="col col-40">
+             <button type="button" class="am-button am-button-red" ng-click="updateMarketingStatus('提交扫描岗')">提交扫描岗</button>
+         </div>
+    </div>
+    
+    
+    <div class="btn-box row" ng-if="(selectedMenuItem.ColId == '20' || selectedMenuItem.ColId == '70')
+	&& selectedMenuItem.GroupId == 'marketingTask'" ng-controller = "marketInfoFooterController">
+        <div class="col col-40">
+         	<button type="button" class="am-button am-button-blue" ng-click="updateMarketingStatus('转为新增营销')">转为新增营销</button>
+        </div>
+    </div>
+    
+    
+    <div class="btn-box row"  ng-if="selectedMenuItem.ColId == '90'
+	&& selectedMenuItem.GroupId == 'marketingTask'" ng-controller = "marketInfoFooterController">
+        <div class="col col-40">
+            <button type="button" class="am-button am-button-blue" ng-click="removeMarketDetail()">删除</button>
+        </div>
+    </div>

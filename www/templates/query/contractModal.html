@@ -1,0 +1,43 @@
+<!--因为所有的签署意见,提交流程的方法都封装在ApplyInfoController里,故ApplyInfoController作为父controller,子controller都可以使用
+  SignOpinionController需要传递数据给nextActionSelectController,故SignOpinionController是nextActionSelectController的直接父controller
+-->
+<ion-modal-view ng-style="modalStyle"
+                ng-controller="searchContractController">
+
+    <!--<ion-side-menus ng-controller="SignOpinionController">-->
+
+    <!--<ion-side-menu-content edge-drag-threshold=50 ng-controller="nextActionSelectController"-->
+    <!--width="{{smallContentWidth-1}}" ng-style="modalContent">-->
+
+    <!--</ion-side-menu-content>-->
+
+
+    <!--<ion-side-menu side="left" expose-aside-when="(min-width:200px)" width="{{bigSecondNavWidth}}"-->
+    <!--ng-style="modalFistNav">-->
+
+
+    <!--</ion-side-menu>-->
+
+    <!--</ion-side-menus>-->
+
+    <div >
+        <div >
+            <div class="Modal_header">
+                业务品种选择
+            </div>
+
+            <div class="Modal_body" id="parent" style="height:486px;overflow:scroll;">
+                <!-- <div id="parent">
+               </div> -->
+            </div>
+            <div >
+                <div class="Modal_btn fixed">
+                    <a ng-click="contractCancel()">取消</a>
+                    <a ng-click="contractConfirm()" class="confirm">确认</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</ion-modal-view>

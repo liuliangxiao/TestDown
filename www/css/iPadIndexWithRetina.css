@@ -1,0 +1,114 @@
+
+.fstNav-content {
+    background-color: #ff6464;
+}
+
+.fstNav .fstNav-content .ipad-avatar {
+    background: url("../img/ms-bank2/avatar.png") no-repeat center center;
+    background-size: 75%;
+    height: 300px;
+}
+
+.fstNav .fstNav-content .ipad-userName {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.nav-wel-container {
+    height: 400px;
+}
+
+.nav-menu-container {
+    height: 1136px;
+}
+
+.ipad-item {
+    height: 150px;
+    border-width: 0;
+}
+
+.fstNav .fstNav-content .ipad-workbench {
+    background: url("../img/ms-bank2/workbench.png") no-repeat center center;
+    background-size: contain;
+}
+
+.fstNav .fstNav-content .ipad-examine {
+    background: url("../img/ms-bank2/examine.png") no-repeat center center;
+    background-size: contain;
+}
+
+.fstNav .fstNav-content .ipad-query {
+    background: url("../img/ms-bank2/query.png") no-repeat center center;
+    background-size: contain;
+}
+
+.fstNav .fstNav-content .ipad-report {
+    background: url("../img/ms-bank2/report.png") no-repeat center center;
+    background-size: contain;
+}
+
+.fstNav .fstNav-content .ipad-screenage {
+    background: url("../img/ms-bank2/screenage.png") no-repeat center center;
+    background-size: contain;
+}
+
+.fstNav .fstNav-content .ipad-gztx {
+    background: url("../img/ms-bank2/notice.png") no-repeat center center;
+    background-size: contain;
+}
+
+.fstNav .fstNav-content .ipad-settings {
+    background: url("../img/ms-bank2/setting.png") no-repeat center center;
+    background-size: contain;
+}
+
+.fstNav .fstNav-content .ipad-exit {
+    background: url("../img/ms-bank2/exit.png") no-repeat center center;
+    background-size: contain;
+}
+
+.setting-bottom {
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 100px;
+}
+
+.exit-bottom {
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 100px;
+    left: 100px;
+}
+
+.bar-ipad-nav {
+    background-color: #ff6464;
+}
+
+.bar .title {
+    color: #fff;
+}
+
+.button {
+    background: none;
+}
+
+.nav-menu-container .item:active{
+    background-color: #2c97de;
+
+}
+
+.nav-menu-container div.ipad-settings:active{
+    background-color: #2c97de;
+}
+
+.nav-menu-container div.ipad-exit:active{
+    background-color: #2c97de;
+}
+
+.nav-wel-container div.ipad-avatar:active{
+    background-color: #2c97de;
+}

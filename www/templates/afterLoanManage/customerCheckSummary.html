@@ -1,0 +1,59 @@
+<!--<ion-view>-->
+<ion-content>
+    <div>
+        <table class="table-border" width='{{contentWidth}}' align=center border="1" cellspacing=0 cellpadding=2 bgcolor=white
+               bordercolor="black" bordercolordark="black">
+            <tr>
+                <td class=td1 align=center colspan='3' bgcolor=#aaaaaa><font
+                        style=' font-size: 12pt;FONT-FAMILY:宋体;FONT-WEIGHT: bold;color:black;background-color:#aaaaaa'>
+                    <p>XX商业银行</p>客户检查报告（摘要）</font></td>
+            </tr>
+            <tr>
+                <td width=15% align=center class=td1>客户名称：</td>
+                <td colspan=2 align=left class=td1>{{reportSummary.CustomerName}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td align=center class=td1>经办机构：</td>
+                <td colspan=2 align=left class=td1>{{reportSummary.InputOrgName}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td align=center class=td1>检查人：</td>
+                <td colspan=2 align=left class=td1>{{reportSummary.InputUserName}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td align=center class=td1>报告日期：</td>
+                <td colspan=2 align=left class=td1>{{reportSummary.UpdateDate}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan=3 align=left class=td1><br>一、基本业务信息<br>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan=2 align=center class=td1><p>（一）信用等级</p></td>
+                <td align=left class=td1>{{reportSummary.CreditLevel}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan=2 align=center class=td1>（二）授信额度</td>
+                <td align=left class=td1>{{reportSummary.BusinessSum}}(元)&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan=2 align=center class=td1>（三）授信余额</td>
+                <td align=left class=td1>{{reportSummary.Balance}}(元)&nbsp;</td>
+            </tr>
+            <tr>
+                <td align=left colspan=3 class=td1>二、预警信号</td>
+            </tr>
+            <tr>
+                <td align=left colspan=3 class=td1><br>{{reportSummary.SignalName}}&nbsp;</td>
+            </tr>
+            <tr align=left>
+                <td colspan=3 class=td1> 三、建议风险分类最低级别</td>
+            </tr>
+            <tr>
+                <td align=left colspan=3 class=td1>{{reportSummary.ClassifyResult}}&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+
+</ion-content>
+
+<!--</ion-view>-->

@@ -1,0 +1,20 @@
+
+<div style="width:{{contentWidth}}px;position:absolute;top: 49px;" ng-controller="SelectPayeeDetailList">
+<dl class="am-list arrow-list"  ng-if="payeeInfoInfo.length!='0'">
+	<dd class="item am-button-default"   ng-class="{'item-selected': $index == detailListIndex}" 
+	ng-repeat="item in payeeInfoInfo" ng-click="chooseDetail(item,$index)">
+		<div ng-repeat="groupItem in item" ng-hide='groupItem.Hide'>
+		    <h4>{{groupItem.KeyName}}：{{groupItem.Value}}</h4>
+		</div>
+	    <i class="am_iconfont am-icon-fl">&#xe61b;</i>						
+	</dd>	
+</dl>
+<div class="noDataBox" ng-show="payeeInfoInfo.length == 0">
+	<div class="nodata">
+	    <img src="img/empty_page.png" width="70px">
+	    <span class="nodata_span">暂无数据</span>
+	</div>
+</div>  
+</div>
+
+

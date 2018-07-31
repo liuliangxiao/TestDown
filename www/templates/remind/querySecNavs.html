@@ -1,0 +1,62 @@
+<ion-header-bar align-title="center" class="bar-ipad-nav">
+    <h1 class="title">我的工作台</h1>
+</ion-header-bar>
+<ion-header-bar class="bar-subheader am-sub-header">
+    <ul class="am-tab row" style="padding: 0px">
+    	
+        <li class="col col-50" ng-class="{active:selectTab0}" ng-click="selectTask('0')">日常工作提醒</li>
+        <li class="col col-50" ng-class="{active:selectTab1}" ng-click="selectTask('1')">业务提醒</li>
+    </ul>
+</ion-header-bar>
+
+<!-- 日常工作提示 -->
+<ion-content class="gray-main pos-box am-content-has-sub-header am-list arrow-list ng-hide" ng-show="selectTab0" ng-controller="DueRemindController">
+     <ion-refresher on-refresh="refresh()"
+                       pulling-text="下拉刷新"
+                       refreshing-text="正在刷新中"
+                       spinner="ios">
+        </ion-refresher> 
+    <div>
+        <dl class="am-list arrow-list">
+            <dd class="item" ng-repeat="item in items track by $index" ng-click="gotoTaskInfo1($index,item)"  ng-class="{'item-selected': $index == selectedRow}" >
+                  <i class="am_iconfont am-icon-sx">{{item.IconCode}}</i>  
+                <!--<div class="my_spot" ><span class="spot font-icon-white iconfont_replace">{{item.TaskNumber}}</span></div>-->
+                 <div class="my_spot"><span class="badge badge-assertive">{{item.WorkCount}}</span></div> 
+                <p class="font_s12"><span>{{item.WorkName}}</span></p>
+            </dd>
+        </dl>
+    </div>
+    <!-- <div class="noDataBox" ng-show="noData">
+        <div class="nodata">
+            <img src="img/empty_page.png" width="70px">
+            <span class="nodata_span">暂无数据</span>
+        </div>
+    </div> -->
+    <!-- <ion-infinite-scroll icon="ion-loading-c"
+                             ng-if="hasMore"
+                             on-infinite="loadMore()"
+                             distance="1%">
+            <div>正在加载中</div>
+        </ion-infinite-scroll> -->
+</ion-content>
+<!-- 业务提醒 -->
+<ion-content class="gray-main pos-box am-content-has-sub-header am-list arrow-list ng-hide" ng-show="selectTab1" ng-controller="TipsDetailController">
+    <div>
+        <dl class="am-list arrow-list">
+            <dd class="item" ng-repeat="item in items track by $index" ng-click="gotoInfo($index,item)"  ng-class="{'item-selected': $index == selected}">
+                <i class="am_iconfont am-icon-sx">{{item.IconCode}}</i>
+                <!--<div class="my_spot" ><span class="spot font-icon-white iconfont_replace">{{item.TaskNumber}}</span></div>-->
+                <div class="my_spot"><span class="badge badge-assertive">{{item.BusnessNumber}}</span></div>
+                <p class="font_s16"><span>{{item.ItemName}}</span></p>
+            </dd>
+        </dl>
+    </div> 
+    <div class="noDataBox" ng-show="noData">
+        <div class="nodata">
+            <img src="img/empty_page.png" width="70px">
+            <span class="nodata_span">暂无数据</span>
+        </div>
+    </div>
+</ion-content>
+
+

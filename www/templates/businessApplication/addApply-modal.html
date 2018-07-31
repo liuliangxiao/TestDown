@@ -1,0 +1,159 @@
+<ion-modal-view class="no-header">
+    <ion-header-bar class="bar-positive">
+        <div class="button am-back" ng-click="closeApplyModal()" style="top:{{barHeight*0.1}}px"></div>
+        <h1 class="title">新增业务申请</h1>
+    </ion-header-bar>
+    <ion-content>
+
+        <table class="bm_tb_list">
+            <thead>
+            <tr>
+                <th colspan="2">基本信息</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="td_width_40">申请类型</td><td><input type="" ng-model="ApplyType.ItemName" readonly class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">客户编号</td><td ng-click="selCustomer()"><input type="" ng-model="ApplyInfo.CustomerID" readonly class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">客户名称</td><td><input type="" ng-model="ApplyInfo.CustomerName" readonly class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">业务品种</td><td ng-click="selectBusinessType()"><input type="" ng-model="BusinessTypeName" readonly class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">发生类型</td>
+                <td>
+                    <select required="required" class="ba-select" ng-options="o.ItemNo as o.ItemName for o in OccurTypes" ng-model='ApplyInfo.OccurType'>
+                        <option value="">--请选择--</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="td_width_40">币种</td>
+                <td>
+                    <select required="required" class="ba-select" ng-options="c.ItemNo as c.ItemName for c in Currencies" ng-model='ApplyInfo.Currency'>
+                        <option value="">--请选择--</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="td_width_40">金额</td>
+                <td>
+                    <input type="" class="ba-input text-right" ng-model="ApplyInfo.BusinessSum" ng-blur="onBlur()" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_width_40">期限(月)</td>
+                <td>
+                    <input type="" class="ba-input text-right" ng-model="ApplyInfo.TermMonth"/>
+                </td>
+            </tr>
+
+
+
+            <!--<tr>-->
+                <!--<td class="td_width_40">申请类型：</td>-->
+                <!--<td>{{ApplyType.ItemName}}</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td class="td_width_40">客户编号：</td>-->
+                <!--<td ng-click="selCustomer()">{{ApplyInfo.CustomerID}}</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td class="td_width_40">客户名称：</td>-->
+                <!--<td>{{ApplyInfo.CustomerName}}</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td class="td_width_40">业务品种：</td>-->
+                <!--<td ng-click="selectBusinessType()">{{BusinessTypeName}}</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td class="td_width_40">发生类型：</td>-->
+                <!--<td>-->
+                    <!--<select required="required" class="am-select" ng-options="o.ItemNo as o.ItemName for o in OccurTypes" ng-model='ApplyInfo.OccurType'>-->
+                        <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+                    <!--</select>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td class="td_width_40">币种：</td>-->
+                <!--<td>-->
+                    <!--<select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in Currencies" ng-model='ApplyInfo.Currency'>-->
+                        <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+                    <!--</select>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td class="td_width_40">金额：</td>-->
+                <!--<td>-->
+                    <!--<input type="" style="text-align: right" class="cm-input" ng-model="ApplyInfo.BusinessSum"/>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td class="td_width_40">期限(月)：</td>-->
+                <!--<td>-->
+                    <!--<input type="" style="text-align: right" class="cm-input" ng-model="ApplyInfo.TermMonth"/>-->
+                <!--</td>-->
+            <!--</tr>-->
+            </tbody>
+        </table>
+
+        <!--<div class="list font-black">-->
+            <!--<label class="item item-input">-->
+                <!--<span class="input-label">申请类型</span>-->
+                <!--<input type="text" disabled ng-model="ApplyType.ItemName">-->
+            <!--</label>-->
+            <!--<label class="item item-input">-->
+                <!--<span class="input-label">客户编号</span>-->
+                <!--<input style="color: #3a3a3a;" type="text" ng-model="ApplyInfo.CustomerID" placeholder="点击选择" ng-click="selCustomer()">-->
+            <!--</label>-->
+            <!--<label class="item item-input">-->
+                <!--<span class="input-label">客户名称</span>-->
+                <!--<input type="text" disabled ng-model="ApplyInfo.CustomerName">-->
+            <!--</label>-->
+
+            <!--<label class="item item-input" ng-click="selectBusinessType()">-->
+                <!--<span class="input-label">业务品种</span>-->
+                <!--<input type="text" ng-model="BusinessTypeName" placeholder="点击选择" disabled>-->
+            <!--</label>-->
+
+            <!--<label class="item item-input item-select">-->
+                <!--<div class="input-label">-->
+                    <!--发生类型-->
+                <!--</div>-->
+                <!--<select ng-model="ApplyInfo.OccurType" ng-options="o.ItemNo as o.ItemName for o in OccurTypes">-->
+                    <!--<option value="">选择发生类型</option>-->
+                <!--</select>-->
+            <!--</label>-->
+
+            <!--<label class="item item-input item-select">-->
+                <!--<div class="input-label">-->
+                    <!--币种-->
+                <!--</div>-->
+                <!--<select ng-model="ApplyInfo.Currency" ng-options="c.ItemNo as c.ItemName for c in Currencies">-->
+                    <!--<option value="">选择币种</option>-->
+                <!--</select>-->
+            <!--</label>-->
+            <!--<label class="item item-input">-->
+                <!--<span class="input-label">金额</span>-->
+                <!--<input type="number" ng-model="ApplyInfo.BusinessSum" style="text-align: right;">-->
+            <!--</label>-->
+            <!--<label class="item item-input">-->
+                <!--<span class="input-label">期限(月)</span>-->
+                <!--<input type="number" ng-model="ApplyInfo.TermMonth" style="text-align: right;">-->
+            <!--</label>-->
+        <!--</div>-->
+
+    </ion-content>
+    <ion-footer-bar>
+        <div class="btn-box row">
+            <div class="col col-100">
+                <button type="button" class="am-button am-button-blue" ng-click="saveApply()">保存</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

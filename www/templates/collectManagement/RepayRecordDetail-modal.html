@@ -1,0 +1,32 @@
+<ion-modal-view class="no-header">
+    <ion-header-bar class="bar-positive">
+        <div class="button am-back" ng-click="closeRepayDetailModal()" style="top:{{barHeight*0.1}}px"></div>
+        <h1 class="title">承诺还款</h1>
+    </ion-header-bar>
+    <ion-content>
+
+        <table class="bm_tb_list">
+            <tbody>
+            <tr>
+                <td class="td_width_40">承诺还款日期：</td>
+                <td>
+                    <input type="date" style="text-align: right"  class="ba-input" ng-model="repayData.RepayTime"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="td_width_40">承诺还款金额：</td>
+                <td>
+                    <input type="" style="text-align: right"  class="ba-input" ng-model="repayData.RepayAmount"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="btn-box row">
+            <div class="col col-100">
+                <button type="button" class="am-button am-button-blue" ng-click="saveRepay()">保存</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

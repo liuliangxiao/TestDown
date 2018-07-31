@@ -1,0 +1,37 @@
+<ion-modal-view >
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">业务品种选择</h1>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="item in BusinessTypes" ng-click="confirm(item)" >
+                <!--<span ng-if="item.SortNo.length===2"><i class="icon ion-minus-round"></i> </span>-->
+                <!--<span ng-if="item.SortNo.length===4">&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon ion-minus-round"></i> </span>-->
+                <!--<span ng-if="item.SortNo.length===6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon ion-minus-round"></i></span>-->
+                <!--<span ng-if="item.SortNo.length===8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
+
+                <!--<span ng-if="item.SortNo.length===4 && ApplyType.ItemNo === 'IndCreditApply' && item.SortNo !== '2060'"><i class="icon ion-minus-round"></i> </span>-->
+                <!--<span ng-if="item.TypeNo.length===4 && ApplyType.ItemNo !== 'IndCreditApply'"><i class="icon ion-minus-round"></i> </span>-->
+                <!--<span ng-if="item.SortNo.length===6 && ApplyType.ItemNo === 'IndCreditApply'">&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
+                <!--<span ng-if="item.SortNo.length===6 && ApplyType.ItemNo !== 'IndCreditApply'"></span>-->
+
+
+                <!--<span ng-if="item.TypeNo.length===8">&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
+
+                <span ng-if="item.pid === 0"><i class="icon ion-minus-round"></i> </span>
+                <span ng-if="item.pid !== 0">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                {{item.TypeName}}
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+    <ion-footer-bar>
+        <div class="btn-box row">
+            <div class="col col-100">
+                <button type="button" class="am-button am-button-blue" ng-click="modal.hide()">取消</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+
+
+</ion-modal-view>

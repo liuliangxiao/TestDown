@@ -1,0 +1,147 @@
+<ion-view style="width:{{contentWidth}}px"   ng-controller='PotentialCustomerDetailController' class="jh-container">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <h1 class="title">潜在客户详情</h1>
+
+        <div class="button am-plus" ng-click="addPotentialCustomer()"></div>
+    </ion-header-bar>
+
+    <ion-content  ng-show="!PotentialCustomerDetailNoData">
+        <div class="ui-wrap">
+            <table class="bm_tb_list">
+                <thead>
+                <tr>
+                    <th colspan="2">基本信息</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="td_width_40">姓名<font color=red>*</font></td>
+                    <td><input type="" class="ba-input"  readonly="readonly" ng-model="customer.CustomerName"/></td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">曾用名</td>
+                    <td><input type="" class="ba-input"  ng-model="customer.BeforeName"/></td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">性别</td>
+                    <!--<td><input type="" class="ba-input" ng-model="customer.Gender"/></td>-->
+                    <td>
+                        <select name="Sex" id="Sex" ng-model="customer.Gender" class="am-select">
+                            <option selected value="" >请选择</option>
+                            <option value="1">男性</option>
+                            <option value="2">女性</option>
+                            <option value="0">未知的性别</option>
+                            <option value="9">未说明性别</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="td_width_40">籍贯</td>
+                    <td><input type="" class="ba-input" ng-model="customer.NativePlace"/></td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">出生日期<font color=red>*</font></td>
+                    <td><input type="date" class="ba-input" ng-model="date.Birthday"/></td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">证件类型<font color=red>*</font></td>
+                    <td>
+                        <select required="required" class="ba-select" ng-options='CertType.ItemNo as CertType.ItemName for CertType in CertTypes' ng-model='customer.DocumentType'>
+                            <option value="">--请选择--</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">证件号码<font color=red>*</font></td>
+                    <td><input type="" class="ba-input" ng-model="customer.CorpID"/></td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">证件办法机构<font color=red>*</font></td>
+                    <td><input type="" class="ba-input" ng-model="customer.CorpIDORG"/></td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">最高学历</td>
+                    <td>
+                        <select required="required" class="ba-select" ng-options='Experience.ItemNo as Experience.ItemName for Experience in Experiences' ng-model="customer.HigestEducation">
+                            <option value="">--请选择--</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">最高学位</td>
+                    <td>
+                        <select required="required" class="ba-select" ng-options='Degree.ItemNo as Degree.ItemName for Degree in Degrees' ng-model="customer.HighestDegree">
+                            <option value="">--请选择--</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">户籍地址</td>
+                    <td><input type="" class="ba-input" ng-model="customer.PermanentAddRess"/></td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">婚姻状况</td>
+                    <td>
+                        <select required="required" class="ba-select" ng-options='MaritalStatu.ItemNo as MaritalStatu.ItemName for MaritalStatu in MaritalStatus' ng-model="customer.MaritalStatus">
+                        <option value="">--请选择--</option>
+                         </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">居住地址<font color=red>*</font></td>
+                    <td><input type="" class="ba-input" ng-model="customer.ResIDEntialAddRess"/></td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">住宅电话</td>
+                    <td><input type="" class="ba-input" ng-model="customer.HomePhone"/></td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">手机号码<font color=red>*</font></td>
+                    <td><input type="" class="ba-input" ng-model="customer.PhoneNumber"/></td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">通讯地址<font color=red>*</font></td>
+                    <td><input type="" class="ba-input" ng-model="customer.PostalAddRess"/></td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">家庭月收入<font color=red>*</font></td>
+                    <td><input type="" class="ba-input" ng-model="customer.FMonthlyIncome"/></td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">个人年输入<font color=red>*</font></td>
+                    <td><input type="" class="ba-input" ng-model="customer.PannualIncome"/></td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">其他联系人</td>
+                    <td><input type="" class="ba-input" ng-model="customer.OtherContacts"/></td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">其他联系人手机号码</td>
+                    <td><input type="" class="ba-input" ng-model="customer.OtherPhone"/></td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">备注</td>
+                    <td><input type="" class="ba-input" ng-model="customer.Remark"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </ion-content>
+
+    <ion-content ng-show="PotentialCustomerDetailNoData">
+        <div class="noDataBox">
+            <div class="nodata">
+                <img src="img/empty_page.png" width="70px">
+                <span class="nodata_span">暂无数据</span>
+            </div>
+        </div>
+    </ion-content>
+
+
+    <ion-footer-bar ng-show="!PotentialCustomerDetailNoData">
+        <div class="col col-100">
+            <button type="button" class="am-button am-button-red" ng-click="CustomerSave()">保存</button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

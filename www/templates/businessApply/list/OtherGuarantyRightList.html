@@ -1,0 +1,28 @@
+    <div style="width:{{contentWidth}}px;position:absolute;top: 49px;" ng-controller="otherGuarantyController">
+	    <dl class="am-list arrow-list" >
+			<div>
+				<dd class="item am-button-default"  ng-repeat="item in details1" ng-click="gotoDzyw(item)">
+				    <!-- <h3>流水号:{{item[0].Value}} | 预抵押登记权证号:{{item[1].Value}}</h3> -->
+				    <h3>预抵押登记权证号:{{item[1].Value}}</h3>
+				    <h4>他项权证号：{{item[2].Value}}</h4>
+				    <!-- <h4>登记人：{{item[4].Value}}</h4>
+				    <h4>登记机构：{{item[6].Value}}</h4> -->
+				    <i class="am_iconfont am-icon-fl">&#xe61b;</i>						
+				</dd>	
+			</div>         
+	    </dl>
+		 <div class="noDataBox" ng-show="details1.length == 0">
+			<div class="nodata">
+			    <img src="img/empty_page.png" width="70px">
+			    <span class="nodata_span">暂无数据</span>
+			</div>
+	     </div>  
+	 </div>
+		     
+
+    
+	
+    
+               
+
+

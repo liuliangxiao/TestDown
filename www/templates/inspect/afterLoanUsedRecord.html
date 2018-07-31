@@ -1,0 +1,47 @@
+<!--用款记录页面
+<ion-content delegate-handle="smallScroll">
+<div style="width:{{contentWidth}}px;position: absolute;top:50px">
+	          	<table class="bm_tb_list" ng-repeat="item in groupColArray">        
+	                <tbody>
+	                <tr>
+	                    <td class="td_width_40">{{item.KeyName}}:</td>
+	                    <td>{{item.Value}}</td>
+	                </tr>
+	                </tbody>
+	            </table>
+	           
+	            <div class="noDataBox" ng-show="noData">
+	                <div class="nodata">
+	                    <img src="img/empty_page.png" width="70px">
+	                    <span class="nodata_span">暂无数据</span>
+	                </div>
+            	</div>
+</div>
+</ion-content>-->
+
+<ion-content delegate-handle="smallScroll" >
+    <div style="width:{{contentWidth}}px;position: absolute">
+        <table class="bm_tb_list" ng-repeat="item in items">
+             <thead ng-click="showOrNot(item)">
+            <tr>
+                <th colspan="2">用款记录详情</label>
+                    <i class="icon-float-right" ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+                </th>
+            </tr>
+            </thead> 
+            <tbody>
+            <tr ng-repeat="obj in item.groupColArray" ng-if="item.showGroup">
+                <td class="td_width_30">{{obj.KeyName}}：</td>
+                <td ng-if="obj.ColEditSourceType != '' && obj.ColEditSourceType != null">{{obj.ItemValue}}</td>
+                <td ng-if="obj.ColEditSourceType == '' || obj.ColEditSourceType == null">{{obj.Value}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="noDataBox" ng-if="info.noData">
+            <div class="nodata">
+                <img src="img/empty_page.png" width="70px">
+                <span class="nodata_span">暂无数据</span>
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,29 @@
+    <div style="width:{{contentWidth}}px;position:absolute;top: 49px;">
+ 		<table class="bm_tb_list" ng-repeat="item in details" ng-show="details.length > 0" >
+			<thead ng-click="showOrNot(item)">
+				<tr>
+					<th colspan="4">{{item.PhaseName}}</label> <i class="icon-float-right"
+						ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+					</th>
+				</tr>
+			</thead>
+			<tbody ng-if="item.showGroup" ng-repeat="obj in item.groupColArray">
+				<tr ng-if="item.showGroup && obj.KeyId != 'phaseopinion' ">
+		        	<td>{{obj.KeyName}}：</td>
+					<td>{{obj.Value}}</td>
+				</tr>
+				<tr ng-if="item.showGroup && obj.KeyId == 'phaseopinion' ">
+		        	<td>{{obj.KeyName}}：</td>
+					<td><textarea class="am-textarea"  style="resize:none;max-width:400px" disabled="disabled" class="ba-input">{{obj.Value}}</textarea></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="noDataBox" ng-show="details.length == 0">
+			<div class="nodata">
+			    <img src="img/empty_page.png" width="70px">
+			    <span class="nodata_span">暂无数据</span>
+			</div>
+	    </div>
+	</div>
+
+

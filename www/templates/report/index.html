@@ -1,0 +1,67 @@
+<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50>
+
+            <ion-view>
+                <ion-header-bar align-title="center" class="bar-ipad-nav">
+                    <h1 class="title">经营报表</h1>
+                </ion-header-bar>
+                <ion-content class="gray-main  pos-box">
+                    <div class="ui-wrap">
+                        <ul class="am_menu applyDetail_icon fixed">
+                            <li class="font-icon-green" ng-click="moduleSwitch('CreditBalanceForiPad')">
+                                <am-icon>&#xe600;</am-icon>
+                                <p>贷款余额</p>
+                            </li>
+                            <li class="font-icon-gxl" ng-click="moduleSwitch('LoanPaymentForiPad')">
+                                <am-icon>&#xe61c;</am-icon>
+                                <p>贷款发放</p>
+                            </li>
+                            <li class="font-icon-yellow" ng-click="moduleSwitch('LoanInvestmentForiPad')">
+                                <am-icon>&#xe602;</am-icon>
+                                <p>贷款投向</p>
+                            </li>
+                            <li class="font-icon-blue" ng-click="moduleSwitch('LoanCoverageForiPad')">
+                                <am-icon>&#xe613;</am-icon>
+                                <p>减值覆盖</p>
+                            </li>
+                            <li class="font-icon-g3xl" ng-click="moduleSwitch('ProvisionCoverageForiPad')">
+                                <am-icon>&#xe60f;</am-icon>
+                                <p>减值拨备</p>
+                            </li>
+                            <li class="font-icon-yellow" ng-click="moduleSwitch('FiveLevelClassificationForiPad')">
+                                <am-icon>&#xe61e;</am-icon>
+                                <p>资产分类一览</p>
+                            </li>
+                            <li class="font-icon-oranger" ng-click="moduleSwitch('TopTenAssetsForiPad')">
+                                <am-icon>&#xe621;</am-icon>
+                                <p>资产集中度</p>
+                            </li>
+                            <li class="font-icon-red" ng-click="moduleSwitch('BalanceDistributionForiPad')">
+                                <am-icon>&#xe63b;</am-icon>
+                                <p>信用结构</p>
+                            </li>
+                            <li class="font-icon-pink" ng-click="moduleSwitch('DefaultClientListForiPad')">
+                                <am-icon>&#xe615;</am-icon>
+                                <p>违约客户名单</p>
+                            </li>
+                        </ul>
+                    </div>
+                </ion-content>
+            </ion-view>
+
+
+        </ion-side-menu-content>
+
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'">
+            </div>
+        </ion-side-menu>
+
+
+    </ion-side-menus>
+
+</ion-view>
+
+

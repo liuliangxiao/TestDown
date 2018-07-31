@@ -1,0 +1,61 @@
+    <div style="width:{{contentWidth}}px;position:absolute;top: 49px;" ng-controller="guarantyController">
+	    <dl class="am-list arrow-list" ng-if="details1.length > 0 " ng-show="details1.length > 0 ">
+	    	<div class="dl_div" ng-click="showOrNot(details1[0])">
+	    		新增的担保信息</label> 
+	    		<i class="icon-float-right" ng-class="details1[0].showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+			</div>
+			<div ng-if="details1[0].showGroup">
+				<dd class="item am-button-default"  ng-repeat="item in details1" ng-click="gotoDzyw(item)">
+				    <h3>{{item.ContractTypeName}} | {{item.GuarantyTypeName}}</h3>
+				    <h4>担保人：{{item.GuarantorName}}</h4>
+				    <h4>担保金额：{{item.GuarantyValue|currency:''}}</h4>
+				    <h4>币种：{{item.GuarantyCurrency}}</h4>
+				    <i class="am_iconfont am-icon-fl">&#xe61b;</i>						
+				</dd>	
+			</div>         
+	    </dl>
+	    <dl class="am-list arrow-list" ng-if="details2.length > 0" ng-show="details2.length > 0">
+	   		<!-- <div class="dl_div" ng-click="showOrNot(details2[0])">
+	   			拟引入担保公司额度</label> 
+	   			<i class="icon-float-right" ng-class="details2[0].showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+			</div> -->
+			<div ng-if="details2[0].showGroup">			
+				<dd class="item am-button-default" ng-repeat="item in details2" ng-click="gotoDzyw(item)">
+				    <h3>{{item.ContractTypeName}} | {{item.GuarantyTypeName}}</h3>
+				    <h4>担保人：{{item.GuarantorName}}</h4>
+				    <h4>担保金额：{{item.GuarantyValue|currency:''}}</h4>
+				    <h4>币种：{{item.GuarantyCurrency}}</h4>
+				    <i class="am_iconfont am-icon-fl">&#xe61b;</i>						
+				</dd>	
+			</div>         
+	    </dl>
+		<dl class="am-list arrow-list" ng-if="details3.length > 0" ng-show="details3.length > 0">
+			<div class="dl_div" ng-click="showOrNot(details3[0])">
+				拟引入的担保合同</label> 
+				<i class="icon-float-right" ng-class="details3[0].showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+			</div>
+			<div ng-if="details13[0].showGroup">
+				<dd class="item am-button-default" ng-repeat="item in details3" ng-click="gotoDzyw(item)">
+				    <h3>{{item.ContractTypeName}} | {{item.GuarantyTypeName}}</h3>
+				    <h4>担保人：{{item.GuarantorName}}</h4>
+				    <h4>担保金额：{{item.GuarantyValue|currency:''}}</h4>
+				    <h4>币种：{{item.GuarantyCurrency}}</h4>
+				    <i class="am_iconfont am-icon-fl">&#xe61b;</i>						
+				</dd>
+			 </div>	         
+	     </dl>
+		 <div class="noDataBox" ng-show="details1.length == 0 && details2.length == 0 && details3.length == 0">
+			<div class="nodata">
+			    <img src="img/empty_page.png" width="70px">
+			    <span class="nodata_span">暂无数据</span>
+			</div>
+	     </div>  
+	 </div>
+		     
+
+    
+	
+    
+               
+
+

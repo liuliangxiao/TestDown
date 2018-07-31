@@ -1,0 +1,25 @@
+<ion-modal-view >
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">企业类型选择</h1>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="item in OrgTypes" ng-click="confirm(item)" >
+                <span ng-if="!item.IsLevel && item.ItemNo.length !== 6"><i class="icon ion-minus-round"></i> </span>
+                <span ng-if="!item.IsLevel && item.ItemNo.length === 6">&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon ion-minus-round"></i> </span>
+                <span ng-if="item.IsLevel">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                {{item.ItemName}}
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+    <ion-footer-bar>
+        <div class="btn-box row">
+            <div class="col col-100">
+                <button type="button" class="am-button am-button-blue" ng-click="OrgTypeModal.hide()">取消</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+
+
+</ion-modal-view>

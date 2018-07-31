@@ -1,0 +1,26 @@
+<ion-view  ng-style="{'width':'{{contentWidth}}px'}"> 
+   		<ion-header-bar class="bar-ipad-nav" align-title="center" style="width:{{contentWidth}}px">
+   			<h1 class="title">客户详情-{{SelectedCustomerList.CustomerName}}</h1>
+	 			<ion-tabs class="tabs-top tabs-striped tabs-color-positive">
+	    			<ion-tab title="{{model.menuname}}" ng-repeat="model in menuModel"on-select="changeModel(model,SelectedCustomerList,$index)"> 
+	      			{{model.menuname}}
+	   				</ion-tab> 
+   				</ion-tabs> 
+		</ion-header-bar>
+<!-- 如果客户状态是未锁定，则能进行修改操作 -->               
+         <div ng-if="SelectedCustomerList.LockStatusNo=='1'" ng-include="'templates/common/detailInfo.html'"> 
+         </div>
+          <!-- 如果客户状态是已锁定，则不能进行修改操作 -->               
+	     <div ng-if="SelectedCustomerList.LockStatusNo=='2'" ng-include="'templates/common/queryInfoDetail.html'"></div></ion-view>                 
+</ion-view>    
+     <ion-footer-bar ng-show="!IndCustomerDetailNoData && BelongFlagShow && SelectedCustomerList.LockStatusNo=='1'">
+        <div class="btn-box row">
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-red" ng-click="CustomerSave()">保存</button>
+            </div>
+            <!-- <div class="col col-40">
+                <button type="button" class="am-button am-button-blue" ng-click="CustomerTempSave()">暂存</button>
+            </div> -->
+        </div>
+</ion-footer-bar>
+

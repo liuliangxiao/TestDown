@@ -1,0 +1,40 @@
+<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50>
+
+            <ion-side-menus>
+                <ion-side-menu-content drag-content="true" edge-drag-threshold=50 style="margin-top: 0;padding-top: 0">
+
+                    <!--***************************************最右边的详情部分 ******************************************************-->
+                    <!--催收任务详情-->
+                    <div ng-include="'templates/collectManagement/CollectManagementDetail.html'"
+                         style="margin-top: 0;padding-top: 0" ng-show="!CollectRecordDetailView"></div>
+
+                    <!--催收记录详情-->
+                    <div ng-include="'templates/collectManagement/CollectRecordDetail.html'"
+                         style="margin-top: 0;padding-top: 0" ng-show="CollectRecordDetailView"></div>
+                </ion-side-menu-content>
+
+
+                <ion-side-menu side="left" width="{{secondNavWidth}}" expose-aside-when="large"
+                               style="margin-top: 0;padding-top: 0">
+                    <!--***********************************************中间部分的二级导航栏--***********************************************-->
+                    <div ng-include="'templates/collectManagement/CollectManagementList.html'"
+                         style="margin-top: 0;padding-top: 0">
+                    </div>
+
+                </ion-side-menu>
+            </ion-side-menus>
+        </ion-side-menu-content>
+
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'">
+            </div>
+        </ion-side-menu>
+
+    </ion-side-menus>
+
+</ion-view>
+
+

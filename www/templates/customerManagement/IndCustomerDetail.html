@@ -1,0 +1,108 @@
+<ion-view style="width:{{contentWidth}}px"  ng-controller="IndCustomerDetailController" >
+    
+       <ion-header-bar  class="bar-ipad-nav"align-title="center" style="width:{{contentWidth}}px"> 
+       <div style="position: absolute;left: 20px;font-size: 30px;color: white;bottom: 5px;"
+	                    class="ion-plus" ng-click="createMarket()">
+	                    </div>       
+        <h1 class="title">客户详情-{{SelectedCustomerList.CustomerName}}</h1>
+       </ion-header-bar>
+       <ion-header-bar class="bar-subheader am-sub-header">
+         <ul class="am-tab row" style="padding:0;">
+          <li class="col col-50" ng-class="{active:selectTab0}" >基本信息</li>
+          <li class="col col-50" ng-class="{active:selectTab1}" >影像采集</li>
+          
+         </ul>
+       </ion-header-bar>
+ 
+<ion-content delegate-handle="smallScroll" >
+    <div style="width:{{contentWidth}}px">
+        <table class="bm_tb_list" ng-show="!info.noData" ng-repeat = "item in detail">
+           <!--  <thead ng-click="showOrNot(item)">
+            <tr>
+                <th colspan="2">{{item.groupName}}</label>
+                    <i class="icon-float-right" ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+                </th>
+            </tr>
+            </thead> -->
+<!--             循环遍历生成页面元素 
+ -->            <tbody ng-repeat ="obj in item.groupColArray" ng-show="item.showGroup">            
+	           <!--  Input框循环生成 -start -->
+<!-- 	            可更新可写input (只展示colVisable = 1 的属性)
+ -->	            <tr ng-if="obj.ColEditStyle =='1' && obj.ColReadOnly =='0' && obj.ColVisable =='1'"> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td><input type="text" ng-model = 'CustomerInfo[obj.KeyId]'  class="ba-input"></td>
+	            </tr>
+<!-- 	            可更新只读input 	            
+ -->	           <tr ng-if="obj.ColEditStyle =='1' && obj.ColReadOnly =='1' && obj.ColVisable =='1'"> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td><input type="text" ng-model = 'CustomerInfo[obj.KeyId]'  readonly class="ba-input" ></td>
+	            </tr>
+	            <!-- Input框循环生成 -end
+	            通用下拉框循环生成 -start 
+	            可更新可写select 	  -->           	            
+				 <tr ng-if="obj.ColEditStyle =='2' && obj.ColReadOnly =='0' && obj.ColVisable =='1'"> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td>
+	                    <select required="required" class="ba-select" ng-options="option.ItemNo as option.ItemName for option in CODE_LIBRARY.{{obj.KeyId}}" ng-model='CustomerInfo[obj.KeyId]'>
+	                        <option value=""></option>
+	                    </select>
+	                </td>
+	            </tr> 
+	           <!--  可更新不可写select 	 -->            	            	            
+	         <tr ng-if="obj.ColEditStyle =='2' && obj.ColReadOnly =='1' && obj.ColVisable =='1'"> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td>
+	                    <select required="required" class="ba-select" disabled="disabled" ng-options="option.ItemNo as option.ItemName for option in CODE_LIBRARY.{{obj.KeyId}}" ng-model='CustomerInfo[obj.KeyId]'>
+	                        <option value=""></option>
+	                    </select>
+	                </td>
+	            </tr> 
+	          <!--   通用下拉框循环生成 -end 	             
+	            文本框循环生成 -start -->
+	      <tr ng-if="obj.ColEditStyle =='3' && obj.ColVisable =='1'"> 
+	                <td class="td_width_40" style="vertical-align: top;">{{obj.KeyName}}</td>
+	                <td>
+ 						<textarea rows="8" class="ba-input" ng-model="CustomerInfo[obj.KeyId]" ng-change="checkText()">							                      
+	                    </textarea>
+	                    <p ng-if="obj.KeyId == 'Remark'" ng-show="inputShow">您还可以输入{{inputTextLength}}个汉字</p>
+	                </td>
+	            </tr> 
+	          <!--   文本框循环生成 -end	            
+	           	点选框循环遍历 -start      -->
+	          	<tr ng-if="obj.ColEditStyle =='8' && obj.ColVisable =='1'"> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td><input type="text" ng-model = 'CustomerInfo[obj.KeyId]'  class="ba-input" ng-click="selectBusinessType()"></td>
+	            </tr>                  
+	           	<!-- 点选框循环遍历 -end    -->  	            	       
+            </tbody>
+        </table>
+        
+        <div class="noDataBox" ng-show="IndCustomerDetailNoData">
+            <div class="nodata">
+                <img src="img/empty_page.png" width="70px">
+                <span class="nodata_span">暂无数据</span>
+            </div>
+        </div>
+    </div>
+</ion-content>
+ <!-- <ion-content ng-show="">
+        <div class="noDataBox">
+            <div class="nodata">
+                <img src="img/empty_page.png" width="70px">
+                <span class="nodata_span">暂无数据</span>
+            </div>
+        </div>
+ </ion-content>
+ -->
+
+    <ion-footer-bar ng-show="!IndCustomerDetailNoData && BelongFlagShow">
+        <div class="btn-box row">
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-red" ng-click="CustomerSave()">保存</button>
+            </div>
+            <!-- <div class="col col-40">
+                <button type="button" class="am-button am-button-blue" ng-click="CustomerTempSave()">暂存</button>
+            </div> -->
+        </div>
+    </ion-footer-bar>
+</ion-view>

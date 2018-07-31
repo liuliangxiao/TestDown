@@ -1,0 +1,27 @@
+<ion-view ng-style="{'width':'{{contentWidth}}px'}">
+    <ion-header-bar class="bar-positive" align-title="center">
+        <h1 class="title">定期检查-{{item.CustomerName}}</h1>
+        <button class="button icon ion-plus-round" ng-if="ItemNo == '01010010' && showButton" style="color: white;" ng-click="openRecordModal()"></button>
+    </ion-header-bar>
+    <ion-tabs ng-show="checkType.ItemNo === '01020'" class="tabs-top tabs-striped tabs-color-positive" delegate-handle="info-tabs">
+        <ion-tab title="定检报告">
+            <ion-view>
+                <div ng-include="'templates/afterLoanManagement/ontimeCustomerCheckReport.html'"></div>
+            </ion-view>
+
+        </ion-tab>
+        <ion-tab title="影像采集">
+            <ion-view>
+                <div ng-include="''"></div>
+            </ion-view>
+
+        </ion-tab>
+        <ion-tab title="客户信息">
+            <ion-view>
+                <div ng-include="'templates/afterLoanManagement/ontimeCustomerInformation.html'"></div>
+            </ion-view>
+
+        </ion-tab>
+    </ion-tabs>
+</ion-view>
+<!--*********************************************三级导航条end **********************************************************************-->

@@ -1,0 +1,235 @@
+<!--<ion-view>-->
+<ion-content>
+    <div>
+        <table class="table-border" width='{{contentWidth}}' align=center border=1 cellspacing=0 cellpadding=12
+               bgcolor=white
+               bordercolor=black bordercolordark=black>
+            <tr>
+                <td class=td1 align=center colspan=12 bgcolor=#aaaaaa><font
+                        style=' font-size: 14pt;FONT-FAMILY:宋体;FONT-WEIGHT: bold;color:black;background-color:#aaaaaa'>
+                    <p>贷后检查表</p></font></td>
+            </tr>
+            <tr>
+                <td colspan=12 align=left class=td1><font style=' font-size: 12pt;'>&nbsp;&nbsp;检查阶段：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;月&nbsp;&nbsp;日至&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;月&nbsp;&nbsp;日</font>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=3 align=center class=td1>客户名称</td>
+                <td colspan=3 align=left class=td1>{{afterLoan.CustomerName}}&nbsp;</td>
+                <td colspan=3 align=center class=td1>商铺地址</td>
+                <td colspan=3 align=left class=td1>{{afterLoan.RegisterAdd}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan=3 align=center class=td1>联系电话</td>
+                <td colspan=3 align=left class=td1>{{afterLoan.RelativeType}}&nbsp;</td>
+                <td colspan=3 align=center class=td1>家庭地址</td>
+                <td colspan=3 align=left class=td1>{{afterLoan.OfficeAdd}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan=3 align=center class=td1>家属姓名</td>
+                <td colspan=3 align=left class=td1>&nbsp;</td>
+                <td colspan=3 align=center class=td1>管户客户经理</td>
+                <td colspan=3 align=left class=td1>{{afterLoan.UserName}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td width='15%' colspan=2 align=center class=td1>贷款金额</td>
+                <td width='15%' colspan=2 align=left class=td1>{{afterLoan.BusinessSum}}&nbsp;</td>
+                <td width='20%' colspan=2 align=center class=td1>贷款余额</td>
+                <td width='15%' colspan=2 align=left class=td1>{{afterLoan.Balance}}&nbsp;</td>
+                <td width='15%' colspan=2 align=center class=td1>担保措施</td>
+                <td width='20%' colspan=2 align=left class=td1>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan=12 class=td1>
+                    <div id=reporttable3>
+                        <table width='{{contentWidth}}' align=center border=0 cellspacing=0 cellpadding=2>
+                            <tr rowspan="2">
+                                <td align=center valign=middle>资料收集：</td>
+                                <td>
+                                    <input type='checkbox' name='describe1' ng-checked="afterLoan.HtmlDataTransferd.describe1" ng-model="afterLoan.HtmlDataTransferd.describe1" ng-true-value="'销售合同'">销售合同
+                                    <input type='checkbox' name='describe2' ng-checked="afterLoan.HtmlDataTransferd.describe2" ng-model="afterLoan.HtmlDataTransferd.describe2" ng-true-value="'销售流水'">销售流水
+                                    <input type='checkbox' name='describe3' ng-checked="afterLoan.HtmlDataTransferd.describe3" ng-model="afterLoan.HtmlDataTransferd.describe3" ng-true-value="'销售发票'">销售发票
+                                    <input type='checkbox' name='describe4' ng-checked="afterLoan.HtmlDataTransferd.describe4" ng-model="afterLoan.HtmlDataTransferd.describe4" ng-true-value="'租金收据'">租金收据
+                                    <input type='checkbox' name='describe5' ng-checked="afterLoan.HtmlDataTransferd.describe5" ng-model="afterLoan.HtmlDataTransferd.describe5" ng-true-value="'物业管理费收据'">物业管理费收据
+                                    <input type='checkbox' name='describe6' ng-checked="afterLoan.HtmlDataTransferd.describe6" ng-model="afterLoan.HtmlDataTransferd.describe6" ng-true-value="'水电费收据'">水电费收据
+                                    <br/>
+                                    <input type='checkbox' name='describe7' ng-checked="afterLoan.HtmlDataTransferd.describe7" ng-model="afterLoan.HtmlDataTransferd.describe7" ng-true-value="'手机账单'">手机账单
+                                    <input type='checkbox' name='describe8' ng-checked="afterLoan.HtmlDataTransferd.describe8" ng-model="afterLoan.HtmlDataTransferd.describe8" ng-true-value="'信用查询记录'">信用查询记录
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width='5%' colspan=1 align=center class=td1>序号</td>
+                <td width='30%' colspan=2 align=center class=td1>检查内容</td>
+                <td width='30%' colspan=3 align=center class=td1>直接观察</td>
+                <td width='30%' colspan=4 align=center class=td1>询问了解</td>
+                <td width='5%' colspan=2 align=center class=td1>说明</td>
+            </tr>
+            <tr>
+                <td width='5%' colspan=1 align=center class=td1>1</td>
+                <td width='30%' colspan=2 align=center class=td1>贷款资金用途</td>
+                <td width='30%' colspan=3 align=center class=td1>
+                    <input type='radio' name='describe28' ng-model="afterLoan.HtmlDataTransferd.describe28" value='真实'>真实
+                    <input type='radio' name='describe28' ng-model="afterLoan.HtmlDataTransferd.describe28" value='挪用'>挪用
+                </td>
+                <td width='30%' colspan=4 align=center class=td1>
+                    <input type='radio' name='describe29' ng-model="afterLoan.HtmlDataTransferd.describe29" value='真实'>真实
+                    <input type='radio' name='describe29' ng-model="afterLoan.HtmlDataTransferd.describe29" value='挪用'>挪用
+                </td>
+                <td width='5%' colspan=2 align=center class=td1>&nbsp;</td>
+            </tr>
+            <tr>
+                <td width='5%' colspan=1 align=center class=td1>2</td>
+                <td width='30%' colspan=2 align=center class=td1>是否开门正常营业</td>
+                <td width='30%' colspan=3 align=center class=td1>
+                    <input type='radio' name='describe9' ng-model="afterLoan.HtmlDataTransferd.describe9" value='是'>是
+                    <input type='radio' name='describe9' ng-model="afterLoan.HtmlDataTransferd.describe9" value='否'>否
+                </td>
+                <td width='30%' colspan=4 align=center class=td1>
+                    <input type='radio' name='describe10' ng-model="afterLoan.HtmlDataTransferd.describe10" value='是'>是
+                    <input type='radio' name='describe10' ng-model="afterLoan.HtmlDataTransferd.describe10" value='否'>否
+                </td>
+                <td width='5%' colspan=2 align=center class=td1>&nbsp;</td>
+            </tr>
+            <tr>
+                <td width='5%' colspan=1 align=center class=td1>3</td>
+                <td width='30%' colspan=2 align=center class=td1>老板是否在场</td>
+                <td width='30%' colspan=3 align=center class=td1>
+                    <input type='radio' name='describe11' ng-model="afterLoan.HtmlDataTransferd.describe11" value='是'>是
+                    <input type='radio' name='describe11' ng-model="afterLoan.HtmlDataTransferd.describe11" value='否'>否
+                </td>
+                <td width='30%' colspan=4 align=center class=td1>
+                    <input type='radio' name='describe12' ng-model="afterLoan.HtmlDataTransferd.describe12" value='是'>是
+                    <input type='radio' name='describe12' ng-model="afterLoan.HtmlDataTransferd.describe12" value='否'>否
+                </td>
+                <td width='5%' colspan=2 align=center class=td1>&nbsp;</td>
+            </tr>
+            <tr>
+                <td width='5%' colspan=1 align=center class=td1>4</td>
+                <td width='30%' colspan=2 align=center class=td1>工作人员数量变动</td>
+                <td width='30%' colspan=3 align=center class=td1>
+                    <input type='radio' name='describe13' ng-model="afterLoan.HtmlDataTransferd.describe13" value='增加'>增加
+                    <input type='radio' name='describe13' ng-model="afterLoan.HtmlDataTransferd.describe13" value='稳定'>稳定
+                    <input type='radio' name='describe13' ng-model="afterLoan.HtmlDataTransferd.describe13" value='减少'>减少
+                </td>
+                <td width='30%' colspan=4 align=center class=td1>
+                    <input type='radio' name='describe14' ng-model="afterLoan.HtmlDataTransferd.describe14" value='增加'>增加
+                    <input type='radio' name='describe14' ng-model="afterLoan.HtmlDataTransferd.describe14" value='稳定'>稳定
+                    <input type='radio' name='describe14' ng-model="afterLoan.HtmlDataTransferd.describe14" value='减少'>减少
+                </td>
+                <td width='5%' colspan=2 align=center class=td1>&nbsp;</td>
+            </tr>
+            <tr>
+                <td width='5%' colspan=1 align=center class=td1>5</td>
+                <td width='30%' colspan=2 align=center class=td1>工作人员精神面貌</td>
+                <td width='30%' colspan=3 align=center class=td1>
+                    <input type='radio' name='describe15' ng-model="afterLoan.HtmlDataTransferd.describe15" value='好'>好
+                    <input type='radio' name='describe15' ng-model="afterLoan.HtmlDataTransferd.describe15" value='一般'>一般
+                    <input type='radio' name='describe15' ng-model="afterLoan.HtmlDataTransferd.describe15" value='差'>差
+                </td>
+                <td width='30%' colspan=4 align=center class=td1>
+                    <input type='radio' name='describe16' ng-model="afterLoan.HtmlDataTransferd.describe16" value='好'>好
+                    <input type='radio' name='describe16' ng-model="afterLoan.HtmlDataTransferd.describe16" value='一般'>一般
+                    <input type='radio' name='describe16' ng-model="afterLoan.HtmlDataTransferd.describe16" value='差'>差
+                </td>
+                <td width='5%' colspan=2 align=center class=td1>&nbsp;</td>
+            </tr>
+            <tr>
+                <td width='5%' colspan=1 align=center class=td1>6</td>
+                <td width='30%' colspan=2 align=center class=td1>经营场所内人流数量</td>
+                <td width='30%' colspan=3 align=center class=td1>
+                    <input type='radio' name='describe17' ng-model="afterLoan.HtmlDataTransferd.describe17" value='增加'>增加
+                    <input type='radio' name='describe17' ng-model="afterLoan.HtmlDataTransferd.describe17" value='稳定'>稳定
+                    <input type='radio' name='describe17' ng-model="afterLoan.HtmlDataTransferd.describe17" value='减少'>减少
+                </td>
+                <td width='30%' colspan=4 align=center class=td1>
+                    <input type='radio' name='describe18' ng-model="afterLoan.HtmlDataTransferd.describe18" value='增加'>增加
+                    <input type='radio' name='describe18' ng-model="afterLoan.HtmlDataTransferd.describe18" value='稳定'>稳定
+                    <input type='radio' name='describe18' ng-model="afterLoan.HtmlDataTransferd.describe18" value='减少'>减少
+                </td>
+                <td width='5%' colspan=2 align=center class=td1>&nbsp;</td>
+            </tr>
+            <tr>
+                <td width='5%' colspan=1 align=center class=td1>7</td>
+                <td width='30%' colspan=2 align=center class=td1>仓库进出是否正常</td>
+                <td width='30%' colspan=3 align=center class=td1>
+                    <input type='radio' name='describe19' ng-model="afterLoan.HtmlDataTransferd.describe19" value='是'>是
+                    <input type='radio' name='describe19' ng-model="afterLoan.HtmlDataTransferd.describe19" value='否'>否
+                </td>
+                <td width='30%' colspan=4 align=center class=td1>
+                    <input type='radio' name='describe20' ng-model="afterLoan.HtmlDataTransferd.describe20" value='是'>是
+                    <input type='radio' name='describe20' ng-model="afterLoan.HtmlDataTransferd.describe20" value='否'>否
+                </td>
+                <td width='5%' colspan=2 align=center class=td1>&nbsp;</td>
+            </tr>
+            <tr>
+                <td width='5%' colspan=1 align=center class=td1>8</td>
+                <td width='30%' colspan=2 align=center class=td1>仓库存货是否合理</td>
+                <td width='30%' colspan=3 align=center class=td1>
+                    <input type='radio' name='describe21' ng-model="afterLoan.HtmlDataTransferd.describe21" value='是'>是
+                    <input type='radio' name='describe21' ng-model="afterLoan.HtmlDataTransferd.describe21" value='否'>否
+                </td>
+                <td width='30%' colspan=4 align=center class=td1>
+                    <input type='radio' name='describe22' ng-model="afterLoan.HtmlDataTransferd.describe22" value='是'>是
+                    <input type='radio' name='describe22' ng-model="afterLoan.HtmlDataTransferd.describe22" value='否'>否
+                </td>
+                <td width='5%' colspan=2 align=center class=td1>&nbsp;</td>
+            </tr>
+            <tr>
+                <td width='5%' colspan=1 align=center class=td1>9</td>
+                <td width='30%' colspan=2 align=center class=td1>货款回笼情况</td>
+                <td width='30%' colspan=3 align=center class=td1>
+                    <input type='radio' name='describe23' ng-model="afterLoan.HtmlDataTransferd.describe23" value='增加'>增加
+                    <input type='radio' name='describe23' ng-model="afterLoan.HtmlDataTransferd.describe23" value='稳定'>稳定
+                    <input type='radio' name='describe23' ng-model="afterLoan.HtmlDataTransferd.describe23" value='减少'>减少
+                </td>
+                <td width='30%' colspan=4 align=center class=td1>
+                    <input type='radio' name='describe24' ng-model="afterLoan.HtmlDataTransferd.describe24" value='增加'>增加
+                    <input type='radio' name='describe24' ng-model="afterLoan.HtmlDataTransferd.describe24" value='稳定'>稳定
+                    <input type='radio' name='describe24' ng-model="afterLoan.HtmlDataTransferd.describe24" value='减少'>减少
+                </td>
+                <td width='5%' colspan=2 align=center class=td1>&nbsp;</td>
+            </tr>
+            <tr>
+                <td width='5%' colspan=1 align=center class=td1>10</td>
+                <td width='30%' colspan=2 align=center class=td1>借款人健康状况</td>
+                <td width='30%' colspan=3 align=center class=td1>
+                    <input type='radio' name='describe25' ng-model="afterLoan.HtmlDataTransferd.describe25" value='好'>好
+                    <input type='radio' name='describe25' ng-model="afterLoan.HtmlDataTransferd.describe25" value='不好'>不好
+                </td>
+                <td width='30%' colspan=4 align=center class=td1>
+                    <input type='radio' name='describe26' ng-model="afterLoan.HtmlDataTransferd.describe26" value='好'>好
+                    <input type='radio' name='describe26' ng-model="afterLoan.HtmlDataTransferd.describe26" value='不好'>不好
+                </td>
+                <td width='5%' colspan=2 align=center class=td1>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan=12 align=left class=td1>担保（抵押、质押、保证）情况分析：<br/>
+                    <textarea name='describe30' style='width:{{contentWidth}}px; height:80px;' ng-model="afterLoan.HtmlDataTransferd.describe30"></textarea>
+            </tr>
+            <tr>
+                <td colspan=12 align=left class=td1>检查人意见：<br/>
+                    <textarea name='describe27' style='width:{{contentWidth}}px; height:80px;' ng-model="afterLoan.HtmlDataTransferd.describe27"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;签名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;月&nbsp;&nbsp;日
+                </td>
+            </tr>
+            <tr>
+                <td align=left colspan=6 class=td1> 业务部经理意见：<br/><br/><br/><br/>签字：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;月&nbsp;&nbsp;日
+                </td>
+                <td align=left colspan=6 class=td1> 负责人意见：<br/><br/><br/><br/>签字：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;月&nbsp;&nbsp;日
+                </td>
+            </tr>
+        </table>
+    </div>
+</ion-content>
+<ion-footer-bar ng-show="ItemNo == '01010010' || ItemNo == '01020010'">
+    <div class="btn-box row">
+        <div class="col col-100">
+            <button type="button" class="am-button am-button-blue" ng-click="saveAfterLoanCheck()">保存</button>
+        </div>
+    </div>
+</ion-footer-bar>
+<!--</ion-view>-->

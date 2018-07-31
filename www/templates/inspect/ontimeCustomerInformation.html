@@ -1,0 +1,41 @@
+<!--<ion-view>-->
+<ion-content>
+    <div>
+
+        <table class="table-border" width='{{contentWidth}}' align=center border=1 cellspacing=0 cellpadding=2
+               bgcolor=white
+               bordercolor=black bordercolordark=black>
+            <tr>
+                <td class=td1 align=center colspan='2' bgcolor=#aaaaaa><font
+                        style=' font-size: 12pt;FONT-FAMILY:宋体;FONT-WEIGHT: bold;color:black;background-color:#aaaaaa'>
+                    <p>乌鲁木齐商业银行</p>客户信息</font></td>
+            </tr>
+            <tr>
+                <td width=20% align=center class=td1><strong>客户名称：</strong>
+                </td>
+                <td width=80% align=left class=td1>{{reportInfo.CustomerName}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td align=center class=td1><strong>经办机构：</strong></td>
+                <td align=left class=td1>{{reportInfo.OrgName}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td align=center class=td1><strong>检查人：</strong></td>
+                <td align=left class=td1>{{reportInfo.UserName}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td align=center class=td1><strong>报告日期：</strong></td>
+                <td align=left class=td1>{{reportInfo.UpDateDate}}&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+
+</ion-content>
+<ion-footer-bar ng-show="ItemNo == '01010010' || ItemNo == '01020010'">
+    <div class="btn-box row">
+        <div class="col col-100">
+            <button type="button" class="am-button am-button-blue" ng-click="saveReport(reportDetail)">保存</button>
+        </div>
+    </div>
+</ion-footer-bar>
+<!--</ion-view>-->

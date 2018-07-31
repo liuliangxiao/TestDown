@@ -1,0 +1,41 @@
+<ion-view ng-style="{'width':'{{contentWidth}}px'}">
+    <ion-header-bar class="bar-positive" align-title="center">
+    	<button ng-if="checkType.ItemNo === '01010'" class="button icon ion-plus-round" style="color: white;" ng-click="insertInfo()" ng-controller="ReportInfoController"></button>
+        <h1 class="title">贷后首检</h1>
+        <button class="button icon ion-plus-round" ng-if="ItemNo == '01010010' && showButton" style="color: white;" ng-click="openRecordModal()"></button>
+    </ion-header-bar>
+    <ion-tabs ng-show="checkType.ItemNo === '01010'" class="tabs-top tabs-striped tabs-color-positive" delegate-handle="info-tabs">
+
+        <ion-tab title="用款记录" class="has-tabs-top-and-header" on-select="hideAddButton()" ng-controller="ReportInfoController">
+            <ion-view>
+                <div ng-include="'templates/inspect/afterLoanUsedRecord.html'"></div>
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="检查分析"  class="has-tabs-top-and-header" on-select="hideAddButton()">
+            <ion-view>
+                <div ng-include="'templates/inspect/loanUsage.html'"></div>
+            </ion-view>
+        </ion-tab>
+
+        <ion-tab title="影像采集" class="has-tabs-top-and-header" on-select="hideAddButton()">
+            <ion-view>
+                <div ng-include="''"></div>
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="业务信息" class="has-tabs-top-and-header" on-select="hideAddButton()" ng-controller="ReportInfoController">
+            <ion-view>
+                <div ng-include="''"></div>
+            </ion-view>
+        </ion-tab>
+
+
+    </ion-tabs>
+    <ion-footer-bar ng-show="isFinished">
+            <div class="btn-box row" style="width:{{contentWidth}}px">
+                <div class="col">
+                    <button type="button" class="am-button am-button-blue" ng-click="showsubmit()">签署意见并提交</button>
+                </div>
+            </div>
+	</ion-footer-bar>
+</ion-view>
+<!--*********************************************三级导航条end **********************************************************************-->

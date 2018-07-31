@@ -1,0 +1,229 @@
+<ion-view>
+    <ion-side-menus>
+        <!--***********************************************最左边的一级导航栏--***********************************************-->
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <div ng-include="'templates/common/nav.html'"></div>
+        </ion-side-menu>
+        
+        <!-- 中间部分 + 右侧部分 -->
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50>
+            <ion-side-menus>
+            	<!--***********************************************中间部分的二级导航栏--***********************************************-->
+            	<ion-side-menu side="left" width="{{secondNavWidth}}" expose-aside-when="large" style="margin-top: 0px;padding-top: 0px">
+                    
+                    <ion-header-bar class="bar-ipad-nav" align-title="center">
+                    <button class="button button-clear" ng-click="goToUpper()" >
+				            <i class="ion ion-chevron-left" style="font-size: 25px;margin-left: 10px;margin-top: 12px;color:#fff"></i>
+				        </button>
+						<h1 class="title">业务签批</h1 >
+					</ion-header-bar>
+					<ion-header-bar class="am-bar-subheader" style="margin-top: 65px; background-color: #EEE; height: 45px">
+					    <!-- 这样添加div的方式显示的header是不能左右滑动的 -->
+					    <div class="am-tabs row-no-padding" style="height: 45px; margin-top: 0px !important;">					
+					        <div class="col col-50" ng-class="{active:selectTab0}" style="height: 45px" ng-click="selectTab('0')">当前工作</div>
+					        <div class="col col-50" ng-class="{active:selectTab1}" style="height: 45px" ng-click="selectTab('1')">已完成</div>
+					    </div>
+					</ion-header-bar>
+					
+					<!--当前工作-->
+					<ion-scroll class="stable-bg " ng-controller="CurrentWorkController" style="height:{{contentHeight}}px; margin-top: {{barHeight+49}}px;">
+					    <ul class="list">
+					    <!-- 授信业务审查审批流程 -->
+					    	<div ng-if="$root.ApproveType=='ApproveCreditApply'">
+					    	<li class="item item-icon-left"  ng-click="approveList('01')" ng-class="{'item-selected': selectedIndex0}">
+					            <h2>公司条线</h2>					            
+					            <span class="badge badge-assertive">{{totalCounts['01']}}</span> 
+					        </li>
+					         <li class="item item-icon-left"  ng-click="approveList('03')" ng-class="{'item-selected': selectedIndex2}">
+					            <h2>小企业条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['03']}}</span>
+					        </li>
+					        <li class="item item-icon-left"  ng-click="approveList('04')" ng-class="{'item-selected': selectedIndex3}">
+					            <h2>个人条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['04']}}</span>
+					        </li>
+					    	</div>
+					    	<!-- 批单变更 -->
+					    	<div ng-if="$root.ApproveType=='BAChangeApprove'">
+					    	<li class="item item-icon-left"  ng-click="approveList('01')" ng-class="{'item-selected': selectedIndex0}">
+					            <h2>公司条线</h2>					            
+					            <span class="badge badge-assertive">{{totalCounts['01']}}</span> 
+					        </li>
+					        <li class="item item-icon-left"  ng-click="approveList('03')" ng-class="{'item-selected': selectedIndex2}">
+					            <h2>小企业条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['03']}}</span>
+					        </li>
+					        <li class="item item-icon-left"  ng-click="approveList('04')" ng-class="{'item-selected': selectedIndex3}">
+					            <h2>个人条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['04']}}</span>
+					        </li>
+					        <li class="item item-icon-left"  ng-click="approveList('05')" ng-class="{'item-selected': selectedIndex4}">
+					            <h2>同业条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['05']}}</span>
+					        </li>
+					    	</div>
+					    	
+					    	<!-- 非标业务流程 -->
+					    	<div ng-if="$root.ApproveType=='BCChangeApprove'">
+					    	<li class="item item-icon-left"  ng-click="approveList('01')" ng-class="{'item-selected': selectedIndex0}">
+					            <h2>公司条线</h2>					            
+					            <span class="badge badge-assertive">{{totalCounts['01']}}</span> 
+					        </li>
+					        <li class="item item-icon-left"  ng-click="approveList('05')" ng-class="{'item-selected': selectedIndex4}">
+					            <h2>同业条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['05']}}</span>
+					        </li>
+					    	</div>
+					    	<!-- 收款变更流程 -->
+					    	<div ng-if="$root.ApproveType=='PayeeApprove'">
+					    	<li class="item item-icon-left"  ng-click="approveList('03')" ng-class="{'item-selected': selectedIndex2}">
+					            <h2>小企业条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['03']}}</span>
+					        </li>
+					    	</div>
+					    	<!-- 放款流程 -->
+					    	<div ng-if="$root.ApproveType=='ApprovePutOutApply'">
+					    	<li class="item item-icon-left"  ng-click="approveList('01')" ng-class="{'item-selected': selectedIndex0}">
+					            <h2>公司条线</h2>					            
+					            <span class="badge badge-assertive">{{totalCounts['01']}}</span> 
+					        </li>
+					    	<li class="item item-icon-left"  ng-click="approveList('03')" ng-class="{'item-selected': selectedIndex2}">
+					            <h2>小企业条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['03']}}</span>
+					        </li>
+					        <li class="item item-icon-left"  ng-click="approveList('04')" ng-class="{'item-selected': selectedIndex3}">
+					            <h2>个人条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['04']}}</span>
+					        </li>
+					    	</div>
+					    	<!-- 受托支付流程 -->
+					    	<div ng-if="$root.ApproveType=='AcctTransferApprove'">
+					    	<li class="item item-icon-left"  ng-click="approveList('01')" ng-class="{'item-selected': selectedIndex0}">
+					            <h2>公司条线</h2>					            
+					            <span class="badge badge-assertive">{{totalCounts['01']}}</span> 
+					        </li>
+					    	<li class="item item-icon-left"  ng-click="approveList('03')" ng-class="{'item-selected': selectedIndex2}">
+					            <h2>小企业条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['03']}}</span>
+					        </li>
+					        
+					    	</div>
+					    	<!-- 贷后变更流程 -->
+					    	 <!-- <div ng-if="$root.ApproveType=='TransactionApprove'">
+					    	<li class="item item-icon-left"  ng-click="approveList('03')" ng-class="{'item-selected': selectedIndex2}">
+					            <h2>小企业条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['03']}}</span>
+					        </li>
+					        <li class="item item-icon-left"  ng-click="approveList('01')" ng-class="{'item-selected': selectedIndex0}">
+					            <h2>公司条线</h2>					            
+					            <span class="badge badge-assertive">{{totalCounts['01']}}</span> 
+					        </li>
+					        <li class="item item-icon-left"  ng-click="approveList('04')" ng-class="{'item-selected': selectedIndex3}">
+					            <h2>个人条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['04']}}</span>
+					        </li>
+					    	</div>  -->
+					    	 <!-- 核算交易流程 -->
+					    	 <div ng-if="$root.ApproveType=='TransactionApprove'">
+					    	  <li class="item item-icon-left"  ng-click="approveList('01')" ng-class="{'item-selected': selectedIndex0}">
+					            <h2>公司条线</h2>					            
+					            <span class="badge badge-assertive">{{totalCounts['01']}}</span> 
+					        </li>
+					    	<li class="item item-icon-left"  ng-click="approveList('03')" ng-class="{'item-selected': selectedIndex2}">
+					            <h2>小企业条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['03']}}</span>
+					        </li>
+					        <li class="item item-icon-left"  ng-click="approveList('04')" ng-class="{'item-selected': selectedIndex3}">
+					            <h2>个人条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['04']}}</span>
+					        </li>
+					    	</div>
+					    	<!-- 贷后检查流程 -->
+					    	<div ng-if="$root.ApproveType=='CheckXQYCredit1'">
+					    	<li class="item item-icon-left"  ng-click="approveList('01')" ng-class="{'item-selected': selectedIndex0}">
+					            <h2>公司条线</h2>					            
+					            <span class="badge badge-assertive">{{totalCounts['01']}}</span> 
+					        </li>
+					    	<li class="item item-icon-left"  ng-click="approveList('03')" ng-class="{'item-selected': selectedIndex2}">
+					            <h2>小企业条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['03']}}</span>
+					        </li>
+					        
+					    	</div>
+					    	<!-- 风险预警信号发起流程 -->
+					    	<div ng-if="$root.ApproveType=='ApproveCRiskApply'">
+					    	 <li class="item item-icon-left"  ng-click="approveList('01')" ng-class="{'item-selected': selectedIndex0}">
+					            <h2>公司条线</h2>					            
+					            <span class="badge badge-assertive">{{totalCounts['01']}}</span> 
+					        </li>
+					    	<li class="item item-icon-left"  ng-click="approveList('03')" ng-class="{'item-selected': selectedIndex2}">
+					            <h2>小企业条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['03']}}</span>
+					        </li>
+					       
+					        <li class="item item-icon-left"  ng-click="approveList('04')" ng-class="{'item-selected': selectedIndex3}">
+					            <h2>个人条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['04']}}</span>
+					        </li>
+					    	</div>
+					    	<!-- 风险分类流程 -->
+					    	<div ng-if="$root.ApproveType=='ApproveClassifyRApply'">
+					    	
+					        <li class="item item-icon-left"  ng-click="approveList('01')" ng-class="{'item-selected': selectedIndex0}">
+					            <h2>公司条线</h2>					            
+					            <span class="badge badge-assertive">{{totalCounts['01']}}</span> 
+					        </li>
+					        <li class="item item-icon-left"  ng-click="approveList('03')" ng-class="{'item-selected': selectedIndex2}">
+					            <h2>小企业条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['03']}}</span>
+					        </li>
+					        <li class="item item-icon-left"  ng-click="approveList('04')" ng-class="{'item-selected': selectedIndex3}">
+					            <h2>个人条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['04']}}</span>
+					        </li>
+					    	</div>
+					    	
+					    	
+					        <!-- <li class="item item-icon-left"  ng-click="approveList('01')" ng-class="{'item-selected': selectedIndex0}">
+					            <h2>公司条线</h2>					            
+					            <span class="badge badge-assertive">{{totalCounts['01']}}</span> 
+					        </li>
+					        <li class="item item-icon-left"  ng-click="approveList('02')" ng-class="{'item-selected': selectedIndex1}">
+					            <h2>集团条线</h2>					            
+					            <span class="badge badge-assertive">{{totalCounts['02']}}</span>
+					        </li>
+					        <li class="item item-icon-left"  ng-click="approveList('03')" ng-class="{'item-selected': selectedIndex2}">
+					            <h2>小企业条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['03']}}</span>
+					        </li>
+					        <li class="item item-icon-left"  ng-click="approveList('04')" ng-class="{'item-selected': selectedIndex3}">
+					            <h2>个人条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['04']}}</span>
+					        </li>
+					        <li class="item item-icon-left"  ng-click="approveList('05')" ng-class="{'item-selected': selectedIndex4}">
+					            <h2>同业条线</h2>
+					            <span class="badge badge-assertive">{{totalCounts['05']}}</span>
+					        </li> -->
+					    </ul>		
+					</ion-scroll>
+                </ion-side-menu>
+            	
+            	<!--***************************************最右边的详情部分 ******************************************************-->
+                <ion-side-menu-content drag-content="true" edge-drag-threshold=50 style="margin-top: 0px;padding-top: 0px"  ng-controller="approveListController">
+                    <ion-header-bar class="bar-ipad-nav" align-title="center" style="width:{{contentWidth}}px">
+    					<h1 class="title">{{title}}</h1>
+					   	<!-- 最右边界面上面进入详情后的返回列表的一个小于号<，进入列表后通过rightContentListShowFlag就可以控制<不展示； -->
+				        <button class="button button-clear" ng-click="goToListPage()" ng-if="!rightContentListShowFlag">
+				            <i class="ion ion-chevron-left" style="font-size: 25px; margin-right: 580px;margin-top: 12px;color:#fff"></i>
+				        </button>
+		            </ion-header-bar>
+                    <div ng-show="rightContentListShowFlag" ng-include="'templates/approve/approveList.html'" style="margin-top: 0px;padding-top: 0px"></div>
+                    <div ng-show="!rightContentListShowFlag" ng-include="'templates/common/commonDetail.html'" style="margin-top: 30px;padding-top: 0px"></div>               
+                </ion-side-menu-content>
+            </ion-side-menus>
+        </ion-side-menu-content>
+    </ion-side-menus>
+    
+</ion-view>
+
+  

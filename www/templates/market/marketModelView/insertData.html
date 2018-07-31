@@ -1,0 +1,102 @@
+<ion-modal-view ng-style="{{param.ngStyle}}" ng-controller = "insertDataController">
+
+    <ion-header-bar align-title="center" class="bar-ipad-nav">   
+	   	<div>
+	       <button class="button button-clear" ng-click="modal.remove()">
+	           <i class="ion ion-chevron-left" style="font-size: 25px;margin-left: 10px;margin-top: 12px;color:#fff"></i>
+	       </button>
+	   	</div>           
+        <h1 class="title">{{param.tabTitle}}</h1>
+    </ion-header-bar>   
+	<ion-content delegate-handle="smallScroll" >
+	  <div>
+	      <table class="bm_tb_list"  ng-repeat = "item in createHtmlModal">
+	          <thead ng-click="CreateshowOrNot(item)">
+	          <tr>
+	              <th colspan="2">{{item.groupName}}</label>
+	                  <i class="icon-float-right" ng-class="item.CreateShowGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+	              </th>
+	          </tr>
+	          </thead>
+	          <!--循环遍历生成页面元素  -->
+            <tbody ng-repeat ="obj in item.groupColArray" ng-show="item.CreateShowGroup">            
+	            <!--Input框循环生成 -start -->
+	            <!--可更新可写input (只展示colVisable = 1 的属性) -->
+	            <tr ng-if="obj.ColEditStyle =='1' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td><input type="text" ng-model = 'createInfo[obj.KeyId]' ng-readonly='obj.ReadOnly' class="ba-input"></td>
+	            </tr>
+	            <!--不更新input  -->	            
+	            <tr ng-if="obj.ColEditStyle =='1' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td><input type="text" ng-model = 'createInfoNoUpdate[obj.KeyId]' ng-readonly='obj.ReadOnly' class="ba-input" ></td>
+	            </tr>
+	            <!--Input框循环生成 -end -->
+	            <!--通用下拉框循环生成 -start  -->
+	            <!--可更新可写select  -->	            	            
+				<tr ng-if="obj.ColEditStyle =='2' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td>
+	                    <select required="required" class="ba-select" ng-disabled='obj.ReadOnly' ng-options="option.ItemNo as option.ItemName for option in CODE_LIBRARY.{{obj.KeyId}}" ng-model='createInfo[obj.KeyId]'>
+	                        <option value=""></option>
+	                    </select>
+	                </td>
+	            </tr>
+	            <!--不可更新select  -->	            	            	            
+	            <tr ng-if="obj.ColEditStyle =='2' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td>
+	                    <select required="required" class="ba-select" ng-disabled='obj.ReadOnly' ng-options="option.ItemNo as option.ItemName for option in CODE_LIBRARY.{{obj.KeyId}}" ng-model='createInfoNoUpdate[obj.KeyId]'>
+	                        <option value=""></option>
+	                    </select>
+	                </td>
+	            </tr>
+	            <!--通用下拉框循环生成 -end  -->	             
+	            <!--文本框循环生成 -start-->
+	            <tr ng-if="obj.ColEditStyle =='3' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40" style="vertical-align: top;">{{obj.KeyName}}</td>
+	                <td>
+ 						<textarea rows="8" class="ba-input" ng-model="createInfo[obj.KeyId]" ng-readonly='obj.ReadOnly' ng-change="checkText()">							                      
+	                    </textarea>
+	                    <p ng-if="obj.KeyId == 'Remark'" ng-show="inputShow">您还可以输入{{inputTextLength}}个汉字</p>
+	                </td>
+	            </tr>
+	            <tr ng-if="obj.ColEditStyle =='3' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40" style="vertical-align: top;">{{obj.KeyName}}</td>
+	                <td>
+ 						<textarea rows="8" class="ba-input" ng-model="createInfoNoUpdate[obj.KeyId]" ng-readonly='obj.ReadOnly' ng-change="checkTextLength()">							                      
+	                    </textarea>
+	                    <p ng-if="obj.KeyId == 'Remark'" ng-show="inputShow">您还可以输入{{inputTextLength}}个汉字</p>
+	                </td>
+	            </tr>
+	            <!--文本框循环生成 -end-->	            
+	           	<!--点选框循环遍历 -start  -->    
+	           	<tr ng-if="obj.ColEditStyle =='8' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td><input type="text" ng-model = 'createInfo[obj.KeyId]' ng-readonly='obj.ReadOnly' class="ba-input" ng-click="selectBusinessType()"></td>
+	            </tr>
+	            <tr ng-if="obj.ColEditStyle =='8' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td><input type="text" ng-model = 'createInfoNoUpdate[obj.KeyId]' ng-readonly='obj.ReadOnly' class="ba-input" ng-click="selectBusinessType()"></td>
+	            </tr>                 
+	           	<!--点选框循环遍历 -end  -->    	            	       
+            </tbody>
+	        </table>
+	    </div>
+	</ion-content> 
+    <ion-footer-bar>
+        <div class="btn-box row">
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-red" ng-click="saveOrUpdate()">保存</button>
+            </div>
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-blue" ng-click="modal.remove()">返回</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+
+
+</ion-modal-view>
+
+
+

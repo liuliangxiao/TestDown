@@ -1,0 +1,46 @@
+/**
+* Created by ypwang6 on 2017/7/21.
+*/
+<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50 >
+
+            <ion-header-bar align-title="center" class="bar-ipad-nav">
+                <h1 class="title">贷款计算器</h1>
+            </ion-header-bar>
+
+            <ion-content class="gray-main  pos-box">
+                <div class="ui-wrap">
+                    <ul class="am_menu applyDetail_icon fixed">
+                        <li class="font-icon-green" ng-click="CommericialLoan()">
+                            <am-icon>&#xe690;</am-icon>
+                            <p>商业按揭贷款</p>
+                        </li>
+                        <li class="font-icon-green" ng-click="ProvidentFundLoan()">
+                            <am-icon>&#xe664;</am-icon>
+                            <p>公积金按揭贷款</p>
+                        </li>
+                        <li class="font-icon-green" ng-click="DiscountCalc()">
+                            <am-icon>&#xe686;</am-icon>
+                            <p>贴现计算器</p>
+                        </li>
+                        <li class="font-icon-green" ng-click="PortfolioLoan()">
+                            <am-icon>&#xe6cd;</am-icon>
+                            <p>组合贷款</p>
+                        </li>
+                    </ul>
+                </div>
+            </ion-content>
+        </ion-side-menu-content>
+
+        <!-- 一级导航条-->
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'">
+            </div>
+        </ion-side-menu>
+
+
+    </ion-side-menus>
+</ion-view>
+

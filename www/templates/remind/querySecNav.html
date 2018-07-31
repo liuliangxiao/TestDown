@@ -1,0 +1,76 @@
+<ion-header-bar align-title="center" class="bar-ipad-nav">
+    <h1 class="title">业务提醒</h1>
+</ion-header-bar>
+<ion-header-bar class="bar-subheader am-sub-header">
+    	<ion-scroll direction = "x" >   <!-- 如果添加左右滑动 则在ul中style里添加width：XX%（：li个数*50），然后将li 下class中的col-50样式去掉 ，最后在controller中添加 selectTask（）方法，来控制底部框的选中标志-->
+    <ul class="am-tab row" style="padding: 0px;width:200%;" >
+	        <li class="col " ng-class="{active:selectTab0}" ng-click="selectTask('0')">到期业务提醒</li>
+	        <li class="col " ng-class="{active:selectTab1}" ng-click="selectTask('1')">工作提示</li>
+	        <li class="col " ng-class="{active:selectTab2}" ng-click="selectTask('2')">工作提示1</li>
+	        <li class="col " ng-class="{active:selectTab3}" ng-click="selectTask('3')">工作提示2</li>       
+    </ul>
+	    </ion-scroll>
+</ion-header-bar>
+<ion-content class="gray-main pos-box am-content-has-sub-header am-list arrow-list ng-hide" ng-show="selectTab0" ng-controller="DueRemindController">
+   <!-- <dd class="item am-button-default" ng-click="gotoBusinessInfo(7,7)" ng-class="{'item-selected': 7 == selectedRow}">
+        <div class="my_spot"><span class="badge badge-assertive" ng-show=item7!=0>{{item7}}</span></div>
+        <span class="">7天内到期业务(含第7天)</span>
+        <i class="am_iconfont font-icon-gxxl">&#xe632;</i>
+    </dd>-->
+    <div class="list">
+        <div class="item am-button-default" ng-click="gotoBusinessInfo(7,7)" ng-class="{'item-selected': 7 == selectedRow}">
+            <div class="my_spot"><span class="badge badge-assertive"style="margin-right:-24px " ng-show=item7!=0>{{item7}} </span></div>
+            <span class="" style="margin-left: 36px">7天内到期业务(含第7天)</span>
+            <i class="am_iconfont font-icon-gxxl">&#xe632;</i>
+        </div>
+        <div  class="item am-button-default" ng-click="gotoBusinessInfo(15,15)" ng-class="{'item-selected': 15 == selectedRow}">
+        <div class="my_spot"><span class="badge badge-assertive" style="margin-right:-24px " ng-show=item15!=0>{{item15}}</span></div>
+        <span class=""  style="margin-left: 36px">15天内到期业务(含第15天)</span>
+        <i class="am_iconfont font-icon-blue">&#xe620;</i>
+        </div>
+        <div  class="item am-button-default" ng-click="gotoBusinessInfo(30,30)" ng-class="{'item-selected': 30 == selectedRow}">
+            <div class="my_spot"><span class="badge badge-assertive" style="margin-right:-24px " ng-show=item30!=0>{{item30}}</span></div>
+            <span class="" style="margin-left: 36px">30天内到期业务(含第30天)</span>
+            <i class="am_iconfont font-icon-oranger">&#xe631;</i>
+        </div>
+    </div>
+    <!--<dd class="item am-button-default" ng-click="gotoBusinessInfo(15,15)" ng-class="{'item-selected': 15 == selectedRow}">
+        &lt;!&ndash;<div class="my_spot" ><span class="spot font-icon-white iconfont_replace" ng-show=item15!=0>{{item15}}</span></div>&ndash;&gt;
+        <div class="my_spot"><span class="badge badge-assertive" ng-show=item15!=0>{{item15}}</span></div>
+        <span class="">15天内到期业务(含第15天)</span>
+        <i class="am_iconfont font-icon-blue">&#xe620;</i>
+    </dd>-->
+    <!--<dd class="item am-button-default" ng-click="gotoBusinessInfo(30,30)" ng-class="{'item-selected': 30 == selectedRow}">
+        &lt;!&ndash;<div class="my_spot" ><span class="spot font-icon-white iconfont_replace" ng-show=item30!=0>{{item30}}</span></div>&ndash;&gt;
+        <div class="my_spot"><span class="badge badge-assertive" ng-show=item30!=0>{{item30}}</span></div>
+        <span class="">30天内到期业务(含第30天)</span>
+        <i class="am_iconfont font-icon-oranger">&#xe631;</i>
+    </dd>-->
+</ion-content>
+
+<ion-content class="gray-main pos-box am-content-has-sub-header am-list arrow-list ng-hide" ng-show="selectTab1" ng-controller="TipsDetailController">
+
+        <div class="list">
+            <div class="item am-button-default" ng-repeat="item in items"
+                ng-click="gotoTaskInfo1(item.ItemNo,item.IconCode,item.ItemName,$index)"  ng-class="{'item-selected': $index == selectedRow}" ng-if="item.TaskNumber!=0" >
+                <i class="am_iconfont am-icon-sx">{{item.IconCode_trans}}</i>
+                <div class="my_spot"><span class="badge badge-assertive">{{item.TaskNumber}}</span></div>
+                <p class="font_s16"style="margin-left: 35px"><span>{{item.ItemName}}</span></p>
+            </div>
+        </div>
+   <!-- <div class="list">
+        <div class="item am-button-default" ng-repeat="item in items"
+             ng-click="gotoTaskInfo1(item.ItemNo,item.IconCode,item.ItemName,$index)"  ng-class="{'item-selected': $index == selectedRow}" ng-if="item.TaskNumber!=0" >
+            <i class="am_iconfont am-icon-sx">{{item.IconCode_trans}}</i>
+            &lt;!&ndash;<div class="my_spot" ><span class="spot font-icon-white iconfont_replace">{{item.TaskNumber}}</span></div>&ndash;&gt;
+            <div class="my_spot"><span class="badge badge-assertive">{{item.TaskNumber}}</span></div>
+            <p class="font_s16"><span>{{item.ItemName}}</span></p>
+        </div>
+    </div>-->
+    <div class="noDataBox" ng-show="noData">
+        <div class="nodata">
+            <img src="img/empty_page.png" width="70px">
+            <span class="nodata_span">暂无数据</span>
+        </div>
+    </div>
+</ion-content>

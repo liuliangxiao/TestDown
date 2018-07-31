@@ -1,0 +1,25 @@
+<div style="width:{{contentWidth}}px;position:absolute;top:50px">
+	
+	<table class="cm_tb_list">
+		<tbody>
+			<tr>
+				<th class="td_width_15">编号</th>
+				<th class="td_width_30">项目名称</th>
+				<th class="td_width_50">项目值</th>
+			</tr>
+			<tr ng-repeat="obj in items">
+				<td class="td_width_15">{{obj.ITEMNO}}</td>
+				<td class="td_width_30">{{obj.ITEMNAME}}</td>
+				<!-- <td class="td_width_50">
+				<select>
+                  <option > {{obj.ATTRIBUTE1}} </option>
+                   
+                </select>
+                </td> -->
+				 <td class="td_width_50">{{obj.ATTRIBUTE1}}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+
+</div>

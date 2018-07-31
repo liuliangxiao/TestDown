@@ -1,0 +1,27 @@
+    <div style="width:{{contentWidth}}px;position:absolute;top: 49px;" ng-controller="BusinessDuebillController">
+	    <dl class="am-list arrow-list" ng-if="details1.length > 0 " ng-show="details1.length > 0 ">
+	    	<div class="dl_div" ng-click="showOrNot(details1[0])">
+	    		借据信息</label> 
+	    		<i class="icon-float-right" ng-class="details1[0].showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+			</div>
+			<div ng-if="details1[0].showGroup">
+				<dd class="item am-button-default"  ng-repeat="item in details1" ng-click="gotoDetail(item)">
+				    <h4>借据流水号：{{item.SerialNo}}</h4>
+				    <h4>出账流水号：{{item.RelativeSerialNo1}}</h4>
+				    <h4>币种：{{item.Currency}}</h4>
+   				    <h4>金额：{{item.BusinessSum}}</h4>   
+   				    <h4>借据余额：{{item.Balance}}</h4>   
+   				    <h4>发放日期：{{item.PutOutDate}}</h4>
+   				    <h4>当前业务状态：{{item.BusinessStatus}}</h4>
+				    
+				    <i class="am_iconfont am-icon-fl">&#xe61b;</i>						
+				</dd>	
+			</div>         
+	    </dl>		
+		 <div class="noDataBox" ng-show="details1.length == 0">
+			<div class="nodata">
+			    <img src="img/empty_page.png" width="70px">
+			    <span class="nodata_span">暂无数据</span>
+			</div>
+	     </div>  
+	 </div> 

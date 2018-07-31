@@ -1,0 +1,99 @@
+<!-- 信息查询-反欺诈查询 begin -->
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '10' && selectedMenuItem.GroupId == 'AntiFraudQueryListController')">
+    <button type="button" class="am-button am-button-blue" ng-click="saveData()">保存</button>
+</div>
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '10' && selectedMenuItem.GroupId == 'AntiFraudQueryListController')">
+    <button type="button" class="am-button am-button-blue" ng-click="submit()">执行</button>
+</div>
+<!-- 信息查询-反欺诈查询 end -->
+
+<!-- 信息查询-联网核查 begin -->
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '10' && selectedMenuItem.GroupId == 'internetQueryContractList')">
+	<button type="button" class="am-button am-button-blue" ng-click="saveModel()">保存</button>
+</div>
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '10' && selectedMenuItem.GroupId == 'internetQueryContractList')">
+	<button type="button" class="am-button am-button-blue" ng-click="executeTrans()">执行</button>
+</div>
+<!-- 信息查询-联网核查 end -->
+
+<!-- 信息查询-征信查询 begin -->
+<div class="col col-40" ng-if=" (selectedMenuItem.GroupId=='CheckRecordQueryControllerList' && selectedDetailMenuItem.ColId === '101010')">
+    <button type="button" class="am-button am-button-blue" ng-click="submitOpinion()">提交</button>
+</div>
+<!-- 信息查询-征信查询 end -->
+
+<!-- 客户管理begin -->
+<div class="col col-40" ng-if="(selectedMenuItem.GroupId == 'customerList' && (selectedDetailMenuItem.ColId === '1010' || 
+selectedDetailMenuItem.ColId === '2010' || selectedDetailMenuItem.ColId === '3010'))">
+    <button type="button" class="am-button am-button-blue" ng-click="saveModelF()">保存</button>
+</div>
+<div class="col col-40" ng-if="(selectedMenuItem.GroupId == 'customerList' && (selectedDetailMenuItem.ColId === '1020' ||
+selectedDetailMenuItem.ColId === '2020' || selectedDetailMenuItem.ColId === '3020'))">
+    <button type="button" class="am-button am-button-blue" ng-click="saveApply()">保存</button>
+</div>
+<div class="col col-40" ng-if=" (selectedMenuItem.GroupId=='customerList' && (selectedDetailMenuItem.ColId === '1020' ||
+selectedDetailMenuItem.ColId === '2020' || selectedDetailMenuItem.ColId === '3020'))">
+    <button type="button" class="am-button am-button-blue" ng-click="signOpinion()">提交</button>
+</div>
+<!-- 客户管理end -->
+
+<!-- 业务申请单-放款申请 begin -->
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '10' && selectedMenuItem.GroupId == 'applyLoanList')">
+    <button type="button" class="am-button am-button-blue" ng-click="saveModel()">保存</button>
+</div>
+<div class="col col-40" ng-if="selectedMenuItem.ColId == '10' && selectedMenuItem.GroupId == 'applyLoanList'">
+    <button type="button" class="am-button am-button-blue" ng-click="signOpinion()">签署意见并提交</button>
+</div>
+<!-- 业务申请单-放款申请end -->
+
+<!-- 业务申请单-合同登记 begin -->
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '10' && selectedMenuItem.GroupId == 'loanContractList')">
+    <button type="button" style="position:fixed" class="am-button am-button-blue" 
+    ng-click="contractRegistration()">登记合同</button>
+</div>
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '20' && selectedMenuItem.GroupId == 'loanContractList')">
+    <button type="button" class="am-button am-button-blue" ng-click="cancelContract()">取消合同</button>
+</div>
+<!-- 业务申请单-合同登记 end -->
+
+<!-- 业务申请单-合同生效 begin -->
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '10' && selectedMenuItem.GroupId == 'applyContractList')">
+    <button type="button" class="am-button am-button-blue" ng-click="saveModelBefore()">保存</button>
+</div>
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '10' && selectedMenuItem.GroupId == 'applyContractList')">
+    <button type="button" class="am-button am-button-blue" ng-click="cancelContract()">取消合同</button>
+</div>
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '10' && selectedMenuItem.GroupId == 'applyContractList')">
+    <button type="button" class="am-button am-button-blue" ng-click="contractChecK()">合同生效</button>
+</div>
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '20' && selectedMenuItem.GroupId == 'applyContractList')">
+    <button type="button" class="am-button am-button-blue" ng-click="delContract()">取消生效</button>
+</div>
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '20' && selectedMenuItem.GroupId == 'applyContractList')">
+    <button type="button" class="am-button am-button-blue" ng-click="delContract()">合同放款</button>
+</div>
+<!-- 业务申请单-合同生效 end -->
+
+<!-- 业务申请单-额度生效 begin -->
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '10' && selectedMenuItem.GroupId == 'amountForceList')">
+    <button type="button" class="am-button am-button-blue" ng-click="saveModel()">保存</button>
+</div>
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '10' && selectedMenuItem.GroupId == 'amountForceList')">
+    <button type="button" class="am-button am-button-blue" ng-click="cancelContract()">取消合同</button>
+</div>
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '10' && selectedMenuItem.GroupId == 'amountForceList')">
+    <button type="button" class="am-button am-button-blue" ng-click="contractChecK()">合同生效</button>
+</div>
+<div class="col col-40" ng-if="(selectedMenuItem.ColId == '20' && selectedMenuItem.GroupId == 'amountForceList')">
+    <button type="button" class="am-button am-button-blue" ng-click="delContract()">取消生效</button>
+</div>
+<!-- 业务申请单-额度生效 end -->
+<!-- 征信查询-待提交-征信查询详情 显示保存按钮 -->
+<div class="col col-40" ng-if=" (selectedMenuItem.GroupId=='CreditQueryList' && (selectedDetailMenuItem.ColId === '101010' || selectedDetailMenuItem.ColId === '103010'))">
+    <button type="button" class="am-button am-button-blue" ng-click="saveModel()">保存</button>
+</div>
+<!-- 征信查询-待提交-征信查询详情 显示签署意见并提交按钮 -->
+<div class="col col-40" ng-if=" (selectedMenuItem.GroupId=='CreditQueryList' && (selectedDetailMenuItem.ColId === '101010' || selectedDetailMenuItem.ColId === '103010'))">
+    <button type="button" class="am-button am-button-blue" ng-click="signOpinion()">签署意见并提交</button>
+</div>
+

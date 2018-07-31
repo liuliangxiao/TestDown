@@ -1,0 +1,380 @@
+<div class="gray-main" style="width:{{contentWidth}}px">
+<!-- <ion-view ng-style="{'width':'{{contentWidth}}px'}" > -->
+  <div class='ng-hide' ng-show="true" >
+    <ion-header-bar align-title="center" class="bar-positive" >
+    <h1 style="font-size: {{barFontSize}}px;top:0px;margin-top: 0px" class="title">详情信息</h1>
+	</ion-header-bar>
+
+        <ul class="am-tab row" style="padding: 0px;margin-top: {{barHeight}}px"  ng-show="tabFlag!='1'" >
+        
+            <li class="col col-50" ng-class="{active:currentTabSelected == 'selectTab0'}" ng-click="selectTask('0')">
+            	我的客户详情
+            </li>
+            <li class="col col-50" ng-class="{active:currentTabSelected == 'selectTab2'}" ng-click="selectTask('2')">
+   			            影像采集
+           </li>
+        </ul>
+        <ul class="am-tab row" style="padding: 0px;margin-top: {{barHeight}}px"  ng-show="tabFlag=='1'" >
+            <li class="col col-50" ng-class="{active:currentTabSelected == 'selectTab1'}" ng-click="selectTask('1')">
+   			             陌生客户详情
+            </li>
+            <li class="col col-50" ng-class="{active:currentTabSelected == 'selectTab2'}" ng-click="selectTask('2')">
+   			             影像采集
+            </li>
+        </ul>
+        
+        <div ng-controller="MyCustomerDetailController" ng-show="currentTabSelected =='selectTab0'">
+
+            <div class="ui-wrap">
+               <ion-scroll scrollbar-y="true" direction="y" style="width: {{contentWidth}}px; height:{{exaineContentHeight}}px"
+                             delegate-handle="smallScroll02">
+                <table class="bm_tb_list" ng-repeat="item in items">
+                        <thead ng-click="showOrNot(item)">
+                        <tr>
+                            <th colspan="2">{{item.groupName}}</label>
+                                <i class="icon-float-right"
+                                   ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="obj in item.groupColArray" ng-show="item.showGroup">
+                            <td class="td_width_40">{{obj.KeyName}}:</td>
+                            <!-- <td>{{obj.Value}}</td> -->
+                             <!-- <td><input type="" class="cm-input" ng-readonly="obj.ReadOnly=='1'"  ng-model="obj.Value"/></td> -->
+                             <td ng-if="obj.KeyName=='省份、直辖市、自治区'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in AreaCodes" ng-model='obj.Value'>
+                            	 <option value="">-当选择国家为中国时请选择省市-</option> 
+                                </select>
+                            </td>
+                            <td ng-if="obj.KeyName=='所在国家(地区)'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in CountryCodes" ng-model='obj.Value'>
+                                </select>
+                            </td>
+                            <td ng-if="obj.KeyName=='持股比例'">
+                            <input type="" ng-model="obj.Value" />%
+                            </td>
+                            <td ng-if="obj.KeyName=='个人月收入'">
+                            <input type="" ng-model="obj.Value" />元
+                            </td>
+                            <td ng-if="obj.KeyName=='家庭月收入'">
+                            <input type="" ng-model="obj.Value" />元
+                            </td>
+                             <td ng-if="obj.KeyName=='毕业年份(取得最高学历)'">
+                            <input type="date" ng-model="obj.Value" />
+                            </td>
+                            <td ng-if="obj.KeyName=='出生日期'">
+                            <input type="date" ng-model="obj.Value" />
+                            </td>
+                            <td ng-if="obj.KeyName=='性别'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in Sexs" ng-model='obj.Value'>
+                                    <!-- <option value="">{{obj.Value}}</option> -->
+                                </select>
+                            </td>
+                            <td ng-if="obj.KeyName=='最高学位'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in EducationDegrees" ng-model='obj.Value'>
+                                   <!--  <option value="">{{obj.Value}}</option> -->
+                                </select>
+                            </td>
+                            <td ng-if="obj.KeyName=='最高学历'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in EducationExperiences" ng-model='obj.Value'>
+                                    <!-- <option value="">{{obj.Value}}</option> -->
+                                </select>
+                            </td>
+                            <td ng-if="obj.KeyName=='政治面貌'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in PoliticalFaces" ng-model='obj.Value'>
+                                    <!-- <option value="">{{obj.Value}}</option> -->
+                                </select>
+                            </td>
+                            <td ng-if="obj.KeyName=='婚姻状况'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in Marriages" ng-model='obj.Value'>
+                                    <!-- <option value="">{{obj.Value}}</option> -->
+                                </select>
+                            </td>
+                            <td ng-if="obj.KeyName=='民族'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in Nationalitys" ng-model='obj.Value'>
+                                    <!-- <option value="">{{obj.Value}}</option> -->
+                                </select>
+                            </td>
+                            <td ng-if="obj.KeyName=='居住状况'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in FamilyStatuss" ng-model='obj.Value'>
+                                   <!--  <option value="">{{obj.Value}}</option> -->
+                                </select>
+                            </td>
+                            <td ng-if="obj.KeyName=='职业'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in Occupations" ng-model='obj.Value'>
+                                   <!--  <option value="">{{obj.Value}}</option> -->
+                                </select>
+                            </td>
+                            <td ng-if="obj.KeyName=='职务'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in HeadShips" ng-model='obj.Value'>
+                                    <!-- <option value="">{{obj.Value}}</option> -->
+                                </select>
+                            </td>
+                            <td ng-if="obj.KeyName=='职称'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in TechPosts" ng-model='obj.Value'>
+                                    <!-- <option value="">{{obj.TechPost}}</option> -->
+                                </select>
+                            </td>
+                            <td ng-if="obj.KeyName=='单位所属行业'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in IndustryTypes" ng-model='obj.Value'>
+                                   <!--  <option value="">{{obj.Value}}</option> -->
+                                </select>
+                            </td>
+                            <td ng-if="obj.KeyName=='核心客户类型'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in ICoreuserTypes" ng-model='obj.Value'>
+                                    <!-- <option value="">{{obj.Value}}</option> -->
+                                </select>
+                            </td>
+                             <!-- <td ng-if="obj.KeyName=='证件类型'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in CertTypes" ng-model='obj.Value'>
+                                     <option value="">{{obj.Value}}</option>
+                                </select>
+                            </td>  -->
+                            <td ng-if="obj.KeyName=='是否我行股东'||obj.KeyName=='是否本行员工'||obj.KeyName=='是否本行高管人员'||obj.KeyName=='是否小微企业主'">
+                                <select required="required" class="am-select" ng-options="c.ItemNo as c.ItemName for c in YesNos" ng-model='obj.Value'>
+                                    <!-- <option value="">{{obj.Value}}</option> -->
+                                </select>
+                            </td>
+                            <td ng-if="obj.KeyName!='省份、直辖市、自治区'&&obj.KeyName!='所在国家(地区)'&&obj.KeyName!='持股比例'&&obj.KeyName!='家庭月收入'&&obj.KeyName!='个人月收入'&&obj.KeyName!='毕业年份(取得最高学历)'&&obj.KeyName!='出生日期'&&obj.KeyName!='性别'&&obj.KeyName!='最高学历'&&obj.KeyName!='最高学位'&&obj.KeyName!='政治面貌'&&obj.KeyName!='婚姻状况'&&obj.KeyName!='民族'&&obj.KeyName!='居住状况'&&obj.KeyName!='职业'&&obj.KeyName!='职务'&&obj.KeyName!='职称'&&obj.KeyName!='单位所属行业'&&obj.KeyName!='核心客户类型'&&obj.KeyName!='是否我行股东'&&obj.KeyName!='是否本行员工'&&obj.KeyName!='是否本行高管人员'&&obj.KeyName!='是否小微企业主'">
+                            	<input type="" class="cm-input" ng-readonly="obj.ReadOnly=='1'"  ng-model="obj.Value"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </ion-scroll>
+                 <ion-footer-bar >
+            		<div ng-if="flagtemp" class="col col-40">
+            		<button type="button" class="am-button am-button-red"  ng-click="CustomerSaveZ(items)">暂存</button>
+        			</div>
+            		<div class="col col-40">
+            		<button type="button" class="am-button am-button-red" ng-click="CustomerSave(items)">保存</button>
+        			</div>
+    			</ion-footer-bar>
+            </div>
+        </div>
+
+
+        <div ng-controller="StrcustomerdetailController" ng-show="currentTabSelected =='selectTab1'">
+        <div class="noDataBox" ng-show="noData">
+                    <div class="nodata ng-hide" >
+                        <img src="img/empty_page.png" width="70px">
+                        <span class="nodata_span">暂无数据</span>
+                    </div>
+   		 </div>
+			<div class="ui-wrap" ng-show="!noData">
+				<ion-scroll scrollbar-y="false" direction="y"
+                            style="width: {{contetWidth}}px; height:{{exaineContentHeight}}px" delegate-handle="smallScroll">
+                 <table class="bm_tb_list">
+                        <thead>
+                        <tr>
+                            <th colspan="2">基本信息</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="td_width_40">姓名：</td>
+                            <td>{{StrCustomerInfo.CustomerName}}</td>
+                        </tr>
+                        <tr>
+                        	<td class="td_width_40">证件类型：</td>
+                        	<td>
+                                <select required="required" class="am-select" ng-options="CertType.ItemNo as CertType.ItemName for CertType in CertTypes" ng-model="StrCustomerInfo.CertType">
+                                    <!-- <option value="">{{StrCustomerInfo.CertTypeName}}</option>   -->
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">证件号：</td>
+                            <td>
+                    		<input type="" style="text-align: right" class="cm-input" ng-model="StrCustomerInfo.CertId"/>
+                			</td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">固定电话：</td>
+                            <td>
+                    		<input type="" style="text-align: right" class="cm-input" ng-model="StrCustomerInfo.Telphone"/>
+                			</td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">所在单位：</td>
+                             <td>
+                    		<input type="" style="text-align: right" class="cm-input" ng-model="StrCustomerInfo.Emplayment"/>
+                			</td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">单位地址：</td>
+                            <td>
+                    		<input type="" style="text-align: right" class="cm-input" ng-model="StrCustomerInfo.Companyadd"/>
+                			</td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">GPS地址：</td>
+                            <td>
+                    		<input type="" style="text-align: right" class="cm-input" ng-model="StrCustomerInfo.Gpsadd"/>
+                			<button type="button"  ng-click="getAddress()">获取定位</button>
+                			</td>
+                			 <!-- <td getAddress>查看地图</td> -->
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">贷款意向：</td>
+                            <td>
+                    		<input type="" style="text-align: right" class="cm-input" ng-model="StrCustomerInfo.Loanpur"/>
+                			</td>
+                        </tr>
+                        </tbody>
+                        </table>
+                </ion-scroll>
+                  <ion-footer-bar >
+            		<div ng-if="tempflag" class="col col-30">
+            		<button type="button" class="am-button am-button-red"  ng-click="StrCustomerSaveZ(StrCustomerInfo)">暂存</button>
+        			</div>
+        			<div class="col col-30">
+            		<button type="button" class="am-button am-button-red" ng-click="SaveCustomer(StrCustomerInfo)">保存</button>
+        			</div>
+        			<div class="col col-40">
+            		<button type="button" class="am-button am-button-red" ng-click="TransferCustomer(StrCustomerInfo)">转为我的客户</button>
+        			</div>
+        		
+    			</ion-footer-bar>
+        	</div>
+
+    	</div>
+ 
+ 
+ 
+    <div ng-controller="ScreenagesController" ng-show="currentTabSelected =='selectTab2'">
+    <div class='ng-hide' ng-show="!showpage">
+    <ion-scroll  direction="y"
+                        style="width: {{contentWidth}}px; height:{{imageAcqContentHeight}}px" ng-show="!showpage" delegate-handle="smallScroll">
+
+                <table class="bm_tb_list" ng-repeat="item in ItemList" style="width:{{contentWidth}}px">
+                    <thead ng-click="showOrNot(item)">
+                    <tr ng-if="item.parentName !='' ">
+                        <th colspan="2" style="height: {{imageAcqContentHeight*0.05}}px;line-height:{{imageAcqContentHeight*0.05}}px">{{item.parentName}}
+                            <i class="icon-float-right" style="margin-left: 30px;"
+                               ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="child in item.children" ng-show="!item.showGroup" ng-click="gotoScreenageDetail(child)">
+                        <td style="text-align: left;height: {{imageAcqContentHeight*0.05}}px;line-height:{{imageAcqContentHeight*0.05}}px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp{{child.ItemName}}</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </ion-scroll>
+      
+    </div>
+<div class='' ng-show="showpage">
+     <div class="ui-wrap" ng-controller="PrePhotoController">
+    
+    <ion-header-bar class="bar-positive" align-title="center"
+                            style="width: {{contentWidth}}px;height:{{barHeight*0.8}}px">
+                <div style="height:{{barHeight*0.8}}px; line-height:{{barHeight*0.8}}px;vertical-align:middle;margin-top:0px"
+                     class="button am-back" ng-click="goBack1()"></div>
+
+                <h1 style="height:{{barHeight*0.8}}px;line-height: {{barHeight*0.8}}px;margin-top:0px;top:0px;font-size: {{barFontSize}}px"
+                    class="title">{{screenageTitle}}</h1>
+                 <div class="buttons"
+                     style="height:{{barHeight*0.8}}px;line-height: {{barHeight*0.8}}px;margin-top:0px;top:0px">
+                    <div style="height:{{barHeight*0.8}}px;line-height: {{barHeight*0.8}}px;color:#fff" class="button"
+                         ng-if="!cancel_mode" ng-click="selectImg()" style="color: #fffdef;">选择
+                    </div>
+                    <div style="height:{{barHeight*0.8}}px;line-height: {{barHeight*0.8}}px;color:#fff" class="button"
+                         ng-if="cancel_mode" ng-click="selectImg()" style="color: #fffdef;">取消
+                    </div>
+                </div> 
+            </ion-header-bar>
+          <ion-scroll scrollbar-y="true" direction="y" style="width: {{contentWidth}}px; height:{{exaineContentHeight}}px">
+          
+               <!--  <label class="item item-input">
+                    <span>描述：</span>
+                    <input type="text"  ng-model="info.Describe"/>
+                </label>
+                <label class="item ">
+                    <p class="positive">&nbsp;&nbsp;&nbsp;&nbsp;<font color="#a9a9a9"> 当前地址：{{info.Address}}</font></p>
+                </label> -->
+            拍照界面 <!--  <div id="images" style="width: {{contentWidth}}px;">
+             <image class="profileimg" src="http://36.10.48.119:9081/SunECMDM/servlet/getFile?ZmlsZVBhdGg9L2hvbWUvam5kYXRhLzIwMTgwMTAzLzQwMi8mZWZmVGltZT0yMDE4MDEwMzE5NTAmZmlsZVR5cGU9anBnJmZpbGVJRD0wNjc4Qzk2MS1COUY5LUNFNTYtNUUxMi01QzVDQjA0QTgyRjEmU0FWRV9OQU1FPTA2NzhDOTYxLUI5RjktQ0U1Ni01RTEyLTVDNUNCMDRBODJGMSZmaWxlU2l6ZT0xNDI5MzU2JnNlcnZlcklEPTIx"></image> 
+               </div> -->
+                <div id="images" style="width: {{contentWidth}}px;">
+                    <div class="odp-box">
+                        <div class="row" style="-webkit-flex-wrap:wrap;flex-wrap:wrap;">
+                            <div class="col-33-img padding-s" style="text-align: center; position: relative; top: 25px;"
+                                 ng-repeat="image in imageData track by $index" ng-if="image.loading">
+                                <ion-spinner icon="spiral"></ion-spinner>
+                            </div>
+                            <div class="col-33-img padding-s" ng-repeat="image in images track by $index">
+                                <image class="profileimg"  ng-src={{image.URL}} ng-click="openModal($index)"></image>
+                                <div class="selectImg" ng-if="imgSelected" ng-click="hasSelect($index,image)"></div>
+                                <div class="hasSelectImg" ng-if="image.isSelected && imgSelected"
+                                     ng-click="hasSelect($index,image)"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div> 
+                
+         视频界面       
+                <div id="videos" style="width: {{contentWidth}}px;">
+                    <div class="odp-box">
+                        <div class="row"  style="-webkit-flex-wrap:wrap;flex-wrap:wrap;">
+                            <div class="col-33-img padding-s"  style="text-align: center; position: relative; top: 25px;"
+                                 ng-repeat="video in videosData track by $index" ng-if="video.loading">
+                                <ion-spinner icon="spiral"></ion-spinner>
+                            </div>
+                            <div class="col-33-img padding-s" ng-repeat="video in videos track by $index">
+                                <video height="80px" controls="controls" class="profileimg"
+                                       ng-src="{{video.src}}"></video>{{video.src}}
+                                <div class="selectImg" ng-if="imgSelected" ng-click="hasSelect($index,video)"></div>
+                                <div class="hasSelectImg" ng-if="video.isSelected && imgSelected"
+                                     ng-click="hasSelect($index,video)"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             音频界面
+            <div id="audios" style="width: {{contentWidth}}px;">
+           
+                    <div class="odp-box">
+                        <div class="row" style="-webkit-flex-wrap:wrap;flex-wrap:wrap;">
+                            <div class="col-33-img padding-s" style="text-align: center; position: relative; top: 25px;"
+                                 ng-repeat="radio in radiosData track by $index" ng-if="radio.loading">
+                                <ion-spinner icon="spiral"></ion-spinner>
+                            </div>
+                            <div class="col-33-img padding-s" ng-repeat="radio in radios track by $index">
+									<!-- <video height="80px" controls="controls">
+										<source src="{{radio.src}}" type="audio/mpeg">
+									</video> -->
+									{{radio.src}}
+									 <video height="80px" controls="controls" class="profileimg"
+                                       ng-src="{{radio.src}}"></video> 
+                                <div class="selectImg" ng-if="imgSelected" ng-click="hasSelect($index,radio)"></div>
+                                <div class="hasSelectImg" ng-if="radio.isSelected && imgSelected"
+                                     ng-click="hasSelect($index,radio)"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </ion-scroll>
+             <ion-footer-bar>
+                    <div class="col col-40" ng-if="!cancel_mode">
+                        <button type="button" class="am-button am-button-blue" ng-click="addDate()">增加资料</button>
+                    </div>
+                    <div class="col col-40" ng-if="!cancel_mode">
+                        <button type="button" class="am-button am-button-red" ng-click="uploadinfo()">保存</button>
+                    </div>
+                    <div class="col col-100" ng-if="cancel_mode">
+                        <button type="button" class="am-button am-button-red" ng-click="deleteFile()">删除</button>
+                </div>
+            </ion-footer-bar> 
+            </div>
+        </div>  
+</div> 
+
+</div>	
+
+</div>
+

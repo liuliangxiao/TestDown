@@ -1,0 +1,44 @@
+<!-- 合同放款主页	2017年9月20日	 李岳  -->
+<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50>
+
+            <ion-header-bar align-title="center" class="bar-ipad-nav">
+                <h1 class="title">业务类型</h1>
+            </ion-header-bar>
+
+            <ion-content class="gray-main  pos-box">
+                <div class="ui-wrap">
+                    <ul class="am_menu applyDetail_icon fixed">
+                        <li class="font-icon-green" data-ng-click="contractRegistration()">
+                            <!-- <am-icon>&#xe671;</am-icon> -->
+                            <p style="font-size:20px;">合同登记</p>
+                        </li>
+                        <li class="font-icon-green" data-ng-click="applyContract()">
+                            <!-- <am-icon>&#xe687;</am-icon> -->
+                            <p style="font-size:20px;">合同生效</p>
+                        </li>
+                        <li class="font-icon-green" data-ng-click="amountForce()">
+                            <!-- <am-icon>&#xe687;</am-icon> -->
+                            <p style="font-size:20px;">额度生效</p>
+                        </li>
+                        <li class="font-icon-green" data-ng-click="applyLoan()">
+                            <!-- <am-icon>&#xe687;</am-icon> -->
+                            <p style="font-size:20px;">放款申请</p>
+                        </li>
+                    </ul>
+                </div>
+            </ion-content>
+
+        </ion-side-menu-content>
+
+        <!-- 一级导航条-->
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'">
+            </div>
+        </ion-side-menu>
+
+
+    </ion-side-menus>
+</ion-view>

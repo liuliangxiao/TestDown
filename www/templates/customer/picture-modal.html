@@ -1,0 +1,29 @@
+<ion-modal-view  class="image-modal">
+
+    <ion-scroll zooming="true"
+                direction="xy"
+                delegate-handle="zoom-pane"
+                class="zoom-pane"
+                min-zoom="1"
+                scrollbar-x="false"
+                scrollbar-y="false"
+                overflow-scroll="false">
+        <!-- <img ng-src="{{images[index].URL}}" id="image" />
+        <input id="imageWord" type="" style="color:red;fond-size:20px;" readonly ng-model="words" z-index=999></input> -->
+        <div style="width:540px;height:405px;background:url({{images[index].URL}});background-size:cover">
+              <div id="imageWord" style="position:absolute; left:0px; top:350px;text-align:center" >{{words}}</div>
+        </div>
+    </ion-scroll>
+
+</ion-footer-bar>
+    <ion-footer-bar class="bar-dark">
+        <div class="btn-box row">
+            <!-- <div class="col col-40">
+                <button class="am-button button-clear" ng-click="deleteImage()">删除</button>
+            </div> -->
+            <div class="col col-40">
+                <button class="am-button button-clear" ng-click="closeModal()">返回</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

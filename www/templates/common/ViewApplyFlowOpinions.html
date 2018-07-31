@@ -1,0 +1,251 @@
+<html>
+<head>
+<title>审批详情</title>
+</head>
+<body  leftmargin="0" topmargin="0" class="pagebackground"  >
+  <form name="opinion">
+  <table width="100%"  height="100%" cellpadding="3" cellspacing="0" border="0" style="overflow:auto;overflow-x:visible;overflow-y:visible">
+  	<tr>
+	</tr>
+    <tr>
+	<td valign="top">
+	  <table width=90%  cellpadding="0" cellspacing="0"  class="dialog_table" align="center">
+        <tr id=<%=iRow++%>>
+			<td width=50%><b>阶段名称:</b><%=DataConvert.toString(rs.getString("PhaseName"))%><input type=hidden value='阶段名称：<%=DataConvert.toString(rs.getString("PhaseName"))%>' name=<%="R"+String.valueOf(iRow)+"L"%> ></td>
+            <td width=50%><b>处理人:</b><%=DataConvert.toString(rs.getString("UserName"))%><input type=hidden value='处理人：<%=DataConvert.toString(rs.getString("UserName"))%>' name=<%="R"+String.valueOf(iRow)+"R"%>></td>
+        </tr>
+        <tr id=<%=iRow++%>>
+			<td width=50%><b>处理人所属机构:</b><%=DataConvert.toString(rs.getString("OrgName"))%><input type=hidden value='处理人所属机构：<%=DataConvert.toString(rs.getString("OrgName"))%>' name=<%="R"+String.valueOf(iRow)+"L"%>></td>
+            <td width=50%><b>客户名称:</b><%=DataConvert.toString(rs.getString("CustomerName"))%><input type=hidden value='客户名称：<%=DataConvert.toString(rs.getString("CustomerName"))%>' name=<%="R"+String.valueOf(iRow)+"R"%>></td>
+        </tr>
+        <tr id=<%=iRow++%>>
+			<td width=50%><b>业务币种:</b><%=DataConvert.toString(rs.getString("BusinessCurrencyName"))%><input type=hidden value='业务币种：<%=DataConvert.toString(rs.getString("BusinessCurrencyName"))%>' name=<%="R"+String.valueOf(iRow)+"L"%>></td>
+            <%
+          	if(sPhaseNo.equals("0010")||sPhaseNo.equals("3000")||sPhaseNo.equals("4000")){
+          	%>
+          	<td width=50%><b>申请金额(元):</b><%=DataConvert.toMoney(rs.getDouble("BusinessSum"))%><input type=hidden value='申请金额(元)：<%=DataConvert.toMoney(rs.getDouble("BusinessSum"))%>' name=<%="R"+String.valueOf(iRow)+"R"%>></td>
+          	<%
+          	}else{
+          	%>
+          	<td width=50%><b>批复金额(元):</b><%=DataConvert.toMoney(rs.getDouble("BusinessSum"))%><input type=hidden value='申请金额(元)：<%=DataConvert.toMoney(rs.getDouble("BusinessSum"))%>' name=<%="R"+String.valueOf(iRow)+"R"%>></td>
+          	<%	
+          	}
+        	%>
+        </tr>
+        <tr id=<%=iRow++%>>
+			<td width=50%><b>期限(月):</b><%=rs.getInt("TermMonth")%><input type=hidden value='期限(月)：<%=rs.getInt("TermMonth")%>' name=<%="R"+String.valueOf(iRow)+"L"%>></td>
+            <td width=50%><b>票据最长期限(天):</b><%=rs.getInt("TermDay")%><input type=hidden value='零(天)：<%=rs.getInt("TermDay")%>' name=<%="R"+String.valueOf(iRow)+"R"%>></td>
+        </tr>
+        <%
+          if(bBusinessRate== true){
+        %>
+        <tr id=<%=iRow++%>>
+			<td width=50%><b>基准月利率(‰):</b><%=rs.getDouble("BaseRate")%><input type=hidden value='基准月利率(‰)：<%=rs.getDouble("BaseRate")%>' name=<%="R"+String.valueOf(iRow)+"L"%>></td>
+            <td width=50%><b>利率浮动方式:</b><%=DataConvert.toString(rs.getString("RateFloatTypeName"))%><input type=hidden value='利率浮动方式：<%=DataConvert.toString(rs.getString("RateFloatTypeName"))%>' name=<%="R"+String.valueOf(iRow)+"R"%>></td>
+        </tr>
+        <tr id=<%=iRow++%>>
+			<td width=50%><b>利率浮动值:</b><%=rs.getDouble("RateFloat")%><input type=hidden value='利率浮动值：<%=rs.getDouble("RateFloat")%>' name=<%="R"+String.valueOf(iRow)+"L"%>></td>
+            <td width=50%><b>执行月利率(‰):</b><%=rs.getDouble("BusinessRate")%><input type=hidden value='执行月利率(‰)：<%=rs.getDouble("BusinessRate")%>' name=<%="R"+String.valueOf(iRow)+"R"%>></td>
+        </tr>
+         <tr id=<%=iRow++%>>
+			<td width=50%><b>利率调整依据:</b><%=DataConvert.toString(rs.getString("RateCalTermName"))%><input type=hidden value='利率调整依据:<%=DataConvert.toString(rs.getString("RateCalTermName"))%>' name=<%="R"+String.valueOf(iRow)+"L"%>></td>
+            <td width=50%><b>利率调整方式:</b><%=DataConvert.toString(rs.getString("RepriceTypeName"))%><input type=hidden value='利率调整方式：<%=DataConvert.toString(rs.getString("RepriceTypeName"))%>' name=<%="R"+String.valueOf(iRow)+"R"%>></td>
+        </tr>
+         <tr id=<%=iRow++%>>
+			<td width=50%><b>利率信息:</b><%=DataConvert.toString(rs.getString("LoanRateTermName"))%><input type=hidden value='利率信息:<%=DataConvert.toString(rs.getString("LoanRateTermName"))%>' name=<%="R"+String.valueOf(iRow)+"L"%>></td>
+            <td width=50%><b>还款方式:</b><%=DataConvert.toString(rs.getString("RptTermName"))%><input type=hidden value='还款方式：<%=DataConvert.toString(rs.getString("RptTermName"))%>' name=<%="R"+String.valueOf(iRow)+"R"%>></td>
+        </tr>
+        <%  
+          }
+        
+         if(bBailRatio ==true){
+        %>
+        <tr id=<%=iRow++%>>
+			<td width=50%><b>保证金金额(元):</b><%=DataConvert.toMoney(rs.getDouble("BailSum"))%><input type=hidden value='保证金金额(元)：<%=DataConvert.toMoney(rs.getDouble("BailSum"))%>' name=<%="R"+String.valueOf(iRow)+"L"%>></td>
+            <td width=50%><b>保证金比例(%):</b><%=rs.getDouble("BailRatio")%><input type=hidden value='保证金比例(%)：<%=rs.getDouble("BailRatio")%>' name=<%="R"+String.valueOf(iRow)+"R"%>></td>
+        </tr>
+        <%
+         }
+         if(bBailFlag ==true){
+        %>
+         <tr id=<%=iRow++%>>
+			<td width=50%><b>保证金收取方式:</b><%=DataConvert.toString(rs.getString("BailCollTypeName"))%><input type=hidden value='保证金收取方式：<%=rs.getString("BailCollTypeName")%>' name=<%="R"+String.valueOf(iRow)+"L"%>></td>
+            <td width=50%><b>保证金定存限额(元):</b><%=rs.getDouble("BailValue")%><input type=hidden value='保证金定存限额：<%=rs.getDouble("BailValue")%>' name=<%="R"+String.valueOf(iRow)+"R"%>></td>
+        </tr>
+         <tr id=<%=iRow++%>>
+			<td width=50%><b>保证金金额(元):</b><%=DataConvert.toMoney(rs.getDouble("BailSum"))%><input type=hidden value='保证金金额(元)：<%=DataConvert.toMoney(rs.getDouble("BailSum"))%>' name=<%="R"+String.valueOf(iRow)+"L"%>></td>
+            <td width=50%><b>保证金比例(%):</b><%=rs.getDouble("BailRatio")%><input type=hidden value='保证金比例(%)：<%=rs.getDouble("BailRatio")%>' name=<%="R"+String.valueOf(iRow)+"R"%>></td>
+        </tr>
+        <%
+         }
+         if(bEnlArge == true){
+        %>
+         <tr id=<%=iRow++%>>
+			<td width=50%><b>保证金扩大倍数:</b><%=rs.getDouble("EnlArge")%><input type=hidden value='保证金扩大倍数：<%=rs.getDouble("EnlArge")%>' name=<%="R"+String.valueOf(iRow)+"L"%>></td>
+        </tr>
+        <% 
+         }
+         if(bPdgFlag ==true){
+        %>
+        <tr id=<%=iRow++%>>
+			<td width=50%><b>手续费金额(元):</b><%=DataConvert.toMoney(rs.getDouble("PdgSum"))%><input type=hidden value='手续费金额(元)：<%=DataConvert.toMoney(rs.getDouble("PdgSum"))%>' name=<%="R"+String.valueOf(iRow)+"L"%>></td>
+            <td width=50%><b>手续费率(‰):</b><%=rs.getDouble("PdgRatio")%><input type=hidden value='手续费率(%)：<%=rs.getDouble("PdgRatio")%>' name=<%="R"+String.valueOf(iRow)+"R"%>></td>
+        </tr>
+        <%
+         }
+        %>
+        <tr id=<%=iRow++%>>
+            <td width=50%><b>收到时间:</b><%=DataConvert.toString(rs.getString("BeginTime"))%><input type=hidden value='收到时间：<%=DataConvert.toString(rs.getString("BeginTime"))%>' name=<%="R"+String.valueOf(iRow)+"L"%>></td>
+            <td width=50%><b>完成时间:</b><%=DataConvert.toString(rs.getString("EndTime"))%><input type=hidden value='完成时间：<%=DataConvert.toString(rs.getString("EndTime"))%>' name=<%="R"+String.valueOf(iRow)+"R"%>></td>
+        </tr>
+        
+        <tr id=<%=iRow++%>>
+            <td  colspan=2 align=center>
+                <textarea type=textfield  bgcolor="#FDFDF3" readonly style='width:100%;height:100px;resize: none;'>
+                     <%="\r\n【意见】"+ StringFunction.replace(DataConvert.toString(rs.getString("PhaseOpinion")).trim(),"\\r\\n","\r\n")
+                     %>
+                </textarea>
+            <input type=hidden value='<%="\r\n【意见】"+StringFunction.replace(DataConvert.toString(rs.getString("PhaseOpinion")).trim(),"\\r\\n","\r\n")%>' name=<%="R"+String.valueOf(iRow)+"L"%>>
+            <input type=hidden value='amarsoft' name=<%="R"+String.valueOf(iRow)+"R"%>>	<!--用于判断是否插入一行一列-->
+            </td>
+        </tr>        
+      </table>
+	  </td>
+    </tr>
+    <tr>
+	<td>&nbsp;
+	  </td>
+    </tr>
+    <%
+    }
+    rs.getStatement().close();
+    
+    //展现背靠背审批自己签署的意见
+   if(!sSelfOpinionPhase.equals("")){
+    %>
+    <tr>
+	<td>
+	  <table width=90%  cellpadding="4" cellspacing="0" border="1" bordercolorlight="#666666" bordercolordark="#FFFFFF" >
+        <tr id=<%=jRow++%>>
+			<td width=50%><b>阶段名称:</b><%=DataConvert.toString(sPhaseName)%><input type=hidden value='阶段名称：<%=DataConvert.toString(sPhaseName)%>' name=<%="R"+String.valueOf(jRow)+"L"%>></td>
+            <td width=50%><b>处理人:</b><%=DataConvert.toString(sUserName)%><input type=hidden value='处理人：<%=DataConvert.toString(sUserName)%>' name=<%="R"+String.valueOf(jRow)+"R"%>></td>
+        </tr>
+        <tr id=<%=jRow++%>>
+			<td width=50%><b>处理人所属机构:</b><%=DataConvert.toString(sOrgName)%><input type=hidden value='处理人所属机构：<%=DataConvert.toString(sOrgName)%>' name=<%="R"+String.valueOf(jRow)+"L"%>></td>
+            <td width=50%><b>客户名称:</b><%=DataConvert.toString(sCustomerName)%><input type=hidden value='客户名称：<%=DataConvert.toString(sCustomerName)%>' name=<%="R"+String.valueOf(jRow)+"R"%>></td>
+        </tr>
+        <tr id=<%=jRow++%>>
+			<td width=50%><b>业务币种:</b><%=DataConvert.toString(sBusinessCurrencyName)%><input type=hidden value='业务币种：<%=DataConvert.toString(sBusinessCurrencyName)%>' name=<%="R"+String.valueOf(jRow)+"L"%>></td>
+            <td width=50%><b>申请金额(元):</b><%=dBusinessSum%><input type=hidden value='申请金额(元)：<%=dBusinessSum%>' name=<%="R"+String.valueOf(jRow)+"R"%>></td>
+        </tr>
+        <tr id=<%=jRow++%>>
+			<td width=50%><b>期限(月):</b><%=iTermMonth%><input type=hidden value='期限(月)：<%=iTermMonth%>' name=<%="R"+String.valueOf(jRow)+"L"%>></td>
+            <td width=50%><b>零(天):</b><%=iTermDay%><input type=hidden value='零(天)：<%=iTermDay%>' name=<%="R"+String.valueOf(jRow)+"R"%>></td>
+        </tr>
+        <tr id=<%=jRow++%>>
+			<td width=50%><b>基准月利率(%):</b><%=dBaseRate%><input type=hidden value='基准月利率(‰)：<%=dBaseRate%>' name=<%="R"+String.valueOf(jRow)+"L"%>></td>
+            <td width=50%><b>利率浮动方式:</b><%=DataConvert.toString(sRateFloatTypeName)%><input type=hidden value='执行月利率(‰)：<%=dBusinessRate%>' name=<%="R"+String.valueOf(jRow)+"R"%>></td>
+        </tr>
+        <tr id=<%=jRow++%>>
+			<td width=50%><b>利率浮动值:</b><%=dRateFloat%><input type=hidden value='利率浮动值：<%=dRateFloat%>' name=<%="R"+String.valueOf(jRow)+"L"%>></td>
+            <td width=50%><b>执行月利率(‰):</b><%=dBusinessRate%><input type=hidden value='执行月利率(‰)：<%=dBusinessRate%>' name=<%="R"+String.valueOf(jRow)+"R"%>></td>
+        </tr>
+        <tr id=<%=jRow++%>>
+			<td width=50%><b>保证金金额(元):</b><%=dBailSum%><input type=hidden value='保证金金额(元)：<%=dBailSum%>' name=<%="R"+String.valueOf(jRow)+"L"%>></td>
+            <td width=50%><b>保证金比例(%):</b><%=dBailRatio%><input type=hidden value='保证金比例(‰)：<%=dBailRatio%>' name=<%="R"+String.valueOf(jRow)+"R"%>></td>
+        </tr>
+        <tr id=<%=jRow++%>>
+			<td width=50%><b>手续费金额(元):</b><%=dPdgSum%><input type=hidden value='手续费金额(元)：<%=dPdgSum%>' name=<%="R"+String.valueOf(jRow)+"L"%>></td>
+            <td width=50%><b>手续费率(‰):</b><%=dPdgRatio%><input type=hidden value='手续费率(‰)：<%=dPdgRatio%>' name=<%="R"+String.valueOf(jRow)+"R"%>></td>
+        </tr>
+        <tr id=<%=jRow++%>>
+            <td width=50%><b>收到时间:</b><%=DataConvert.toString(sBeginTime)%><input type=hidden value='收到时间：<%=DataConvert.toString(sBeginTime)%>' name=<%="R"+String.valueOf(jRow)+"L"%>></td>
+            <td width=50%><b>完成时间:</b><%=DataConvert.toString(sEndTime)%><input type=hidden value='完成时间：<%=DataConvert.toString(sEndTime)%>' name=<%="R"+String.valueOf(jRow)+"R"%>></td>
+        </tr>
+        
+        <tr id=<%=jRow++%>>
+            <td  colspan=2 align=center>
+                <textarea type=textfield  bgcolor="#FDFDF3" readonly style="width:100%;height:170px;resize: none;">
+                     <%="\r\n【意见】"+ StringFunction.replace(DataConvert.toString(sSelfOpinion).trim(),"\\r\\n","\r\n")
+                     %>
+                </textarea>
+            <input type=hidden value='<%="\r\n【意见】"+StringFunction.replace(DataConvert.toString(sSelfOpinion).trim(),"\\r\\n","\r\n")%>' name=<%="R"+String.valueOf(jRow)+"L"%>>
+            <input type=hidden value='amarsoft' name=<%="R"+String.valueOf(jRow)+"R"%>>	<!--用于判断是否插入一行一列-->
+            </td>
+        </tr>        
+      </table>
+	  </td>
+    </tr>
+    <tr>
+	<td>&nbsp;
+	  </td>
+    </tr>    
+    <%
+    }
+    %>
+	<tr>
+  		<!--暂时隐藏
+  		<td>
+			<%=HTMLControls.generateButton("转出至电子表格","转出至电子表格","spreadsheetTransfer(formatContent());",sResourcesPath)%>
+		</td>-->
+	</tr>
+  </table>
+  </form>
+</body>
+</html>
+<%
+	//如果没有意见或者没有找到对应的对象，则自动关闭
+	if (iCountRecord==0||sObjectNo.equals("")){
+%>
+<body style={color:red}>目前此业务还没有您可以查看的审批意见！</body>
+<%
+	}
+%>
+<script type="text/javascript">
+function formatContent()
+{
+	var sContentNew = "",i=0;
+	var iRowCount = 1;
+	if("<%=sSelfOpinionPhase%>" != "")	iRowCount =<%=jRow%>;
+	else	iRowCount =<%=iRow%>;
+
+	var iColCount = 2;
+	var sHeader = "【业务品种】"+"<%=sBusinessTypeName%>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+" 【流水号】"+"<%=sObjectNo%>";
+
+	sContentNew += "<STYLE>"; 
+	sContentNew += ".table {  border: solid; border-width: 0px 0px 1px 1px; border-color: #000000 black #000000 #000000}";
+	sContentNew += ".td {  font-size: 9pt;border-color: #000000; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 0px}.inputnumber {border-style:none;border-width:thin;border-color:#e9e9e9;text-align:right;}.pt16songud{font-family: '黑体','宋体';font-size: 16pt;font-weight:bold;text-decoration: none}.myfont{font-family: '黑体','宋体';font-size: 9pt;font-weight:bold;text-decoration: none}"
+	sContentNew += "</STYLE>";
+	
+	sContentNew += "<table align=center border=1 cellspacing=0 cellpadding=0 bgcolor=#E4E4E4 bordercolor=#999999 bordercolordark=#FFFFFF >";
+	sContentNew += "<tr>";
+	sContentNew += "    <td colspan="+iColCount+" align=middle style='color:black;padding-left:2px;background:silver;font-size:18.0pt;font-weight:700;font-family:黑体;' height=53>业务审查审批意见</td>";
+	sContentNew += "</tr>";
+	sContentNew += "<tr>";
+	sContentNew += "    <td colspan="+iColCount+" align=left style='background-color:#CCC8EB;color:black;padding-left:2px;'>"+sHeader+"</td>";
+	sContentNew += "</tr>";
+	
+	for(i=1;i<=iRowCount;i++){
+		if(document.forms["opinion"].elements["R"+i+"R"].value == "amarsoft"){	//意见框只插入一行一列
+			sContentNew += "<tr height=50 style='mso-height-source:userset;height:38.1pt'>";
+			sContentNew += "    <td colspan="+iColCount+" align=left style='background-color:#CCC8EB;color:black;padding-left:2px;mso-font-charset:0;vertical-align:top;text-align:left;'>"+document.forms["opinion"].elements["R"+i+"L"].value+"</td>";
+			sContentNew += "</tr>";
+		}else{
+			sContentNew += "<tr>";
+			sContentNew += "    <td align=left>"+document.forms["opinion"].elements["R"+i+"L"].value+"</td>";
+			sContentNew += "    <td align=left>"+document.forms["opinion"].elements["R"+i+"R"].value+"</td>";
+			sContentNew += "</tr>";
+		}
+	}	
+	
+	sContentNew += "</table>";
+	//防止因导出数据量太小，导出EXCEL时变成乱码
+	sContentNew += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	sContentNew += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	sContentNew += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	sContentNew += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	
+	return(sContentNew);		
+}
+</script>
+<%@ include file="/IncludeEnd.jsp"%>

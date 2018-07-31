@@ -1,0 +1,49 @@
+<div style="width:{{contentWidth}}px;position:absolute;top: 49px;">
+	<table class="bm_tb_list" ng-repeat="item in details" ng-show="details.length > 0" >
+		<thead ng-click="showOrNot(item)">
+			<tr>
+				<th colspan="2">{{item.PhaseName}}</label> <i class="icon-float-right"
+					ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+				</th>
+			</tr>
+		</thead>
+		<tbody ng-if="item.showGroup">
+			<tr>
+				<td class="td_width_30">阶段编号：</td>
+				<td>{{item.PhaseNo}}</td>
+			</tr>
+			<tr>
+
+				<td class="td_width_30">阶段名称：</td>
+				<td>{{item.PhaseName}}</td>
+			</tr>
+			<tr>
+				<td class="td_width_30">承办人：</td>
+				<td>{{item.UserName}}</td>
+			</tr>
+			<tr>
+
+				<td class="td_width_30">下一审查人员：</td>
+				<td>{{item.PhaseActionName}}</td>
+			</tr>
+			<tr>
+				<td class="td_width_30">开始时间：</td>
+				<td>{{item.BeginTime}}</td>
+			</tr>
+			<tr>
+				<td class="td_width_30">结束时间：</td>
+				<td>{{item.EndTime}}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+    <div class="noDataBox" ng-show="details.length == 0">
+        <div class="nodata">
+            <img src="img/empty_page.png" width="70px">
+            <span class="nodata_span">暂无数据</span>
+        </div>
+    </div>
+</div>
+
+
+

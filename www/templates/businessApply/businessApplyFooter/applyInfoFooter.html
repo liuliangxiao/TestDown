@@ -1,0 +1,15 @@
+<div class="btn-box row" ng-if="selectedDetailMenuItem.ColName == '申请信息'
+	&& selectedDetailMenuItem.GroupId == 'businessApply'">
+    <div class="col col-40">
+        <button type="button" class="am-button am-button-red" ng-click="updateData()">暂存</button>
+    </div>
+    <div class="col col-40">
+        <button type="button" class="am-button am-button-blue" ng-click="signOpinion()">签署意见并提交</button>
+    </div>
+</div>
+<div class="btn-box row" ng-if="selectedDetailMenuItem.ColName!= '申请信息'
+	&& selectedDetailMenuItem.GroupId== 'businessApply'">
+    <div class="col col-40">
+        <button type="button" class="am-button am-button-blue" ng-click="signOpinion()">签署意见并提交</button>
+    </div>
+</div>

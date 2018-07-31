@@ -1,0 +1,42 @@
+<ion-view>
+    <ion-header-bar class="bar-positive" align-title="center">
+        <div class="button am-back" ng-click="goBack()"></div>
+        <h1 class="title">{{CertTypeName}}</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+            <label class="item item-input">
+                <span class="input-label">资料描述：</span>
+                <input type="text" ng-model="info.Describe">
+            </label>
+
+        </div>
+        <p class="positive">&nbsp;&nbsp;&nbsp;&nbsp;<font color="#a9a9a9"> 当前地址：{{info.Address}}</font></p>
+        <br>
+
+        <!--拍照界面-->
+        <div id="images">
+            <div class="odp-box">
+                <div class="row" style="-webkit-flex-wrap:wrap;flex-wrap:wrap">
+                    <div class="col-33-img padding-s" ng-repeat="image in images track by $index">
+                        <img class="profileimg" ng-src="data:image/jpeg;base64,{{image.src}}" ng-click="openModal($index)"/>
+                    </div>
+
+                    <div class="col-33-img padding-s" >
+                        <a class="addnew"
+                           ng-click="takePhoto()">
+                            +
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="btn-box row">
+            <div class="col col-100">
+                <button class="am-button am-button-red" type="button" ng-click="uploadImage()">上传</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

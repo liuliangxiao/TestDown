@@ -1,0 +1,41 @@
+<ion-modal-view class="no-header" ng-controller="NewCollectTaskController">
+    <ion-header-bar class="bar-positive">
+        <div class="button am-back" ng-click="closeAddTaskModal()" style="top:{{barHeight*0.1}}px"></div>
+        <h1 class="title">新增催收任务</h1>
+    </ion-header-bar>
+    <ion-content>
+
+        <table class="bm_tb_list">
+            <thead>
+                <tr>
+                    <th colspan="2">基本信息</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="td_width_40">催收方式：</td>
+                    <td>
+                        <select style="width: 135px" required="required" class="am-select" ng-options="o.ItemNo as o.ItemName for o in CollectMethods" ng-model='NewData.CollectMethod'>
+                            <option value="">--请选择--</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">借据编号：</td>
+                    <td ng-click="selectBusinessDuebill()">【{{NewData.BDSerialNo}}】</td>
+                </tr>
+                <tr>
+                    <td class="td_width_40">借据所属客户：</td>
+                    <td>{{NewData.CustomerName}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="btn-box row">
+            <div class="col col-100">
+                <button type="button" class="am-button am-button-blue" ng-click="saveTask()">保存</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

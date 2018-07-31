@@ -1,0 +1,105 @@
+
+<div style="width:{{contentWidth}}px;position: absolute;top:50px">
+	<table class="table-border" width='{{contentWidth}}' align=center
+		border=1 cellspacing=0 cellpadding=2 bgcolor=white bordercolor=black
+		bordercolordark=black
+		ng-if="selectedListItem !== 'undefined' && selectedListItem !== null && selectedListItem !== '' ">
+		<tr>
+			<td align=center colspan='5' bgcolor=#aaaaaa><font
+				style='font-size: 16pt; FONT-FAMILY: 宋体; FONT-WEIGHT: bold; color: black; background-color: #aaaaaa'>
+					<p>乌鲁木齐银行</p> 小企业客户授信后跟踪检查表
+			</font></td>
+		</tr>
+		<tr>
+			<td colspan=2 align=left class=td1>客户名称：</td>
+			<td colspan=4 align=left class=td1>{{EntCheckedALSData.sCustomerName}}&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan=2 align=left class=td1>归属人：</td>
+			<td colspan=4 align=left class=td1>{{EntCheckedALSData.sOwnerUserName}}&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan=2 align=left class=td1>归属机构：</td>
+			<td colspan=4 align=left class=td1>{{EntCheckedALSData.sOwnerOrgName}}&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan=2 align=left class=td1>更新人：</td>
+			<td colspan=4 align=left class=td1>{{EntCheckedALSData.sUpdateUserName}}&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan=2 align=left class=td1>更新机构：</td>
+			<td colspan=4 align=left class=td1>{{EntCheckedALSData.sUpdateOrgName}}&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan=2 align=left class=td1>登记人：</td>
+			<td colspan=4 align=left class=td1>{{EntCheckedALSData.sInputUserName}}&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan=2 align=left class=td1>登记机构：</td>
+			<td colspan=4 align=left class=td1>{{EntCheckedALSData.sInputOrgName}}&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan=2 align=left class=td1>报告日期：</td>
+			<td colspan=4 align=left class=td1>{{EntCheckedALSData.sInputDate}}&nbsp;</td>
+		</tr>
+		<tr>
+		</tr>
+		<tr>
+			<td colspan=6 align=left class=td1><br>
+			<strong>一、客户申请的贷款用途和提供合同、发票等证明文件</strong><br>&nbsp;</td>
+		</tr>
+		<tr>
+			<td lign=left colspan=6><pre
+					ng-bind-html="ReportData.describe1"></pre></td>
+		</tr>
+		<tr>
+			<td class=td1 align=left colspan=6 ><br><strong>二、用款记录 </strong><br>&nbsp;</td> 	
+		</tr>
+		<tr>
+			<td colspan=6>
+				<div ui-grid="grid_entLoanUsage"
+					style="width: 100%; height: 200px; text-align: center;"
+					ui-grid-edit ui-grid-resize-columns></div>
+			</td>
+		</tr>
+
+		<tr>
+			<td colspan=6 align=left class=td1><br>
+			<strong>三、实际用途及其合理性分析</strong><br>&nbsp;</td>
+		</tr>
+		<tr>
+			<td lign=left colspan=6><pre
+					ng-bind-html="ReportData.describe2"></pre></td>
+		</tr>
+		<tr>
+			<td align=left colspan=6 class=td1><br>
+			<strong>四、建议采取措施</strong><br>&nbsp;</td>
+		</tr>
+		<tr>
+			<td lign=left colspan=6><pre
+					ng-bind-html="ReportData.describe3"></pre></td>
+		</tr>
+		<tr>
+			<td align=left colspan=6 class=td1>客户经理:
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td align=left colspan=6 class=td1><p align=left>
+					<strong>经营机构负责人意见：</strong>
+				</p>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</p></td>
+		</tr>
+		<tr>
+			<td colspan=6 align=left class=td1>行长(经理)：
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日&nbsp;</p>
+			</td>
+		</tr>
+	</table>
+</div>
+

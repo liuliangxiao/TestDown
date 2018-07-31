@@ -1,0 +1,152 @@
+/**
+ * Created by ypwang6 on 2017/7/21.
+ */
+<!--组合贷款计算-->
+<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50>
+            <ion-side-menus>
+                <ion-side-menu-content drag-content="true" edge-drag-threshold=50 style="margin-top: 0px;padding-top: 0px"  >
+                    <!--***************************************最右边的详情部分 ******************************************************-->
+                    <div ng-include="'templates/loanCalc/rightNavHeader.html'"></div>
+                    <div style="margin-top:{{barHeight}}px">
+                        <div ng-show="rightDetailShowFlag">
+                            <div class="detail_info_top" >
+                                <table>
+                                    <tr style="width:{{contentWidth * 0.85}}px" class="row">
+                                        <td style="text-align: center" class="col-50">支付利息款：<span style="color:red">{{resultInterest | currency:'￥'}}</span>元</td>
+                                        <td style="text-align: center" class="col-50">还款总额：<span style="color:red">{{resultRental | currency:'￥'}}</span>元</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="detail_info_cont" style="width:{{contentWidth * 0.85}}px">
+                                <table>
+                                    <tr class="row">
+                                        <td class="col">期次</td>
+                                        <td class="col">偿还利息</td>
+                                        <td class="col">偿还本金</td>
+                                        <td class="col">月供</td>
+                                        <td class="col">剩余还款</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <ion-content style="margin-top:192px;width:{{contentWidth * 0.85}}px">
+                             <div class="detail_info_cont">
+                                <table>
+                                    <tr ng-repeat = "array in resultDataArray" class="row">
+                                        <td ng-if="$index != 0" class="col">{{array.resultPeriod}}</td>
+                                        <td ng-if="$index != 0" class="col">{{array.resultInterest | currency:''}}</td>
+                                        <td  ng-if="$index != 0" class="col">{{array.resultPrincipal | currency:''}}</td>
+                                        <td ng-if="$index != 0" class="col">{{array.resultMouthlyPayment | currency:''}}</td>
+                                        <td ng-if="$index != 0" class="col">{{array.resultResidueMoney | currency:''}}</td>
+                                    </tr>
+                                </table>
+                               </div>
+                            </ion-content>
+                        </div>
+                    </div>
+                </ion-side-menu-content>
+                <ion-side-menu side="left" width="{{secondNavWidth * 1.3}}" expose-aside-when="large" style="margin-top: 0px;padding-top: 0px">
+                    <!--***********************************************中间部分的二级导航栏--***********************************************-->
+                    <div ng-include="'templates/loanCalc/leftNavHeader.html'"></div>
+                    <ion-content style="top:{{barHeight}}px">
+                        <div class="ui-wrap">
+
+                            <div class="list ">
+                            <label class="item item-input item-left-label row ">
+                                    <span class="input-label col-30">还款方式</span>
+                                    <select class="am-select col-50" ng-model="Result.waySelected" ng-options="w.id as w.content for w in ways" >
+                                        <option value="">&#45;&#45; 请选择 &#45;&#45;</option>
+                                    </select>
+                              </label>
+                            <label class="item item-input item-left-label row">
+                                    <span class="input-label col-30 ">公积金贷款年限</span>
+    
+                                <select class="am-select col-50" ng-model="Result.AccTimeSelected" ng-options="t.id as t.name for t in times" >
+                                        <option value="" >&#45;&#45; 请选择 &#45;&#45;</option>
+                                </select>
+                                </label>
+                                <label class="item item-input item-left-label row">
+                                    <span class="input-label col-30" >公积金贷款总额</span>
+                                    <input type="number" class="col-50" style="display: inline;border: 1px solid #d4d0d0;border-radius: 4px;padding-right:0px" ng-model="Result.AccSum"><span style="color:#444;font-size: 9px">&nbsp;&nbsp;万元&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;
+                                </label>
+
+                                <label class="item item-input item-left-label row">
+                                    <span class="input-label col-30" >公积金年利率</span>
+                                    <input type="number" class="col-50" style="display: inline;border: 1px solid #d4d0d0;border-radius: 4px;" ng-model="Result.AccRate">
+                                    <span style="color:#444;font-size: 9px">&nbsp;&nbsp;&nbsp;%&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </label>
+
+                           <label class="item item-input item-left-label row">
+                                   <span class="input-label col-30 ">商业贷款年限</span>
+                                <select class="am-select col-50" ng-model="Result.BusTimeSelected" ng-options="t.id as t.name for t in times" >
+                                        <option value="" >&#45;&#45; 请选择 &#45;&#45;</option>
+                                </select>
+                          </label>
+
+                          <label class="item item-input item-left-label row">
+                                <span class="input-label col-30" >商业贷款总额</span>
+                                <input type="number" class="col-50" style="display: inline;border: 1px solid #d4d0d0;border-radius: 4px;" ng-model="Result.BusSum"><span style="color:#444;font-size: 9px">&nbsp;&nbsp;万元&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;
+                           </label>
+                           
+                           
+                            <label class="item item-input item-left-label row">
+                                    <span class="input-label col-30" >商业贷款年利率</span>
+                                    <input type="number" id="rate"class="col-50" style="display: inline;border: 1px solid #d4d0d0;border-radius: 4px;" ng-model="Result.BusRate" ng-blur="changeText()"  ng-focus="changeNumber()">
+                                    <span style="color:#444;font-size: 9px">&nbsp;&nbsp;&nbsp;%&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </label>
+                           
+                           
+
+                             <!--    <label class="item item-input item-left-label row">
+                                    <span class="input-label col-10" >商业贷款年利率</span>
+                                    
+                                    <input type="text"  id ="rate" style="display: inline;border: 1px solid #d4d0d0;border-radius: 4px;flex: 0 0 17%;
+                                               padding-right: 0px; max-width: 21%;" ng-model="Result.BusRate" ng-blur="changeText()"  ng-focus="changeNumber()" > 
+                                   </label> -->
+                                   
+                                   
+                                   <label class="item item-input item-left-label row">
+                                   <span class="input-label col-30 ">基准利率</span>
+                                  <select class="am-select col-50" ng-model="Result.discountRate" ng-options="j.rate as j.title for j in rates" ng-change="computerRate()" >
+                                        <option value="">&#45;&#45; 基准利率 &#45;&#45;</option>
+                                   </select>
+                                  </label>
+                                   
+                                   
+                                   <!--  <select class="am-select col-33" ng-model="Result.discountRate" ng-options="j.rate as j.title for j in rates" ng-change="computerRate()">
+                                        <option value="">&#45;&#45; 基准利率 &#45;&#45;</option>
+                                    </select> -->
+
+                             
+
+                                <div style="text-align: center;width:100%;font-size: 13px;color: #f00" ng-show="tipShowFlag"> 请填写完整信息</div>
+
+                            </div>
+                            <div class="btn-box row">
+                                <div class="col col-50">
+                                    <button type="button" class="am-button am-button-red" ng-click="calculate()">计算</button>
+                                </div>
+                                <div class="col col-50">
+                                    <button type="button" class="am-button am-button-blue" ng-click="reCalculate()">重新计算</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </ion-content>
+
+                </ion-side-menu>
+            </ion-side-menus>
+        </ion-side-menu-content>
+
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'"></div>
+        </ion-side-menu>
+    </ion-side-menus>
+
+</ion-view>
+
+
+
+

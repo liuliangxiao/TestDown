@@ -1,0 +1,310 @@
+<!--<ion-view>-->
+<ion-content>
+    <div>
+
+        <table class="table-border" width='{{contentWidth}}' align=center border=1 cellspacing=0 cellpadding=2
+               bgcolor=white
+               bordercolor=black bordercolordark=black>
+            <tr>
+                <td class=td1 align=center colspan='2' bgcolor=#aaaaaa><font
+                        style=' font-size: 12pt;FONT-FAMILY:宋体;FONT-WEIGHT: bold;color:black;background-color:#aaaaaa'>
+                    <p>XX商业银行</p>客户检查报告</font></td>
+            </tr>
+            <tr>
+                <td width=20% align=center class=td1><strong>客户名称：</strong>
+                </td>
+                <td width=80% align=left class=td1>{{reportInfo.CustomerName}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td align=center class=td1><strong>经办机构：</strong></td>
+                <td align=left class=td1>{{reportInfo.OrgName}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td align=center class=td1><strong>检查人：</strong></td>
+                <td align=left class=td1>{{reportInfo.UserName}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td align=center class=td1><strong>报告日期：</strong></td>
+                <td align=left class=td1>{{reportInfo.UpDateDate}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1 bgcolor=#aaaaaa><font
+                        style=' font-size: 12pt;FONT-FAMILY:宋体;FONT-WEIGHT: bold;color:black;background-color:#aaaaaa'><br><strong>一、业务操作检查</strong></font><br>&nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1><strong>（一）</strong>业务合规性、法律文件有效性<br>
+
+                    <textarea name='describe1' style='width:100%; height: 100px;'
+                              ng-model="reportDetail.describe1"></textarea>
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1><strong>（二）</strong>保证金、抵押、质押的落实<br>
+                    <textarea name='describe2' style='width:100%; height: 100px;'
+                              ng-model="reportDetail.describe2"></textarea>
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1><strong>（三）</strong>其他授信前提条件的落实<br>
+                    <textarea name='describe3' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe3"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1><strong>（四）</strong>贷款用途<br>
+                    <textarea name='describe4' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe4"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1><strong>（五）</strong>贷后管理要求的落实<br>
+                    <textarea name='describe5' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe5"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1><strong>（六）</strong>业务资料的完备性<br>
+                    <textarea name='describe6' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe6"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1><strong>（七）</strong>近期客户联系、访问纪录<br>
+                    <textarea name='describe7' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe7"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1 bgcolor=#aaaaaa><font
+                        style=' font-size: 12pt;FONT-FAMILY:宋体;FONT-WEIGHT: bold;color:black;background-color:#aaaaaa'><br><strong>二、授信客户分析</strong></font><br>&nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1 bgcolor=#aaaaaa><p><strong>（一）基本情况变动</strong></p></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;1、股权、资本变动和重大投资活动<br>
+                    <textarea name='describe8' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe8"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;2、重要管理人员变动<br>
+                    <textarea name='describe9' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe9"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;3、主营业务、主要产品变动<br>
+                    <textarea name='describe10' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe10"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;4、其他重要变动<br>
+                    <textarea name='describe11' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe11"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1 bgcolor=#aaaaaa><p><strong>（二）财务状况及其变动趋势分析</strong></p></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;1、现金流量和还款来源分析<br>
+                    <textarea name='describe12' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe12"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;2、重要资产、负债项目和偿债指标分析<br>
+                    <textarea name='describe13' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe13"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;3、收入、成本、费用的构成和盈利、周转指标分析<br>
+                    <textarea name='describe14' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe14"></textarea> <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;4、对外担保、资产抵押等表外事项分析<br>
+                    <textarea name='describe15' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe15"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;5、报表真实性、审计意见、合并范围等其他事项分析 <br>
+                    <textarea name='describe16' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe16"></textarea> <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1 bgcolor=#aaaaaa><p><strong>（三）经营管理和重大事项分析</strong></p></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;1、行业（市场）、供销渠道和产品竞争力分析<br>
+                    <textarea name='describe17' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe17"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;2、经营管理模式和发展战略分析<br>
+                    <textarea name='describe18' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe18"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;3、人员素质和内部控制分析<br>
+                    <textarea name='describe19' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe19"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;4、重大或突发事件分析<br>
+                    <textarea name='describe20' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe20"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;5、建设项目的审批、投资和工程进度情况<br>
+                    <textarea name='describe21' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe21"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1 bgcolor=#aaaaaa><p><strong>（四）还款意愿分析</strong></p></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;1、合同约定、事前承诺的履行<br>
+                    <textarea name='describe22' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe22"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;2、其他客户诚信情况分析<br>
+                    <textarea name='describe23' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe23"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;3、外部信用记录分析 <br>
+                    <textarea name='describe24' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe24"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1 bgcolor=#aaaaaa><font
+                        style=' font-size: 12pt;FONT-FAMILY:宋体;FONT-WEIGHT: bold;color:black;background-color:#aaaaaa'><br><strong>三、担保分析</strong></font><br>&nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1 bgcolor=#aaaaaa><p><strong>（一）质物/保证金分析</strong></p></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;1、质物描述和保管状况<br>
+                    <textarea name='describe25' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe25"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;2、质物价值变动和变现难易 <br>
+                    <textarea name='describe26' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe26"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1 bgcolor=#aaaaaa><p><strong>（二）抵押物分析</strong></p></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;1、抵押物描述和保管使用状况<br>
+                    <textarea name='describe27' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe27"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;2、抵押物价值变动和变现难易<br>
+                    <textarea name='describe28' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe28"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1 bgcolor=#aaaaaa><p><strong>（三）保证人分析</strong></p></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;1、保证人基本情况及与授信客户关系<br>
+                    <textarea name='describe29' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe29"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;2、核保情况及保证人与我行业务合作<br>
+                    <textarea name='describe30' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe30"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;3、保证人的财务分析<br>
+                    <textarea name='describe31' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe31"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>&nbsp;&nbsp;4、保证人的非财务分析 <br>
+                    <textarea name='describe32' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe32"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1 bgcolor=#aaaaaa><font
+                        style=' font-size: 12pt;FONT-FAMILY:宋体;FONT-WEIGHT: bold;color:black;background-color:#aaaaaa'>
+                    <p><strong>四、其他检查意见</strong></p></font></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>
+                    <textarea name='describe33' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe33"></textarea> <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1 bgcolor=#aaaaaa><font
+                        style=' font-size: 12pt;FONT-FAMILY:宋体;FONT-WEIGHT: bold;color:black;background-color:#aaaaaa'>
+                    <p><strong>五、检查结论摘要</strong></p></font></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>
+                    <textarea name='describe34' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe34"></textarea> <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1 bgcolor=#aaaaaa><font
+                        style=' font-size: 12pt;FONT-FAMILY:宋体;FONT-WEIGHT: bold;color:black;background-color:#aaaaaa'>
+                    <p><strong>六、建议采取的风险管理措施</strong></p></font></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>（一）措施类别<br>
+                    <textarea name='describe35' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe35"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1>（二）具体措施 <br>
+                    <textarea name='describe36' style='width:100%; height:100px;'
+                              ng-model="reportDetail.describe36"></textarea>
+                    <br></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=left class=td1><br><strong>检查人签章：</strong><br>&nbsp;&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+
+</ion-content>
+<ion-footer-bar ng-show="ItemNo == '01010010' || ItemNo == '01020010'">
+    <div class="btn-box row">
+        <div class="col col-100">
+            <button type="button" class="am-button am-button-blue" ng-click="saveReport(reportDetail)">保存</button>
+        </div>
+    </div>
+</ion-footer-bar>
+<!--</ion-view>-->

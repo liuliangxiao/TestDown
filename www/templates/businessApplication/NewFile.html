@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table class='table-afterLoanCustomerReportInfo' width='{{smallContentWidth}}' align='center' border='1'
+                   cellspacing='0' cellpadding='2' bgcolor='white' bordercolor='black' bordercolordark='black'>
+                <tr>
+                    <!--//colspan需根据实际情况调整，否则导出时会比较不雅-->
+                    <td class=td1 align=center colspan='9' bgcolor='#aaaaaa'>
+                        <p style='font-size: 14pt;FONT-FAMILY:宋体;FONT-WEIGHT: bold;color:black;background-color:#aaaaaa;text-align: center'>
+                            温州民商银行信贷业务贷后检查报告</p>
+                    </td>
+                </tr>
+                <!--//style='border:0px'  隐藏输入框的边线-->
+                <tr>
+                    <td colspan='9' align=center class=td1>
+                        <input style="text-align:right;width:10%; height:22" ng-model="reportInfo.describe1"/>
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe1' style='text-align:right;width:10%; height:22'",getUnitData("describe1",sData)));-->
+                        年第
+                        <input style="text-align:right;width:10%; height:22" ng-model="reportInfo.describe2"/>
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe2' style='text-align:right;width:10%; height:22'",getUnitData("describe2",sData)));-->
+                        季度
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单位:万元
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align=center colspan='1' rowspan='1' class=td1 style='width:80px'><strong>客户名称</strong></td>
+                    <td colspan='8' rowspan='1' align=left class=td1> &nbsp;{{reportInfo.CustomerName}}</td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>经办部门</strong></td>
+                    <td colspan='2' rowspan='1' align=left class=td1 style='width:160px'> &nbsp;{{reportInfo.InputOrgName}}</td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>检查人员</strong></td>
+                    <td colspan='2' rowspan='1' align=left class=td1 style='width:160px'> &nbsp;{{reportInfo.InputUserName}}</td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>检查时间</strong></td>
+                    <td colspan='2' rowspan='1' align=left class=td1 style='width:160px'> &nbsp;{{reportInfo.UpdateDate}}</td>
+                </tr>
+                <tr>
+                    <!--//这种都是自动展示的 无法输入 ，展示的数据从BusinessInspectHelper.java类中查询  如果是要输入 则通过
+                    //sTemp.append(myOutPut("1",sMethod,"name='describe2' style='width:100%; height:150'",getUnitData("describe2",sData)));
+                    //方法 确定格式，和 输入的数据-->
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>约见人员</strong></td>
+                    <td colspan='2' rowspan='1' align=left class=td1 style='width:160px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe3">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe3' style='border:0px'  style='width:100%'",getUnitData("describe3",sData)));-->
+                    </td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>约见人职务</strong></td>
+                    <td colspan='2' rowspan='1' align=left class=td1 style='width:160px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe4">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe4' style='border:0px' style='width:100%'",getUnitData("describe4",sData)));-->
+                    </td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>约见地点</strong></td>
+                    <td colspan='2' rowspan='1' align=left class=td1 style='width:160px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe5">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe5' style='border:0px'  style='width:100%'",getUnitData("describe5",sData)));-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>授信敞口</strong></td>
+                    <td colspan='2' rowspan='1' align=left class=td1 style='width:160px'> &nbsp; {{reportInfo.ExposureSum}}</td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>已用敞口</strong></td>
+                    <td colspan='2' rowspan='1' align=left class=td1 style='width:160px'>
+                        <input style="border: 0px;width:100%;" type="text" ng-model="reportInfo.describe6">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe6' style='border:0px'  style='width:100%'",getUnitData("describe6",sData)));-->
+                    </td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>五级分类</strong></td>
+                    <td colspan='2' rowspan='1' align=left class=td1 style='width:160px'>
+                        <select ng-model="reportInfo.describe7" ng-options="c.ItemNo as c.ItemName for c in fiveLevel">
+                            <option value="">选择分类</option>
+                        </select>
+                        <!--"+myOutPutCheck("5",sMethod,"name='describe7'",getUnitData("describe7",sData),"正常@关注@次级@可疑@损失")+"-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>贷款用途</strong></td>
+                    <td colspan='4' rowspan='1' align=center class=td1 style='width:320px'>
+                        <label><input name="reportInfo.describe8" ng-model="reportInfo.describe8" type="radio"
+                                      value="贷款用途合规">贷款用途合规</label>
+                        <label><input name="reportInfo.describe8" ng-model="reportInfo.describe8" type="radio"
+                                      value="被挪为他用">被挪为他用</label>
+                        <!--"+myOutPutCheck("3",sMethod,"name='describe8'",getUnitData("describe8",sData),"贷款用途合规@被挪为他用")+"-->
+                    </td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>实际用途</strong></td>
+                    <td colspan='3' rowspan='1' align=left class=td1 style='width:240px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe9">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe9' style='border:0px' style='width:100%' style='width:240px'",getUnitData("describe9",sData)));-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align=center class=td1 style='width:80px'><strong>借款人基本情况变动</strong></td>
+                    <td colspan='8' align=left class=td1 style='width:640px'><p>内容主要包括：经营状况、管理状况、财务状况等变动情况描述</p>
+                        <textarea rows="3" cols="60" ng-model="reportInfo.describe10"></textarea>
+                        <!--sTemp.append(myOutPut("1",sMethod,"name='describe10' style='border:0px' style='width:100%; height:150'",getUnitData("describe10",sData)));-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='18' align=center class=td1 style='width:80px'><strong>征信情况</strong></td>
+                    <td colspan='1' rowspan='9' align=center class=td1 style='width:80px'>
+                        <strong>个人借款人或法人代表或实际控制人</strong></td>
+                    <td colspan='7' rowspan='1' align=left class=td1 style='width:560px'><strong>银行融资情况：</strong></td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>当前融资余额</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>授信时融资余额</strong></td>
+                    <td colspan='5' rowspan='1' align=center class=td1 style='width:560px'>
+                        <strong>变动情况说明（有，说明！没有，写“无”！）</strong></td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='1' align=left class=td1 style='width:80px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe11">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe11' style='border:0px'  style='width:100%'",getUnitData("describe11",sData)));-->
+                    <td colspan='1' rowspan='1' align=left class=td1 style='width:80px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe12">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe12' style='border:0px'  style='width:100%'",getUnitData("describe12",sData)));-->
+                    <td colspan='5' rowspan='1' align=left class=td1 style='width:400px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe13">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe13' style='border:0px'  style='width:100%'",getUnitData("describe13",sData)));-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='7' rowspan='1' align=left class=td1 style='width:560px'><strong>对外担保情况：</strong></td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>当前担保余额</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>授信时担保余额</strong></td>
+                    <td colspan='5' rowspan='1' align=center class=td1 style='width:400px'><strong>变动情况说明</strong></td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='1' align=left class=td1 style='width:80px'>
+                        <input style="border: 0px;width:100%;">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe14' style='border:0px'  style='width:100%'",getUnitData("describe14",sData)));-->
+                    <td colspan='1' rowspan='1' align=left class=td1 style='width:80px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe15">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe15' style='border:0px'  style='width:100%'",getUnitData("describe15",sData)));-->
+                    <td colspan='5' rowspan='1' align=left class=td1 style='width:400px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe16">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe16' style='border:0px'  style='width:100%'",getUnitData("describe16",sData)));-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='7' rowspan='1' align=left class=td1 style='width:560px'><strong>不良信息情况：（有，填写不良信息发生时间、金额、原因、影响等；没有，写“无”！）</strong>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='7' rowspan='1' align=center class=td1 style='width:560px'>
+                        <label><input name="reportInfo.describe17" ng-model="reportInfo.describe17"
+                                      type="checkbox">无</label>
+                        <label><input name="reportInfo.describe18" ng-model="reportInfo.describe18"
+                                      type="checkbox">欠息</label>
+                        <label><input name="reportInfo.describe19" ng-model="reportInfo.describe19"
+                                      type="checkbox">逾期</label>
+                        <label><input name="reportInfo.describe20" ng-model="reportInfo.describe20"
+                                      type="checkbox">垫款</label>
+                        <label><input name="reportInfo.describe21" ng-model="reportInfo.describe21"
+                                      type="checkbox">其他</label>
+                        <!--"+myOutPutCheck("4",sMethod,"name='describe17'",getUnitData("describe17",sData),"无"));
+                        sTemp.append(myOutPutCheck("4",sMethod,"name='describe18'",getUnitData("describe18",sData),"欠息"));
+                        sTemp.append(myOutPutCheck("4",sMethod,"name='describe19'",getUnitData("describe19",sData),"逾期"));
+                        sTemp.append(myOutPutCheck("4",sMethod,"name='describe20'",getUnitData("describe20",sData),"垫款"));
+                        sTemp.append(myOutPutCheck("4",sMethod,"name='describe21'",getUnitData("describe21",sData),"其他")+"-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='7' rowspan='1' align=left class=td1 style='width:560px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe22">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe22' style='border:0px'  style='width:100%'",getUnitData("describe22",sData)));-->
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='9' align=center class=td1 style='width:80px'>
+                        <strong>公司借款人或经营主体(消费类贷款不用填写)</strong></td>
+                    <td colspan='7' rowspan='1' align=left class=td1 style='width:560px'><strong>银行融资情况：</strong></td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>当前融资余额</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>授信时融资余额</strong></td>
+                    <td colspan='5' rowspan='1' align=center class=td1 style='width:400px'><strong>变动情况说明</strong></td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='1' align=left class=td1 style='width:80px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe23">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe23' style='border:0px'  style='width:100%'",getUnitData("describe23",sData)));-->
+                    <td colspan='1' rowspan='1' align=left class=td1 style='width:80px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe24">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe24' style='border:0px'  style='width:100%'",getUnitData("describe24",sData)));-->
+                    <td colspan='5' rowspan='1' align=left class=td1 style='width:400px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe25">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe25' style='border:0px'  style='width:100%'",getUnitData("describe25",sData)));-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='7' rowspan='1' align=left class=td1 style='width:560px'><strong>对外担保情况：</strong></td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>当前担保余额</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>授信时担保余额</strong></td>
+                    <td colspan='5' rowspan='1' align=center class=td1 style='width:400px'><strong>变动情况说明</strong></td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='1' align=left class=td1 style='width:80px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe26">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe26' style='border:0px'  style='width:100%'",getUnitData("describe26",sData)));-->
+                    <td colspan='1' rowspan='1' align=left class=td1 style='width:80px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe27">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe27' style='border:0px'  style='width:100%'",getUnitData("describe27",sData)));-->
+                    <td colspan='5' rowspan='1' align=left class=td1 style='width:400px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe28">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe28' style='border:0px'  style='width:100%'",getUnitData("describe28",sData)));-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='7' rowspan='1' align=left class=td1 style='width:560px'><strong>不良信息情况：（有，填写不良信息发生时间、金额、原因、影响等；没有，写“无”！）</strong>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='7' rowspan='1' align=center class=td1 style='width:560px'>
+                        <label><input name="reportInfo.describe29" ng-model="reportInfo.describe29"
+                                      type="checkbox">无</label>
+                        <label><input name="reportInfo.describe30" ng-model="reportInfo.describe30"
+                                      type="checkbox">欠息</label>
+                        <label><input name="reportInfo.describe31" ng-model="reportInfo.describe31"
+                                      type="checkbox">逾期</label>
+                        <label><input name="reportInfo.describe32" ng-model="reportInfo.describe32"
+                                      type="checkbox">垫款</label>
+                        <label><input name="reportInfo.describe33" ng-model="reportInfo.describe33"
+                                      type="checkbox">其他</label>
+                        <!--"+myOutPutCheck("4",sMethod,"name='describe29'",getUnitData("describe29",sData),"无"));
+                        sTemp.append(myOutPutCheck("4",sMethod,"name='describe30'",getUnitData("describe30",sData),"欠息"));
+                        sTemp.append(myOutPutCheck("4",sMethod,"name='describe31'",getUnitData("describe31",sData),"逾期"));
+                        sTemp.append(myOutPutCheck("4",sMethod,"name='describe32'",getUnitData("describe32",sData),"垫款"));
+                        sTemp.append(myOutPutCheck("4",sMethod,"name='describe33'",getUnitData("describe33",sData),"其他")+"-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='7' rowspan='1' align=left class=td1 style='width:560px'>
+                        <input style="border: 0px;width:100%;">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe34' style='border:0px'  style='width:100%'",getUnitData("describe34",sData)));-->
+                </tr>
+
+
+                <tr>
+                    <td colspan='1' rowspan='4' align=center class=td1 style='width:80px'><strong>其他调查信息</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>涉诉案件</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:100px'>
+                        <label><input name="reportInfo.describe35" ng-model="reportInfo.describe35" type="radio"
+                                      value="有">有</label>
+                        <label><input name="reportInfo.describe35" ng-model="reportInfo.describe35" type="radio"
+                                      value="无">无</label>
+                        <!--"+myOutPutCheck("3",sMethod,"name='describe35'",getUnitData("describe35",sData),"有@无")+"-->
+                    </td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>说明</strong></td>
+                    <td colspan='5' rowspan='1' align=left class=td1 style='width:380px'>
+                        <input style="border: 0px;width:100%;height:22px" ng-model="reportInfo.describe36">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe36' style='border:0px' style='width:100%; height:22'",getUnitData("describe36",sData)));-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>对外投资</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:100px'>
+                        <label><input name="reportInfo.describe37" ng-model="reportInfo.describe37" type="radio"
+                                      value="有">有</label>
+                        <label><input name="reportInfo.describe37" ng-model="reportInfo.describe37" type="radio"
+                                      value="无">无</label>
+                        <!--"+myOutPutCheck("3",sMethod,"name='describe37'",getUnitData("describe37",sData),"有@无")+"-->
+                    </td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>说明</strong></td>
+                    <td colspan='5' rowspan='1' align=left class=td1 style='width:380px'>
+                        <input style="border: 0px;width:100%;height:22px" ng-model="reportInfo.describe38">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe38' style='border:0px' style='width:100%; height:22'",getUnitData("describe38",sData)));-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>民间借贷</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:100px'>
+                        <label><input name="reportInfo.describe39" ng-model="reportInfo.describe39" type="radio"
+                                      value="有">有</label>
+                        <label><input name="reportInfo.describe39" ng-model="reportInfo.describe39" type="radio"
+                                      value="无">无</label>
+                        <!--"+myOutPutCheck("3",sMethod,"name='describe39'",getUnitData("describe39",sData),"有@无")+"-->
+                    </td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>说明</strong></td>
+                    <td colspan='5' rowspan='1' align=left class=td1 style='width:380px'>
+                        <input style="border: 0px;width:100%;height:22px" ng-model="reportInfo.describe40">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe40' style='border:0px' style='width:100%; height:22'",getUnitData("describe40",sData)));-->
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>其他</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:100px'>
+                        <label><input name="reportInfo.describe41" ng-model="reportInfo.describe41" type="radio"
+                                      value="有">有</label>
+                        <label><input name="reportInfo.describe41" ng-model="reportInfo.describe41" type="radio"
+                                      value="无">无</label>
+                        <!--"+myOutPutCheck("3",sMethod,"name='describe41'",getUnitData("describe41",sData),"有@无")+"-->
+                    </td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>说明</strong></td>
+                    <td colspan='5' rowspan='1' align=left class=td1 style='width:380px'>
+                        <input style="border: 0px;width:100%;height:45px" ng-model="reportInfo.describe42">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe42' style='border:0px' style='width:100%; height:45'",getUnitData("describe42",sData)));-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='10' align=center class=td1 style='width:80px'><strong>担保措施变化情况</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>担保方式</strong></td>
+                    <td colspan='7' rowspan='1' align=center class=td1 style='width:560px'>
+                        <label><input name="reportInfo.describe43" ng-model="reportInfo.describe43"
+                                      type="checkbox">信用</label>
+                        <label><input name="reportInfo.describe44" ng-model="reportInfo.describe44"
+                                      type="checkbox">保证</label>
+                        <label><input name="reportInfo.describe45" ng-model="reportInfo.describe45"
+                                      type="checkbox">抵押</label>
+                        <label><input name="reportInfo.describe46" ng-model="reportInfo.describe46"
+                                      type="checkbox">质押</label>
+                        <!--"+myOutPutCheck("4",sMethod,"name='describe43'",getUnitData("describe43",sData),"信用"));
+                        sTemp.append(myOutPutCheck("4",sMethod,"name='describe44'",getUnitData("describe44",sData),"保证"));
+                        sTemp.append(myOutPutCheck("4",sMethod,"name='describe45'",getUnitData("describe45",sData),"抵押"));
+                        sTemp.append(myOutPutCheck("4",sMethod,"name='describe46'",getUnitData("describe46",sData),"质押")+"-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='4' align=center class=td1 style='width:80px'><strong>保</br>证</br>人</strong>
+                    </td>
+                    <td colspan='2' rowspan='1' align=center class=td1 style='width:160px'><strong>保证人名称</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>我行担保金额</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>当前融资余额</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>当前担保余额</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>不良信息情况</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>其他调查信息</strong></td>
+                </tr>
+
+                
+                <tr>
+                    <td colspan='2' align=center class=td1 style='width:160px'> &nbsp; {{reportInfo.Guarantorname}}</td>
+                    <td colspan='1' align=center class=td1 style='width:80px'> &nbsp; {{reportInfo.Guarantyvalue}}</td>
+                    <td colspan='1' rowspan='1' align=left class=td1 style='width:80px'>
+                        <input style="border: 0px;width:80px;height:22px" ng-model="reportInfo.describe47">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe47"+temp+"' style='border:0px' style='width:80px'; height:22'",getUnitData("describe47"+temp,sData)));-->
+                    </td>
+                    <td colspan='1' rowspan='1' align=left class=td1>
+                        <input style="border: 0px;width:80px;height:22px" ng-model="reportInfo.describe48">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe48"+temp+"' style='border:0px' style='width:80px'; height:22'",getUnitData("describe48"+temp,sData)));-->
+                    </td>
+                    <td colspan='1' rowspan='1' align=left class=td1>
+                        <input style="border: 0px;width:80px;height:22px" ng-model="reportInfo.describe49">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe49"+temp+"' style='border:0px' style='width:80px'; height:22'",getUnitData("describe49"+temp,sData)));-->
+                    </td>
+                    <td colspan='1' rowspan='1' align=left class=td1>
+                        <input style="border: 0px;width:80px;height:22px" ng-model="reportInfo.describe50">
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe50"+temp+"' style='border:0px' style='width:80px'; height:22'",getUnitData("describe50"+temp,sData)));-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='7' rowspan='1' align=left class=td1 style='width:560px'><strong>保证人变动情况</strong></td>
+                </tr>
+
+                <tr>
+                    <td colspan='7' rowspan='1' align=left class=td1 style='width:560px'>
+                        <p>内容主要包括：保证人经营状况、管理状况、财务状况等变动情况变动描述
+                            <br/>并对担保意愿变化、担保能力变化、存在的不良信息、其他调查信息等进行简要说明</p><br>&nbsp;
+                        <textarea rows="4" cols="60" ng-model="reportInfo.describe55"></textarea>
+                        <!--sTemp.append(myOutPut("0",sMethod,"name='describe55' style='border:0px' style='width:100%; height:50'",getUnitData("describe55",sData)));-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan='1' rowspan='5' align=center class=td1 style='width:80px'><strong>抵</br>(质)</br>押</br>物</strong></td>
+                </tr>
+
+                <tr >
+                    <td colspan='2' rowspan='1' align=center class=td1 style='width:160px'><strong>抵(质)押人名称</strong>
+                    </td>
+                    <td colspan='2' rowspan='1' align=center class=td1 style='width:160px'><strong>抵(质)押物名称</strong>
+                    </td>
+                    <td colspan='2' rowspan='1' align=center class=td1 style='width:160px'><strong>坐落地址</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'><strong>面积</strong></td>
+                </tr>
+
+                <tr>
+                    <td colspan='2' rowspan='1' align=center class=td1 style='width:160px'> &nbsp; {{reportInfo.OwnerName}}</td>
+                    <td colspan='2' rowspan='1' align=center class=td1 style='width:160px'> &nbsp; {{reportInfo.GuarantyName}}</td>
+                    <td colspan='2' rowspan='1' align=center class=td1 style='width:160px'> &nbsp; {{reportInfo.GuarantyLocation}}</td>
+                    <td colspan=‘1' rowspan='1' align=center class=td1 style='width:80px'> &nbsp; {{reportInfo.GuarantyAmount}}</td>
+                </tr>
+                <tr>
+                    <td colspan=‘1' rowspan='1' align=center class=td1 style='width:80px'><strong>认定价值</strong></td>
+                    <td colspan=‘1' rowspan='1' align=center class=td1 style='width:80px'><strong>原评估价值</strong></td>
+                    <td colspan=‘1' rowspan='1' align=center class=td1 style='width:80px'><strong>抵(质)押率</strong></td>
+                    <td colspan=‘1' rowspan='1' align=center class=td1 style='width:80px'><strong>贬值可能</strong></td>
+                    <td colspan=‘1' rowspan='1' align=center class=td1 style='width:80px'><strong>变现能力变化</strong></td>
+                    <td colspan=‘1' rowspan='1' align=center class=td1 style='width:80px'><strong>使用状况</strong></td>
+                    <td colspan=‘1' rowspan='1' align=center class=td1 style='width:80px'><strong>其他信息</strong></td>
+                </tr>
+
+                <tr>
+                    <td colspan=‘1' rowspan='1' align=center class=td1 style='width:80px'> &nbsp; {{reportInfo.ConfirmValue}} </td>
+                    <td colspan=‘1' rowspan='1' align=center class=td1 style='width:80px'> &nbsp; {{reportInfo.EvalNetValue}} </td>
+                    <td colspan=‘1' rowspan='1' align=center class=td1 style='width:80px'> &nbsp; {{reportInfo.GuarantyRate}} </td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe56">
+                        <!--"+myOutPutCheck("5",sMethod,"name='describe56'",getUnitData("describe56",sData),"有@无")+"-->
+                    </td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe57">
+                        <!--"+myOutPutCheck("5",sMethod,"name='describe57'",getUnitData("describe57",sData),"不变@变强@变弱")+"-->
+                    </td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe58">
+                        <!--"+myOutPutCheck("5",sMethod,"name='describe58'",getUnitData("describe58",sData),"自用@闲置@出租")+"-->
+                    </td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'>
+                        <input style="border: 0px;width:100%;" ng-model="reportInfo.describe59">
+                        <!--"+myOutPutCheck("5",sMethod,"name='describe59'",getUnitData("describe59",sData),"无@查封@冻结@扣押@其他")+"-->
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td colspan='1' rowspan='2' align=center class=td1 style='width:160px'>
+                        <strong>授信审批通知书要求及贷后意见书要求</strong></td>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:80px'>
+                        <strong>相关要求执行情况及风险关注点变化情况</strong></td>
+                    <td colspan='7' rowspan='1' align=left class=td1 style='width:560px'>
+                        <textarea rows="5" cols="60" ng-model="reportInfo.describe60"></textarea>
+                        <!--sTemp.append(myOutPut("1",sMethod,"name='describe60' style='border:0px' style='width:560; height:150'",getUnitData("describe60",sData)));-->
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='1' rowspan='1' align=center class=td1 style='width:120px'><strong>应对措施（要求未达标或关注点有恶化现象时填写）</strong>
+                    </td>
+                    <td colspan='7' rowspan='1' align=left class=td1>
+                        <textarea rows="5" cols="60" ng-model="reportInfo.describe61"></textarea>
+                        <!--sTemp.append(myOutPut("1",sMethod,"name='describe61' style='border:0px' style='width:560; height:150'",getUnitData("describe61",sData)));-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align=center class=td1><strong>信贷业务风险情况</strong></td>
+                    <td colspan='8' align=left class=td1>
+                        <p>内容主要包括：填写需要说明的重大风险和隐性风险信息，包括经营风险、管理风险、财务状况、行业风险、担保风险、银行往来变动、出现预警信号、风险分类调整建议等</p><br>&nbsp;
+                        <textarea rows="6" cols="80" ng-model="reportInfo.describe62"></textarea>
+                        <!--sTemp.append(myOutPut("1",sMethod,"name='describe62' style='border:0px' style='width:100%; height:150'",getUnitData("describe62",sData)));-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align=center class=td1><strong>总体评价及下一步贷后管理策略</strong></td>
+                    <td colspan='8' align=left class=td1>
+                        <textarea rows="6" cols="80" ng-model="reportInfo.describe63"></textarea>
+                        <!--sTemp.append(myOutPut("1",sMethod,"name='describe63' style='border:0px' style='width:100%; height:150'",getUnitData("describe63",sData)));-->
+                    </td>
+                </tr>
+
+            </table>
+</body>
+</html>

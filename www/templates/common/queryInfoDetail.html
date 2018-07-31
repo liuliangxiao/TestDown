@@ -1,0 +1,123 @@
+    <div style="width:{{contentWidth}}px;position:absolute;top: 49px;">
+        <table class="bm_tb_list" ng-show="details.length > 0" ng-repeat = "item in details">
+            <thead ng-click="showOrNot(item)" ng-if="item.size > 0">
+            <tr>
+                <th colspan="2">{{item.groupName}}</label>
+                    <i class="icon-float-right" ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+                </th>
+            </tr>
+            </thead>
+            <!--循环遍历生成页面元素  -->
+             <tbody ng-repeat ="obj in item.groupColArray" ng-show="item.showGroup">            
+	            <!--Input框循环生成 -start -->
+	            <!--可更新可写input (只展示colVisable = 1 的属性) -->
+	            <tr ng-if="obj.ColEditStyle =='1' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td>
+	                	<input ng-if="obj.ColCheckFormat == '3' " style="float:left;" type="date" ng-model = 'detailInfo[obj.KeyId]' ng-readonly='true' class="ba-input">
+	                	<input ng-if="obj.ColCheckFormat != '3' " style="float:left;" type="text" ng-model = 'detailInfo[obj.KeyId]' ng-readonly='true' class="ba-input">
+	                	<button style="float:left;width:20%;margin-left:6px" ng-if="obj.ColButton" type="button" class="am-button am-button-default" ng-click="{{obj.ColClick}}">{{obj.ColButtonValue}}</button>
+	                </td>
+	            </tr>
+	            <!--不更新input  -->	            
+	            <tr ng-if="obj.ColEditStyle =='1' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td>
+	                	<input type="text" ng-model = 'detailInfoNoUpdate[obj.KeyId]' ng-readonly='true' class="ba-input" >
+	                </td>
+	            </tr>
+	            <!--Input框循环生成 -end -->
+	            <!--通用下拉框循环生成 -start  -->
+	            <!--可更新可写select  -->	            	            
+				<tr ng-if="(obj.ColEditStyle =='2' || obj.ColEditStyle =='5')  && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td>
+	                    <select ng-if="item.groupId === 'RPTPart' || item.groupId === 'RatePart'" required="required" class="ba-select" ng-disabled='true' ng-change="doAction(obj.KeyId,item.groupId)"  ng-options="option.ItemNo as option.ItemName for option in CODE_LIBRARY.{{obj.KeyId}}" ng-model='detailInfo[obj.KeyId]'>
+	                        <option value=""></option>
+	                    </select>
+	                    <select ng-if="item.groupId !== 'RPTPart' && item.groupId !== 'RatePart'" required="required" class="ba-select" ng-disabled='true'  ng-options="option.ItemNo as option.ItemName for option in CODE_LIBRARY.{{obj.KeyId}}" ng-model='detailInfo[obj.KeyId]'>
+	                        <option value=""></option>
+	                    </select>
+	                </td>
+	            </tr>
+	            <tr ng-if="item.groupId === 'RatePart'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40" colspan="2">
+             		     <div data-ng-include="'templates/common/RatePartInfo.html'"></div>
+	                </td>
+	            </tr>
+	            <tr ng-if="item.groupId === 'RPTPart' && RptPackFlag" ng-hide='obj.Hide'> 
+	                <td class="td_width_40" colspan="2">
+             		     <div data-ng-include="'templates/common/RPTPartInfo.html'"></div>
+	                </td>
+	            </tr>
+	             <tr ng-if="item.groupId === 'OLDRatePart'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40" colspan="2">
+             		     <div data-ng-include="'templates/common/OLDRatePartInfo.html'"></div>
+	                </td>
+	            </tr>
+	            <tr ng-if="item.groupId === 'NEWRatePart'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40" colspan="2">
+             		     <div data-ng-include="'templates/common/NEWRatePartInfo.html'"></div>
+	                </td>
+	            </tr>
+	            <!-- 还款方方式 -->	            
+	            <tr ng-if="item.groupId === 'NEWRPTPart'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40" colspan="2">
+             		     <div data-ng-include="'templates/common/NEWRPTPartInfo.html'"></div>
+	                </td>
+	            </tr>
+	            <tr ng-if="item.groupId === 'OLDRPTPart'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40" colspan="2">
+             		     <div data-ng-include="'templates/common/OLDRPTPartInfo.html'"></div>
+	                </td>
+	            </tr>
+	            <!-- 还款方方式 -->
+	            
+	            <!--不可更新select  -->	            	            	            
+	            <tr ng-if="obj.ColEditStyle =='2' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td>
+	                    <select required="required" class="ba-select" ng-disabled='true' ng-options="option.ItemNo as option.ItemName for option in CODE_LIBRARY.{{obj.KeyId}}" ng-model='detailInfoNoUpdate[obj.KeyId]'>
+	                        <option value=""></option>
+	                    </select>
+	                </td>
+	            </tr>
+	            <!--通用下拉框循环生成 -end  -->	             
+	            <!--文本框循环生成 -start-->
+	            <tr ng-if="obj.ColEditStyle =='3' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40" style="vertical-align: top;">{{obj.KeyName}}</td>
+	                <td>
+ 						<textarea rows="8" class="ba-input" ng-model="detailInfo[obj.KeyId]" ng-readonly='true' ng-change="checkText()">							                      
+	                    </textarea>
+	                    <p ng-if="obj.KeyId == 'Remark'" ng-show="inputShow">您还可以输入{{inputTextLength}}个汉字</p>
+	                </td>
+	            </tr>
+	            <tr ng-if="obj.ColEditStyle =='3' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40" style="vertical-align: top;">{{obj.KeyName}}</td>
+	                <td>
+ 						<textarea rows="8" class="ba-input" ng-model="detailInfoNoUpdate[obj.KeyId]" ng-readonly='true' ng-change="checkText()">							                      
+	                    </textarea>
+	                    <p ng-if="obj.KeyId == 'Remark'" ng-show="inputShow">您还可以输入{{inputTextLength}}个汉字</p>
+	                </td>
+	            </tr>
+	            <!--文本框循环生成 -end-->	            
+	           	<!--点选框循环遍历 -start  -->    
+	           	<tr ng-if="obj.ColEditStyle =='8' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td><input type="text" ng-model = 'detailInfo[obj.KeyId]' ng-readonly='true' class="ba-input" ng-click="selectBusinessType()"></td>
+	            </tr>
+	            <tr ng-if="obj.ColEditStyle =='8' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+	                <td class="td_width_40">{{obj.KeyName}}</td>
+	                <td><input type="text" ng-model = 'detailInfoNoUpdate[obj.KeyId]' ng-readonly='true' class="ba-input" ng-click="selectBusinessType()"></td>
+	            </tr>                 
+	           	<!--点选框循环遍历 -end  -->    	            	       
+            </tbody>
+        </table>
+        
+        <div class="noDataBox" ng-show="details.length  == 0">
+            <div class="nodata">
+                <img src="img/empty_page.png" width="70px">
+                <span class="nodata_span">暂无数据</span>
+            </div>
+        </div>
+    </div>

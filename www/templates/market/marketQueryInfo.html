@@ -1,0 +1,112 @@
+<ion-view id="indquery-search">
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50>
+
+            <ion-side-menus>
+                 <ion-side-menu-content drag-content="true" edge-drag-threshold=50 style="width:{{contentWidth}}px" ng-controller="marketDetailController" >
+                    <ion-header-bar class="bar-ipad-nav" align-title="center" style="width:{{contentWidth}}px">
+	                    <div style="position: absolute;left: 20px;font-size: 30px;color: white;bottom: 5px;"
+	                    class="ion-plus" ng-click="createMarket()">
+	                    </div>
+                        <h1 class="title">营销信息-{{selectMarketInfo.customerName}}</h1>
+                    </ion-header-bar>
+                    <div ng-include="'templates/common/detailInfo.html'"></div>
+
+                </ion-side-menu-content>
+
+                <!-- 二级导航条-->
+                <ion-side-menu side="left" width="{{secondNavWidth}}" expose-aside-when="large">
+                    <ion-header-bar class="bar-ipad-nav" align-title="center" style="width:{{secondNavWidth}}px">
+                        <h1 class="title">营销线索</h1 >
+                        <div style="position: absolute;right: 20px;font-size: 30px;color: white;bottom: 5px;"
+                        class="ion-search" ng-click="showSearchBar()">
+
+                        </div>
+                        <div style="width:{{secondNavWidth}}px;position: fixed;background-color: #ffffff;height: 250px;top: 88px;border-bottom:1px solid #ccc;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.17);-moz-box-shadow: 0 1px 1px rgba(0,0,0,0.17);box-shadow: 0 1px 1px rgba(0,0,0,0.17)"
+                             ng-if="info.show" ng-controller="marketSearchIndController" class="js-input-wrapper">
+
+                            <ul style="width:{{secondNavWidth}}px">
+
+                                    <li ng-repeat="serchInfo in searchList">
+                                        <div  ng-if="serchInfo.editStyle=='1'&&serchInfo.show">
+
+                                            <input type="text" placeholder={{serchInfo.placeHolder}}
+                                                   ng-model="serchInfo.value"
+                                                   style="width: {{secondNavWidth*0.8}}px;margin-left: 30px;margin-top:10px;border:1px solid #d4d0d0;padding-left: 6px;border-radius: 4px;">
+
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row" style="margin-top: 20px;margin-left: 30px; width: {{secondNavWidth*0.8}}px;">
+                                            <div class="col col-50;" style="text-align: center; width: 100px;"><button class="button button-assertive" ng-click="clearData()">清 除</button> </div>
+                                            <div class="col col-50;" style="text-align: center; width: 100px;"><button class="button button-positive" ng-click="searchinfo()">搜 索</button> </div>
+                                        </div>
+                                    </li>
+
+                            </ul>
+
+
+                        </div>
+                    </ion-header-bar>
+                    <ion-header-bar class="bar-subheader am-sub-header">
+					    <ion-scroll direction = "x" scrollbar-x = "false">   <!-- 如果添加左右滑动 则在ul中style里添加width：XX%（：li个数*50），然后将li 下class中的col-50样式去掉 ，最后在controller中添加 selectTask（）方法，来控制底部框的选中标志-->
+					    	<ul class="am-tab row" style="padding: 0px;width:{{50*menuItems.length}}%;" >
+						        <li class="col" ng-repeat = "menuInfo in menuItems" ng-class="{'active':$index == selectMenuRow}" ng-click="selectMenuInfo(menuInfo,$index)">
+						        	{{menuInfo.menuName}}
+						        </li>      
+					    	</ul>
+						</ion-scroll>
+					</ion-header-bar>
+                    <ion-content class="stable-bg"  style="width:{{secondNavWidth}}px" delegate-handle="smallScroll">
+
+                        <ion-refresher on-refresh="refresh()"
+                                       pulling-text="下拉刷新"
+                                       refreshing-text="正在刷新中"
+                                       spinner="ios">
+                        </ion-refresher>
+
+                        <dl class="am-list arrow-list">
+                            <dd class="item am-button-default" ng-repeat="marketInfo in items" ng-class="{'item-selected': $index == selectedRow}" ng-click="goDetail(marketInfo,$index)">
+                                <h3>{{marketInfo.customerName}}【{{marketInfo.SerialNo}}】</h3>
+                                <h4>手机号码：{{marketInfo.cellphoneNo}}</h4>
+                                <h4>金额 :{{marketInfo.businessSum}} {{marketInfo.businessCurrency}}</h4>
+                                <i class="am_iconfont am-icon-fl"><span ng-class="marketInfo.ClassCode">{{marketInfo.customerName|limitTo:1}}</span></i>
+                            </dd>
+                            <div class="noDataBox" ng-show="info.noData">
+                                <div class="nodata">
+                                    <img src="img/empty_page.png" width="70px">
+                                    <span class="nodata_span">暂无数据</span>
+                                </div>
+                            </div>
+                        </dl>
+
+                        <div class="loadingBox" ng-show="loadingMore">
+                            <ion-spinner icon="android"></ion-spinner>
+                            <h3>正在加载中</h3>
+                        </div>
+                        <ion-infinite-scroll icon="ion-loading-c"
+                                             ng-if="hasMore"
+                                             immediate-check="false"
+                                             on-infinite="loadMore()"
+                                             distance="1%"
+                                             >
+                            <div>正在加载中</div>
+                        </ion-infinite-scroll>
+                    </ion-content>
+                </ion-side-menu>
+
+            </ion-side-menus>
+
+        </ion-side-menu-content>
+
+        <!-- 一级导航条-->
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'">
+            </div>
+        </ion-side-menu>
+
+
+    </ion-side-menus>
+</ion-view>
+

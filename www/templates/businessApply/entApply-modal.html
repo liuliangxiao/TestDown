@@ -1,0 +1,69 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">对公客户授信申请</h1>
+    </ion-header-bar >
+    <ion-content>
+        <table class="bm_tb_list">
+            <thead>
+            <tr>
+                <th colspan="2">基本信息</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="td_width_40">申请类型<span class="red-star">*</span></td>
+                <td>
+                    <select required="required" class="ba-select" ng-options="a.ItemNo as a.ItemName for a in ApplyTypes" ng-model='ApplyInfo.OccurType'>
+                        <option value="">--请选择--</option>
+                    </select>
+                </td>
+            </tr>
+
+
+
+
+
+            <tr>
+                <td class="td_width_40">申请类型</td><td><input type="" ng-model="ApplyType.ItemName" readonly class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">客户编号</td><td ng-click="selCustomer()"><input type="" ng-model="ApplyInfo.CustomerID" readonly class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">客户名称</td><td><input type="" ng-model="ApplyInfo.CustomerName" readonly class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">业务品种</td><td ng-click="selectBusinessType()"><input type="" ng-model="BusinessTypeName" readonly class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">发生类型</td>
+                <td>
+                    <select required="required" class="ba-select" ng-options="o.ItemNo as o.ItemName for o in OccurTypes" ng-model='ApplyInfo.OccurType'>
+                        <option value="">--请选择--</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="td_width_40">币种：</td>
+                <td>
+                    <select required="required" class="ba-select" ng-options="c.ItemNo as c.ItemName for c in Currencies" ng-model='ApplyInfo.Currency'>
+                        <option value="">--请选择--</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="td_width_40">金额：</td>
+                <td>
+                    <input type="" class="ba-input text-right" ng-model="ApplyInfo.BusinessSum" ng-blur="onBlur()" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_width_40">期限(月)：</td>
+                <td>
+                    <input type="" class="ba-input text-right" ng-model="ApplyInfo.TermMonth"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </ion-content>
+</ion-modal-view>

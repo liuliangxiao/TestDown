@@ -1,0 +1,453 @@
+<ion-view ng-style="{'width':'{{contentWidth}}px'}" >
+    <ion-header-bar class="bar-positive" align-title="center">
+        <h1 class="title">业务申请详情</h1>
+    </ion-header-bar>
+    <ion-tabs class="tabs-top tabs-striped tabs-color-positive" ng-show="IsRelative === '0'" ng-controller="BusinessApplyInfoController">
+        <ion-tab title="申请单详情">
+            <ion-view>
+                <ion-content>
+
+                    <table class="bm_tb_list" ng-show="!noData">
+                        <thead>
+                        <tr>
+                            <th colspan="2">基本信息</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="td_width_40">流水编号</td>
+                            <td><input type="" ng-model="ApplyInfoNoRelative.SerialNo" readonly class="ba-input"></td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">授信类型</td>
+                            <td><input type="" ng-model="ApplyInfoNoRelative.ApplyTypeName" readonly class="ba-input"></td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">客户编号</td>
+                            <td ng-click="selCustomer()"><input type="" ng-model="ApplyInfoNoRelative.CustomerID" readonly class="ba-input"></td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">客户名称</td>
+                            <td><input type="" ng-model="ApplyInfoNoRelative.CustomerName" readonly class="ba-input"></td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">客户类型</td>
+                            <td><input type="" ng-model="ApplyInfoNoRelative.CustomerTypeName" readonly class="ba-input"></td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">业务品种</td>
+                            <td ng-click="selectBusinessType()"><input type="" ng-model="ApplyInfoNoRelative.BusinessTypeName" readonly class="ba-input"></td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">发生类型</td>
+                            <td>
+                                <select required="required" class="ba-select" ng-options="o.ItemNo as o.ItemName for o in OccurTypes" ng-model='ApplyInfoNoRelative.OccurType'>
+                                    <option value="">--请选择--</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">币种</td>
+                            <td>
+                                <select required="required" class="ba-select" ng-options="c.ItemNo as c.ItemName for c in Currencies" ng-model='ApplyInfoNoRelative.Currency'>
+                                    <option value="">--请选择--</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">金额</td>
+                            <td>
+                                <input type="" class="ba-input text-right" ng-model="ApplyInfoNoRelative.BusinessSum" ng-blur="onBlur()" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">期限(月)：</td>
+                            <td>
+                                <input type="" class="ba-input text-right" ng-model="ApplyInfoNoRelative.TermMonth"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="noDataBox" ng-show="noData">
+                        <div class="nodata">
+                            <img src="img/empty_page.png" width="70px">
+                            <span class="nodata_span">暂无数据</span>
+                        </div>
+                    </div>
+                    <!--<div class="list font-black">-->
+                        <!--<label class="item item-input">-->
+                            <!--<span class="input-label">流水编号</span>-->
+                            <!--<input type="text" readonly ng-model="ApplyInfoNoRelative.SerialNo">-->
+                        <!--</label>-->
+                        <!--<label class="item item-input">-->
+                            <!--<span class="input-label">授信类型</span>-->
+                            <!--<input type="text"  readonly ng-model="ApplyInfoNoRelative.ApplyTypeName">-->
+                        <!--</label>-->
+                        <!--<label class="item item-input">-->
+                            <!--<span class="input-label">客户编号</span>-->
+                            <!--<input type="text" ng-model="ApplyInfoNoRelative.CustomerID" placeholder="点击选择" ng-click="selCustomer()">-->
+                        <!--</label>-->
+                        <!--<label class="item item-input">-->
+                            <!--<span class="input-label">客户名称</span>-->
+                            <!--<input type="text" readonly ng-model="ApplyInfoNoRelative.CustomerName">-->
+                        <!--</label>-->
+
+                        <!--<label class="item item-input" ng-click="selectBusinessType()">-->
+                            <!--<span class="input-label">业务品种</span>-->
+                            <!--<input type="text" ng-model="ApplyInfoNoRelative.BusinessTypeName" placeholder="点击选择" disabled>-->
+                        <!--</label>-->
+
+                        <!--<label class="item item-input item-select">-->
+                            <!--<div class="input-label">-->
+                                <!--发生类型-->
+                            <!--</div>-->
+                            <!--<select ng-model="ApplyInfoNoRelative.OccurType" ng-options="o.ItemNo as o.ItemName for o in OccurTypes">-->
+                                <!--<option value="">选择发生类型</option>-->
+                            <!--</select >-->
+                        <!--</label>-->
+
+                        <!--<label class="item item-input item-select">-->
+                            <!--<div class="input-label">-->
+                                <!--币种-->
+                            <!--</div>-->
+                            <!--<select ng-model="ApplyInfoNoRelative.Currency" ng-options="c.ItemNo as c.ItemName for c in Currencies">-->
+                                <!--<option value="">选择币种</option>-->
+                            <!--</select>-->
+                        <!--</label>-->
+                        <!--<label class="item item-input">-->
+                            <!--<span class="input-label">金额</span>-->
+                            <!--<input type="number" ng-init="0" ng-model="ApplyInfoNoRelative.BusinessSum" style="text-align: right;">-->
+                        <!--</label>-->
+                        <!--<label class="item item-input">-->
+                            <!--<span class="input-label">期限(月)</span>-->
+                            <!--<input type="number" ng-model="ApplyInfoNoRelative.TermMonth" ng-init="0" style="text-align: right;">-->
+                        <!--</label>-->
+                    <!--</div>-->
+                </ion-content>
+                <ion-footer-bar ng-show="!noData">
+                    <div class="btn-box row">
+                        <div class="col col-40">
+                            <button type="button" class="am-button am-button-blue" ng-click="saveApply()">保存</button>
+                        </div>
+                    </div>
+                </ion-footer-bar>
+            </ion-view>
+
+        </ion-tab>
+        <ion-tab title="影像采集" ng-controller="ScreenageController">
+            <ion-view ng-show="!showpage">
+                <ion-content >
+                    <table class="bm_tb_list" ng-repeat="item in ItemList">
+                        <thead ng-click="showOrNot(item)">
+                        <tr ng-if="item.parentName !='' ">
+                            <th colspan="2" style="height: {{imageAcqContentHeight*0.05}}px;line-height:{{imageAcqContentHeight*0.05}}px">{{item.parentName}}
+                                <i class="icon-float-right" style="margin-left: 30px;"
+                                   ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+                            </th>
+                        </tr>
+
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="child in item.children" ng-show="!item.showGroup" ng-click="goToTakePicture(child)">
+                            <td style="text-align: left;height: {{imageAcqContentHeight*0.05}}px;line-height:{{imageAcqContentHeight*0.05}}px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp{{child.ItemName}}</td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </ion-content>
+            </ion-view>
+
+            <!--拍照页面begin-->
+            <ion-view ng-show="showpage" ng-controller="PhotoTakingController" style="margin-top: 89px;">
+                <ion-header-bar class="bar-positive" align-title="center">
+                    <div class="button am-back" ng-click="toBack()"></div>
+
+                    <h1 class="title">{{screenageTitle}}</h1>
+                    <div class="buttons">
+                        <div class="button" ng-if="!cancel_mode" ng-click="selectImg()" style="color: #fffdef;">选择
+                        </div>
+                        <div class="button" ng-if="cancel_mode" ng-click="selectImg()" style="color: #fffdef;">取消
+                        </div>
+                    </div>
+                </ion-header-bar>
+
+                <ion-content class="has-footer" style="margin-top: -45px;">
+                    <label class="item item-input">
+                        <span class="input-label width-60">描述：</span>
+                        <input type="text" id="mediaDescribe" ng-model="info.Describe">
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label width-60">地址：</span>
+                        <input type="text" readonly ng-model="info.Address">
+                    </label>
+                    <!--拍照界面-->
+                    <div id="images" style="width: {{contentWidth}}px;">
+                        <div class="odp-box">
+                            <div class="row" style="-webkit-flex-wrap:wrap;flex-wrap:wrap;">
+                                <div class="col-33-img padding-s" style="text-align: center; position: relative; top: 25px;"
+                                     ng-repeat="image in imageData track by $index" ng-if="image.loading">
+                                    <ion-spinner icon="spiral"></ion-spinner>
+                                </div>
+                                <div class="col-33-img padding-s" ng-repeat="image in images track by $index">
+                                    <img class="profileimg" ng-src="{{image.src}}" ng-click="openModal($index)"/>
+                                    <div class="selectImg" ng-if="imgSelected" ng-click="hasSelect($index,image)"></div>
+                                    <div class="hasSelectImg" ng-if="image.isSelected && imgSelected"
+                                         ng-click="hasSelect($index,image)"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--拍摄视频页面-->
+                    <div id="videos" style="width: {{contentWidth}}px;">
+                        <div class="odp-box">
+                            <div class="row" style="-webkit-flex-wrap:wrap;flex-wrap:wrap;">
+                                <div class="col-33-img padding-s" style="text-align: center; position: relative; top: 25px;"
+                                     ng-repeat="video in videosData track by $index" ng-if="video.loading">
+                                    <ion-spinner icon="spiral"></ion-spinner>
+                                </div>
+                                <div class="col-33-img padding-s" ng-repeat="video in videos track by $index">
+                                    <video height="80px" controls="controls" class="profileimg"
+                                           ng-src="{{video.src}}"></video>
+                                    <div class="selectImg" ng-if="imgSelected" ng-click="hasSelect($index,video)"></div>
+                                    <div class="hasSelectImg" ng-if="video.isSelected && imgSelected"
+                                         ng-click="hasSelect($index,video)"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--拍摄音频页面-->
+                    <div id="audios" style="width: {{contentWidth}}px;" style="width: {{contentWidth}}px">
+                        <div class="odp-box">
+                            <div class="row" style="-webkit-flex-wrap:wrap;flex-wrap:wrap;">
+
+                                <div class="col-90 padding-aud" ng-repeat="radio in radios track by $index">
+                                    <div class="col-90 padding-aud"
+                                         style="text-align: center; position: relative; top: 25px;"
+                                         ng-repeat="radio in radiosData track by $index" ng-if="radio.loading">
+                                        <ion-spinner icon="spiral"></ion-spinner>
+                                    </div>
+                                    <audio style="width: {{contentWidth*0.98}}px;margin-left: {{contentWidth*0.01}}px;margin-right: {{contentWidth*0.01}}px"
+                                           controls="controls" class="profileimg"
+                                           ng-src="{{radio.src}}"></audio>
+                                    <div class="selectAud"
+                                         style="width: {{contentWidth*0.98}}px;margin-left: {{contentWidth*0.005}}px"
+                                         ng-if="imgSelected"
+                                         ng-click="hasSelect($index,radio)"></div>
+                                    <div class="hasSelectAud"
+                                         style="width: {{contentWidth*0.98}}px;margin-left: {{contentWidth*0.005}}px"
+                                         ng-if="radio.isSelected && imgSelected" ng-click="hasSelect($index,radio)"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </ion-content>
+
+                    <ion-footer-bar style="margin-bottom: 89px;">
+                        <div class="row" style="width: {{contentWidth}}px;">
+                            <div class="col col-40" ng-if="!cancel_mode">
+                                <button type="button" class="am-button am-button-blue" ng-click="addDate()">增加资料</button>
+                            </div>
+                            <div class="col col-40" ng-if="!cancel_mode">
+                                <button type="button" class="am-button am-button-red" ng-click="uploadinfo()">保存</button>
+                            </div>
+                            <div class="col col-100" ng-if="cancel_mode">
+                                <button type="button" class="am-button am-button-red" ng-click="deleteFile()">删除</button>
+                            </div>
+                        </div>
+                    </ion-footer-bar>
+            </ion-view>
+        </ion-tab>
+    </ion-tabs>
+
+    <ion-tabs class="tabs-top tabs-striped tabs-color-positive" ng-show="IsRelative === '1'">
+        <ion-tab title="申请单" ng-controller="BusinessApplyInfoController">
+            <ion-view>
+                <ion-content>
+                    <table class="bm_tb_list" ng-show="!noData">
+                        <thead>
+                            <tr>
+                                <th colspan="2">基本信息</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="td_width_40">流水编号：</td>
+                            <td>{{ApplyInfoNoRelative.SerialNo}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">授信类型：</td>
+                            <td>{{ApplyInfoNoRelative.ApplyTypeName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">客户编号：</td>
+                            <td>{{ApplyInfoNoRelative.CustomerID}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">客户名称：</td>
+                            <td>{{ApplyInfoNoRelative.CustomerName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">客户类型：</td>
+                            <td>{{ApplyInfoNoRelative.CustomerTypeName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">业务品种：</td>
+                            <td>{{ApplyInfoNoRelative.BusinessTypeName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">发生类型：</td>
+                            <td>{{ApplyInfoNoRelative.OccurTypeName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">币种：</td>
+                            <td>{{ApplyInfoNoRelative.CurrencyName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">金额：</td>
+                            <td>{{ApplyInfoNoRelative.BusinessSum}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_40">期限(月)：</td>
+                            <td>{{ApplyInfoNoRelative.TermMonth}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="noDataBox" ng-show="noData">
+                        <div class="nodata">
+                            <img src="img/empty_page.png" width="70px">
+                            <span class="nodata_span">暂无数据</span>
+                        </div>
+                    </div>
+                </ion-content>
+            </ion-view>
+
+        </ion-tab>
+
+        <ion-tab title="申请信息" ng-controller="ApplyDetailController">
+            <ion-view>
+                <ion-content>
+                    <table class="bm_tb_list" ng-repeat="item in items" ng-show="!noData">
+                        <thead ng-click="showOrNot(item)">
+                        <tr>
+                            <th colspan="2">{{item.groupName}}</label>
+                                <i class="icon-float-right"
+                                   ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="obj in item.groupColArray" ng-show="item.showGroup">
+                            <td class="td_width_40">{{obj.KeyName}}：</td>
+                            <td>{{obj.Value}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="noDataBox" ng-show="noData">
+                        <div class="nodata">
+                            <img src="img/empty_page.png" width="70px">
+                            <span class="nodata_span">暂无数据</span>
+                        </div>
+                    </div>
+                </ion-content>
+            </ion-view>
+
+        </ion-tab>
+
+        <ion-tab title="客户信息" ng-controller="CustomerInfoController">
+            <ion-view >
+                <ion-content>
+                    <table class="bm_tb_list" ng-repeat="item in items" ng-show="!noData">
+                        <thead ng-click="showOrNot(item)">
+                        <tr>
+                            <th colspan="2">{{item.groupName}}</label>
+                                <i class="icon-float-right"
+                                   ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="obj in item.groupColArray" ng-show="item.showGroup">
+                            <td class="td_width_40">{{obj.KeyName}}：</td>
+                            <td>{{obj.Value}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="noDataBox" ng-show="noData">
+                        <div class="nodata">
+                            <img src="img/empty_page.png" width="70px">
+                            <span class="nodata_span">暂无数据</span>
+                        </div>
+                    </div>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+
+        <ion-tab title="调查报告" ng-controller="SurveyReportController">
+            <ion-view>
+                <ion-content>
+                    <div class="ui-wrap" ng-bind-html="reportInfo.ReportData">
+
+                        <div class="noDataBox" ng-show="noData">
+                            <div class="nodata">
+                                <img src="img/empty_page.png" width="70px">
+                                <h3>调查报告还未生成</h3>
+                            </div>
+                        </div>
+                    </div>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+
+        <ion-tab title="审批意见" ng-controller="BAOpinionController">
+            <ion-view>
+                <ion-content>
+                    <table class="bm_tb_list" ng-repeat="item in items" ng-show="!noData">
+                        <thead ng-click="showOrNot(item)">
+                        <tr>
+                            <th colspan="2">{{item.PhaseName}}
+                                <i class="icon-float-right"
+                                   ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody ng-show="item.showGroup">
+                        <tr>
+                            <td class="td_width_30">处理人:</td>
+                            <td>{{item.UserName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_30">处理人所属机构:</td>
+                            <td>{{item.OrgName}}</td>
+                        </tr>
+                        <tr>
+                            <td>收到时间:</td>
+                            <td>{{item.BeginTime}}</td>
+                        </tr>
+                        <tr>
+                            <td>完成时间:</td>
+                            <td>{{item.EndTime}}</td>
+                        </tr>
+                        <tr>
+                            <td>意见:</td>
+                            <td colspan="3">{{item.PhaseOpinion}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="noDataBox" ng-show="noData">
+                        <div class="nodata">
+                            <img src="img/empty_page.png" width="70px">
+                            <span class="nodata_span">暂无数据</span>
+                        </div>
+                    </div>
+                </ion-content>
+            </ion-view>
+
+        </ion-tab>
+    </ion-tabs>
+</ion-view>
+

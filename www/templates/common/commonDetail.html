@@ -1,0 +1,47 @@
+<ion-view  ng-style="{'width':'{{contentWidth}}px'}">
+	<!-- 右侧界面部分，业务详情时展示的tab列表 -->
+    <ion-tabs class="tabs-top tabs-striped tabs-color-positive" ng-if="listGroup.tabGroup.length > 0">
+        <ion-tab title="{{tab.ColName}}" ng-repeat="tab in listGroup.tabGroup" ng-click="changeModel(tab,$index)">
+        </ion-tab>
+    </ion-tabs>
+    
+    <ion-content class="scroll-content" delegate-handle="detailScrollHandle" >
+    	<div ng-if="ngController === 'finTermListController'" ng-controller="finTermListController">
+	    	<div data-ng-include="includeContent"></div>
+    	</div>
+    	<div ng-if="ngController === 'receiverBillListController'" ng-controller="receiverBillListController">
+	    	<div data-ng-include="includeContent"></div>
+    	</div>
+    	<div ng-if="ngController === 'paymentBillListController'" ng-controller="paymentBillListController">
+	    	<div data-ng-include="includeContent"></div>
+    	</div>
+    	<div ng-if="ngController === 'remindCommonController'" ng-controller="RemindCommonController">
+	    	<div data-ng-include="includeContent"></div>
+    	</div>
+    	<div ng-if="ngController === 'IndOrEntCapitalUsedListController'" ng-controller="IndOrEntCapitalUsedListController">
+	    	<div data-ng-include="includeContent"></div>
+    	</div>
+    	<div ng-if="ngController === 'SmeOrEntCapitalUsedListController'" ng-controller="SmeOrEntCapitalUsedListController">
+	    	<div data-ng-include="includeContent"></div>
+    	</div>
+    	<div ng-if="ngController === 'ApproveTransactionFeeList'" ng-controller="ApproveTransactionFeeList">
+	    	<div data-ng-include="includeContent"></div>
+    	</div>
+    	<div ng-if="ngController === 'ApproveDepositAccountsList'" ng-controller="ApproveDepositAccountsList">
+	    	<div data-ng-include="includeContent"></div>
+    	</div>
+    	<div ng-if="ngController === '' || ngController == null || ngController === 'undefined'">
+	    	 <div data-ng-include="includeContent"></div>
+	   	</div>
+	   	<div ng-if="ngController === 'AutifraudQueryListController'" ng-controller="AutifraudQueryListController">
+	    	<div data-ng-include="includeContent"></div>
+    	</div>
+    </ion-content>
+    
+    <!-- 右侧页面部分； 在业务详情的每一个tab底部是否显示按钮 -->
+    <ion-footer-bar ng-show="includeFooter != '' && includeFooter != null && ( details.length > 0||selectedListItem )">
+    	<div class="btn-box row" data-ng-include="includeFooter"></div>
+    </ion-footer-bar>
+</ion-view>
+
+

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<!-- 放入手机app工程时，添加cordova.js及 lib/ngCordova/dist/ng-cordova.js的引用，在app.js文件中的angular.module加入'ngCordova'参数-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <!--iPad 1/2-->
+    <link href="css/iPadIndex.css" rel="stylesheet" media="screen and (max-width:2000px)">
+    <!--Retina iPad-->
+    <link href="css/iPadIndexWithRetina.css" rel="stylesheet" media="screen and (min-width:2000px)">
+
+    <link href="css/animation.css" rel="stylesheet">
+    <link href="css/sign.css" rel="stylesheet" media="screen and (orientation : portrait)">
+    <link href="css/sign_land.css" rel="stylesheet" media="screen and (orientation : landscape)">
+    <link href="css/report.css" rel="stylesheet">
+    <link href="css/market.css" rel="stylesheet"> 
+    <!-- ui-grid -->  
+	<link href="css/ui-grid.min.css" rel="stylesheet"> 
+  </head>
+  <body ng-app="com.amarsoft.mobile" onload="onLoad()">
+    <ion-nav-view></ion-nav-view>
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic/js/angular/angular-sanitize.js"></script>
+    <script src="lib/ionic/js/angular/angular-animate.min.js"></script>
+    <script src="lib/ionic/js/angular/angular-cookies.js"></script>
+
+    <script src="js/ng-cordova.min.js"></script>
+    <script src="js/ionic-native-transitions.min.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <!-- 手机app编译将此处开启 -->
+    <script src="cordova.js"></script>
+    <!-- your app's js -->
+    <script src="config.js"></script>
+    <script src="js/as_common.js"></script>
+    <script src="js/valid.js"></script>
+    <script src="js/errors.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <!-- new controllers -->
+    <script src="js/controllers/marketControllers.js"></script>    
+    <script src="js/controllers/mineControllers.js"></script>
+    <script src="js/controllers/queryControllers.js"></script>
+    <script src="js/controllers/logonControllers.js"></script>
+    <script src="js/controllers/screenageControllers.js"></script>
+    <script src="js/controllers/reportControllers.js"></script>
+    <script src="js/controllers/remindControllers.js"></script>
+
+    <script src="js/controllers/approve/approveControllers.js"></script>
+    <script src="js/controllers/approve/postLoanApproveController.js"></script>
+    <script src="js/controllers/approve/smeIdentifyControllers.js"></script>
+    <script src="js/controllers/approve/evaluateControllers.js"></script>
+    <script src="js/controllers/approve/putoutControllers.js"></script>
+    <script src="js/controllers/approve/classifyControllers.js"></script>
+    <script src="js/controllers/approve/gcChangeControllers.js"></script>
+    <script src="js/controllers/approve/collateralOutControllers.js"></script>
+    <script src="js/controllers/indFirstInspectController.js"></script>
+    <!--     add by yyma  start -->   
+    <script src="js/controllers/customer/customerManagementControllers.js"></script>
+    <script src="js/controllers/customer/CustomerDetailController.js"></script>
+    <script src="js/controllers/customer/CustomerListController.js"></script>    
+    <script src="js/controllers/customer/CustomerSearchController.js"></script>
+    <script src="js/controllers/internetQueryManagement.js"></script>
+    <script src="js/controllers/AntiFraudQueryController.js"></script>
+    <script src="js/controllers/INDCheckRecordQueryController.js"></script>
+    <script src="js/controllers/SMECheckRecordQueryController.js"></script>
+    <script src="js/controllers/BusinessContractController.js"></script>
+    <script src="js/controllers/common/BusinessDuebillController.js"></script>    
+    <script src="js/controllers/approve/ApproveTransactionFeeList.js"></script> 
+    <script src="js/controllers/approve/ApproveDepositAccountsList.js"></script> 
+    
+    <!--     add by yyma   end-->
+    <script src="js/controllers/afterLoanManageControllers.js"></script>
+    <script src="js/controllers/businessApplyController.js"></script>
+    <script src="js/controllers/businessApplicationControllers.js"></script>
+    <script src="js/controllers/collectManagementController.js"></script>
+    <script src="js/controllers/loanCalcControllers.js"></script> 
+
+	<!--     add by yli18   start-->
+    <script src="js/controllers/loanContract/loanContractController.js"></script>
+    <script src="js/controllers/loanContract/loanContractListController.js"></script>
+    <script src="js/controllers/loanContract/applyContractListController.js"></script>
+    <script src="js/controllers/loanContract/applyLoanListController.js"></script>
+    <script src="js/controllers/loanContract/amountForceListController.js"></script>
+	<script src="js/controllers/loanContract/paymentBillListController.js"></script>
+	<!-- common -->
+    <script src="js/controllers/common/guarantyController.js"></script>
+    <script src="js/controllers/common/signOpinionController.js"></script>
+    <script src="js/controllers/loanContract/finTermListController.js"></script>
+    <script src="js/controllers/loanContract/receiverBillListController.js"></script>
+    <script src="js/controllers/common/insertDataController.js"></script>
+    <script src="js/controllers/AutifraudQueryListController.js"></script>
+    <!--     add by yli18   end-->
+    
+    <!-- 贷后管理  start -->
+    <script src="js/controllers/inspect/inspectMenuController.js"></script>
+    <script src="js/controllers/inspect/indFirstInspectListController.js"></script>
+    <script src="js/controllers/inspect/entFirstInspectListController.js"></script>
+    <script src="js/controllers/inspect/indCustomerInspectListController.js"></script>
+    <script src="js/controllers/inspect/entCustomerInspectListController.js"></script>
+    <script src="js/controllers/inspect/IndOrEntCapitalUsedListController.js"></script>
+    <script src="js/controllers/inspect/smeFirstInspectListController.js"></script>
+    <script src="js/controllers/inspect/smeCustomerInspectListController.js"></script>
+    <script src="js/controllers/inspect/SmeOrEntCapitalUsedListController.js"></script>
+	 <!-- 贷后管理 end -->
+	
+	<!-- added by xbwang start -->
+    <!-- 信息查询-征信查询 -->
+    <script src="js/controllers/CreditQueryController.js"></script>
+    
+    <!-- added by xbwang end -->
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <!-- ui-grid -->
+    <script type="text/javascript" src="js/ui-grid.min.js" charset="utf-8"></script> 
+    <!-- augular-pdf-viewer -->
+	<script src="js/pdf.combined.js"></script>
+	  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.js"></script> -->
+	
+	   <script src="js/delegate-service.js"></script>
+	  <script src="js/pdf-viewer-delegate.js"></script>
+	  <script src="js/pdf-ctrl.js"></script>
+	  <script src="js/pdf-viewer.js"></script>
+	  <script src="js/pdf-viewer-toolbar.js"></script>
+	
+    <script src="js/as_plugins.js"></script>
+    <!--原来的js在显示标记线上的字符时不能显示到线的上方，所以使用新下载的js-->
+    <script src="js/echarts.js"></script>
+
+	<!--外部校验js  -->
+    <script src="js/checkdatavalidity.js"></script>
+	
+	<!-- 树图控件 -->
+    <script type="text/javascript" src="js/angular-tree-control.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/tree-control.css">
+	<link rel="stylesheet" type="text/css" href="css/tree-control-attribute.css">
+	
+    <!-- <script src="js/slideable.js"></script> -->
+    <!-- 百度地图api接口调用 -->
+<!--     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ffcZQ9fCjDcwyr3UtoTIxsduR32qX4gZ"></script>
+ -->    <script type="text/javascript">
+
+      function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+      }
+      function onDeviceReady() {
+      }
+    </script>
+
+  </body>
+</html>

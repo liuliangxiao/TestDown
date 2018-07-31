@@ -1,0 +1,25 @@
+<ion-modal-view  class="image-modal">
+
+    <ion-scroll zooming="true"
+                direction="xy"
+                delegate-handle="zoom-pane"
+                class="zoom-pane"
+                min-zoom="1"
+                scrollbar-x="false"
+                scrollbar-y="false"
+                overflow-scroll="false">
+        <img ng-src="{{images[index].src}}" id="image" />
+    </ion-scroll>
+
+</ion-footer-bar>
+    <ion-footer-bar class="bar-dark">
+        <div class="btn-box row">
+            <div class="col col-40">
+                <button class="am-button button-clear" ng-click="deleteImage()">删除</button>
+            </div>
+            <div class="col col-40">
+                <button class="am-button button-clear" ng-click="closeModal()">关闭</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

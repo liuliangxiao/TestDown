@@ -1,0 +1,184 @@
+
+.fstNav-content {
+    background-color: #39b0ff;
+}
+
+.nav-wel-container {
+    height: 200px;
+}
+
+.nav-menu-container {
+    height: 568px;
+}
+
+.fstNav .fstNav-content .ipad-avatar {
+    background: url("../img/ms-bank2/avatar.png") no-repeat center center;
+    background-size: 75%;
+    height: 100px;
+}
+
+.fstNav .fstNav-content .ipad-userName {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.ipad-item {
+    height: 80px;
+    border-width: 0;
+}
+
+.fstNav .fstNav-content .ipad-workbench {
+    background: url("../img/ms-bank2/workbench-hover.png") no-repeat center center;
+    background-size: 150px;
+}
+
+.fstNav .fstNav-content .ipad-customerManagement {
+    background: url("../img/ms-bank2/custommanage-hover.png") no-repeat center center;
+    background-size: 150px;
+}
+
+.fstNav .fstNav-content .ipad-businessApplication {
+    background: url("../img/ms-bank2/businessapply-hover.png") no-repeat center center;
+    background-size: 150px;
+}
+
+.fstNav .fstNav-content .ipad-applyOrder {
+    background: url("../img/ms-bank2/applyOrder-hover.png") no-repeat center center;
+    background-size: 150px;
+}
+
+.fstNav .fstNav-content .ipad-afterLoanManagement {
+    background: url("../img/ms-bank2/afterloan-hover.png") no-repeat center center;
+    background-size: 150px;
+}
+
+.fstNav .fstNav-content .ipad-examine {
+    background: url("../img/ms-bank2/examine-hover.png") no-repeat center center;
+    background-size: 150px;
+}
+
+.fstNav .fstNav-content .ipad-query {
+    background: url("../img/ms-bank2/query-hover.png") no-repeat center center;
+    background-size: 150px;
+}
+
+.fstNav .fstNav-content .ipad-report {
+    background: url("../img/ms-bank2/report-hover.png") no-repeat center center;
+    background-size: 150px;
+}
+
+.fstNav .fstNav-content .ipad-screenage {
+    background: url("../img/ms-bank2/screenage-hover.png") no-repeat center center;
+    background-size: 150px;
+}
+
+.fstNav .fstNav-content .ipad-gztx {
+    background: url("../img/ms-bank2/notice-hover.png") no-repeat center center;
+    background-size: 150px;
+}
+
+.fstNav .fstNav-content .ipad-loanTool {
+    background: url("../img/ms-bank2/loanTool.png") no-repeat center center;
+    background-size: 150px;
+}
+
+.fstNav .fstNav-content .ipad-collectManaerment{
+    background: url("../img/ms-bank2/collectManaerment-hover.png") no-repeat center center;
+    background-size: 150px;
+}
+
+.fstNav .fstNav-content .ipad-settings {
+    background: url("../img/ms-bank2/setting-hover.png") no-repeat center center;
+    background-size: 100px;
+}
+
+.fstNav .fstNav-content .ipad-exit {
+    background: url("../img/ms-bank2/exit-hover.png") no-repeat center center;
+    background-size: 100px;
+}
+
+.setting-bottom {
+    position: absolute;
+    bottom: 50px;
+    height: 50px;
+    width: 100px;
+}
+
+.exit-bottom {
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    width: 100px;
+}
+
+.bar-ipad-nav {
+    background-color: #39b0ff;
+}
+
+.bar .title {
+    color: #fff;
+}
+
+.am-back {
+    border: none;
+    background: none;
+}
+.nav-menu-container .item:active{
+background-color: #2c97de;
+
+}
+
+.nav-menu-container div.ipad-settings:active{
+    background-color: #2c97de;
+}
+
+.nav-menu-container div.ipad-exit:active{
+    background-color: #2c97de;
+}
+
+.nav-wel-container div.ipad-avatar:active{
+    background-color: #2c97de;
+}
+
+
+.detail_info_top{
+    background-color: #e6e6e6;
+    color: #000;
+    padding: 15px 15px;
+}
+.detail_info_top th{
+    text-align: left;
+    font-size:20px;
+    padding-bottom:5px;
+}
+.detail_info_top table{
+    width:100%;
+}
+.detail_info_top tr td{
+    border-bottom:1px solid rgba(255,255,255,0.4)
+}
+.detail_info_top td{
+    padding:5px 0;
+    font-size:12px;
+}
+.detail_info_cont th{
+    background: #ededed;
+    border-bottom:1px solid #c9c9c9;
+    padding: 8px 0;
+    font-size:13px;
+}
+.detail_info_cont td{
+    text-align: center;
+    font-size:13px;
+    color:#333;
+    padding: 8px 0;
+    border-bottom:1px solid #dcdcdc;
+}
+.detail_info_cont table{
+    width:100%;
+}
+.detail_info_top tr:last-child td{
+    border-bottom:none;
+}

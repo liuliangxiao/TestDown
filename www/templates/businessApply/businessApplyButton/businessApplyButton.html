@@ -1,0 +1,12 @@
+<div style="float:left;width:120px;height:100%;" >
+	<div style="float:left;margin-left:10px;margin-top:8px;font-size: 30px;color: white;" 
+		 class="ion-plus" 
+		 ng-click="insertRecord()"
+		 ng-if="(ApplyType == 'IndependentApply' || ApplyType == 'CreditLineApply' || ApplyType == 'DependentApply') && selectedDetailMenuItem.ColId == '101010'">
+	</div>
+	<div style="float:left;margin-left:20px;margin-top:8px;font-size: 30px;color: white;"
+		 class="ion-trash-a"
+		 ng-click="deleteRecord()"
+		 ng-if="(ApplyType == 'IndependentApply' || ApplyType == 'CreditLineApply' || ApplyType == 'DependentApply') && selectedDetailMenuItem.ColId == '101010'">
+	</div>
+</div>

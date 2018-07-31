@@ -1,0 +1,60 @@
+<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50>
+
+            <ion-side-menus>
+                <ion-side-menu-content drag-content="true" edge-drag-threshold=50 style="margin-top: 0px;padding-top: 0px"  ng-controller="postLoanListController">
+
+                    <!--***************************************最右边的详情部分 ******************************************************-->
+ 		            <ion-header-bar class="bar-ipad-nav" align-title="center" style="width:{{contentWidth}}px">
+					   	<div>
+					       <button class="button button-clear" ng-click="goToListPage()" ng-if="!rightContentListShowFlag">
+					           <i class="ion ion-chevron-left" style="font-size: 25px;margin-left: 10px;margin-top: 12px;color:#fff"></i>
+					       </button>
+					   	</div> 
+       					 <h1 class="title">{{title}}</h1>
+		            </ion-header-bar>
+                    <div ng-show="rightContentListShowFlag" ng-include="'templates/approve/approveList.html'" style="margin-top: 0px;padding-top: 0px"></div>
+                    <div ng-show="!rightContentListShowFlag" ng-include="'templates/common/commonDetail.html'" style="margin-top: 30px;padding-top: 0px"></div>               
+                </ion-side-menu-content>
+
+
+                <ion-side-menu side="left" width="{{secondNavWidth}}" expose-aside-when="large" style="margin-top: 0px;padding-top: 0px">
+                    <!--***********************************************中间部分的二级导航栏--***********************************************-->
+					<ion-header-bar class="bar-ipad-nav" align-title="center">
+					    <button class="button button-clear" ng-click="goToUpper()" >
+				            <i class="ion ion-chevron-left" style="font-size: 25px;margin-left: 10px;margin-top: 12px;color:#fff"></i>
+				        </button>
+						<h1 class="title">业务签批</h1 >
+					</ion-header-bar>
+					<ion-header-bar class="am-bar-subheader" style="margin-top: 65px; background-color: #EEE; height: 45px">
+					    <div class="am-tabs row-no-padding" style="height: 45px; margin-top: 0px !important;">					
+					        <div class="col col-50"  ng-repeat="menuInfo in postApproveMenuList"  ng-click="selectTab(menuInfo,$index)" ng-class="{active:$index == menuIndex}" style="height: 45px">{{menuInfo.itemName}}</div>
+					    </div>
+					</ion-header-bar>
+					
+					<ion-scroll class="stable-bg " ng-controller="PostLoanWorkController"
+					            style="height:{{contentHeight}}px; margin-top: {{barHeight+49}}px;">
+					
+					    <ul class="list">
+					        <li class="item item-icon-left" ng-repeat="item in menuInfo" ng-click="approveList(item,$index)"  ng-class="{'item-selected': $index == selectedIndex}">
+					            <h2>{{item.itemName}}</h2>					            
+					            <span class="badge badge-assertive">{{item.totalCount}}</span> 
+					        </li>
+					    </ul>	
+					</ion-scroll>
+					
+					<!--*********************************************二级导航条end **********************************************************************-->
+                </ion-side-menu>
+            </ion-side-menus>
+        </ion-side-menu-content>
+
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'"></div>
+        </ion-side-menu>
+    </ion-side-menus>
+    
+</ion-view>
+
+  

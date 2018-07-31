@@ -1,0 +1,69 @@
+<ion-modal-view  style="height: 500px;">
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">用款记录-新增</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">cancel</button>
+    </ion-header-bar >
+    <ion-content>
+        <table class="bm_tb_list">
+            
+            <tbody>
+            	   <label class="item item-input">
+				     <span class="input-label">币种</span>
+				     <input ng-model="info.CurrencyName" type="text">
+				   </label>
+				   <label class="item item-input">
+				     <span class="input-label">对方用户名</span>
+				     <input ng-model="info.ItemName" type="text">
+				   </label>
+				   <label class="item item-input">
+				     <span class="input-label">用款方式</span>
+				     <input ng-model="info.ItemAccountNo" type="text">
+				   </label>
+				   <label class="item item-input">
+				     <span class="input-label">交易日期</span>
+				     <input ng-model="info.ItemDate" type="text">
+				   </label>
+				   <label class="item item-input">
+				     <span class="input-label">交易金额</span>
+				     <input ng-model="info.ItemSum" type="text">
+				   </label>
+				   <label class="item item-input">
+				     <span class="input-label">账户余额</span>
+				     <input ng-model="info.Balance" type="text">
+				   </label>
+				   <label class="item item-input">
+				     <span class="input-label">用途</span>
+				     <input ng-model="info.ItemDescribe" type="text">
+				   </label>
+				   <label class="item item-input">
+				     <span class="input-label">交易流水号</span>
+				     <input ng-model="info.SerialNo" type="text">
+				   </label>
+				   <label class="item item-input">
+				     <span class="input-label">主键字段名</span>
+				     <input ng-model="info.ItemNo" type="text">
+				   </label>
+				   <label class="item item-input">
+				     <span class="input-label">客户编号</span>
+				     <input ng-model="info.objectno" type="text">
+				   </label>
+				   <label class="item item-input">
+				     <span class="input-label">检查对象类型</span>
+				     <input ng-model="info.ObjectType" type="text">
+				   </label>
+				<div class="row">
+	            <div class="col col-40" >
+	                <button type="button" class="am-button am-button-blue" ng-click="createContact(info)">保存</button>
+	            </div>
+	            <div class="col col-40">
+	                <button type="button" class="am-button am-button-red" ng-click="modal.hide()">取消</button>
+	            </div>
+	        	</div>
+            </tbody>
+        </table>
+    </ion-content>
+</ion-modal-view>
+
+
+
+

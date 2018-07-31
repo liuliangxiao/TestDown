@@ -1,0 +1,135 @@
+<ion-view id="indquery-search">
+    <ion-side-menus>
+    	<!-- 一级导航；最左面部分-->
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'">
+            </div>
+        </ion-side-menu>
+        
+        <!-- 中间部分  + 最右边部分 -->
+        <ion-side-menu-content edge-drag-threshold=50>
+            <ion-side-menus>
+            	 
+                <!-- 中间部分 二级导航条-->
+                <ion-side-menu side="left" width="{{secondNavWidth}}" expose-aside-when="large">
+                    <!-- 中间部分： 标题 + 搜索条件 -->
+                    <ion-header-bar class="bar-ipad-nav" align-title="center" style="width:{{secondNavWidth}}px">
+                        <div ng-show = 'InspectMenuName=="贷后管理"'>
+                        <div ng-click='insertNewMain(menuTitle)' style="float:left;margin-left:10px;margin-top:8px;font-size: 30px;color: white;"  class="ion-plus" ></div>
+                        <div ng-click = 'deleteInspectRecordMain(menuTitle)'style="float:left;margin-left:10px;margin-top:8px;font-size: 30px;color: white;"  class="icon ion-trash-a" ></div>
+                        
+                        </div>
+                        <h1 class="title">{{menuTitle}}</h1 >
+                         <!-- 搜索按钮； 按钮执行方法showSearchBar()在service.js中定义 -->
+                         <div style="position: absolute;right: 20px;font-size: 30px;color: white;bottom: 5px;"
+                        class="ion-search" ng-click="showSearchBar()" ng-show='menuTitle!="我的工作台"'>
+                        </div>
+                        <!-- 单击搜索按钮后显示的搜索条件 -->
+                        <div style="width:{{secondNavWidth}}px;position: fixed;background-color: #ffffff;
+                        	 height: {{searchLength * 55}}px;top: 88px;left: -0px;border-bottom:1px solid #ccc;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.17);-moz-box-shadow: 0 1px 1px rgba(0,0,0,0.17);box-shadow: 0 1px 1px rgba(0,0,0,0.17)"
+                             ng-if="listSearchFlag" class="js-input-wrapper">
+                             <ul style="width:{{secondNavWidth}}px">
+                                    <li  ng-repeat="groupItem in listGroup.group">
+                                        <input type="text" ng-if="groupItem.ColType == '0' && 
+		                                        groupItem.SearchShow == '1' && 
+		                                        (groupItem.ColClick == '' || 
+		                                        groupItem.ColClick == null)" ng-readonly="groupItem.ColReadOnly == '1'" 
+                                        		placeholder="{{groupItem.ColName}}" ng-model = "groupItem.Val" style="width: {{secondNavWidth*0.8}}px;margin-left: 30px;margin-top:10px;border:1px solid #d4d0d0;padding-left: 6px;border-radius: 4px;">
+                                        <input type="text" ng-if="groupItem.ColType == '0' && 
+		                                        groupItem.SearchShow == '1' && 
+		                                        groupItem.ColClick != '' && 
+		                                        groupItem.ColClick != null" ng-readonly="groupItem.ColReadOnly == '1'" 
+                                        		placeholder="请单击选择{{groupItem.ColName}}" ng-click="{{groupItem.ColClick}}(groupItem.ColId)"
+                                        		ng-model = "groupItem.ValName" style="width: {{secondNavWidth*0.8}}px;margin-left: 30px;margin-top:10px;border:1px solid #d4d0d0;padding-left: 6px;border-radius: 4px;">
+                                    	<select class="am-select" ng-model = "groupItem.Val"
+                                    			ng-if="groupItem.ColType == '1' && groupItem.SearchShow == '1'"
+                                                ng-options="option.ItemNo as option.ItemName for option in queryObjOptions[groupItem.ColId]"
+	                                            style="width: {{secondNavWidth*0.8}}px;margin-left: 30px;margin-top:10px;border:1px solid #d4d0d0;padding-left: 6px;border-radius: 4px;">
+                                               <option value="">--请选择{{groupItem.ColName}}--</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <div class="row" style="margin-top: 20px;margin-left: 30px; width: {{secondNavWidth*0.8}}px;">
+                                            <div class="col col-50;" style="text-align: center; width: 100px;"><button class="button button-assertive" ng-click="clearData()">清 除</button> </div>
+                                            <div class="col col-50;" style="text-align: center; width: 100px;"><button class="button button-positive" ng-click="searchInfo()">搜 索</button> </div>
+                                        </div>
+                                    </li>
+                            </ul>
+                        </div>
+                    </ion-header-bar>
+                    
+                    <!-- 中间部分： 中间部分可滑动菜单 -->
+                    <ion-header-bar class="bar-subheader am-sub-header">
+                    <!-- <div style="color: red;width: 200px;height: 100px;z-index: 999999;position: absolute"></div> -->
+					    <ion-scroll direction = "x" scrollbar-x = "false" delegate-handle="TapScrollHandle">   <!-- 如果添加左右滑动 则在ul中style里添加width：XX%（：li个数*50），然后将li 下class中的col-50样式去掉 ，最后在controller中添加 selectTask（）方法，来控制底部框的选中标志-->
+					    	<ul class="am-tab row" ng-if="listGroup.menuGroup.length > 3 " style="padding: 0px;width:{{50*listGroup.menuGroup.length}}%;" >
+						        <li class="col" ng-repeat = "colItem in listGroup.menuGroup" ng-class="{'active':$index == menuIndex}" ng-click="clickMenu(colItem,$index)">
+						        	{{colItem.ColName}}
+						        </li>      
+					    	</ul>
+					    	<ul class="am-tab row" ng-if="listGroup.menuGroup.length <= 3 " style="padding: 0px;" >
+						        <li class="col" ng-repeat = "colItem in listGroup.menuGroup" ng-class="{'active':$index == menuIndex}" ng-click="clickMenu(colItem,$index)">
+						        	{{colItem.ColName}}
+						        </li>      
+					    	</ul>
+						</ion-scroll>
+					</ion-header-bar>
+                    
+                    <!-- 中间部分： 列表 -->
+                    <ion-content class="scroll-content"  delegate-handle="listScrollHandle">
+                        <ion-refresher on-refresh="refresh()"pulling-text="下拉刷新" refreshing-text="正在刷新中" refreshing-icon="ios">
+					    </ion-refresher>
+                        <dl class="am-list arrow-list">
+                            <!-- 列表有数据的显示div -->
+                            <!-- items 保存服务端返回的列表数据 ；一条数据的字段可能为20个，20个里面需要的字段（如5个字段）在 listGroup.group中指定 -->
+                            <dd class="item am-button-default"  ng-repeat="item in items" ng-class="{'item-selected': $index == listIndex}" ng-click="goDetail(item,$index)">
+                                <!-- listGroup.group 中保存的是app_list_group表里的数据； -->
+                                <div ng-repeat="groupItem in listGroup.group">
+                                	<div class="my_spot" ng-if="item.BadgeCount > 0">
+                                		<span class="badge badge-assertive" style="margin-right:-24px ">{{item.BadgeCount}}</span>
+                                	</div>
+                                	<h4 ng-if="groupItem.ColShow == '1' && (item.BadgeCount > 0 || item.BadgeCount == 0 )">{{item[groupItem.ColId]}}</h4>
+                                	<h4 ng-if="groupItem.ColShow == '1' && (item.BadgeCount == null || item.BadgeCount == '')">{{groupItem.ColName}}：{{item[groupItem.ColId]}}</h4>
+                                </div>
+                                <!-- <i class="am_iconfont am-icon-sx" ng-if="item.CustomerName == '' || item.CustomerName == null || item.customerName == '' || item.customerName == null">&#xe684</i> -->
+                                <!-- <i class="am_iconfont am-icon-fl" ng-if="item.CustomerName != '' && item.CustomerName != null"><span ng-class="item.ClassCode">{{item.CustomerName|limitTo:1}}</span></i>
+                                <i class="am_iconfont am-icon-fl" ng-if="item.customerName != '' && item.customerName != null"><span ng-class="item.ClassCode">{{item.customerName|limitTo:1}}</span></i> -->
+                            </dd>
+                            
+                            <!-- 列表没有数据的显示div -->
+                            <div class="noDataBox" ng-if="items.length == 0">
+                                <div class="nodata">
+                                    <img src="img/empty_page.png" width="70px">
+                                    <span class="nodata_span">暂无数据</span>
+                                </div>
+                            </div>
+                        </dl>
+						<div class="loadingBox" ng-show="loadingMore">
+				            <ion-spinner icon="android"></ion-spinner>
+				            <h3>正在加载中</h3>
+				        </div>
+				        <ion-infinite-scroll icon="ion-loading-c"
+				                             ng-if="hasMore"
+				                             immediate-check="false"                             
+				                             on-infinite="loadMore()"
+				                             distance="1%">
+				        </ion-infinite-scroll>
+                   </ion-content>
+                </ion-side-menu>
+            
+            	<!-- 最右边部分 -->
+            	 <ion-side-menu-content edge-drag-threshold=50 style="width:{{contentWidth}}px;">
+            	 	<ion-header-bar class="bar-ipad-nav" align-title="center" style="width:{{contentWidth}}px">
+		             	<div data-ng-include="includeTop"></div>
+			            <h1 style="margin-left:120px;width: {{contentWidth-120}}px;" ng-show="selectedListItem.CustomerName !='' && selectedListItem.CustomerName != null" class="title">{{detailTitle}}-{{selectedListItem.CustomerName}}</h1>
+			            <h1 style="margin-left:120px;width: {{contentWidth-120}}px;" ng-show="selectedListItem.customerName !='' && selectedListItem.customerName != null" class="title">{{detailTitle}}-{{selectedListItem.customerName}}</h1>
+		            </ion-header-bar>
+                    <div ng-include="'templates/common/commonDetail.html'"></div>
+            	 </ion-side-menu-content>
+                
+            </ion-side-menus>
+        </ion-side-menu-content>
+    </ion-side-menus>
+</ion-view>
+

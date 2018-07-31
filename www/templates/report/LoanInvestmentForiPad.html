@@ -1,0 +1,69 @@
+<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50>
+
+
+            <ion-view>
+                <ion-header-bar align-title="center" class="bar-ipad-nav">
+                    <div class="button am-back" ng-click="goBack()"></div>
+                    <h1 class="title">贷款投向</h1>
+                </ion-header-bar>
+                <ion-header-bar class="bar-subheader item-input-inset">
+                    统计截止时间：
+                    <label class="item-input-wrapper">
+                        <input type="date" ng-model="info.date">
+                    </label>
+                    <button class="button" ng-click="search()">搜 索</button>
+                </ion-header-bar>
+                <ion-content class="gray-main">
+                    <div class="row" style="margin-top: 30px">
+                        <div class="col col-50">
+                            <div id="echart"></div>
+                        </div>
+
+                        <div class="col col-50">
+                            <ion-scroll direction="y" style="height: 600px;">
+                                <ion-list>
+                                    <ion-item ng-repeat="item in list">
+                                        <h2>{{item.ItemName}}合计：{{item.ItemTotal}}</h2>
+
+                                        <p>短期余额：{{item.ShortBalance}}</p>
+
+                                        <p>短期较上月：{{item.ShortCompareMonth}}%</p>
+
+                                        <p>短期较年初：{{item.ShortCompareYear}}%</p>
+
+                                        <p>短期同比：{{item.ShortCompare}}%</p>
+
+                                        <p>中长期余额：{{item.LongBalance}}</p>
+
+                                        <p>中长期较上月：{{item.LongCompareMonth}}%</p>
+
+                                        <p>中长期较年初：{{item.LongCompareYear}}%</p>
+
+                                        <p>中长期同比：{{item.LongCompare}}%</p>
+                                    </ion-item>
+                                </ion-list>
+                            </ion-scroll>
+
+                        </div>
+                    </div>
+
+
+                </ion-content>
+            </ion-view>
+
+        </ion-side-menu-content>
+
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'">
+            </div>
+        </ion-side-menu>
+
+
+    </ion-side-menus>
+
+</ion-view>
+
+

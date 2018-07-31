@@ -1,0 +1,245 @@
+<ion-view ng-style="{'width':'{{contentWidth}}px'}" >
+    <ion-header-bar align-title="center" class="bar-positive">
+    	<button ng-show="selectTab0" class="button button-clear" ng-click="finishCollectModal()" style="color: white;">完成</button>
+        <h1 class="title">催收信息</h1>
+        <button class="button button-clear" ng-show="IsRelative === '0'" ng-click="openCollectModal()" style="color: white;">新增</button>
+    </ion-header-bar>
+
+	<div class="noDataBox" ng-if="NoListData">
+		<div class="nodata">
+			<img src="img/empty_page.png" width="70px">
+			<span class="nodata_span">暂无数据</span>
+		</div>
+	</div>
+
+    <ion-tabs class="tabs-top tabs-striped" ng-show="!NoListData">
+        <ion-tab title="催收业务详情" ng-controller="CollectArrearsInfoController">
+            <ion-view>
+                <ion-content>
+                    <table class="bm_tb_list">
+						<thead>
+						<tr>
+							<th colspan="2">客户关键信息</th>
+						</tr>
+						</thead>
+                        <tbody>
+                        	<tr>
+								<td>客户号：</td><td>{{collectInfoDetail.CustomerID}}</td>
+                        	</tr>
+                        	<tr>
+								<td>客户名称：</td><td>{{collectInfoDetail.CustomerName}}</td>
+                        	</tr>
+							<tr ng-if="collectInfoDetail.TypeBoolean">
+								<td>证件号码：</td><td>{{collectInfoDetail.CorpId}}</td>
+							</tr>
+							<tr ng-if="collectInfoDetail.TypeBoolean">
+								<td>办公地址：</td><td>{{collectInfoDetail.OfficeAdd}}</td>
+							</tr>
+							<tr ng-if="collectInfoDetail.TypeBoolean">
+								<td>公司电话：</td><td>{{collectInfoDetail.OfficeTel}}</td>
+							</tr>
+							<tr ng-if="!collectInfoDetail.TypeBoolean">
+								<td>证件类型：</td><td>{{collectInfoDetail.CertType}}</td>
+							</tr>
+							<tr ng-if="!collectInfoDetail.TypeBoolean">
+								<td>证件号码：</td><td>{{collectInfoDetail.CertId}}</td>
+							</tr>
+							<tr ng-if="!collectInfoDetail.TypeBoolean">
+								<td>性别：</td><td>{{collectInfoDetail.Sex}}</td>
+							</tr>
+							<tr ng-if="!collectInfoDetail.TypeBoolean">
+								<td>出生日期：</td><td>{{collectInfoDetail.BirthDay}}</td>
+							</tr>
+							<tr ng-if="!collectInfoDetail.TypeBoolean">
+								<td>婚姻状况：</td><td>{{collectInfoDetail.Marriage}}</td>
+							</tr>
+							<tr ng-if="!collectInfoDetail.TypeBoolean">
+								<td>居住地址：</td><td>{{collectInfoDetail.FamilyAdd}}</td>
+							</tr>
+							<tr ng-if="!collectInfoDetail.TypeBoolean">
+								<td>手机号码：</td><td>{{collectInfoDetail.MobileTelephone}}</td>
+							</tr>
+							<tr ng-if="!collectInfoDetail.TypeBoolean">
+								<td>工作单位：</td><td>{{collectInfoDetail.Workcorp}}</td>
+							</tr>
+							<tr ng-if="!collectInfoDetail.TypeBoolean">
+								<td>公司电话：</td><td>{{collectInfoDetail.WorkTel}}</td>
+							</tr>
+
+							<tr><th colspan="2">贷款关键信息</th></tr>
+							<tr>
+								<td>借据编号：</td><td>{{collectInfoDetail.SerialNo}}</td>
+							</tr>
+							<tr>
+								<td>合同编号：</td><td>{{collectInfoDetail.RelativeSerialNo2}}</td>
+							</tr>
+							<tr>
+								<td>贷款种类：</td><td>{{collectInfoDetail.Loantype}}</td>
+							</tr>
+							<tr>
+								<td>贷款机构：</td><td>{{collectInfoDetail.OperateOrgId}}</td>
+							</tr>
+							<tr>
+								<td>发放日期：</td><td>{{collectInfoDetail.PutoutDate}}</td>
+							</tr>
+							<tr>
+								<td>到期日：</td><td>{{collectInfoDetail.Maturity}}</td>
+							</tr>
+							<tr>
+								<td>贷款金额：</td><td>{{collectInfoDetail.BusinessSum}}</td>
+							</tr>
+							<tr>
+								<td>贷款余额：</td><td>{{collectInfoDetail.Balance}}</td>
+							</tr>
+							<tr>
+								<td>贷款总期数：</td><td>{{collectInfoDetail.Fixterm}}</td>
+							</tr>
+							<tr>
+								<td>还款方式：</td><td>{{collectInfoDetail.CorpuspayMethod}}</td>
+							</tr>
+							<tr>
+								<td>还款卡号：</td><td>{{collectInfoDetail.PaybackAccount}}</td>
+							</tr>
+							<tr>
+								<td>贷款形态：</td><td>{{collectInfoDetail.Creditkind}}</td>
+							</tr>
+							<tr>
+								<td>逾期日期：</td><td>{{collectInfoDetail.OverdueDate}}</td>
+							</tr>
+							<tr>
+								<td>逾期天数：</td><td>{{collectInfoDetail.OverdueDays}}</td>
+							</tr>
+							<tr>
+								<td>累计欠供期数：</td><td>{{collectInfoDetail.Tatimes}}</td>
+							</tr>
+
+                        </tbody>
+                    </table>
+
+					<div class="noDataBox" ng-show="noData">
+						<div class="nodata">
+							<img src="img/empty_page.png" width="70px">
+							<span class="nodata_span">暂无数据</span>
+						</div>
+					</div>
+                </ion-content>
+                <!--<ion-footer-bar>
+                    <div class="btn-box row">
+                        <div class="col col-40" ng-if="IsRelative === '0'" >
+                            <button type="button"class="am-button am-button-blue" ng-click="addCollectRecord()">催收登记</button>
+                        </div>
+                    </div>
+                </ion-footer-bar>-->
+            </ion-view>
+        </ion-tab>
+        
+        <ion-tab title="催收记录" ng-controller="CollectArrearsRecordController" >
+            <ion-view>
+                <ion-content>
+					<ion-refresher on-refresh="refresh()"
+								   pulling-text="下拉刷新"
+								   refreshing-text="正在刷新中"
+								   refreshing-icon="ios">
+					</ion-refresher>
+                	<ul class="list">
+            			<li class="item item-icon-left" ng-repeat="obj in items track by $index"
+                			ng-click="selectArrearsRecord($index, obj)"
+                			ng-class="{'item-selected': $index == selectedRow}">
+                			
+                			<h2>联系人：{{obj.ContactorName}}</h2>
+                			<!-- <p>联系电话：{{obj.ContactTelNo}}</p> -->
+							<table>
+								<tr style="font-size:12px;">
+									<td>催收人：</td>
+									<td>{{obj.ProcessUserName}}</td>
+									<td>&nbsp;</td>
+									<td>催收方式：</td>
+									<td>{{obj.ContactMethodName}}</td>
+								</tr>
+								<tr style="font-size:12px;">
+									<td>催收日期：</td>
+									<td>{{obj.ProcessDate}}</td>
+									<td>&nbsp;</td>
+									<td>催收结果：</td>
+									<td>{{obj.ContactResult}}</td>
+								</tr>
+							</table>
+            			</li>
+        			</ul>
+
+        			<div class="noDataBox" ng-show="noData">
+            			<div class="nodata">
+                			<img src="img/empty_page.png" width="70px">
+                			<span class="nodata_span">暂无数据</span>
+            			</div>
+        			</div>
+        			<div class="loadingBox" ng-show="loadingMore">
+            			<ion-spinner icon="android"></ion-spinner>
+            			<h3>正在加载中</h3>
+        			</div>
+        			<ion-infinite-scroll icon="ion-loading-c"
+                             ng-if="hasMore"
+                             on-infinite="loadMore()"
+                             distance="1%">
+        			</ion-infinite-scroll>
+                </ion-content>
+                <ion-footer-bar>
+                    <div class="btn-box row">
+                    	<div class="col col-40">
+                            <button type="button" class="am-button am-button-blue" ng-click="CollectRecordDetail()">催收记录详情</button>
+                        </div>
+                        <div class="col col-40" ng-if="IsRelative === '0'" >
+                            <button type="button" class="am-button am-button-blue" ng-click="addCollectRecord()">催收登记</button>
+                        </div>
+                    </div>
+                </ion-footer-bar>
+            </ion-view>
+        </ion-tab>
+
+		<ion-tab title="承诺还款" ng-controller="CollectRepayListController" >
+			<ion-view>
+				<ion-content>
+					<ion-refresher on-refresh="refresh()"
+								   pulling-text="下拉刷新"
+								   refreshing-text="正在刷新中"
+								   refreshing-icon="ios">
+					</ion-refresher>
+					<ul class="list">
+						<li class="item item-icon-left" ng-repeat="obj in items track by $index"
+							ng-click="selectRepayRecord($index, obj)"
+							on-hold="holdDeleteRecord(obj)"
+							ng-class="{'item-selected': $index == selectedRow}">
+
+							<span style="font-size:12px;">承诺还款日期：{{obj.RepayDate}}&nbsp;</span>
+							<span style="font-size:12px;">承诺还款金额：{{obj.RepayAmount}}</span>
+						</li>
+					</ul>
+
+					<div class="noDataBox" ng-show="noData">
+						<div class="nodata">
+							<img src="img/empty_page.png" width="70px">
+							<span class="nodata_span">暂无数据</span>
+						</div>
+					</div>
+					<div class="loadingBox" ng-show="loadingMore">
+						<ion-spinner icon="android"></ion-spinner>
+						<h3>正在加载中</h3>
+					</div>
+					<ion-infinite-scroll icon="ion-loading-c"
+										 ng-if="hasMore"
+										 on-infinite="loadMore()"
+										 distance="1%">
+					</ion-infinite-scroll>
+				</ion-content>
+				<ion-footer-bar ng-if="IsRelative === '0'" >
+					<div class="btn-box row">
+						<div class="col col-40">
+							<button type="button" class="am-button am-button-blue" ng-click="addCollectRepay()">新增</button>
+						</div>
+					</div>
+				</ion-footer-bar>
+			</ion-view>
+		</ion-tab>
+    </ion-tabs>
+</ion-view>
+

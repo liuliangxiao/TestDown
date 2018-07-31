@@ -1,0 +1,21 @@
+<div style="width:{{contentWidth}}px;position:absolute;top: 50px;">
+   <dl class="am-list arrow-list" ng-repeat="item in details" ng-click="showDetailModel(item,$index)">
+	<dd class="item am-button-default">
+			<h3>用款方式:{{item.ItemAccountNo}}</h3>
+		    <h4>对方用户名：{{item.ItemName}}</h4>
+		    <h4>交易金额：{{item.ItemSum|currency:''}}</h4>
+		    <h4>币种：{{item.Currency}}</h4>
+		    <h4>交易日期：{{item.ItemDate}}</h4>
+		    <h4>账户余额：{{item.Balance}}</h4>
+		<i class="am_iconfont am-icon-fl">&#xe61b;</i>						
+	</dd>	
+   </dl>
+  
+ <div class="noDataBox" ng-show="details.length == 0">
+	<div class="nodata">
+	    <img src="img/empty_page.png" width="70px">
+	    <span class="nodata_span">暂无数据</span>
+	</div>
+    </div>  
+</div>
+		     

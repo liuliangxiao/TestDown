@@ -1,0 +1,12 @@
+<!--***************************暂无数据提示******************************************-->
+<div class="gray-main"  class="ng-hide" ng-show="noDataPageFlag" style="width:{{contentWidth}}px" ng-controller="NoDataTipController">
+
+    <div ng-include="'templates/common/commHeader.html'" ></div>
+    <div class="noDataBox">
+        <div class="nodata" >
+            <img src="img/empty_page.png" width="70px">
+            <span class="nodata_span">暂无数据</span>
+        </div>
+    </div>
+
+</div>

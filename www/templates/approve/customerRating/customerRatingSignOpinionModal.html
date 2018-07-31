@@ -1,0 +1,10 @@
+<!--因为所有的签署意见,提交流程的方法都封装在ApplyInfoController里,故ApplyInfoController作为父controller,子controller都可以使用其定义的方法.
+  SignOpinionController需要传递数据给nextActionSelectController,故SignOpinionController是nextActionSelectController的直接父controller
+-->
+<ion-modal-view  ng-controller="ApplyInfoController" ng-style="modalStyle">
+    <div ng-controller="evaluateSignOpinionController" >
+        <div ng-include="'templates/approve/customerRating/customerRatingSignOpinion.html'" ></div>
+        <div ng-include="'templates/approve/common/nextActionSelect.html'" ng-controller="nextActionSelectController"></div>>
+    </div>
+</ion-modal-view>
+  

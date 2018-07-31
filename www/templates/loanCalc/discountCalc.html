@@ -1,0 +1,189 @@
+<!--
+<ion-view>
+    <ion-header-bar align-title="center" class="bar-assertive">
+        <div class="button am-back" ng-click="goBack()"></div>
+        <h1 class="title">贴现计算器</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="ui-wrap">
+            <table class="lc_tb_list">
+                <tbody>
+                    <tr>
+                        <th colspan="2">贴现计算器</th>
+                    </tr>
+                    <tr>
+                        <td class="td_width_40">票面金额</td>
+                        <td><input type="number"   ng-model="ParData.ParValue" style="width: auto;display: inline;">
+
+                            <p style="display: inline">万元</p></td>
+                    </tr>
+                    <tr>
+                        <td class="td_width_40">月利率</td>
+                        <td><input type="number"  ng-model="ParData.MonthRate" style="width: auto;display: inline;">
+
+                            <p style="display: inline">%</p></td>
+                    </tr>
+                    <tr>
+                        <td class="td_width_40">贴现日期</td>
+                        <td><input  ng-model="ParData.StartDate" type="date" class="lc-input"></td>
+                    </tr>
+                    <tr>
+                        <td class="td_width_40">到期日期</td>
+                        <td><input ng-model="ParData.finishDate" type="date" class="lc-input"></td>
+                    </tr>
+                    <tr>
+                        <td class="td_width_40">调整天数</td>
+                        <td><input ng-model="ParData.AdjustTime" type="number" placeholder=" "></td>
+                    </tr>
+                    <tr>
+
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <div class="btn-box row">
+                <div class="col col-50">
+                    <button type="button" class="am-button am-button-red" ng-click="Calculation()">计算</button>
+                </div>
+                <div class="col col-50">
+                    <button type="button" class="am-button am-button-blue" ng-click="toEmpty()">清空</button>
+                </div>
+            </div>
+
+            <table class="lc_tb_list">
+                <tbody>
+                    <tr>
+                        <th colspan="2">计算结果</th>
+                    </tr>
+                    <tr>
+                        <td class="td_width_40">计算天数</td>
+                        <td><input type="number"  ng-model="ParData.ResultDate" style="width: auto;display: inline;">
+
+                            <p style="display: inline">天</p></td>
+                    </tr>
+                    <tr>
+                        <td class="td_width_40">贴现利息</td>
+                        <td><input type="number" ng-model="ParData.ResultRate" style="width: auto;display: inline;">
+
+                            <p style="display: inline">元</p></td>
+                    </tr>
+                    <tr>
+                        <td class="td_width_40">贴现金额</td>
+                        <td><input type="number" ng-model="ParData.ResultValue" style="width: auto;display: inline;">
+
+                            <p style="display: inline">元</p></td>
+                    </tr>
+
+                    <tr>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </ion-content>
+</ion-view>-->
+
+
+
+<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50>
+
+            <ion-side-menus>
+                <ion-side-menu-content drag-content="true" edge-drag-threshold=50 style="margin-top: 0px;padding-top: 0px"  >
+
+                    <!--***************************************最右边的详情部分 ******************************************************-->
+                    <div ng-include="'templates/loanCalc/rightNavHeader.html'"></div>
+                    <ion-content style="top:{{barHeight}}px">
+
+                        <div ng-show="rightDetailShowFlag">
+                            <div class="detail_info_top"  >
+                                <table>
+                                    <tr>
+                                        <td>计算天数：{{ParData.ResultDate}}</td>
+                                        <td>贴现利息：{{ParData.ResultRate | currency:'￥'}}元</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>贴现金额：{{ParData.ResultValue | currency:'￥'}}元</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </ion-content>
+                </ion-side-menu-content>
+
+
+                <ion-side-menu side="left" width="{{secondNavWidth * 1.3}}" expose-aside-when="large" style="margin-top: 0px;padding-top: 0px">
+                    <!--***********************************************中间部分的二级导航栏--***********************************************-->
+                    <div ng-include="'templates/loanCalc/leftNavHeader.html'"></div>
+                    <ion-content style="top:{{barHeight}}px">
+                        <div class="ui-wrap">
+
+                            <div class="list ">
+
+                                <label class="item item-input item-left-label">
+                                    <span class="input-label" style="width: 30%">票面金额</span>
+                                    <input type="number" style="display: inline;width: 60%;border: 1px solid #d4d0d0;border-radius: 4px;" ng-model="ParData.ParValue"><span style="color:#444;font-size: 9px">&nbsp;&nbsp;万元</span>&nbsp;&nbsp;&nbsp;
+                                </label>
+
+
+                                <label class="item item-input item-left-label">
+                                    <span class="input-label" style="width: 30%">月利率</span>
+                                    <input type="number" style="display: inline;width: 60%;border: 1px solid #d4d0d0;border-radius: 4px;" ng-model="ParData.MonthRate">
+                                    <span style="color:#444;font-size: 9px">&nbsp;&nbsp;&nbsp;%</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </label>
+
+                                <label class="item item-input item-left-label">
+                                    <span class="input-label" style="width: 30%">贴现日期</span>
+                                    <input  ng-model="ParData.StartDate" type="date" class="lc-input">
+                                </label>
+
+
+                                <label class="item item-input item-left-label">
+                                    <span class="input-label" style="width: 30%">到期日期</span>
+                                    <input ng-model="ParData.finishDate" type="date" class="lc-input">
+                                </label>
+
+
+                                <label class="item item-input item-left-label">
+                                    <span class="input-label" style="width: 30%">调整日期</span>
+                                    <input ng-model="ParData.AdjustTime" type="number" style="display: inline;width: 60%;border: 1px solid #d4d0d0;border-radius: 4px;" placeholder=" "><span style="color:#444;font-size: 9px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;
+                                </label>
+
+                            </div>
+                            <div style="text-align: center;width:100%;font-size: 13px;color: #f00" ng-show="tipShowFlag"> 请填写完整信息</div>
+
+                            <div class="btn-box row">
+                                <div class="col col-50">
+                                    <button type="button" class="am-button am-button-red" ng-click="Calculation()">计算</button>
+                                </div>
+                                <div class="col col-50">
+                                    <button type="button" class="am-button am-button-blue" ng-click="toEmpty()">重新计算</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </ion-content>
+
+                </ion-side-menu>
+            </ion-side-menus>
+        </ion-side-menu-content>
+
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'"></div>
+        </ion-side-menu>
+    </ion-side-menus>
+
+</ion-view>
+
+
+
+

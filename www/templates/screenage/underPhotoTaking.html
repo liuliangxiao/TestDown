@@ -1,0 +1,54 @@
+<ion-view>
+    <ion-header-bar align-title="center" class="bar-positive">
+        <div class="button am-back" ng-click="goBack()"></div>
+        <h1 class="title">{{title}}</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+            <label class="item item-input">
+                <span class="input-label">资料描述：</span>
+                <input type="text" ng-model="info.Describe">
+            </label>
+
+        </div>
+        <p class="positive">&nbsp;&nbsp;&nbsp;&nbsp;<font color="#a9a9a9"> 当前地址：{{info.Address}}</font></p>
+        <br>
+
+        <!--拍照界面-->
+        <div id="images">
+
+            <div class="odp-box">
+                <div class="row" style="-webkit-flex-wrap:wrap;flex-wrap:wrap">
+
+                    <div class="col-33-img padding-s" ng-repeat="image in images track by $index">
+                        <img class="profileimg" ng-src="data:image/jpeg;base64,{{image.src}}" ng-click="openModal($index)"/>
+                    </div>
+
+                    <div class="col-33-img padding-s" ng-if="images.length < imageNo">
+                        <a class="addnew"
+                           ng-click="takePhoto()">
+                            +
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!--<img ng-if="isShow.show" ng-src="data:image/jpeg;base64,{{image.src}}" style="width: 142px; height: 142px; margin: 5px;"
+                 ng-click="openModal($index)" ng-repeat="image in images"/>
+            <img src="img/plus-round.png"  style="margin:5px; width: 142px; height: 142px; border: solid 1px;opacity: 0.1" ng-click="takePhoto()"/>-->
+        </div>
+
+        <!--<button class="button button-block button-balanced" ng-click="takePhoto()">拍照</button>-->
+
+    </ion-content>
+    <ion-footer-bar>
+        <div class="btn-box row">
+            <div class="col col-100">
+                <button type="button" class="am-button am-button-red" ng-click="uploadImage()">上传</button>
+            </div>
+            <!--<div class="col col-40">-->
+            <!--<button type="button" class="am-button am-button-blue" ng-click="loadImages()">取消</button>-->
+            <!--</div>-->
+        </div>
+    </ion-footer-bar>
+</ion-view>

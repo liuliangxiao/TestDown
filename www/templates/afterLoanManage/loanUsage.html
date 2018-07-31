@@ -1,0 +1,62 @@
+<!--<ion-view>-->
+<ion-content>
+    <div>
+        <table class="table-border" width='{{contentWidth}}' align=center border=1 cellspacing=0 cellpadding=2 bgcolor=white
+               bordercolor=black bordercolordark=black>
+            <tr>
+                <td align=center colspan='3' bgcolor=#aaaaaa><font
+                        style=' font-size: 12pt;FONT-FAMILY:宋体;FONT-WEIGHT: bold;color:black;background-color:#aaaaaa'>
+                    <p>XX商业银行</p>贷款用途检查报告</font></td>
+            </tr>
+            <tr>
+                <td width=15% align=center class=td1>客户名称：</td>
+                <td colspan=2 align=left class=td1>{{loanUsageAnalysis.CustomerName}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td align=center class=td1>经办机构：</td>
+                <td colspan=2 align=left class=td1>{{loanUsageAnalysis.OrgName}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td align=center class=td1>检查人：</td>
+                <td colspan=2 align=left class=td1>{{loanUsageAnalysis.UserName}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td align=center class=td1>报告日期：</td>
+                <td colspan=2 align=left class=td1>{{loanUsageAnalysis.UpdateDate}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan=3 align=left class=td1><strong>客户申请的贷款用途和提供合同、发票等证明文件</strong><br>&nbsp;
+                    <textarea name='describe1' style='width:100%; height:150' ng-model="loanUsageAnalysis.HtmlDataTransferd.describe1"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan=3 align=left class=td1>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan=3 align=left class=td1><strong>实际用途及其合理性分析</strong><br>&nbsp;
+                    <textarea name='describe2' style='width:100%; height:150' ng-model="loanUsageAnalysis.HtmlDataTransferd.describe2"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=3 align=left class=td1>&nbsp;</td>
+            </tr>
+            <tr>
+                <td align=left colspan=3 class=td1><strong>建议采取措施</strong><br>&nbsp;
+                    <textarea name='describe3' style='width:100%; height:150' ng-model="loanUsageAnalysis.HtmlDataTransferd.describe3"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=3 align=left class=td1>&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+
+</ion-content>
+<ion-footer-bar ng-show="ItemNo == '01010010' || ItemNo == '01020010'">
+    <div class="btn-box row">
+        <div class="col col-100">
+            <button type="button" class="am-button am-button-blue" ng-click="saveReport(loanUsageAnalysis.HtmlDataTransferd)">保存</button>
+        </div>
+    </div>
+</ion-footer-bar>
+
+<!--</ion-view>-->

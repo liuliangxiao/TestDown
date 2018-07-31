@@ -1,0 +1,28 @@
+<ion-modal-view style="height: 300px;">
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">贷前首检搜索</h1>
+    </ion-header-bar>
+    <ion-content>
+        <table class="bm_tb_list">
+            <tbody>
+            <tr>
+                <td class="td_width_40">借据流水号</td><td><input type="" ng-model="search.SerialNo" class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">客户名称</td><td><input type="" ng-model="search.CustomerName" class="ba-input"></td>
+            </tr>
+            <tr></tr>
+            </tbody>
+        </table>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="row">
+            <div class="col col-40" >
+                <button type="button" class="am-button am-button-blue" ng-click="search()">搜索</button>
+            </div>
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-red" ng-click="cancelSearch()">取消</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

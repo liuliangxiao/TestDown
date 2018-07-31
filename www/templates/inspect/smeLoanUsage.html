@@ -1,0 +1,61 @@
+
+<div style="width:{{contentWidth}}px;position: absolute;top:50px">
+	<table class="table-border" width='{{contentWidth}}' align=center border=1 cellspacing=0 cellpadding=2 bgcolor=white
+               bordercolor=black bordercolordark=black ng-if="selectedListItem !== 'undefined' && selectedListItem !== null && selectedListItem !== '' ">
+	<tr>
+		<td colspan='12'>
+		<p style='font-size:20pt; font-weight:bold; padding:10px;' align='center'>乌鲁木齐银行小企业信贷首次贷后检查表</p>
+		<p style ='float:right'>单位：万元&nbsp;&nbsp;&nbsp;</p></td>
+	</tr>
+	<tr>
+		<td colspan='2'  align='center' height='30px' class=td1>贷款单位&nbsp;</td>
+		<td colspan='4'  align='center' class=td1>{{SmeCheckedALSData.map1.CustomerName}}&nbsp;</td>
+		<td colspan='2'  align='center' class=td1>担保方式&nbsp;</td>
+		<td colspan='4'  align='center' class=td1>{{SmeCheckedALSData.map1.VouchType}}&nbsp;</td>
+	</tr>
+	<tr>
+	<td colspan='2'  class=td1 align='center' height='30px'>年利率&nbsp;</td>
+	<td colspan='4'  class=td1 align='center'>{{SmeCheckedALSData.sRateInfo}}%&nbsp;</td>
+	<td colspan='2'  class=td1 align='center'>贷款金额&nbsp;</td>
+	<td colspan='4'  class=td1 align='center'>{{SmeCheckedALSData.map2.BusinessSum}}&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan='2'  class=td1 align='center' height='30px'>贷款起止日期&nbsp;</td>
+		<td colspan='4'  class=td1 align='center'>{{SmeCheckedALSData.map2.PutOutDate}}<br/>{{SmeCheckedALSData.map2.MATURITY}}&nbsp;</td>
+		<td colspan='2'  class=td1 align='center'>检查日期&nbsp;</td>
+		<td colspan='4'  class=td1 align='center'>{{SmeCheckedALSData.sNowDate}}&nbsp;</td>
+	</tr>
+	<tr>
+	<td colspan='2'  class=td1 align='center' height='30px'>贷款审批用途&nbsp;</td>
+		<td colspan='10' class=td1>{{SmeCheckedALSData.Purpose}}&nbsp;</td>
+	</tr>
+	<tr>
+	<td colspan='2'  class=td1 align='center' height='30px'>审批意见按落实情况&nbsp;</td>
+	<td colspan='10' class=td1>{{SmeCheckedALSData.payPerson}}&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan=12>
+			<div ui-grid="grid_smeLoanUsage"
+				style="width: 100%; height: 200px; text-align: center;"
+				ui-grid-edit ui-grid-resize-columns></div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan='3'  height='50px'>检查人员评价&nbsp;</td>
+		<td colspan='9'>
+		<p align='left'>{{SmeCheckedALSData.checkOpt.sOptOpin}}</p>
+		<p align='right'>签字:{{SmeCheckedALSData.checkOpt.sOptName}}</p>&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan='3' height='50px' >部门经理意见&nbsp;</td>
+		<td colspan='9'><p align='left'>{{SmeCheckedALSData.HandlerOpt.sOptOpin}}</p>
+		<p align='right'>签字:{{SmeCheckedALSData.HandlerOpt.sOptName}}</p>&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan='3' height='50px'>经营机构负责人意见&nbsp;</td>
+		<td colspan='9'><p align='left'>{{SmeCheckedALSData.Principal.sOptOpin}}</p>
+		<p align='right'>签字:{{SmeCheckedALSData.Principal.sOptName}}</p>&nbsp;</td>
+	</tr>
+	</table>
+</div>
+

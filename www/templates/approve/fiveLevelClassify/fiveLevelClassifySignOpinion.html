@@ -1,0 +1,71 @@
+<div ng-show="!(nextActionShowFlag)">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <button class="button button-clear" ng-click="hideModal()">
+            <i class="ion ion-chevron-left" style="font-size: 25px;margin-left: 10px;margin-top: 12px;color:#fff"></i>
+        </button>
+        <h1 class="title">签署意见</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="ui-wrap">
+            <table class="cm_tb_list">
+                <tbody>
+                <tr>
+                    <td class="td_width_15">客户名称:</td>
+                    <td class="td_width_50">{{item.CustomerName}}</td>
+                </tr>
+                <tr>
+                    <td class="td_width_15">借据流水号:</td>
+                    <td class="td_width_50">{{item.SerialNo}}</td>
+                </tr>
+                <tr>
+                    <td class="td_width_15">业务品种:</td>
+                    <td class="td_width_50">{{item.BusinessType}}</td>
+                </tr>
+                <tr>
+                    <td class="td_width_15">业务品种:</td>
+                    <td class="td_width_50">{{item.BusinessType}}</td>
+                </tr>
+                <tr>
+                    <td class="td_width_15">余额:</td>
+                    <td class="td_width_50">{{item.Balance}}</td>
+                </tr>
+                <tr>
+                    <td class="td_width_15">人工认定结果:</td>
+                    <td class="td_width_50">
+                        <select required="required" class="am-select" ng-model="classifyResult.select" ng-options="ClassifyResult.ITEMNO as ClassifyResult.ITEMNAME for ClassifyResult in ClassifyResults">
+                            <option value="">--请选择--</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td_width_15">认定理由:</td>
+                    <td class="td_width_50"><textarea class="am-textarea"
+                                                      ng-model="classifyResult.reason"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="td_width_15">会计月份:</td>
+                    <td class="td_width_50">{{item.AccountMonth}}</td>
+                </tr>
+                <tr>
+                    <td class="td_width_15">登记人:</td>
+                    <td class="td_width_50">{{item.UserName}}</td>
+                </tr>
+                <tr>
+                    <td class="td_width_15">登记机构:</td>
+                    <td class="td_width_50">{{item.OrgName}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </ion-content>
+
+    <ion-footer-bar>
+
+        <div class="col col-100">
+            <button type="button" class="am-button am-button-blue" ng-click="saveClassifyOption()">保存并提交
+            </button>
+        </div>
+
+    </ion-footer-bar>
+</div>

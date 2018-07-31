@@ -1,0 +1,118 @@
+                <ion-side-menu-content drag-content="true" edge-drag-threshold=50 style="width:{{contentWidth}}px" ng-controller="marketTaskListController">
+                	<ion-header-bar  align-title="center" class="bar-ipad-nav" style="height: {{barHeight}}px">
+                        <h1  class="title" style="height:{{barHeight}}px;line-height: {{barHeight}}px;font-size: {{barFontSize}}px;top:0px;margin-top: 0px">{{menuInfo.menuName}}</h1>
+                        <div style="position: absolute;right: 20px;font-size: 30px;color: white;bottom: 5px;"
+                        class="ion-search" ng-click="showSearchBar()">
+
+                        </div>
+                        <div style="width:{{contentWidth}}px;position: fixed;background-color: #ffffff;height: 250px;top: {{barHeight}}px;border-bottom:1px solid #ccc;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.17);-moz-box-shadow: 0 1px 1px rgba(0,0,0,0.17);box-shadow: 0 1px 1px rgba(0,0,0,0.17)"
+                             ng-if="info.show" ng-controller="marketSearchIndController" class="js-input-wrapper">
+
+                            <ul style="width:{{contentWidth}}px;">
+
+                                    <li>
+                                        <div>
+
+                                            <input type="text" placeholder="客户编号"
+                                                   ng-model="marketUser.customerId"
+                                                   style="width: {{contentWidth*0.6}}px;margin-left: {{contentWidth*0.2}}px;margin-top:10px;border:1px solid #d4d0d0;padding-left: 6px;border-radius: 4px;">
+
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+
+                                            <input type="text" placeholder="客户名称" ng-model="marketUser.customerName"
+                                                   style="width: {{contentWidth*0.6}}px;margin-left: {{contentWidth*0.2}}px;margin-top:10px;border:1px solid #d4d0d0;padding-left: 6px;border-radius: 4px;">
+
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <select class="am-select" ng-model="cert"
+                                                    ng-options="option.ItemName for option in item"
+                                                    style="width: {{contentWidth*0.6}}px;margin-left: {{contentWidth*0.2}}px;margin-top:10px;border:1px solid #d4d0d0;padding-left: 6px;border-radius: 4px;">
+                                                <option value="">证件类型</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+
+                                            <input type="text" placeholder="证件编号"
+                                                   ng-model="cert.certID"
+                                                   style="width: {{contentWidth*0.6}}px;margin-left: {{contentWidth*0.2}}px;margin-top:10px;border:1px solid #d4d0d0;padding-left: 6px;border-radius: 4px;"
+                                                   ng-bind="info.CretNo">
+
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row" style="margin-top: 20px;margin-left: {{contentWidth*0.2}}px; width: {{contentWidth}}px;">
+                                            <div class="col col-50;" style="text-align: left; width: 100px;"><button class="button button-assertive" ng-click="clearData()">清 除</button> </div>
+                                            <div class="col col-50;" style="text-align: left; width: 100px;"><button class="button button-positive" ng-click="searchinfo()">搜 索</button> </div>
+
+                                        </div>
+                                    </li>
+
+                            </ul>
+
+
+                        </div>
+                    </ion-header-bar>
+                                     
+                    <ion-content class="stable-bg" style="width:{{contentWidth}}px">
+			            <!--新增营销页面详情按钮  -->
+			            <div class="row" style="margin-top: 10px;width:{{contentWidth}}px;" ng-if="$root.menuClass.createMarket">
+                            <div style="margin-left:35px; width: 60px;"><button class="button button-positive" ng-click="createMarket()">新增</button> </div>
+                            <div style="margin-left:10px; width: 60px;"><button class="button button-positive" ng-click="searchinfo()">抢单</button> </div>
+                            <div style="margin-left:10px; width: 60px;"><button class="button button-positive" ng-click="selectMarketDetail()">详情</button> </div>
+                            <div style="margin-left:10px; width: 60px;"><button class="button button-positive" ng-click="removeMarketInfo()">删除</button> </div>
+                            <div style="margin-left:10px; width: 100px;"><button class="button button-positive" ng-click="updateMarketingStatus({{menuItems[1].menuId}})">提交扫描</button> </div>
+                            <div style=" width: 130px;"><button class="button button-positive" ng-click="updateMarketingStatus({{menuItems[2].menuId}})">转为无效营销</button> </div>
+                            <div style=" width: 130px;"><button class="button button-positive" ng-click="updateMarketingStatus({{menuItems[3].menuId}})">转为无需营销</button> </div>
+                            <div style=" width: 130px;"><button class="button button-positive" ng-click="updateMarketingStatus()">退回分配岗</button> </div>                         
+                    	</div>	
+                    	<!--已完成营销页面详情按钮  -->
+			            <div class="row" style="margin-top: 10px;width:{{contentWidth}}px;" ng-if="$root.menuClass.finishMarket">
+                            <div style="margin-left:35px; width: 60px;"><button class="button button-positive" ng-click="selectMarketDetail()">详情</button> </div>
+                            <div style="margin-left:10px; width: 130px;"><button class="button button-positive" ng-click="updateMarketingStatus({{menuItems[0].menuId}})">转为新增营销</button> </div>
+                    	</div>	
+                    	<!--无效营销页面详情按钮  -->
+			            <div class="row" style="margin-top: 10px;width:{{contentWidth}}px;" ng-if="$root.menuClass.invalidMarket">
+                            <div style="margin-left:35px; width: 60px;"><button class="button button-positive" ng-click="selectMarketDetail()">详情</button> </div>
+                            <div style="margin-left:10px; width: 130px;"><button class="button button-positive" ng-click="updateMarketingStatus({{menuItems[0].menuId}})">转为新增营销</button> </div>
+                    	</div>	
+                    	<!--无需营销页面详情按钮  -->
+			            <div class="row" style="margin-top: 10px;width:{{contentWidth}}px;" ng-if="$root.menuClass.unwantedMarket">
+                            <div style="margin-left:35px; width: 60px;"><button class="button button-positive" ng-click="selectMarketDetail()">详情</button> </div>
+                            <div style="margin-left:10px; width: 60px;"><button class="button button-positive" ng-click="removeMarketInfo()">删除</button> </div>                        
+                    	</div>			   	
+                        <table class="bmm_tb_list">
+							<tr>
+								<th>任务编号</th>
+								<th>客户名称</th>
+								<th>客户性别</th>
+								<th>证件类型</th>
+								<th>证件号码</th>
+								<th>业务品种</th>
+							</tr>
+							<tr class="td_width_30" ng-repeat="userInfo in items"  ng-class="{'item-selected': $index == selectedDataRow}" ng-dblclick="goDetail(userInfo,$index)" ng-click="toClick(userInfo,$index)" >
+								<td>{{userInfo.SerialNo}}</td>
+								<td>{{userInfo.customerName}}</td>
+								<td>{{userInfo.sex}}</td>
+								<td>{{userInfo.ItemName}}</td>
+								<td>{{userInfo.certID}}</td>
+								<td>{{userInfo.BusinessType}}</td>
+							</tr>
+						</table>	
+						<div class="noDataBox" ng-show="info.noData">
+	                        <div class="nodata">
+	                            <img src="img/empty_page.png" width="70px">
+	                            <span class="nodata_span">暂无数据</span>
+	                        </div>
+                      	</div>
+							
+					</ion-content>
+                </ion-side-menu-content>
+
+

@@ -1,0 +1,134 @@
+<ion-view ng-style="{'width':'{{contentWidth}}px'}" ng-controller="CollectRecordDetailController">
+
+    <ion-header-bar class="bar-positive">
+    	<div class="button am-back" ng-click="closeCollectRecordDetail()" style="top:{{barHeight*0.1}}px"></div>
+		<h1 class="title" ng-if="IsDetailView">催收记录详情</h1>
+		<h1 class="title" ng-if="!IsDetailView">新增催收记录</h1>
+    </ion-header-bar>
+
+	<ion-tabs class="tabs-top tabs-striped">
+		<ion-tab title="基本信息">
+			<ion-view>
+			<ion-content>
+				<div class="ui-wrap">
+					<table class="bm_tb_list">
+						<tbody>
+							<tr>
+								<td class="td_width_40">催收联系人<font color=red>*</font>：</td>
+								<td>
+									<input type="" ng-if="IsRelative === '0'" class="ba-input" ng-model="collect.ContactorName"/>
+									<input type="" ng-if="IsRelative === '1'" disabled class="ba-input" ng-model="collect.ContactorName"/>
+								</td>
+								<!-- <td ng-click="selectContactorName()">{{collect.ContactorName}}</td> -->
+							</tr>
+							<tr>
+								<td class="td_width_40">催收联系人电话<font color=red>*</font>：</td>
+								<td>
+									<input type="" ng-if="IsRelative === '0'" class="ba-input" ng-model="collect.ContactTelNo"/>
+									<input type="" ng-if="IsRelative === '1'" disabled class="ba-input" ng-model="collect.ContactTelNo"/>
+								</td>
+							</tr>
+							<tr>
+								<td class="td_width_40">逾期原因<font color=red>*</font>：</td>
+								<td>
+									<select ng-if="IsRelative === '0'" class="ba-select" ng-options='ExplanAtionCode.ItemNo as ExplanAtionCode.ItemName for ExplanAtionCode in ExplanAtionCodes'  ng-model='collect.ExplanAtionCode'>
+										<option value="">--请选择--</option>
+									</select>
+									<select ng-if="IsRelative === '1'" disabled class="ba-select" ng-options='ExplanAtionCode.ItemNo as ExplanAtionCode.ItemName for ExplanAtionCode in ExplanAtionCodes'  ng-model='collect.ExplanAtionCode'>
+										<option value="">--请选择--</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td class="td_width_40">还款意愿<font color=red>*</font>：</td>
+								<td>
+									<select ng-if="IsRelative === '0'" required="required" class="ba-select" ng-options='PayDesire.ItemNo as PayDesire.ItemName for PayDesire in PayDesires' ng-model='collect.PayDesire'>
+										<option value="">--请选择--</option>
+									</select>
+									<select ng-if="IsRelative === '1'" disabled required="required" class="ba-select" ng-options='PayDesire.ItemNo as PayDesire.ItemName for PayDesire in PayDesires' ng-model='collect.PayDesire'>
+										<option value="">--请选择--</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td class="td_width_40">还款能力<font color=red>*</font>：</td>
+								<td>
+									<select ng-if="IsRelative === '0'" required="required" class="ba-select" ng-options='PayAbility.ItemNo as PayAbility.ItemName for PayAbility in PayAbilitys' ng-model='collect.PayAbility'>
+										<option value="">--请选择--</option>
+									</select>
+									<select ng-if="IsRelative === '1'" disabled required="required" class="ba-select" ng-options='PayAbility.ItemNo as PayAbility.ItemName for PayAbility in PayAbilitys' ng-model='collect.PayAbility'>
+										<option value="">--请选择--</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td class="td_width_40">催收结果：</td>
+								<td>
+									<input type="" ng-if="IsRelative === '0'" class="ba-input" ng-model="collect.ContactResult"/>
+									<input type="" ng-if="IsRelative === '1'" disabled class="ba-input" ng-model="collect.ContactResult"/>
+								</td>
+							</tr>
+							<tr>
+								<td class="td_width_40">部分还款金额：</td>
+								<td>
+									<input type="" ng-if="IsRelative === '0'" style="text-align: right"  class="ba-input" ng-model="collect.RepayAmount"/>
+									<input type="" ng-if="IsRelative === '1'" disabled style="text-align: right"  class="ba-input" ng-model="collect.RepayAmount"/>
+								</td>
+							</tr>
+							<tr>
+								<td class="td_width_40">催收方式<font color=red>*</font>：</td>
+								<td>
+									<select ng-if="IsRelative === '0'" required="required" class="ba-select" ng-options='CollectMethod.ItemNo as CollectMethod.ItemName for CollectMethod in CollectMethods' ng-model='collect.ContactMethod'>
+										<option value="">--请选择--</option>
+									</select>
+									<select ng-if="IsRelative === '1'" disabled required="required" class="ba-select" ng-options='CollectMethod.ItemNo as CollectMethod.ItemName for CollectMethod in CollectMethods' ng-model='collect.ContactMethod'>
+										<option value="">--请选择--</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td class="td_width_40">催收日期<font color=red>*</font>：</td>
+								<td>
+									<input class="ba-input" type="date" ng-if="IsRelative === '0'" ng-model="collect.ProcessTime" >
+									<input class="ba-input" type="date" ng-if="IsRelative === '1'" disabled ng-model="collect.ProcessTime" >
+								</td>
+							</tr>
+							<tr>
+								<td class="td_width_40">备注：</td>
+								<td>
+									<input ng-if="IsRelative === '0'" type="" class="ba-input" ng-model="collect.Remark" >
+									<input ng-if="IsRelative === '1'" disabled type="" class="ba-input" ng-model="collect.Remark" >
+								</td>
+							</tr>
+							<tr>
+								<td class="td_width_40">执行人<font color=red>*</font>：</td>
+								<td ng-click="selProcessUser()" class="cm-input">
+								   <input type="" class="ba-input" ng-model="collect.ProcessUserID" ng-show="false">
+									<input class="ba-input" type="" readonly ng-model="collect.ProcessUserName">
+								   <!--{{collect.ProcessUserName}}-->
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</ion-content>
+			</ion-view>
+		</ion-tab>
+
+		<!--<ion-tab title="影像采集" ng-controller="CollectAudioController">-->
+
+		<!--</ion-tab>-->
+	</ion-tabs>
+
+    <ion-footer-bar ng-if="IsRelative === '0'">
+        <div class="btn-box row">
+        	<!--<div class="col col-100">
+                <button type="button" class="am-button am-button-blue" ng-click="uploadAudio()">上传影像资料</button>
+            </div>-->
+            <div class="col col-100">
+                <button type="button" class="am-button am-button-blue" ng-click="saveContactorRecord()">保存</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+    </ion-view>
+</ion-view>

@@ -1,0 +1,47 @@
+<ion-view ng-style="{'width':'{{contentWidth}}px'}" ng-controller="ReportInfoController">
+    <ion-header-bar class="bar-positive" align-title="center">
+        <h1 class="title">详情</h1>
+        <button class="button icon ion-plus-round" ng-if="ItemNo == '01010010' && showButton" style="color: white;" ng-click="openRecordModal()"></button>
+    </ion-header-bar>
+    <ion-tabs ng-show="checkType.ItemNo === '01010'" class="tabs-top tabs-striped tabs-color-positive" delegate-handle="info-tabs">
+        <ion-tab title="提款记录"  class="has-tabs-top-and-header" on-select="hideAddButton()" ng-controller="PutoutRecordController">
+            <ion-view>
+                <div ng-include="'templates/afterLoanManage/putoutRecordList.html'"></div>
+            </ion-view>
+        </ion-tab>
+
+        <ion-tab title="用款记录" class="has-tabs-top-and-header" on-select="hideAddButton()" ng-controller="UsedRecordController">
+            <ion-view>
+                <div ng-include="'templates/afterLoanManage/usedRecordList.html'"></div>
+            </ion-view>
+        </ion-tab>
+
+        <ion-tab title="贷款用途分析" class="has-tabs-top-and-header" on-select="hideAddButton()">
+            <ion-view>
+                <div ng-include="'templates/afterLoanManage/loanUsage.html'"></div>
+            </ion-view>
+        </ion-tab>
+
+
+    </ion-tabs>
+    <ion-tabs ng-show="checkType.ItemNo === '01020'" class="tabs-top tabs-striped tabs-color-positive" delegate-handle="info-tabs">
+        <ion-tab title="客户检查报告摘要">
+            <ion-view>
+                <div ng-include="'templates/afterLoanManage/customerCheckSummary.html'"></div>
+            </ion-view>
+
+        </ion-tab>
+        <ion-tab title="客户检查报告">
+            <ion-view>
+                <div ng-include="'templates/afterLoanManage/customerCheckReport.html'"></div>
+            </ion-view>
+
+        </ion-tab>
+        <ion-tab title="贷后检查表">
+            <ion-view>
+                <div ng-include="'templates/afterLoanManage/afterLoanCheck.html'"></div>
+            </ion-view>
+
+        </ion-tab>
+    </ion-tabs>
+</ion-view>

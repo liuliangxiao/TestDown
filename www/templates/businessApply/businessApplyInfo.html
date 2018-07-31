@@ -1,0 +1,33 @@
+<ion-view ng-style="{'width':'{{contentWidth}}px'}" >
+    <ion-header-bar class="bar-positive" align-title="center">
+        <div ng-show="!colReadOnly" style="position: absolute;left: 20px;font-size: 30px;color: white;bottom: 5px;"
+        class="ion-plus" ng-click="createBusinessApplyInfo()">
+        </div>
+        <h1 class="title">申请信息</h1>
+    </ion-header-bar>
+    <ion-tabs class="tabs-top tabs-striped tabs-color-positive">
+    	<!--循环遍历 FlowList.IonTabList 生成tab页-->
+        <ion-tab ng-repeat="tabInfo in flowMenu.IonTabList"  title="{{tabInfo.tabName}}" ng-click="selectTabInfo(tabInfo,$index)" >
+        </ion-tab>
+    </ion-tabs>
+    <!--引入公共模板页面解析生成可修改的详情展示页  -->
+	<div ng-if="!colReadOnly&&DWQuery" ng-include="'templates/common/tabDetailInfo.html'"></div>
+    <!--引入公共模板页面解析生成不可读的详情展示页  -->	
+	<div ng-if="colReadOnly&&DWQuery" ng-include="'templates/common/queryInfoDetail.html'"></div>
+	<!--引入页面解析生成流程阶段列表页面  -->	
+	<div ng-if="!DWQuery&&tabId == '0030'" ng-include="'templates/businessApply/list/flowTaskList.html'"></div>
+	<!--引入公共模板页面解析生成审批意见列表页面  -->	
+	<div ng-if="!DWQuery&&tabId == '0040'" ng-include="'templates/businessApply/list/flowOpinonList.html'"></div>
+ 	<!--引入页面解析担保列表页面  -->
+ 	<div ng-if="!DWQuery&&tabId == '0050'" ng-include="'templates/businessApply/list/guarantyList.html'"></div>
+<!--  	<ion-footer-bar>
+	    <div class="btn-box row">
+	        <div class="col col-40">
+	            <button type="button" class="am-button am-button-red" ng-click="businessApplyInfoUpdate()">保存</button>
+	        </div>
+	        <div class="col col-40">
+	            <button type="button" class="am-button am-button-blue" ng-click="updateMarketingStatus()">提交扫描岗</button>
+	        </div>
+	    </div>
+	</ion-footer-bar> -->
+</ion-view>

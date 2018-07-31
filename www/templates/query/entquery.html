@@ -1,0 +1,212 @@
+<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50>
+            <!--<ion-header-bar class="bar-ipad-nav">-->
+            <!--<h1 class="title" >公司客户查询</h1>-->
+
+            <!--<div style="position: absolute;right: 20px;font-size: 30px;color: white;margin-top: 20px"-->
+            <!--class="ion-search" ng-click="showSearchBar()">-->
+
+            <!--</div>-->
+
+            <!--<div style="width:100%;position: fixed;background-color: #e1e1e1;height: 130px;top: 43px"-->
+            <!--ng-if="info.show" ng-controller="searchEntController" class="searchBar">-->
+
+            <!--<table style="width: 848px">-->
+
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<div>-->
+
+            <!--<input type="text" placeholder="{{placeHolder.customer}}"-->
+            <!--ng-model="query.customerId"-->
+            <!--style="margin-left: 30px;margin-top:10px;border-color: #3a3a3a;border-width: 1px;border-style: solid;text-align: center">-->
+
+            <!--</div>-->
+            <!--</td>-->
+            <!--<td>-->
+            <!--<div>-->
+
+            <!--<input type="text" placeholder="客户名称" ng-model="query.customerName"-->
+            <!--style="margin-left: 30px;margin-top:10px;border-color: #3a3a3a;border-width: 1px;border-style: solid;text-align: center">-->
+
+            <!--</div>-->
+            <!--</td>-->
+            <!--<td>-->
+            <!--<div>-->
+
+            <!--<input type="text" placeholder="{{placeHolder.cert}}" ng-model="query.certID"-->
+            <!--style="margin-left: 30px;margin-top:10px;border-color: #3a3a3a;border-width: 1px;border-style: solid;text-align: center"-->
+            <!--ng-bind="info.CretNo">-->
+
+            <!--</div>-->
+            <!--</td>-->
+            <!--<td>-->
+            <!--<div>-->
+            <!--<select class="am-select" ng-model="bank_select.bank"-->
+            <!--ng-options="option.OrgId as option.OrgName for option in bank_select.codes"-->
+            <!--style="margin-left: 30px;margin-top:10px;border-color: #3a3a3a;border-width: 1px;border-style: solid;text-align: center">-->
+            <!--<option value="">请选择机构</option>-->
+            <!--</select>-->
+            <!--</div>-->
+            <!--</td>-->
+            <!--</tr>-->
+
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<div>-->
+
+
+            <!--<div style="margin-top: 20px;margin-left: 30px">-->
+
+            <!--<button class="button button-positive"-->
+            <!--style="position: absolute;align-content: center;left: 400px;"-->
+            <!--ng-click="searchinfo()">-->
+            <!--serach-->
+            <!--</button>-->
+
+            <!--</div>-->
+            <!--</td>-->
+            <!--</tr>-->
+
+            <!--</table>-->
+
+
+            <!--</div>-->
+            <!--</ion-header-bar>-->
+            <ion-side-menus>
+                <ion-side-menu-content drag-content="true" edge-drag-threshold=50 style="width:{{contentWidth}}px" >
+                    <ion-header-bar align-title="center" class="bar-ipad-nav" style="width:{{contentWidth}}px">
+                        <h1 class="title">客户详情</h1>
+                    </ion-header-bar>
+
+                    <div ng-include="'templates/query/queryInfoDetail.html'"></div>
+
+                </ion-side-menu-content>
+
+                <!-- 二级导航条-->
+                <ion-side-menu side="left" width="{{secondNavWidth}}" expose-aside-when="large">
+                    <ion-header-bar class="bar-ipad-nav" align-title="center">
+                        <h1 class="title">公司客户查询</h1>
+
+                        <div style="position: absolute;right: 20px;font-size: 30px;color: white;bottom: 5px;"
+                             class="ion-search" ng-click="showSearchBar()">
+
+                        </div>
+
+                        <div style="width:{{secondNavWidth}}px;position: fixed;background-color: #ffffff;height: 250px;top: 43px;border-bottom:1px solid #ccc;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.17);-moz-box-shadow: 0 1px 1px rgba(0,0,0,0.17);box-shadow: 0 1px 1px rgba(0,0,0,0.17)"
+                             ng-if="info.show" ng-controller="searchEntController" class="searchBar">
+
+                            <ul style="width:{{secondNavWidth}}px">
+
+                                <li>
+                                    <div>
+
+                                        <input type="text" placeholder="{{placeHolder.customer}}"
+                                               ng-model="query.customerId"
+                                               style="width: {{secondNavWidth*0.8}}px;margin-left: 30px;margin-top:10px;border:1px solid #d4d0d0;padding-left: 6px;border-radius: 4px;">
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+
+                                        <input type="text" placeholder="客户名称" ng-model="query.customerName"
+                                               style="width: {{secondNavWidth*0.8}}px;margin-left: 30px;margin-top:10px;border:1px solid #d4d0d0;padding-left: 6px;border-radius: 4px;">
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+
+                                        <input type="text" placeholder="{{placeHolder.cert}}" ng-model="query.certID"
+                                               style="width: {{secondNavWidth*0.8}}px;margin-left: 30px;margin-top:10px;border:1px solid #d4d0d0;padding-left: 6px;border-radius: 4px;"
+                                               ng-bind="info.CretNo">
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <select class="am-select" ng-model="bank_select.bank"
+                                                ng-options="option.OrgId as option.OrgName for option in bank_select.codes"
+                                                style="width: {{secondNavWidth*0.8}}px;margin-left: 30px;margin-top:10px;border:1px solid #d4d0d0;padding-left: 6px;border-radius: 4px;">
+                                            <option value="">请选择机构</option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row" style="margin-top: 20px;margin-left: 30px;width: {{secondNavWidth*0.8}}px;">
+
+                                        <div class="col col-50;" style="text-align: center; width: 100px;"><button class="button button-assertive" ng-click="clearData()">清 除</button> </div>
+                                        <div class="col col-50;" style="text-align: center; width: 100px;"><button class="button button-positive" ng-click="searchinfo()">搜 索</button> </div>
+
+
+                                        <!--<button class="button button-assertive"-->
+                                                <!--style="width: 100px;position: absolute;align-content: center;"-->
+                                                <!--ng-click="clearData()">-->
+                                            <!--清 除-->
+                                        <!--</button>-->
+                                        <!--<button class="button button-positive"-->
+                                                <!--style="width: 100px;position: absolute;align-content: center;margin-left: 150px"-->
+                                                <!--ng-click="searchinfo()">-->
+                                            <!--查 询-->
+                                        <!--</button>-->
+
+                                    </div>
+                                </li>
+
+                            </ul>
+
+
+                        </div>
+                    </ion-header-bar>
+                    <ion-content class="stable-bg" ng-controller="listEntController">
+
+                        <ion-refresher on-refresh="refresh()"
+                                       pulling-text="下拉刷新"
+                                       refreshing-text="正在刷新中"
+                                       spinner="android">
+                        </ion-refresher>
+                        <dl class="am-list arrow-list">
+                            <dd class="item am-button-default" ng-repeat="item in items" ng-class="{'item-selected': $index == selectedRow}" ng-click="goDetail(item,$index)">
+                                <h3>{{item.CustomerName}}【{{item.CustomerId}}】</h3>
+                                <h4>客户类型 :{{item.CustomerTypeName}} | 机构类型 :{{item.OrgNatureName}}</h4>
+                                <h4>{{item.CertTypeName}}：{{item.CertID}} | 客户状态 :{{item.Status}}</h4>
+                                <i class="am_iconfont am-icon-fl">&#xe687;</i>
+                            </dd>
+                            <div class="noDataBox" ng-show="info.noData">
+                                <div class="nodata">
+                                    <img src="img/empty_page.png" width="70px">
+                                    <span class="nodata_span">暂无数据</span>
+                                </div>
+                            </div>
+                        </dl>
+
+                        <div class="loadingBox" ng-show="loadingMore">
+                            <ion-spinner icon="android"></ion-spinner>
+                            <h3>正在加载中</h3>
+                        </div>
+                        <ion-infinite-scroll icon="ion-loading-c"
+                                             ng-if="hasMore"
+                                             on-infinite="loadMore()"
+                                             distance="1%">
+                            <div>正在加载中</div>
+                        </ion-infinite-scroll>
+
+                    </ion-content>
+                </ion-side-menu>
+
+            </ion-side-menus>
+
+        </ion-side-menu-content>
+
+        <!-- 一级导航条-->
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'">
+            </div>
+        </ion-side-menu>
+
+
+    </ion-side-menus>
+</ion-view>

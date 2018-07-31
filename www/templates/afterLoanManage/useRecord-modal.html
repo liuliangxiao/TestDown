@@ -1,0 +1,57 @@
+<ion-modal-view ng-controller="AddNewApplyController" style="height: 500px;">
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">新增用款记录</h1>
+    </ion-header-bar >
+    <ion-content>
+        <table class="bm_tb_list">
+
+            <tbody>
+
+            <tr>
+                <td class="td_width_40">客户账号<span class="red-star">*</span></td><td><input type="" ng-model="NewRecord.AccountNo" class="ba-input"></td>
+            </tr>
+
+            <tr>
+                <td class="td_width_40">币种<span class="red-star">*</span></td>
+                <td>
+                    <select required="required" class="ba-select" ng-options="c.ItemNo as c.ItemName for c in currencies" ng-model='NewRecord.Currency'>
+                        <option value="">--请选择--</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="td_width_40">对方用户名<span class="red-star">*</span></td><td><input type="" ng-model="NewRecord.ItemName" class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">对方账号<span class="red-star">*</span></td><td><input type="" ng-model="NewRecord.ItemAccountNo" class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">交易日期<span class="red-star">*</span></td><td><input type="date" ng-model="date.ItemDate" class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">交易金额<span class="red-star">*</span></td><td><input type="" ng-model="NewRecord.ItemSum"  class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">账户余额</td><td><input type="" ng-model="NewRecord.Balance"  class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">摘要代码</td><td><input type="" ng-model="NewRecord.ItemDescribe"  class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">凭证号</td><td><input type="" ng-model="NewRecord.ItemContent"  class="ba-input"></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="row">
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-blue" ng-click="addNewRecord()">保存</button>
+            </div>
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-red" ng-click="recordModal.hide()">取消</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

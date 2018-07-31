@@ -1,0 +1,36 @@
+<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50 >
+            <ion-header-bar ng-show="info.show" style="height: 100px;background-color: #e1e1e1" ng-controller="">
+
+
+            </ion-header-bar>
+            <ion-side-menus>
+                <ion-side-menu-content drag-content="true" edge-drag-threshold=50 style="width: 1000px">
+
+                    <div ng-include="'templates/query/queryInfoDetail.html'"></div>
+
+                </ion-side-menu-content>
+
+                <!-- 二级导航条-->
+                <ion-side-menu side="left" width="{{secondNavWidth}}" expose-aside-when="large">
+
+                    <ion-content class="stable-bg" ng-controller="">
+
+                    </ion-content>
+                </ion-side-menu>
+
+            </ion-side-menus>
+
+        </ion-side-menu-content>
+
+        <!-- 一级导航条-->
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'">
+            </div>
+        </ion-side-menu>
+
+
+    </ion-side-menus>
+</ion-view>

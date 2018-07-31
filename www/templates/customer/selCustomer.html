@@ -1,0 +1,19 @@
+<ion-modal-view >
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">客户列表</h1>
+    </ion-header-bar>
+
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-icon-right" ng-repeat="item in items" ng-click="chooceCustomer($index, item)">
+                {{item.CustomerName}}
+                <i class="icon ion-checkmark-round" ng-if="index === $index"></i>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="col col-100">
+            <button type="button" class="am-button am-button-blue" ng-click="closeSelCustomerModal()">确定</button>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

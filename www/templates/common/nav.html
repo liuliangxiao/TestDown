@@ -1,0 +1,117 @@
+<!--ipad一级导航栏-->
+<ion-content class="fstNav-content" scroll="false">
+    <!--点击图像进入工作台-->
+    <div class="nav-wel-container">
+        <div class="ipad-avatar myForiPad" ng-click="moduleSwitch('myForiPad','myForiPad')"></div>
+        <div class="ipad-userName">
+            <p>欢迎您<br/>{{userName}}</p>
+        </div>
+    </div>
+
+        <ion-scroll zooming="false" direction="y" style="height: {{windowHeight-300}}px; position: relative;" delegate-handle="navScroll">
+            <!--客户经理 业务提醒、影像采集、信息查询-->
+            <div ng-if="$root.userClass[10]">
+                <!--业务提醒-->
+                <!-- <div class="item ipad-gztx ipad-item remind bg-color" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('remind','remind')" style="background-color: #2c97de;"></div> -->
+            <!--我的工作台-->
+            <div class="item ipad-workbench ipad-item gztx" ng-disabled="menuClickable" ng-click="moduleSwitch('remind','gztx')"></div>
+            </div>
+             <div ng-if="$root.userClass[65]">
+ 				<!--业务签批-->
+                <div class="item ipad-examine ipad-item approve bg-color" id="examine" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('approve','approve')" ></div>
+            </div>            
+            <div ng-if="$root.userClass[20]">
+                <!--信息查询-->
+                <div class="item ipad-query ipad-item query" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('query','query')"></div>
+            </div>
+            <div ng-if="$root.userClass[25]">
+                <!-- 客户管理-->
+                <div class="item ipad-customerManagement ipad-item customerManagement" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('CustomerList','customerManagement')"></div>
+			</div>
+			<div ng-if="$root.userClass[30]">
+                <!--符合pc端逻辑的 业务申请-->
+                <div class="item ipad-businessApplication ipad-item businessApply" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('businessApply','businessApply')"></div>
+			</div>
+			<div ng-if="$root.userClass[60]">
+                <!--业务申请单换合同放款   userClass[35]换userClass[60]-->
+                <!-- <div class="item ipad-applyOrder ipad-item businessApplication" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('businessApplication','businessApplication')"></div> -->
+                     <div class="item ipad-applyOrder ipad-item businessApplication" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('loanContract','businessApplication')"></div>
+			</div>
+			<div ng-if="$root.userClass[40]">
+                <!-- 贷后管理-->
+                <div class="item ipad-afterLoanManagement ipad-item afterLoanManagement" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('inspect','afterLoanManagement')"></div>
+			</div>
+			<div ng-if="$root.userClass[15]">
+                <!--影像采集换营销管理  userClass[15]换userClass[55] -->
+                <!-- <div class="item ipad-screenage ipad-item screenageIndex" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('screenageIndex','screenageIndex')"></div> -->
+                     <!-- <div class="item ipad-screenage ipad-item screenageIndex" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('marketing','marketing')"></div> -->
+            </div>
+			<!-- <div ng-if="$root.userClass[45]">
+                催收管理
+                <div class="item ipad-collectManaerment ipad-item collectManaerment" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('collectManaerment','collectManaerment')"></div>
+			</div> -->
+			<!-- <div ng-if="$root.userClass[50]">
+                                         贷款计算
+                <div class="item ipad-loanTool ipad-item  loanCalcIndex" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('loanCalcIndex','loanCalcIndex')"></div>
+			</div> -->
+			<!-- <div ng-if="$root.userClass[55]">
+ 				营销管理 
+            	<div class="item ipad-marketing ipad-item marketing" ng-disabled="menuClickable"
+                 ng-click="moduleSwitch('marketing','marketing')">营销管理</div>     
+
+            </div> -->
+			<!-- <div ng-if="$root.userClass[60]">
+ 				合同放款 
+            	<div class="item ipad-loanContract ipad-item loanContract" ng-disabled="menuClickable"
+                 ng-click="moduleSwitch('loanContract','loanContract')">合同放款</div>     
+
+            </div> -->
+
+            <!-- 审批岗  业务签批、信息查询-->
+            <div ng-if="$root.userClass.approver">
+                <!--业务签批-->
+                <div class="item ipad-examine ipad-item approve bg-color" id="examine" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('approve','approve')" ></div>
+                <!--信息查询-->
+                <div class="item ipad-query ipad-item query" id=ipadquery" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('query','query')"></div>
+
+            </div>
+
+            <!-- 管理岗 业务签批、经营报表、信息查询-->
+            <div ng-if="$root.userClass.manager">
+                <!--业务签批-->
+                <div class="item ipad-examine ipad-item approve bg-color" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('approve','approve')" ></div>
+                <!--经营报表-->
+                <div class="item ipad-report ipad-item report" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('report','report')"></div>
+                <!--信息查询-->
+                <div class="item ipad-query ipad-item query" ng-disabled="menuClickable"
+                     ng-click="moduleSwitch('query','query')"></div>
+               
+                
+
+            </div>
+        </ion-scroll>
+
+    <div style="bottom: 30px;">
+        <!--设置-->
+        <!-- <div class="ipad-settings setting-bottom setAccountForiPad" ng-disabled="menuClickable"
+             ng-click="moduleSwitch('setAccountForiPad','setAccountForiPad')"></div> -->
+        <!--退出-->
+        <div class="ipad-exit exit-bottom logout" ng-disabled="menuClickable" ng-click="logout()"></div>
+    </div>
+</ion-content>

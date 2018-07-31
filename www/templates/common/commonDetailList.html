@@ -1,0 +1,47 @@
+<!-- yli18 2017年10月18日 -->
+<ion-refresher on-refresh="detailListRefresh()"pulling-text="下拉刷新" refreshing-text="正在刷新中" refreshing-icon="ios">
+</ion-refresher>
+<div ng-if="tabGroupLength > 0" style="width:{{contentWidth}}px;position:absolute;top: 49px;">
+<dl class="am-list arrow-list"  ng-if="detailItems.length!='0'">
+	<dd class="item am-button-default"   ng-class="{'item-selected': $index == detailListIndex}" 
+	ng-repeat="item in detailItems" on-double-tap="chooseDetail(item,$index,true)" ng-click="chooseDetail(item,$index)">
+		<div ng-repeat="groupItem in detailListGroup" >
+		    <h4 ng-if="groupItem.ColShow == '1'">{{groupItem.ColName}}：{{item[groupItem.ColId]}}</h4>
+		</div>
+	    <i class="am_iconfont am-icon-fl">&#xe61b;</i>						
+	</dd>	
+</dl>
+<div class="noDataBox" ng-show="detailItems.length == 0">
+	<div class="nodata">
+	    <img src="img/empty_page.png" width="70px">
+	    <span class="nodata_span">暂无数据</span>
+	</div>
+</div>  
+</div>
+<div ng-if="tabGroupLength == 0">
+<dl class="am-list arrow-list"  ng-if="detailItems.length!='0'">
+	<dd class="item am-button-default"   ng-class="{'item-selected': $index == detailListIndex}" 
+	ng-repeat="item in detailItems" on-double-tap="chooseDetail(item,$index,true)" ng-click="chooseDetail(item,$index)">
+		<div ng-repeat="groupItem in detailListGroup" >
+		    <h4 ng-if="groupItem.ColShow == '1'">{{groupItem.ColName}}：{{item[groupItem.ColId]}}</h4>
+		</div>
+	    <i class="am_iconfont am-icon-fl">&#xe61b;</i>						
+	</dd>	
+</dl>
+<div class="noDataBox" ng-show="detailItems.length == 0">
+	<div class="nodata">
+	    <img src="img/empty_page.png" width="70px">
+	    <span class="nodata_span">暂无数据</span>
+	</div>
+</div>  
+</div>
+<div class="loadingBox" ng-show="detailListLoadingMore">
+    <ion-spinner icon="android"></ion-spinner>
+    <h3>正在加载中</h3>
+</div>
+<ion-infinite-scroll icon="ion-loading-c"
+                     ng-if="detailListHasMore"
+                     immediate-check="false"                             
+                     on-infinite="detailListLoadMore()"
+                     distance="1%">
+</ion-infinite-scroll>

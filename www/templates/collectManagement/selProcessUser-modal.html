@@ -1,0 +1,44 @@
+<ion-modal-view >
+    <div>
+        <ion-header-bar class="bar-positive">
+            <h1 class="title">催收执行人</h1>
+        </ion-header-bar>
+        <ion-content>
+            <ion-refresher on-refresh="refresh()"
+                           pulling-text="下拉刷新"
+                           refreshing-text="正在刷新中"
+                           refreshing-icon="ios">
+            </ion-refresher>
+
+            <ion-list>
+                <ion-item class="item-icon-right" ng-repeat="item in ProcessUsers"
+                          ng-class="{'item-selected': $index == selectedRow}"
+                          ng-click="chooceUser($index, item)">
+
+                    <h3>用户名称：{{item.UserName}}【{{item.UserId}}】</h3>
+                </ion-item>
+            </ion-list>
+
+            <div class="noDataBox" ng-show="noProcessData">
+                <div class="nodata">
+                    <img src="img/empty_page.png" width="70px">
+                    <span class="nodata_span">暂无数据</span>
+                </div>
+            </div>
+            <div class="loadingBox" ng-show="loadingMore">
+                <ion-spinner icon="android"></ion-spinner>
+                <h3>正在加载中</h3>
+            </div>
+            <ion-infinite-scroll icon="ion-loading-c"
+                                 ng-if="hasMore"
+                                 on-infinite="loadMore()"
+                                 distance="1%">
+            </ion-infinite-scroll>
+        </ion-content>
+        <ion-footer-bar>
+            <div class="col col-100">
+                <button type="button" class="am-button am-button-blue" ng-click="closeSelUserModal()">确定</button>
+            </div>
+        </ion-footer-bar>
+    </div>
+</ion-modal-view>

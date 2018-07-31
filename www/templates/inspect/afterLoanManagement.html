@@ -1,0 +1,26 @@
+<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50>
+
+            <ion-side-menus>
+                <ion-side-menu-content drag-content="true" edge-drag-threshold=50 style="margin-top: 0px;padding-top: 0px"  >
+
+                    <!--***************************************最右边的详情部分 ******************************************************-->
+                    <div ng-include="'templates/inspect/afterLoanDetail.html'" style="margin-top: 0px;padding-top: 0px"></div>
+                </ion-side-menu-content>
+
+
+                <ion-side-menu side="left" width="{{secondNavWidth}}" expose-aside-when="large" style="margin-top: 0px;padding-top: 0px">
+                    <!--***********************************************中间部分的二级导航栏--***********************************************-->
+                    <div ng-include="'templates/inspect/afterLoanInfo.html'" style="margin-top: 0px;padding-top: 0px"></div>
+                </ion-side-menu>
+            </ion-side-menus>
+        </ion-side-menu-content>
+
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'"></div>
+        </ion-side-menu>
+    </ion-side-menus>
+    
+</ion-view>

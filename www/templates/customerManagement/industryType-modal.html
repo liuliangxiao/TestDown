@@ -1,0 +1,45 @@
+<ion-modal-view >
+    <ion-header-bar class="bar-positive">
+        <button class="button button-icon ion-ios-arrow-left" ng-show="!showFirstPage" ng-click="backToFirstPage()"></button>
+        <h1 class="title">国标行业分类选择</h1>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list >
+            <div ng-show="showFirstPage">
+                <ion-item ng-repeat="item in IndustryTypes" ng-click="confirmIndustryTypeClass(item)" ng-show="item.IsShow">
+                    <span ng-show="!item.IsLevel && item.ItemNo.length === 1"><i ng-class="item.ShowSub?'ion-minus-round':'ion-plus-round'"></i> </span>
+                    <!--<span ng-if="!item.IsLevel && item.ItemNo.length === 3">&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon ion-minus-round"></i> </span><i class="icon ion-minus-round"></i>-->
+                    <span ng-show="!item.IsLevel && item.ItemNo.length === 3" style="margin-left: 10%;"><i ng-class="item.ShowSub?'ion-minus-round':'ion-plus-round'"></i></span>
+                    <!--<span ng-if="!item.IsLevel && item.ItemNo.length === 4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon ion-minus-round"></i></span>-->
+                    <!--<span ng-show="!item.IsLevel && item.ItemNo.length === 4" style="margin-left: 20%;"><i ng-class="item.ShowSub?'ion-minus-round':'ion-plus-round'"></i></span>-->
+                    <span ng-show="item.IsLevel" style="margin-left: 20%;"></span>
+                    {{item.ItemName}}
+                </ion-item>
+            </div>
+            <div ng-show="!showFirstPage">
+                <ion-item ng-repeat="item in levels" ng-click="confirmIndustryType(item)">
+
+                    {{item.ItemName}}
+                </ion-item>
+            </div>
+
+        </ion-list>
+
+        <!--<ion-list ng-show="!showFirstPage">-->
+            <!--<ion-item ng-repeat="item in levels" ng-click="confirmIndustryType(item)">-->
+
+                <!--{{item.ItemName}}-->
+            <!--</ion-item>-->
+        <!--</ion-list>-->
+
+    </ion-content>
+    <ion-footer-bar>
+        <div class="btn-box row">
+            <div class="col col-100">
+                <button type="button" class="am-button am-button-blue" ng-click="IndustryTypeModal.hide()">取消</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+
+
+</ion-modal-view>

@@ -1,0 +1,68 @@
+<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50>
+
+            <ion-view>
+                <ion-header-bar align-title="center" class="bar-ipad-nav">
+                    <div class="button am-back" ng-click="goBack()"></div>
+                    <h1 class="title">全行信贷资产余额</h1>
+                </ion-header-bar>
+                <ion-header-bar class="bar-subheader item-input-inset">
+                    统计截止时间：
+                    <label class="item-input-wrapper">
+                        <input type="date" ng-model="info.date">
+                    </label>
+                    <button class="button" ng-click="search()">搜 索</button>
+                </ion-header-bar>
+                <ion-content class="gray-main">
+
+                    <div class="row" style="margin-top: 30px">
+                        <div class="col col-100">
+                            <div id="echart"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-100">
+                            <div class="ui-wrap">
+                                <table class="cm_tb_list">
+                                    <tbody>
+                                    <tr>
+                                        <th class="td_width_30">时间</th>
+                                        <td ng-repeat="obj in xDataList" class="td_width_15">{{obj}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="td_width_30">表内贷款余额</th>
+                                        <td ng-repeat="obj in yDataList1" class="td_width_15">{{obj}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="td_width_30">表外受托业务余额</th>
+                                        <td ng-repeat="obj in yDataList2" class="td_width_15">{{obj}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="td_width_30">全行信贷资产合计</th>
+                                        <td ng-repeat="obj in yDataList3" class="td_width_15">{{obj}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </ion-content>
+            </ion-view>
+
+
+        </ion-side-menu-content>
+
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'">
+            </div>
+        </ion-side-menu>
+
+
+    </ion-side-menus>
+
+</ion-view>
+
+

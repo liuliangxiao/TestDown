@@ -1,0 +1,105 @@
+<table class="bm_tb_list" ng-show="packItems['NEWRatePart'].length > 0">
+	<tbody  ng-show="item.showGroup">
+	<tr ng-repeat = "item in packItems['NEWRatePart'] | filter:{'Hide':false}">
+		<td ng-if="!item[0]['Hide']">{{item[0].KeyName}}</td>
+		<td ng-if="!item[0]['Hide']">
+			<!--Input框循环生成 start-->
+			<!--可更新Input-->
+			<input ng-if="item[0]['ColUpdateable'] == '1' && item[0]['ColEditStyle'] == '1' && item[0]['ColClick'] == 'calcBusinessRate'"
+				   ng-model="packObj['NEWRatePart'][item[0].KeyId]"
+				   ng-readonly="item[0]['ReadOnly']"
+				   ng-blur="calcBusinessRate(Currency,'NEWRatePart')"
+				   class="ba-input">
+			<input ng-if="item[0]['ColUpdateable'] == '1' && item[0]['ColEditStyle'] == '1' && item[0]['ColClick'] == ''"
+				   ng-model="packObj['NEWRatePart'][item[0].KeyId]"
+				   ng-readonly="item[0]['ReadOnly']"
+				   class="ba-input">
+			<!--不可更新Input-->
+			<label ng-if="item[0]['ColUpdateable'] == '0' && item[0]['ColEditStyle'] == '1'"
+				   ng-readonly="item[0]['ReadOnly']"
+				   class="ba-input">
+				{{packObj['NEWRatePart'][item[0].KeyId]}}
+			</label>
+			<!--Input框循环生成 end-->
+			<!--Select循环生成 start-->
+			<!--可更新Select-->
+			<select class="ba-select"
+					ng-if="item[0]['ColUpdateable'] == '1' && item[0]['ColEditStyle'] == '2' && item[0]['ColClick'] == 'calcBusinessRate'"
+					ng-disabled="item[0]['ReadOnly']"
+					ng-options="option.ItemNo as option.ItemName for option in item[0]['ColOptions']"
+					ng-model="packObj['NEWRatePart'][item[0].KeyId]"
+					ng-change="calcBusinessRate(Currency,'NEWRatePart')"
+			>
+				<option value=""></option>
+			</select>
+			<select class="ba-select"
+					ng-if="item[0]['ColUpdateable'] == '1' && item[0]['ColEditStyle'] == '2' && item[0]['ColClick'] == ''"
+					ng-disabled="item[0]['ReadOnly']"
+					ng-options="option.ItemNo as option.ItemName for option in item[0]['ColOptions']"
+					ng-model="packObj['NEWRatePart'][item[0].KeyId]"
+			>
+				<option value=""></option>
+			</select>
+			<!--不可更新Select-->
+			<select class="ba-select"
+					ng-if="item[0]['ColUpdateable'] == '0' && item[0]['ColEditStyle'] == '2'"
+					ng-disabled="item[0]['ReadOnly']"
+					ng-options="option.ItemNo as option.ItemName for option in item[0]['ColOptions']"
+					ng-model="packObj['NEWRatePart'][item[0].KeyId]"
+			>
+				<option value=""></option>
+			</select>
+			<!--Select循环生成 end-->
+		</td>
+		<td ng-if="!item[1]['Hide']">{{item[1].KeyName}}</td>
+		<td ng-if="!item[1]['Hide']">
+			<!--Input框循环生成 start-->
+			<!--可更新Input-->
+			<input ng-if="item[1]['ColUpdateable'] == '1' && item[1]['ColEditStyle'] == '1' && item[1]['ColClick'] == 'calcBusinessRate'"
+				   ng-model="packObj['NEWRatePart'][item[1].KeyId]"
+				   ng-readonly="item[1]['ReadOnly']"
+				   ng-blur="calcBusinessRate(Currency,'NEWRatePart')"
+				   class="ba-input">
+			<input ng-if="item[1]['ColUpdateable'] == '1' && item[1]['ColEditStyle'] == '1' && item[1]['ColClick'] == '' "
+				   ng-model="packObj['NEWRatePart'][item[1].KeyId]"
+				   ng-readonly="item[1]['ReadOnly']"
+				   class="ba-input">
+			<!--不可更新Input-->
+			<label ng-if="item[1]['ColUpdateable'] == '0' && item[1]['ColEditStyle'] == '1'"
+				   class="ba-input">
+				{{packObj['NEWRatePart'][item[1].KeyId]}}
+			</label>
+			<!--Input框循环生成 end-->
+			<!--Select循环生成 start-->
+			<!--可更新Select-->
+			<select class="ba-select"
+					ng-if="item[1]['ColUpdateable'] == '1' && item[1]['ColEditStyle'] == '2' && item[1]['ColClick'] == 'calcBusinessRate'"
+					ng-disabled="item[1]['ReadOnly']"
+					ng-options="option.ItemNo as option.ItemName for option in item[1]['ColOptions']"
+					ng-model="packObj['NEWRatePart'][item[1].KeyId]"
+					ng-change="calcBusinessRate(Currency,'NEWRatePart')"
+			>
+				<option value=""></option>
+			</select>
+			<select class="ba-select"
+					ng-if="item[1]['ColUpdateable'] == '1' && item[1]['ColEditStyle'] == '2' && item[1]['ColClick'] == ''"
+					ng-disabled="item[1]['ReadOnly']"
+					ng-options="option.ItemNo as option.ItemName for option in item[1]['ColOptions']"
+					ng-model="packObj['NEWRatePart'][item[1].KeyId]"
+			>
+				<option value=""></option>
+			</select>
+			<!--不可更新Select-->
+			<select class="ba-select"
+					ng-if="item[1]['ColUpdateable'] == '0' && item[1]['ColEditStyle'] == '2'"
+					ng-disabled="item[1]['ReadOnly']"
+					ng-options="option.ItemNo as option.ItemName for option in item[1]['ColOptions']"
+					ng-model="packObj['NEWRatePart'][item[1].KeyId]"
+			>
+				<option value=""></option>
+			</select>
+			<!--Select循环生成 end-->
+		</td>
+	</tr>
+	</tbody>
+</table>

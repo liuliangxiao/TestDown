@@ -1,0 +1,52 @@
+<!-- 贷后管理主页	 -->
+<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50 ng-controller="inspectMenuController">
+
+            <ion-header-bar align-title="center" class="bar-ipad-nav">
+                <h1 class="title">{{InspectMenuName}}</h1>
+            </ion-header-bar>
+
+            <ion-content class="gray-main  pos-box">
+                <div class="ui-wrap">
+                    <ul class="am_menu applyDetail_icon fixed">
+                        <li class="font-icon-green" data-ng-click="indFirstInspeTouch()">
+                            <!-- <am-icon>&#xe671;</am-icon> -->
+                            <p style="font-size:20px;">个人首检</p>
+                        </li>
+                        <li class="font-icon-green" data-ng-click="entFirstInspeTouch()">
+                            <!-- <am-icon>&#xe687;</am-icon> -->
+                            <p style="font-size:20px;">公司首检</p>
+                        </li>
+                        <li class="font-icon-green" data-ng-click="smeFirstInspeTouch()">
+                            <!-- <am-icon>&#xe687;</am-icon> -->
+                            <p style="font-size:20px;">小企业首检</p>
+                        </li>
+                        <li class="font-icon-green" data-ng-click="indCustomerInspeTouch()">
+                            <!-- <am-icon>&#xe687;</am-icon> -->
+                            <p style="font-size:20px;">个人定检</p>
+                        </li>
+                        <li class="font-icon-green" data-ng-click="entCustomerInspeTouch()">
+                            <!-- <am-icon>&#xe687;</am-icon> -->
+                            <p style="font-size:20px;">公司定检</p>
+                        </li>
+                        <li class="font-icon-green" data-ng-click="smeCustomerInspeTouch()">
+                            <!-- <am-icon>&#xe687;</am-icon> -->
+                            <p style="font-size:20px;">小企业定检</p>
+                        </li>
+                    </ul>
+                </div>
+            </ion-content>
+
+        </ion-side-menu-content>
+
+        <!-- 一级导航条-->
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'">
+            </div>
+        </ion-side-menu>
+
+
+    </ion-side-menus>
+</ion-view>

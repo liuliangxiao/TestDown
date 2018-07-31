@@ -1,0 +1,46 @@
+<ion-modal-view ng-controller="AddNewApplyController">
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">新增提款记录</h1>
+    </ion-header-bar >
+    <ion-content>
+        <table class="bm_tb_list">
+
+            <tbody>
+
+            <tr>
+                <td class="td_width_40">入账账号<span class="red-star">*</span></td><td><input type="" ng-model="NewRecord.AccountNo" class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">入账客户名称</td><td><input type="" ng-model="NewRecord.CustomerName" class="ba-input"></td>
+            </tr>
+
+            <tr>
+                <td class="td_width_40">币种<span class="red-star">*</span></td>
+                <td>
+                    <select required="required" class="ba-select" ng-options="c.ItemNo as c.ItemName for c in currencies" ng-model="NewRecord.Currency">
+                        <option value="">--请选择--</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_width_40">交易日期<span class="red-star">*</span></td><td><input type="date" ng-model="date.ItemDate" class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_40">交易金额<span class="red-star">*</span></td><td><input type="" ng-model="NewRecord.ItemSum" class="ba-input"></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="row">
+            <div class="col col-40" >
+                <button type="button" class="am-button am-button-blue" ng-click="addNewRecord()">保存</button>
+            </div>
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-red" ng-click="recordModal.hide()">取消</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

@@ -1,0 +1,30 @@
+<div ng-show="packItems['NEWRPTPart'].length > 0">
+	<table class="rpt_tb_list">
+		<tr>
+			<th></th>
+			<th ng-repeat="header in packObj['NEWRPTPart']['headers']" ng-hide="header['Hide']">{{header.KeyName}}</th>
+		</tr>
+		<tr ng-repeat="rptItem in packItems['NEWRPTPart']">
+			<td ng-init="index=$index">{{index + 1}}</td>
+			<td ng-repeat="item in rptItem" ng-hide="item['Hide']">
+				<!--Input框循环生成 start-->
+				<!--可更新Input-->
+				<input ng-if="item['ColUpdateable'] == '1' && item['ColEditStyle'] == '1'" ng-model="packObj['NEWRPTPart']['detailInfo'][index][item.KeyId]" ng-readonly="item['ReadOnly']" class="ba-input">
+				<!--不可更新Input-->
+				<label ng-if="item['ColUpdateable'] == '0' && item['ColEditStyle'] == '1'">{{packObj['NEWRPTPart']['detailInfoNoUpdate'][index][item.KeyId]}}</label>
+				<!--Input框循环生成 end-->
+
+				<!--Select循环生成 start-->
+				<!--可更新Select-->
+				<select class="ba-select" ng-if="item['ColUpdateable'] == '1' && item['ColEditStyle'] == '2'" ng-disabled="item['ReadOnly']" ng-options="option.ItemNo as option.ItemName for option in item['ColOptions']" ng-model="packObj['NEWRPTPart']['detailInfo'][index][item.KeyId]">
+					<option value=""></option>
+				</select>
+				<!--不可更新Select-->
+				<select class="ba-select" ng-if="item['ColUpdateable'] == '0' && item['ColEditStyle'] == '2'" ng-disabled="item['ReadOnly']" ng-options="option.ItemNo as option.ItemName for option in item['ColOptions']" ng-model="packObj['NEWRPTPart']['detailInfoNoUpdate'][index][item.KeyId]">
+					<option value=""></option>
+				</select>
+				<!--Select循环生成 end-->
+			</td>
+		</tr>
+	</table>
+</div>

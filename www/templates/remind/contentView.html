@@ -1,0 +1,314 @@
+<!--到期业务提醒-->
+<div ng-controller="BusinessController" class="ng-hide" ng-show="selectTab0" style="width:{{contentWidth}}px">
+    <ion-header-bar align-title="center" class="bar-ipad-nav" style="width:{{contentWidth}}px">
+
+        <h1 class="title">{{MaturityDate}}天内到期业务</h1>
+        <!-- <div class="button icon-left ion-home" style="color:white;" ng-click="changeState('examine')"></div> -->
+    </ion-header-bar>
+    <ion-content class="gray-main" style="width:{{contentWidth}}px;">
+        <ion-scroll style="width:{{contentWidth}}px; height:{{contentHeight}}px;">
+            <ion-refresher on-refresh="refresh()"
+                       pulling-text="下拉刷新"
+                       refreshing-text="正在刷新中"
+                       spinner="ios">
+        </ion-refresher>
+            <dl class="am-list business-list">
+            <dd ng-repeat="item in items" class="item am-button-default">
+                <h3>{{item.CustomerName}}</h3>
+                <h4>业务类型：{{item.BusinessTypeName}}</h4>
+                <h4>到账日期：<span>{{item.Maturity}}</span></h4>
+                <h4>余额：<span class="font-icon-red">{{item.Balance|currency:''}}</span></h4>
+                <i class="am_iconfont am-icon-sx">{{item.IconCode}}</i>
+            </dd>
+            <div class="noDataBox ng-hide" ng-show="noData">
+                <div class="nodata">
+                    <img src="img/empty_page.png" width="70px">
+                    <span class="nodata_span">暂无数据</span>
+                </div>
+            </div>
+            <div class="loadingBox ng-hide" ng-show="loadingMore">
+                <ion-spinner icon="android"></ion-spinner>
+                <h3>正在加载中</h3>
+            </div>
+        </dl>
+            <ion-infinite-scroll
+                icon="ion-loading-c"
+                ng-if="hasMore"
+                on-infinite="loadMore()"
+                distance="1%">
+            <div>正在加载中</div>
+        </ion-infinite-scroll>
+        </ion-scroll>
+    </ion-content>
+</div>
+
+
+<div ng-show="!selectTab0" style="width:{{contentWidth}}px">
+
+    <div ng-controller="CreditController1" ng-show="CreditController">
+
+        <ion-header-bar align-title="center" class="bar-ipad-nav" style="width:{{contentWidth}}px">
+            <h1 class="title">{{ItemName}}</h1>
+        </ion-header-bar>
+        <ion-content class="gray-main" style="width:{{contentWidth}}px">
+            <ion-scroll style="width:{{contentWidth}}px; height:{{contentHeight+barHeight}}px;">
+                <ion-refresher on-refresh="refresh()"
+                               pulling-text="下拉刷新"
+                               refreshing-text="正在刷新中"
+                               spinner="ios">
+                </ion-refresher>
+                <dl class="am-list business-list">
+                    <dd ng-repeat="item in items" class="item am-button-default">
+                        <h3>{{item.CustomerName}}</h3>
+                        <h4>{{item.BusinessType}},{{item.OccurType}},{{item.BusinessCurrency}},<span class="font-icon-red">{{item.BusinessSum|currency:''}}</span>
+                        </h4>
+                        <i class="am_iconfont am-icon-sx">{{item.IconCode}}</i>
+                    </dd>
+                </dl>
+                <div class="noDataBox" ng-show="noData">
+                    <div class="nodata">
+                        <img src="img/empty_page.png" width="70px">
+                        <span class="nodata_span">暂无数据</span>
+                    </div>
+                </div>
+                <div class="loadingBox ng-hide" ng-show="loadingMore">
+                    <ion-spinner icon="ios"></ion-spinner>
+                    <h3>正在加载中</h3>
+                </div>
+            </ion-scroll>
+
+            <ion-infinite-scroll icon="ion-loading-c"
+                                 ng-if="hasMore"
+                                 on-infinite="loadMore()"
+                                 distance="1%">
+                <div>正在加载中</div>
+            </ion-infinite-scroll>
+        </ion-content>
+
+    </div>
+
+
+    <div ng-controller="CreditController2" ng-show="CreditController1">
+
+        <ion-header-bar align-title="center" class="bar-ipad-nav" style="width:{{contentWidth}}px">
+            <h1 class="title">{{ItemName}}</h1>
+        </ion-header-bar>
+        <ion-content class="gray-main" style="width:{{contentWidth}}px">
+            <ion-scroll style="width:{{contentWidth}}px; height:{{contentHeight+barHeight}}px;">
+                <ion-refresher on-refresh="refresh()"
+                           pulling-text="下拉刷新"
+                           refreshing-text="正在刷新中"
+                           spinner="ios">
+            </ion-refresher>
+                <dl class="am-list business-list">
+                    <dd ng-repeat="item in items" class="item am-button-default">
+                        <h3>{{item.CustomerName}}</h3>
+                        <h4>{{item.BusinessType}},{{item.OccurType}},{{item.BusinessCurrency}},<span class="font-icon-red">{{item.BusinessSum|currency:''}}</span>
+                        </h4>
+                        <i class="am_iconfont am-icon-sx">{{item.IconCode}}</i>
+                    </dd>
+                </dl>
+                <div class="noDataBox ng-hide" ng-show="noData">
+                    <div class="nodata">
+                        <img src="img/empty_page.png" width="70px">
+                        <span class="nodata_span">暂无数据</span>
+                    </div>
+                </div>
+                <div class="loadingBox ng-hide" ng-show="loadingMore">
+                    <ion-spinner icon="ios"></ion-spinner>
+                    <h3>正在加载中</h3>
+                </div>
+                <ion-infinite-scroll icon="ion-loading-c"
+                                     ng-if="hasMore"
+                                     on-infinite="loadMore()"
+                                     distance="1%">
+                    <div>正在加载中</div>
+                </ion-infinite-scroll>
+            </ion-scroll>
+        </ion-content>
+    </div>
+
+
+    <div ng-controller="WaitContractController" class="ng-hide" ng-show="WaitContractController">
+
+        <ion-header-bar align-title="center" class="bar-ipad-nav" style="width:{{contentWidth}}px">
+            <h1 class="title">{{ItemName}}</h1>
+        </ion-header-bar>
+        <ion-content class="gray-main" style="width:{{contentWidth}}px">
+            <ion-scroll style="width:{{contentWidth}}px; height:{{contentHeight+barHeight}}px;">
+                <ion-refresher on-refresh="refresh()"
+                               pulling-text="下拉刷新"
+                               refreshing-text="正在刷新中"
+                               spinner="ios">
+                </ion-refresher>
+                <dl class="am-list business-list">
+                    <dd class="item am-button-default" ng-repeat="item in items">
+                        <h3>{{item.CustomerName}}</h3>
+                        <h4>{{item.BusinessType}},{{item.OccurType}},{{item.BusinessCurrency}},<span class="font-icon-red" >{{item.BusinessSum|currency:''}}</span>,{{item.VouchType}}</h4>
+                        <i class="am_iconfont am-icon-sx">{{IconCode}}</i>
+                    </dd>
+                    <div class="noDataBox" ng-show="noData">
+                        <div class="nodata">
+                            <img src="img/empty_page.png" width="70px">
+                            <span class="nodata_span">暂无数据</span>
+                        </div>
+                    </div>
+                    <div class="loadingBox" ng-show="loadingMore">
+                        <ion-spinner icon="ios"></ion-spinner>
+                        <h3>正在加载中</h3>
+                    </div>
+                </dl>
+                <ion-infinite-scroll icon="ion-loading-c"
+                                     ng-if="hasMore"
+                                     on-infinite="loadMore()"
+                                     distance="1%">
+                    <div>正在加载中</div>
+                </ion-infinite-scroll>
+            </ion-scroll>
+        </ion-content>
+    </div>
+
+
+    <div ng-controller="RatController"  class="ng-hide" ng-show="RatController">
+        <ion-header-bar align-title="center" class="bar-ipad-nav" style="width:{{contentWidth}}px">
+            <h1 class="title">{{ItemName}}</h1>
+        </ion-header-bar>
+        <ion-content class="gray-main" style="width:{{contentWidth}}px">
+            <ion-scroll style="width:{{contentWidth}}px; height:{{contentHeight+barHeight}}px;">
+                <ion-refresher on-refresh="refresh()"
+                           pulling-text="下拉刷新"
+                           refreshing-text="正在刷新中"
+                           spinner="ios">
+            </ion-refresher>
+                <dl class="am-list business-list">
+                <dd class="item am-button-default" ng-repeat="item in items">
+                    <h3>{{item.CustomerName}}</h3>
+                    <h4>会计月份：{{item.AccountMonth}}</h4>
+                    <h4>评估模型：{{item.ModelName}}</h4>
+                    <h4>系统评估得分：{{item.EvaluateScore}}&nbsp;&nbsp;&nbsp;&nbsp;系统评估结果：{{item.EvaluateResult}}</h4>
+                    <h4>人工认定得分：{{item.CognScore}}&nbsp;&nbsp;&nbsp;&nbsp;人工认定结果：{{item.CognResult}}</h4>
+                    <i class="am_iconfont am-icon-sx">{{IconCode}}</i>
+                </dd>
+                <div class="noDataBox" ng-show="noData">
+                    <div class="nodata">
+                        <img src="img/empty_page.png" width="70px">
+                        <span class="nodata_span">暂无数据</span>
+                    </div>
+                </div>
+                <div class="loadingBox" ng-show="loadingMore">
+                    <ion-spinner icon="ios"></ion-spinner>
+                    <h3>正在加载中</h3>
+                </div>
+            </dl>
+                <ion-infinite-scroll icon="ion-loading-c"
+                                 ng-if="hasMore"
+                                 on-infinite="loadMore()"
+                                 distance="1%">
+                <div>正在加载中</div>
+            </ion-infinite-scroll>
+            </ion-scroll>
+        </ion-content>
+    </div>
+
+    <div ng-controller="WaitPaymentController" class="ng-hide" ng-show="WaitPaymentController">
+        <ion-header-bar align-title="center" class="bar-ipad-nav" style="width:{{contentWidth}}px">
+            <h1 class="title">{{ItemName}}</h1>
+        </ion-header-bar>
+        <ion-content class="gray-main" style="width:{{contentWidth}}px">
+            <ion-scroll style="width:{{contentWidth}}px; height:{{contentHeight+barHeight}}px;">
+                <ion-refresher on-refresh="refresh()"
+                           pulling-text="下拉刷新"
+                           refreshing-text="正在刷新中"
+                           spinner="ios">
+            </ion-refresher>
+                <dl class="am-list business-list">
+                <dd class="item am-button-default" ng-repeat="item in items">
+                    <h3>{{item.CustomerName}}</h3>
+                    <h4>收款人名称：{{item.PayeeName}}</h4>
+                    <h4>支付日期：{{item.PaymentDate}}</h4>
+                    <h4>支付金额：<span class="font-icon-red">{{item.PaymentSum|currency:''}}</span></h4>
+                    <i class="am_iconfont am-icon-sx">{{IconCode}}</i>
+                </dd>
+                <div class="noDataBox" ng-show="noData">
+                    <div class="nodata">
+                        <img src="img/empty_page.png" width="70px">
+                        <span class="nodata_span">暂无数据</span>
+                    </div>
+                </div>
+                <div class="loadingBox" ng-show="loadingMore">
+                    <ion-spinner icon="ios"></ion-spinner>
+                    <h3>正在加载中</h3>
+                </div>
+            </dl>
+                <ion-infinite-scroll icon="ion-loading-c"
+                                 ng-if="hasMore"
+                                 on-infinite="loadMore()"
+                                 distance="1%">
+                <div>正在加载中</div>
+            </ion-infinite-scroll>
+            </ion-scroll>
+        </ion-content>
+    </div>
+
+
+    <div ng-controller="QuaController" class="ng-hide" ng-show="QuaController">
+        <ion-header-bar align-title="center" class="bar-ipad-nav" style="width:{{contentWidth}}px">
+            <h1 class="title">{{ItemName}}</h1>
+            <!-- <div class="button icon-left ion-home" style="color:white;" ng-click="changeState('examine')"></div> -->
+        </ion-header-bar>
+        <ion-content class="gray-main" style="width:{{contentWidth}}px">
+            <ion-scroll style="width:{{contentWidth}}px; height:{{contentHeight+barHeight}}px;">
+                <ion-refresher on-refresh="refresh()"
+                               pulling-text="下拉刷新"
+                               refreshing-text="正在刷新中"
+                               spinner="ios">
+                </ion-refresher>
+                <dl class="am-list business-list">
+                    <dd ng-repeat="item in items" class="item am-button-default">
+                        <h3>{{item.CustomerName}}</h3>
+                        <h4>企业类型：{{item.Attribute6}}</h4>
+                        <h4>中小企业行业类型：{{item.Attribute7}}</h4>
+                        <i class="am_iconfont am-icon-sx">{{IconCode}}</i>
+                    </dd>
+                    <div class="noDataBox" ng-show="noData">
+                        <div class="nodata">
+                            <img src="img/empty_page.png" width="70px">
+                            <span class="nodata_span">暂无数据</span>
+                        </div>
+                    </div>
+                    <div class="loadingBox" ng-show="loadingMore">
+                        <ion-spinner icon="android"></ion-spinner>
+                        <h3>正在加载中</h3>
+                    </div>
+                </dl>
+                <ion-infinite-scroll icon="ion-loading-c"
+                                     ng-if="hasMore"
+                                     on-infinite="loadMore()"
+                                     distance="1%">
+                    <div>正在加载中</div>
+                </ion-infinite-scroll>
+            </ion-scroll>
+        </ion-content>
+    </div>
+
+
+
+    <!--***************************暂无数据提示******************************************-->
+    <div class="gray-main"  class="ng-hide" ng-show="tipsNoDataPageFlag"
+         style="width:{{contentWidth}}px" ng-controller="TipNoDataTipController">
+        <ion-header-bar align-title="center" class="bar-ipad-nav" style="width:{{contentWidth}}px">
+            <h1 class="title">{{ItemName}}</h1>
+        </ion-header-bar>
+        <div class="noDataBox">
+            <div class="nodata" >
+                <img src="img/empty_page.png" width="70px">
+                <span class="nodata_span">暂无数据</span>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+

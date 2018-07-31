@@ -1,0 +1,72 @@
+<div>
+<ion-header-bar align-title="center" class="bar-ipad-nav" >
+    <h1 class="title">
+        <select class="am-select" ng-model="CustomerType.ItemNo"  ng-change="changeApplyType()" ng-options="t.ItemNo as t.ItemName for t in CustomerTypes"></select>
+    </h1>
+    <button class="button button-clear" ng-click="openApplyModal()" style="color: white;">新增</button>
+</ion-header-bar>
+<ion-content class="" ng-show="selectTab0" >
+    <ion-refresher on-refresh="refresh()"
+                       pulling-text="下拉刷新"
+                       refreshing-text="正在刷新中"
+                       spinner="ios">
+        </ion-refresher>
+    <div>
+        <dl class="item" ng-repeat="obj in items track by $index" ng-click="selectOneRow($index, obj)" ng-class="{'item-selected': $index == selectedRow}">
+            <h2>客户名称：{{obj.CustomerName}}</h2>
+                <p>客户编号：{{obj.CustomerID}}</p>
+                <p>证件类型：{{obj.CertTypeName}}</p>
+                <p>证件号码：{{obj.CertID}}</p>
+                <p>客户类型：{{obj.CustomerTypeName}}</p>
+                <p>客户主办权：{{obj.BelongAttribute}}</p>
+                <p>信息查看权：{{obj.BelongAttribute1}}</p>
+                <p>信息维护权：{{obj.BelongAttribute2}}</p>
+                <p>业务申办权：{{obj.BelongAttribute3}}</p>
+                
+        </dl>
+    </div>
+    <div class="noDataBox">
+                    <div class="nodata ng-hide" ng-show="noData">
+                        <img src="img/empty_page.png" width="70px">
+                        <span class="nodata_span">暂无数据</span>
+                    </div>
+    </div>
+    <ion-infinite-scroll icon="ion-loading-c"
+                             ng-if="hasMore"
+                             on-infinite="loadMore()"
+                             distance="1%">
+            <div>正在加载中</div>
+        </ion-infinite-scroll>
+</ion-content>
+<ion-content class="" ng-show="selectTab1">
+    <ion-refresher on-refresh="refresh()"
+                       pulling-text="下拉刷新"
+                       refreshing-text="正在刷新中"
+                       spinner="ios">
+        </ion-refresher>
+    <div>
+        <dl class="item" ng-repeat="obj in items track by $index" ng-click="selectOneRow($index, obj)" ng-class="{'item-selected': $index == selectedRow}">
+            <h2>客户名称：{{obj.CustomerName}}</h2>
+                <p>客户编号：{{obj.CustomerID}}</p>
+                <p>证件类型：{{obj.CertTypeName}}</p>
+                <p>证件号码：{{obj.CertID}}</p>
+        </dl>
+    </div>
+   <div class="noDataBox">
+                    <div class="nodata ng-hide" ng-show="noData">
+                        <img src="img/empty_page.png" width="70px">
+                        <span class="nodata_span">暂无数据</span>
+                    </div>
+    </div>
+    <ion-infinite-scroll icon="ion-loading-c"
+                             ng-if="hasMore"
+                             on-infinite="loadMore()"
+                             distance="1%">
+            <div>正在加载中</div>
+        </ion-infinite-scroll>
+</ion-content>
+</div>
+
+
+
+

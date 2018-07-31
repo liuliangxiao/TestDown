@@ -1,0 +1,74 @@
+<ion-modal-view ng-controller="AddNewApplyController">
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">个人客户授信申请</h1>
+    </ion-header-bar >
+    <ion-content>
+        <table class="bm_tb_list">
+            <thead>
+            <tr>
+                <th colspan="2">基本信息</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="td_width_40">申请类型<span class="red-star">*</span></td>
+                <td>
+                    <select required="required" disabled class="ba-select" ng-options="a.ItemNo as a.ItemName for a in ApplyTypes" ng-model='NewApplyInfo.ApplyType'>
+                        <option value="">--请选择--</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_width_40">发生类型<span class="red-star">*</span></td>
+                <td>
+                    <select required="required" disabled class="ba-select" ng-options="o.ItemNo as o.ItemName for o in OccurTypes" ng-model='NewApplyInfo.OccurType'>
+                        <option value="">--请选择--</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_width_40">发生日期</td><td><input type="" ng-model="NewApplyInfo.OccurDate" readonly class="ba-input"></td>
+            </tr>
+
+            <tr>
+                <td class="td_width_40">客户类型<span class="red-star">*</span></td>
+                <td>
+                    <select required="required" disabled class="ba-select" ng-options="c.ItemNo as c.ItemName for c in CustomerTypes" ng-model='NewApplyInfo.CustomerType'>
+                        <option value="">--请选择--</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_width_40">客户编号<span class="red-star">*</span></td><td ng-click="selCustomer()"><input type="" ng-model="NewApplyInfo.CustomerID" readonly class="ba-input"></td>
+            </tr>
+
+            <tr>
+                <td class="td_width_40">客户名称</td><td><input type="" ng-model="NewApplyInfo.CustomerName" readonly class="ba-input"></td>
+            </tr>
+
+            <tr>
+                <!--需要选择业务品种时添加事件：selectBusinessType()-->
+                <td class="td_width_40">业务品种<span class="red-star">*</span></td><td ng-click=""><input type="" ng-model="BusinessTypeName" readonly class="ba-input"></td>
+            </tr>
+
+            <tr>
+                <td class="td_width_40">条形码</td><td><input type="" ng-model="NewApplyInfo.BarCode" class="ba-input"></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="row">
+            <div class="col col-40" >
+                <button type="button" class="am-button am-button-blue" ng-click="saveApplyInfo()">保存</button>
+            </div>
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-red" ng-click="addApplyModal.hide()">取消</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

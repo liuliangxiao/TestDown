@@ -1,0 +1,56 @@
+
+<div style="width:{{contentWidth}}px;position: absolute;top:50px">
+        <table class="table-border" width='{{contentWidth}}' align=center border=1 cellspacing=0 cellpadding=2 bgcolor=white
+               bordercolor=black bordercolordark=black ng-if="selectedListItem !== 'undefined' && selectedListItem !== null && selectedListItem !== '' ">
+            <tr>
+                <td align=center colspan='5' bgcolor=#aaaaaa><font
+                        style=' font-size: 12pt;FONT-FAMILY:宋体;FONT-WEIGHT: bold;color:black;background-color:#aaaaaa'>
+                    <p>乌鲁木齐商业银行</p>个人客户授信后跟踪检查表</font></td>
+            </tr>
+            <tr>
+                <td width=15% colspan=2 align=center class=td1>客户名称：</td>
+                <td align=left class=td1>{{IndCheckedALSData.CustomerName}}&nbsp;</td>
+            </tr>
+            <tr> 
+                <td width=15% colspan=2 align=center class=td1>经办机构：</td>
+                <td align=left class=td1>{{IndCheckedALSData.InputOrgName}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td width=15% colspan=2 align=center class=td1>检查人：</td>
+                <td align=left class=td1>{{IndCheckedALSData.InputUserName}}&nbsp;</td>
+            </tr>
+            <tr>
+                <td width=15% colspan=2 align=center class=td1>报告日期：</td>
+                <td align=left class=td1>{{IndCheckedALSData.InputDate}}&nbsp;</td>
+            </tr>
+            
+            <tr>
+                <td colspan=5 align=left class=td1><strong>实际用途：（资金流向、用途）</strong></td>
+            </tr>
+            <tr>
+            	<td colspan=5>
+            		<div  ui-grid="grid_loanUsage" 
+					  style="width: 100%; 
+					  height: 200px; 
+					  text-align: center;" 
+					  ui-grid-edit 
+					  ui-grid-resize-columns>
+					</div>
+            	</td>
+		    </tr>
+            <tr>
+                <td colspan=5 align=left class=td1><strong>贷款情况说明</strong><br>&nbsp;
+                    <pre ng-bind-html="ReportData.describe2"></pre>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=5 align=left class=td1>&nbsp;</td>
+            </tr>
+            <tr>
+                <td align=left colspan=5 class=td1><strong>解决方案</strong><br>&nbsp;
+                    <pre ng-bind-html="ReportData.describe3"></pre>
+                </td>
+            </tr>
+        </table>
+</div>
+

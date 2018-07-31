@@ -1,0 +1,215 @@
+<!--***************************一般授信申请流程******************************************-->
+<div class="gray-main" ng-controller="putOutApplyListController" class="ng-hide" ng-show="currentPage == 'putOut'"
+     style="width:{{contentWidth}}px">
+
+    <div ng-include="'templates/common/commHeader.html'"></div>
+
+    <ion-content ng-show="rightContentListShowFlag" style="top:{{barHeight}}px ;width:{{contentWidth}}px">
+        <ion-scroll style="width: {{contentWidth}}px ;height: {{contentHeight+barHeight}}px;">
+        <ion-refresher on-refresh="refresh()"
+                       pulling-text="下拉刷新"
+                       refreshing-text="正在刷新中"
+                       spinner="ios">
+        </ion-refresher>
+        <dl class="am-list arrow-list">
+            <dd class="item am-button-default" ng-repeat="item in items" ng-click="gotoApplyInfo(item,$index)" ng-class="{'item-selected': $index == selectedRow}">
+                <h3>{{item.CustomerName}}</h3>
+                <h4>{{item.BusinessTypeName}}</h4>
+                <h4>{{item.BusinessSum|currency:''}}（{{item.BusinessCurrency}}）</h4>
+                <i class="am_iconfont am-icon-fl">{{item.IconCode}}</i>
+            </dd>
+            <div class="noDataBox" ng-show="noData">
+                <div class="nodata">
+                    <img src="img/empty_page.png" width="70px">
+                    <span class="nodata_span">暂无数据</span>
+                </div>
+            </div>
+            <div class="loadingBox" ng-show="loadingMore">
+                <ion-spinner icon="android"></ion-spinner>
+                <h3>正在加载中</h3>
+            </div>
+        </dl>
+        <ion-infinite-scroll icon="ion-loading-c"
+                             ng-if="hasMore"
+                             on-infinite="loadMore()"
+                             distance="1%">
+            <div>正在加载中</div>
+        </ion-infinite-scroll>
+        </ion-scroll>
+    </ion-content>
+    <!--**************第一个div 列表 end******************-->
+
+    <!--**************第二个div显示详情 begin**************-->
+    <div class='ng-hide' ng-show="!rightContentListShowFlag" ng-controller="ApplyInfoController">
+
+        <div ng-include="'templates/common/commBackButtonHeader.html'"></div>
+
+        <ion-header-bar class="am-bar-subheader" style="margin-top: {{barHeight}}px; background-color: #EEE;">
+        <div class="am-tabs row" style="padding: 0px; width: {{contentWidth}}px;">
+            <div class="col col-25" ng-class="{active:selectTab0}" ng-click="selectTask('0')">
+                出账信息
+            </div>
+            <div class="col col-25" ng-class="{active:selectTab1}" ng-click="selectTask('1')">
+                合同信息
+            </div>
+            <div class="col col-25" ng-class="{active:selectTab2}" ng-click="selectTask('2')">
+                客户信息
+            </div>
+            <div class="col col-25" ng-class="{active:selectTab3}" ng-click="selectTask('3')">
+                审批意见
+            </div>
+        </div>
+        </ion-header-bar>
+
+        <div ng-controller="PutOutController" ng-show="selectTab0">
+
+                <div class="ui-wrap">
+                    <ion-scroll scrollbar-y="false" direction="y"
+                                style="width: {{contentWidth}}px; height:{{exaineContentHeight}}px; margin-top: {{barHeight+64}}px;" delegate-handle="smallScroll">
+                    <table class="bm_tb_list" ng-repeat="item in items">
+                        <thead ng-click="showOrNot(item)">
+                        <tr>
+                            <th colspan="2">{{item.groupName}}</label>
+                                <i class="icon-float-right"
+                                   ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="obj in item.groupColArray" ng-show="item.showGroup">
+                            <td class="td_width_30">{{obj.KeyName}}：</td>
+                            <td>{{obj.Value}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </ion-scroll>
+                </div>
+
+        </div>
+
+
+        <div ng-controller="PutOutContractController" ng-show="selectTab1">
+
+            <div class="ui-wrap">
+                <ion-scroll scrollbar-y="false" direction="y"
+                            style="width:{{contentWidth}}px;height:{{exaineContentHeight}}px; margin-top: {{barHeight+64}}px;" delegate-handle="smallScroll">
+                    <table class="bm_tb_list" ng-repeat="item in items">
+                        <thead ng-click="showOrNot(item)">
+                        <tr>
+                            <th colspan="2">{{item.groupName}}</label>
+                                <i class="icon-float-right"
+                                   ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="obj in item.groupColArray" ng-show="item.showGroup">
+                            <td class="td_width_30">{{obj.KeyName}}：</td>
+                            <td>{{obj.Value}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </ion-scroll>
+
+            </div>
+        </div>
+
+
+        <div ng-controller="PutOutCustomerController" ng-show="selectTab2">
+
+            <div class="ui-wrap">
+                <ion-scroll scrollbar-y="false" direction="y"
+                            style="width: {{contentWidth}}px; height:{{exaineContentHeight}}px; margin-top: {{barHeight+64}}px;" delegate-handle="smallScroll01">
+                    <table class="bm_tb_list" ng-repeat="item in items">
+                        <thead ng-click="showOrNot(item)">
+                        <tr>
+                            <th colspan="2">{{item.groupName}}</label>
+                                <i class="icon-float-right"
+                                   ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="obj in item.groupColArray" ng-show="item.showGroup">
+                            <td class="td_width_30">{{obj.KeyName}}：</td>
+                            <td>{{obj.Value}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="noDataBox" ng-show="noData">
+                        <div class="nodata">
+                            <img src="img/empty_page.png" width="70px">
+                            <span class="nodata_span">暂无数据</span>
+                        </div>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+
+        <div ng-controller="PutOutOpinionController" ng-show="selectTab3">
+
+            <div class="ui-wrap">
+                <ion-scroll scrollbar-y="false" direction="y"
+                            style="width: {{contentWidth}}px; height:{{exaineContentHeight}}px; margin-top: {{barHeight+64}}px;" delegate-handle="smallScroll">
+                    <table class="bm_tb_list" ng-repeat="item in items">
+                        <thead ng-click="showOrNot(item)">
+                        <tr>
+                            <th colspan="2">{{item.PhaseName}}
+                                <i class="icon-float-right"
+                                   ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+                            </th>
+
+                        </tr>
+                        </thead>
+                        <tbody ng-show="item.showGroup">
+                        <tr>
+                            <td class="td_width_30">处理人:</td>
+                            <td>{{item.UserName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_width_30">处理人所属机构:</td>
+                            <td>{{item.OrgName}}</td>
+                        </tr>
+                        <tr>
+                            <td>收到时间:</td>
+                            <td>{{item.BeginTime}}</td>
+                        </tr>
+                        <tr>
+                            <td>完成时间:</td>
+                            <td>{{item.EndTime}}</td>
+                        </tr>
+                        <tr>
+                            <td>意见:</td>
+                            <td colspan="3">{{item.PhaseOpinion}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="noDataBox" ng-show="noData">
+                        <div class="nodata">
+                            <img src="img/empty_page.png" width="70px">
+                            <span class="nodata_span">暂无数据</span>
+                        </div>
+                    </div>
+                </ion-scroll>
+
+            </div>
+        </div>
+
+        <ion-footer-bar ng-show="isFinished">
+            <div class="btn-box row" style="width:{{contentWidth}}px">
+                <div class="col ">
+                    <button type="button" class="am-button am-button-red" ng-click="backToLastNode()">退回前一步</button>
+                </div>
+                <div class="col ">
+                    <button type="button" class="am-button am-button-blue" ng-click="showModal(0)">签署意见并提交</button>
+                </div>
+            </div>
+        </ion-footer-bar>
+
+    </div>
+
+</div>
+<!--**************第二个div显示详情 end******************-->
+
+<!--***************************一般授信申请end******************************************-->
+

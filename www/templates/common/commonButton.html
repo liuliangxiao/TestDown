@@ -1,0 +1,94 @@
+<!-- 删除按钮距离新增按钮距离增加10像素 -->
+<div style="float:left;width:120px;height:100%;" >
+	<!-- 业务申请单-放款申请 begin -->
+	<div style="float:left;margin-left:10px;margin-top:8px;font-size: 30px;color: white;" 
+		 class="ion-plus" 
+		 ng-click="insertRecord()"
+		 ng-if="(selectedMenuItem.GroupId == 'applyLoanList' && (selectedDetailMenuItem.ColId === '1020' || selectedDetailMenuItem.ColId === '1030' || selectedDetailMenuItem.ColId === '1040'))">
+	</div>
+	<div style="float:left;margin-left:20px;margin-top:8px;font-size: 30px;color: white;" 
+		 class="icon ion-trash-a" 
+		 ng-click="deleteRecord()"
+		 ng-if="(selectedMenuItem.GroupId == 'applyLoanList' && (selectedDetailMenuItem.ColId === '1020' || selectedDetailMenuItem.ColId === '1030' || selectedDetailMenuItem.ColId === '1040'))">
+	</div>
+	<!-- 业务申请单-放款申请 end -->
+	
+	<!-- 信息查询-联网核查begin -->
+	<div style="float:left;margin-left:10px;margin-top:8px;font-size: 30px;color: white;" 
+		 class="ion-plus" 
+		 ng-click="insertRecord()"
+		 ng-if="(selectedMenuItem.GroupId=='internetQueryContractList' && selectedDetailMenuItem.ColId === '1010')">
+	</div>
+	<div style="float:left;margin-left:20px;margin-top:8px;font-size: 30px;color: white;"
+		 class="icon ion-trash-a"
+		 ng-click="deleteRecord()"
+		 ng-if="(selectedMenuItem.GroupId=='internetQueryContractList' && selectedDetailMenuItem.ColId === '1010')">
+	</div>
+	<!-- 信息查询-联网核查end -->
+	
+	<!-- 信息查询-反欺诈查询begin -->
+	<div style="float:left;margin-left:10px;margin-top:8px;font-size: 30px;color: white;" 
+		 class="ion-plus" 
+		 ng-click="insertRecord()"
+		 ng-if="(selectedMenuItem.GroupId=='AntiFraudQueryListController'&& selectedDetailMenuItem.ColId === '1010')">
+		
+	</div>
+	<div style="float:left;margin-left:20px;margin-top:8px;font-size: 30px;color: white;" 
+		 class="icon ion-trash-a" 
+		 ng-click="deleteRecord()"
+		 ng-if="(selectedMenuItem.GroupId=='AntiFraudQueryListController' && selectedDetailMenuItem.ColId === '1010') ">
+	</div>
+	<!-- 信息查询-反欺诈查询end -->
+	
+	<!-- 信息查询-征信查询begin -->
+	<div style="float:left;margin-left:10px;margin-top:8px;font-size: 30px;color: white;" 
+		 class="ion-plus" 
+		 ng-click="insertRecord()"
+		 ng-if="(selectedMenuItem.GroupId=='CreditQueryList' && selectedDetailMenuItem.ColId === '101010') ">
+	</div>
+	<div style="float:left;margin-left:20px;margin-top:8px;font-size: 30px;color: white;" 
+		 class="icon ion-trash-a" 
+		 ng-click="deleteRecord()"
+		 ng-if="(selectedMenuItem.GroupId=='CreditQueryList' && selectedDetailMenuItem.ColId === '101010') ">
+	</div>
+	
+	<div style="float:left;margin-left:10px;margin-top:8px;font-size: 30px;color: white;" 
+		 class="ion-plus" 
+		 ng-click="insertRecord()"
+		 ng-if="(selectedMenuItem.GroupId=='CheckRecordQueryControllerList' && selectedDetailMenuItem.ColId === '101010') ">
+	</div>
+	<div style="float:left;margin-left:20px;margin-top:8px;font-size: 30px;color: white;" 
+		 class="icon ion-trash-a" 
+		 ng-click="deleteRecord()"
+		 ng-if="(selectedMenuItem.GroupId=='CheckRecordQueryControllerList' && selectedDetailMenuItem.ColId === '101010') ">
+	</div>
+	<!-- 信息查询-征信查询end -->
+	
+	<!-- 贷后管理-个人首检/公司首检/小企业首检 begin -->
+	<div style="float:left;margin-left:10px;margin-top:8px;font-size: 30px;color: white;" 
+		 class="ion-plus" 
+		 ng-click="insertRecord()"
+		 ng-if="(selectedMenuItem.GroupId == 'IndFirstInspectList' || selectedMenuItem.GroupId  =='EntFirstInspectList' || selectedMenuItem.GroupId == 'SmeFirstInspectList')  && selectedDetailMenuItem.ColId === '1010'">
+	</div>
+	<div style="float:left;margin-left:20px;margin-top:8px;font-size: 30px;color: white;" 
+		 class="icon ion-trash-a" 
+		 ng-click="deleteRecord()"
+		 ng-if="(selectedMenuItem.GroupId == 'IndFirstInspectList' || selectedMenuItem.GroupId  =='EntFirstInspectList' || selectedMenuItem.GroupId == 'SmeFirstInspectList')  && selectedDetailMenuItem.ColId === '1010'"></div>
+	<!-- 贷后管理-个人首检/公司首检/小企业首检 end -->
+	
+	<!-- 客户管理 begin -->
+	<div style="float:left;margin-left:10px;margin-top:8px;font-size: 30px;color: white;" 
+		 class="ion-plus" 
+		 ng-click="insertRecord()"
+		 ng-if="selectedMenuItem.GroupId=='customerList'">
+	</div>
+	<!-- 客户管理 end -->
+	
+	<!-- 登记他证 begin -->
+	<div style="float:left;margin-left:10px;margin-top:8px;font-size: 30px;color: white;" 
+		 class="ion-plus" 
+		 ng-click="insertRecord()"
+		 ng-if="selectedMenuItem.GroupId=='applyContractList'  && selectedDetailMenuItem.ColId === '1060'">
+	</div>
+	<!-- 登记他证 end -->
+</div>

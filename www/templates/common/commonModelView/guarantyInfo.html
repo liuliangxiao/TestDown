@@ -1,0 +1,272 @@
+<ion-modal-view ng-style="guarantyInfoStyle" ng-controller = "guarantyInfoController" ng-show="rightContentListShowFlag">
+	<!--担保信息详情页 start  -->
+    <ion-header-bar align-title="center" class="bar-ipad-nav">   
+	   	<div>
+	       <button class="button button-clear" ng-click="modal.remove()">
+	           <i class="ion ion-chevron-left" style="font-size: 25px;margin-left: 10px;margin-top: 12px;color:#fff"></i>
+	       </button>
+	   	</div>           
+        <h1 class="title">担保信息详情</h1>
+    </ion-header-bar> 
+     <ion-view>
+		<ion-content delegate-handle="smallScroll" style="top: 44px";>
+		      <table class="bm_tb_list" ng-show="!info.noData" ng-repeat = "item in details">
+		          <thead ng-click="showOrNot(item)">
+		          <tr>
+		              <th colspan="2">{{item.groupName}}</label>
+		                  <i class="icon-float-right" ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+		              </th>
+		          </tr>
+		          </thead>
+		          <!--循环遍历生成页面元素  -->
+		           <tbody ng-repeat ="obj in item.groupColArray" ng-show="item.showGroup">            
+		           <!--Input框循环生成 -start -->
+		           <!--可更新可写input (只展示colVisable = 1 的属性) -->
+		           <tr ng-if="obj.ColEditStyle =='1' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td><input type="text" ng-model = 'detailInfo[obj.KeyId]' ng-readonly='obj.ReadOnly' class="ba-input"></td>
+		           </tr>
+		           <!--不更新input  -->	            
+		           <tr ng-if="obj.ColEditStyle =='1' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td><input type="text" ng-model = 'detailInfoNoUpdate[obj.KeyId]' ng-readonly='obj.ReadOnly' class="ba-input" ></td>
+		           </tr>
+		           <!--Input框循环生成 -end -->
+		           <!--通用下拉框循环生成 -start  -->
+		           <!--可更新可写select  -->	            	            
+				<tr ng-if="obj.ColEditStyle =='2' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td>
+		                   <select required="required" class="ba-select" ng-disabled='obj.ReadOnly' ng-options="option.ItemNo as option.ItemName for option in CODE_LIBRARY.{{obj.KeyId}}" ng-model='detailInfo[obj.KeyId]'>
+		                       <option value=""></option>
+		                   </select>
+		               </td>
+		           </tr>
+		           <!--不可更新select  -->	            	            	            
+		           <tr ng-if="obj.ColEditStyle =='2' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td>
+		                   <select required="required" class="ba-select" ng-disabled='obj.ReadOnly' ng-options="option.ItemNo as option.ItemName for option in CODE_LIBRARY.{{obj.KeyId}}" ng-model='detailInfoNoUpdate[obj.KeyId]'>
+		                       <option value=""></option>
+		                   </select>
+		               </td>
+		           </tr>
+		           <!--通用下拉框循环生成 -end  -->	             
+		           <!--文本框循环生成 -start-->
+		           <tr ng-if="obj.ColEditStyle =='3' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40" style="vertical-align: top;">{{obj.KeyName}}</td>
+		               <td>
+							<textarea rows="8" class="ba-input" ng-model="detailInfo[obj.KeyId]" ng-readonly='obj.ReadOnly' ng-change="checkText()">							                      
+		                   </textarea>
+		                   <p ng-if="obj.KeyId == 'Remark'" ng-show="inputShow">您还可以输入{{inputTextLength}}个汉字</p>
+		               </td>
+		           </tr>
+		           <tr ng-if="obj.ColEditStyle =='3' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40" style="vertical-align: top;">{{obj.KeyName}}</td>
+		               <td>
+							<textarea rows="8" class="ba-input" ng-model="detailInfoNoUpdate[obj.KeyId]" ng-readonly='obj.ReadOnly' ng-change="checkText()">							                      
+		                   </textarea>
+		                   <p ng-if="obj.KeyId == 'Remark'" ng-show="inputShow">您还可以输入{{inputTextLength}}个汉字</p>
+		               </td>
+		           </tr>
+		           <!--文本框循环生成 -end-->	            
+		          	<!--点选框循环遍历 -start  -->    
+		          	<tr ng-if="obj.ColEditStyle =='8' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td><input type="text" ng-model = 'detailInfo[obj.KeyId]' ng-readonly='obj.ReadOnly' class="ba-input" ng-click="selectBusinessType()"></td>
+		           </tr>
+		           <tr ng-if="obj.ColEditStyle =='8' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td><input type="text" ng-model = 'detailInfoNoUpdate[obj.KeyId]' ng-readonly='obj.ReadOnly' class="ba-input" ng-click="selectBusinessType()"></td>
+		           </tr>                 
+		          	<!--点选框循环遍历 -end  -->    	            	       
+		            </tbody>
+		        </table>
+		        
+		        <div class="noDataBox" ng-show="info.noData">
+		            <div class="nodata">
+		                <img src="img/empty_page.png" width="70px">
+		                <span class="nodata_span">暂无数据</span>
+		            </div>
+		        </div>
+		</ion-content>
+     </ion-view>
+    <ion-footer-bar>
+        <div class="btn-box row">
+            <div class="col col-40" ng-show="guarantyContr">
+                <button type="button" class="am-button am-button-red" ng-click="DzywIist()">押品信息</button>
+            </div>
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-blue" ng-click="modal.remove()">关闭</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+	<!--担保信息详情页 end  -->   
+</ion-modal-view>        
+                
+        
+<ion-modal-view ng-style="guarantyInfoStyle" ng-controller="DzywController" ng-show="!rightContentListShowFlag">        
+	<!--押品信息列表及详情页 start  -->
+    <ion-header-bar align-title="center" class="bar-ipad-nav" >   
+	   	<div>
+	       <button class="button button-clear" ng-click="goToBack()">
+	           <i class="ion ion-chevron-left" style="font-size: 25px;margin-left: 10px;margin-top: 12px;color:#fff"></i>
+	       </button>
+	   	</div>           
+        <h1 class="title">担保信息-抵质押物</h1>
+    </ion-header-bar> 
+    
+	<ion-side-menus  style="top:44px">
+      
+        <ion-side-menu-content drag-content="true"  edge-drag-threshold=50  ng-controller="DzywInfoController"  style="left:{{bigSecondNavWidth*0.6}}px;width:{{windowWidth*0.7-bigSecondNavWidth*0.6}}px">
+            <ion-content style="top:0px" delegate-handle="smallScrollTop">
+                <div >
+                    <!-- <table class="bm_tb_list" ng-repeat="item in items" ng-show="!info.noData" >
+                        <thead ng-click="showOrNot(item)">
+                        <tr>
+                            <th colspan="2">{{item.groupName}}</label>
+                                <i class="icon-float-right"
+                                   ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="obj in item.groupColArray" ng-show="item.showGroup">
+                            <td class="td_width_40">{{obj.KeyName}}：</td>
+                            <td>{{obj.Value}}</td>
+                        </tr>
+                        </tbody>
+                    </table> -->
+                    <table class="bm_tb_list" ng-show="!info.noData" ng-repeat = "item in items">
+		          <thead ng-click="showOrNot(item)">
+		          <tr>
+		              <th colspan="2">{{item.groupName}}</label>
+		                  <i class="icon-float-right" ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+		              </th>
+		          </tr>
+		          </thead>
+		          <!--循环遍历生成页面元素  -->
+		           <tbody ng-repeat ="obj in item.groupColArray" ng-show="item.showGroup">            
+		           <!--Input框循环生成 -start -->
+		           <!--可更新可写input (只展示colVisable = 1 的属性) -->
+		           <tr ng-if="obj.ColEditStyle =='1' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td><input type="text" ng-model = 'obj.Value' ng-readonly='obj.ReadOnly' class="ba-input"></td>
+		           </tr>
+		           <!--不更新input  -->	            
+		           <tr ng-if="obj.ColEditStyle =='1' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td><input type="text" ng-model = 'obj.Value' ng-readonly='obj.ReadOnly' class="ba-input" ></td>
+		           </tr>
+		           <!--Input框循环生成 -end -->
+		           <!--通用下拉框循环生成 -start  -->
+		           <!--可更新可写select  -->	            	            
+				<tr ng-if="obj.ColEditStyle =='2' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td>
+		                   <select required="required" class="ba-select" ng-disabled='obj.ReadOnly' ng-options="option.ItemNo as option.ItemName for option in CODE_LIBRARY.{{obj.KeyId}}" ng-model='obj.Value'>
+		                       <option value=""></option>
+		                   </select>
+		               </td>
+		           </tr>
+		           <!--不可更新select  -->	            	            	            
+		           <tr ng-if="obj.ColEditStyle =='2' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td>
+		                   <select required="required" class="ba-select" ng-disabled='obj.ReadOnly' ng-options="option.ItemNo as option.ItemName for option in CODE_LIBRARY.{{obj.KeyId}}" ng-model='obj.Value'>
+		                       <option value=""></option>
+		                   </select>
+		               </td>
+		           </tr>
+		           <!--通用下拉框循环生成 -end  -->	             
+		           <!--文本框循环生成 -start-->
+		           <tr ng-if="obj.ColEditStyle =='3' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40" style="vertical-align: top;">{{obj.KeyName}}</td>
+		               <td>
+							<textarea rows="8" class="ba-input" ng-model="obj.Value" ng-readonly='obj.ReadOnly' ng-change="checkText()">							                      
+		                   </textarea>
+		                   <p ng-if="obj.KeyId == 'Remark'" ng-show="inputShow">您还可以输入{{inputTextLength}}个汉字</p>
+		               </td>
+		           </tr>
+		           <tr ng-if="obj.ColEditStyle =='3' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40" style="vertical-align: top;">{{obj.KeyName}}</td>
+		               <td>
+							<textarea rows="8" class="ba-input" ng-model="obj.Value" ng-readonly='obj.ReadOnly' ng-change="checkText()">							                      
+		                   </textarea>
+		                   <p ng-if="obj.KeyId == 'Remark'" ng-show="inputShow">您还可以输入{{inputTextLength}}个汉字</p>
+		               </td>
+		           </tr>
+		           <!--文本框循环生成 -end-->	            
+		          	<!--点选框循环遍历 -start  -->    
+		          	<tr ng-if="obj.ColEditStyle =='8' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td><input type="text" ng-model = 'obj.Value' ng-readonly='obj.ReadOnly' class="ba-input" ng-click="selectBusinessType()"></td>
+		           </tr>
+		           <tr ng-if="obj.ColEditStyle =='8' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td><input type="text" ng-model = 'obj.Value' ng-readonly='obj.ReadOnly' class="ba-input" ng-click="selectBusinessType()"></td>
+		           </tr>                 
+		          	<!--点选框循环遍历 -end  -->    	            	       
+		            </tbody>
+		        </table>
+	           		<div class="noDataBox" ng-show="info.noData" >
+	                      <div class="nodata">
+	                          <img src="img/empty_page.png" width="70px">
+	                          <span class="nodata_span">暂无数据</span>
+	                      </div>
+	                  </div>
+                </div>
+            </ion-content>
+        </ion-side-menu-content>
+
+       <ion-side-menu side="left" expose-aside-when="large" width="{{bigSecondNavWidth*0.6}}" ng-style="modalFistNav">
+                <ion-content class="gray-main" style="top:0px;" delegate-handle="smallScrollList">
+                    <ion-refresher on-refresh="refresh()"
+                                   pulling-text="下拉刷新"
+                                   refreshing-text="正在刷新中"
+                                   spinner="ios" style="width: {{bigSecondNavWidth*0.6}}px; margin-left: 0;">
+                    </ion-refresher>
+                    <dl class="am-list arrow-list" style="width: {{bigSecondNavWidth*0.6}}px;">
+                        <dd ng-repeat="item in items" ng-click="gotoDzywInfo(item,$index)" ng-class="{'item-selected': $index == selectedRow}">
+                            <h3>押品类型：{{item.GuarantyTypeName}}</h3>
+                            <h4>权利人：{{item.OwnerName}}</h4>
+                            <h4>权证号：{{item.GuarantyRightID}}</h4>
+                            <i class="am_iconfont am-icon-fl">&#xe600;</i>
+                        </dd>
+                        <div class="noDataBox" ng-show="info.noData" >
+                            <div class="nodata">
+                                <img src="img/empty_page.png" width="70px">
+                                <span class="nodata_span">暂无数据</span>
+                            </div>
+                        </div>
+                        <div class="loadingBox" ng-show="loadingMore">
+                            <ion-spinner icon="android"></ion-spinner>
+                            <h3>正在加载中</h3>
+                        </div>
+                    </dl>
+                    <ion-infinite-scroll icon="ion-loading-c"
+                                         ng-if="hasMore"
+                                         on-infinite="loadMore()"
+                                         distance="1%">
+                        <div>正在加载中</div>
+                    </ion-infinite-scroll>
+                </ion-content>
+        </ion-side-menu>
+    </ion-side-menus> 
+    
+    <ion-footer-bar>
+        <div class="btn-box row">
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-red" ng-click="goToBack()">担保信息</button>
+            </div>
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-blue" ng-click="closrModal()">关闭</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+	<!--押品信息列表及详情页 end  -->
+
+</ion-modal-view>
+
+
+

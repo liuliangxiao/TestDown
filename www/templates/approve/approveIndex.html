@@ -1,0 +1,144 @@
+<!--业务申请主页	17-7-21		徐长稳    
+	xbwang  整理业务需求时把签批名称修改的与PC端一致
+-->
+<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold=50 ng-controller="ApproveAccessIndexController">
+
+            <ion-header-bar align-title="center" class="bar-ipad-nav">
+                <h1 class="title">业务签批</h1>
+            </ion-header-bar>
+            <ion-content class="gray-main  pos-box">
+                <div class="ui-wrap">
+                    <ul class="am_menu applyDetail_icon fixed">
+                        <li class="font-icon-green" ng-click="approveCreditApply()">
+                            <div class="my_spot" ng-if="totalCount.ApproveCreditApply0 > 0">
+                                 <span class="badge badge-assertive">{{totalCount.ApproveCreditApply0}}</span>
+                            </div>
+                            <am-icon ng-class="{true:'Am-icon2',false:'Am-icon1'}[totalCount.ApproveCreditApply0 > 0]">&#xe671;</am-icon>
+                            <p>授信业务审查审批</p>
+                        </li>
+                        <li class="font-icon-green" ng-click="BAChangeApprove()">
+                            <div class="my_spot" ng-if="totalCount.BAChangeApprove1 > 0">
+                                 <span class="badge badge-assertive">{{totalCount.BAChangeApprove1}}</span>
+                            </div>
+                            <am-icon ng-class="{true:'Am-icon2',false:'Am-icon1'}[totalCount.BAChangeApprove1 > 0]">&#xe687;</am-icon>
+                            <p>批单变更流程 </p>
+                        </li>
+                        <li class="font-icon-green" ng-click="approvePutOutApply()">
+                            <div class="my_spot" ng-if="totalCount.ApprovePutOutApply2 > 0">
+                                 <span class="badge badge-assertive">{{totalCount.ApprovePutOutApply2}}</span>
+                            </div>
+                            <am-icon ng-class="{true:'Am-icon2',false:'Am-icon1'}[totalCount.ApprovePutOutApply2 > 0]">&#xe686;</am-icon>
+                            <p>放款申请审查复核</p>
+                        </li>
+                        <li class="font-icon-green" ng-click="acctTransferApprove()">
+                            <div class="my_spot" ng-if="totalCount.AcctTransferApprove3 > 0">
+                                 <span class="badge badge-assertive">{{totalCount.AcctTransferApprove3}}</span>
+                            </div>
+                            <am-icon ng-class="{true:'Am-icon2',false:'Am-icon1'}[totalCount.AcctTransferApprove3 > 0]">&#xe688;</am-icon>
+                            <p>受托支付审批</p>
+                        </li>
+                        <li class="font-icon-green" ng-click="payeeApprove()">
+                            <div class="my_spot" ng-if="totalCount.PayeeApprove4 > 0">
+                                 <span class="badge badge-assertive">{{totalCount.PayeeApprove4}}</span>
+                            </div>
+                            <am-icon ng-class="{true:'Am-icon2',false:'Am-icon1'}[totalCount.PayeeApprove4 > 0]">&#xe664;</am-icon>
+                            <p>收款人清单变更审批</p>
+                        </li>
+                         <li class="font-icon-green" ng-click="transactionApprove2()">
+                            <div class="my_spot" ng-if="totalCount.TransactionApprove5 > 0">
+                                 <span class="badge badge-assertive">{{totalCount.TransactionApprove5}}</span>
+                            </div>
+                            <am-icon ng-class="{true:'Am-icon2',false:'Am-icon1'}[totalCount.TransactionApprove5 > 0]">&#xe690;</am-icon>
+                            <p>核算交易审批</p>
+                        </li>
+                         <li class="font-icon-green" ng-click="transactionApprove1()">
+                            <div class="my_spot" ng-if="totalCount.TransactionApprove6 > 0">
+                                 <span class="badge badge-assertive">{{totalCount.TransactionApprove6}}</span>
+                            </div>
+                            <am-icon ng-class="{true:'Am-icon2',false:'Am-icon1'}[totalCount.TransactionApprove6 > 0]">&#xe689;</am-icon>
+                            <p>贷后变更审批</p>
+                        </li> 
+                        <li class="font-icon-green" ng-click="checkXQYCredit1()">
+                            <div class="my_spot" ng-if="totalCount.CheckXQYCredit17 > 0">
+                                 <span class="badge badge-assertive">{{totalCount.CheckXQYCredit17}}</span>
+                            </div>
+                            <am-icon ng-class="{true:'Am-icon2',false:'Am-icon1'}[totalCount.CheckXQYCredit17 > 0]">&#xe691;</am-icon>
+                            <p>贷后检查审批</p>
+                        </li>                        
+                        <!-- <li class="font-icon-green" ng-click="bcChangeApprove()">
+                            <am-icon>&#xe687;</am-icon>
+                            <p>非标业务流程</p>
+                        </li>    -->                       
+                        <li class="font-icon-green" ng-click="approveCRiskApply()">
+                            <div class="my_spot" ng-if="totalCount.ApproveCRiskApply8 > 0">
+                                 <span class="badge badge-assertive">{{totalCount.ApproveCRiskApply8}}</span>
+                            </div>
+                            <am-icon ng-class="{true:'Am-icon2',false:'Am-icon1'}[totalCount.ApproveCRiskApply8 > 0]">&#xe692;</am-icon>
+                            <p>风险预警审批</p>
+                        </li>
+                        <li class="font-icon-green" ng-click="approveClassifyRApply()">
+                            <div class="my_spot" ng-if="totalCount.ApproveClassifyRApply9 > 0">
+                                 <span class="badge badge-assertive">{{totalCount.ApproveClassifyRApply9}}</span>
+                            </div>
+                            <am-icon ng-class="{true:'Am-icon2',false:'Am-icon1'}[totalCount.ApproveClassifyRApply9 > 0]">&#xe693;</am-icon>
+                            <p>风险分类审查审批</p>
+                        </li>
+                        
+                        <!-- <li class="font-icon-green" ng-click="approveClassifyRApply1()">
+                            <am-icon>&#xe693;</am-icon>
+                            <p>信用等级评估</p>
+                        </li>
+                        <li class="font-icon-green" ng-click="approveClassifyRApply2()">
+                            <am-icon>&#xe693;</am-icon>
+                            <p>额度调整</p>
+                        </li>
+                         <li class="font-icon-green" ng-click="approveClassifyRApply3()">
+                            <am-icon>&#xe693;</am-icon>
+                            <p>核算机构调整</p>
+                        </li>
+                        <li class="font-icon-green" ng-click="bcChangeApprove4()">
+                            <am-icon>&#xe687;</am-icon>
+                            <p>合同变更流程</p>
+                        </li> 
+                        <li class="font-icon-green" ng-click="bcChangeApprove5()">
+                            <am-icon>&#xe687;</am-icon>
+                            <p>档案管理流程</p>
+                        </li>
+                        <li class="font-icon-green" ng-click="bcChangeApprove6()">
+                            <am-icon>&#xe687;</am-icon>
+                            <p>保证金释放流程</p>
+                        </li>
+                        <li class="font-icon-green" ng-click="bcChangeApprove7()">
+                            <am-icon>&#xe687;</am-icon>
+                            <p>押品出入库流程</p>
+                        </li>
+                        <li class="font-icon-green" ng-click="bcChangeApprove8()">
+                            <am-icon>&#xe687;</am-icon>
+                            <p>押品价值变更流程</p>
+                        </li>
+                        <li class="font-icon-green" ng-click="bcChangeApprove9()">
+                            <am-icon>&#xe687;</am-icon>
+                            <p>放款条件落实流程</p>
+                        </li>
+                        <li class="font-icon-green" ng-click="bcChangeApprove10()">
+                            <am-icon>&#xe687;</am-icon>
+                            <p>风险预警解除流程</p>
+                        </li> -->
+                    </ul>
+                </div>
+            </ion-content>
+
+        </ion-side-menu-content>
+
+        <!-- 一级导航条-->
+        <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}" expose-aside-when="large">
+            <!--***********************************************最左边的一级导航栏--***********************************************-->
+            <div ng-include="'templates/common/nav.html'">
+            </div>
+        </ion-side-menu>
+
+
+    </ion-side-menus>
+</ion-view>

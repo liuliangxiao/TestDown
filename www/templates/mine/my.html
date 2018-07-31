@@ -1,0 +1,20 @@
+<ion-view>
+    <ion-header-bar align-title="center" class="bar-ipad-nav">
+        <h1 class="title">我的</h1>
+    </ion-header-bar>
+    <ion-content class="gray-main">
+        <dl class="am-list arrow-list">
+            <!-- <dd class="item am-button-default" ng-click="gotologs()">
+                <i class="am_iconfont am-icon-db">&#xe6b3;</i>
+                <p class="font_s16"><span>工作日志</span></p>
+            </dd> -->
+            <dd class="item am-button-default" ng-click="gotoNotice()">
+                <i class="am_iconfont am-icon-sx2">&#xe614;</i>
+                <!--<div class="my_spot" ng-show=count.newsCount!=0><span class="spot font-icon-white iconfont_replace">{{mycount.newsCount}}</span></div>-->
+                <div class="my_spot" ng-if="count.newsCount > 0"><span class="badge badge-assertive">{{count.newsCount}}</span></div>
+                <p class="font_s16"><span>总行通知</span></p>
+            </dd>
+        </dl>
+    </ion-content>
+</ion-view>
+

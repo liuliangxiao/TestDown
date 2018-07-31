@@ -1,0 +1,171 @@
+<div style="width: {{contentWidth}}">
+	<div ng-controller="ScreenagesController">
+	<br><br><br>
+	<div ng-show="!listShowFlag">
+	<h1>列表</h1>
+	<dl class="am-list arrow-list"  ng-show="detailItems.length!='0'">
+	<dd class="item am-button-default"   ng-class="{'item-selected': $index == detailListIndex}" 
+	ng-repeat="item in detailItems" ng-click="chooseDetail(item,$index)">
+		<div ng-repeat="groupItem in detailListGroup" >
+		    <h4 ng-show="groupItem.ColShow == '1'">{{groupItem.ColName}}：{{item[groupItem.ColId]}}</h4>
+		</div>
+	    <i class="am_iconfont am-icon-fl">&#xe61b;</i>						
+	</dd>	
+	</dl>
+	<div class="noDataBox" ng-show="detailItems.length == 0">
+	<div class="nodata">
+	    <img src="img/empty_page.png" width="70px">
+	    <span class="nodata_span">暂无数据</span>
+	</div>
+	</div> 
+	</div>
+	<div ng-show="listShowFlag">
+		<div ng-show="!showpage">
+			<!-- <ion-scroll direction="y"
+				style="width: {{contentWidth}}px; height:{{imageAcqContentHeight}}px"
+				ng-show="!showpage" delegate-handle="smallScroll"><treecontrol
+				class="tree-classic" tree-model="treedata" options="opts"
+				selected-node="selected" on-selection="showSelected(node)">
+			{{node.itemname}} </treecontrol> </ion-scroll> -->
+			<ion-scroll direction="y"
+				style="width: {{contentWidth}}px; height:{{imageAcqContentHeight-30}}px"
+				ng-show="!showpage" delegate-handle="treedataSmallScroll"><treecontrol
+				class="tree-amarsoft" tree-model="treedata" options="opts"
+				selected-node="selected" on-selection="showSelected(node)">
+			{{node.itemname}} </treecontrol> </ion-scroll>
+
+		</div>
+		<div class='' ng-show="showpage" style="height: {{contentHeight-50}}px">
+			<div class="ui-wrap" ng-controller="PrePhotoController">
+
+				<ion-header-bar class="bar-positive" align-title="center"
+					style="width: {{contentWidth}}px;height:{{barHeight*0.8}}px;margin-top:50px">
+				<div style="margin-top: 0;height: {{barHeight*0.8}}px" class="button am-back"
+					ng-click="goBack1()"></div>
+
+				<h1 style="margin: 0 25px;height: {{barHeight*0.8}}px" class="title">{{screenageTitle}}</h1>
+				<!-- <div class="buttons" style="height: {{barHeight*0.8">
+					<div style="height: {{barHeight*0.8" class="button"
+						ng-show="!cancel_mode" ng-click="selectImg()"
+						style="color: #fffdef;">选择</div>
+					<div style="height: {{barHeight*0.8" class="button"
+						ng-show="cancel_mode" ng-click="selectImg()" style="color: #fffdef;">取消
+					</div>
+				</div> -->
+				</ion-header-bar>
+				<!-- <ion-scroll scrollbar-y="true" direction="y"
+					style="width: {{contentWidth}}px; height:{{exaineContentHeight}}-50px;margin-top:50px"> -->
+					<ion-scroll scrollbar-y="true" direction="y"
+					style="margin-top:50px;width: {{contentWidth}}px; height:{{exaineContentHeight}}px">
+
+				<!--  <label class="item item-input">
+                    <span>描述：</span>
+                    <input type="text"  ng-model="info.Describe"/>
+                </label>
+                <label class="item ">
+                    <p class="positive">&nbsp;&nbsp;&nbsp;&nbsp;<font color="#a9a9a9"> 当前地址：{{info.Address}}</font></p>
+                </label> --> 拍照界面 <!--  <div id="images" style="width: {{contentWidth}}px;">
+             <image class="profileimg" src="http://36.10.48.119:9081/SunECMDM/servlet/getFile?ZmlsZVBhdGg9L2hvbWUvam5kYXRhLzIwMTgwMTAzLzQwMi8mZWZmVGltZT0yMDE4MDEwMzE5NTAmZmlsZVR5cGU9anBnJmZpbGVJRD0wNjc4Qzk2MS1COUY5LUNFNTYtNUUxMi01QzVDQjA0QTgyRjEmU0FWRV9OQU1FPTA2NzhDOTYxLUI5RjktQ0U1Ni01RTEyLTVDNUNCMDRBODJGMSZmaWxlU2l6ZT0xNDI5MzU2JnNlcnZlcklEPTIx"></image> 
+               </div> -->
+				<div id="images" style="width: {{contentWidth">
+					<div class="odp-box">
+						<div class="row" style="-webkit-flex-wrap: wrap; flex-wrap: wrap;">
+							<div class="col-33-img padding-s"
+								style="text-align: center; position: relative; top: 25px;"
+								ng-repeat="image in imageData track by $index"
+								ng-show="image.loading">
+								<ion-spinner icon="spiral"></ion-spinner>
+							</div>
+							<div class="col-33-img padding-s"
+								ng-repeat="image in images track by $index">
+								<image class="profileimg" ng-src={{image.URL}}
+									ng-click="openModal($index)"></image>
+								<div class="selectImg" ng-show="imgSelected"
+									ng-click="hasSelect($index,image)"></div>
+								<div class="hasSelectImg"
+									ng-show="image.isSelected && imgSelected"
+									ng-click="hasSelect($index,image)"></div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<!-- 视频界面
+				<div id="videos" style="width: {{contentWidth">
+					<div class="odp-box">
+						<div class="row" style="-webkit-flex-wrap: wrap; flex-wrap: wrap;">
+							<div class="col-33-img padding-s"
+								style="text-align: center; position: relative; top: 25px;"
+								ng-repeat="video in videosData track by $index"
+								ng-show="video.loading">
+								<ion-spinner icon="spiral"></ion-spinner>
+							</div>
+							<div class="col-33-img padding-s"
+								ng-repeat="video in videos track by $index">
+								<video height="80px" controls="controls" class="profileimg"
+									ng-src="{{video.src}}"></video>
+								{{video.src}}
+								<div class="selectImg" ng-show="imgSelected"
+									ng-click="hasSelect($index,video)"></div>
+								<div class="hasSelectImg"
+									ng-show="video.isSelected && imgSelected"
+									ng-click="hasSelect($index,video)"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				音频界面
+				<div id="audios" style="width: {{contentWidth">
+
+					<div class="odp-box">
+						<div class="row" style="-webkit-flex-wrap: wrap; flex-wrap: wrap;">
+							<div class="col-33-img padding-s"
+								style="text-align: center; position: relative; top: 25px;"
+								ng-repeat="radio in radiosData track by $index"
+								ng-show="radio.loading">
+								<ion-spinner icon="spiral"></ion-spinner>
+							</div>
+							<div class="col-33-img padding-s"
+								ng-repeat="radio in radios track by $index">
+								<video height="80px" controls="controls">
+										<source src="{{radio.src}}" type="audio/mpeg">
+									</video>
+								{{radio.src}}
+								<video height="80px" controls="controls" class="profileimg"
+									ng-src="{{radio.src}}"></video>
+								<div class="selectImg" ng-show="imgSelected"
+									ng-click="hasSelect($index,radio)"></div>
+								<div class="hasSelectImg"
+									ng-show="radio.isSelected && imgSelected"
+									ng-click="hasSelect($index,radio)"></div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+				</ion-scroll>
+				<ion-footer-bar class="bar bar-footer" ng-show="showFlag && EditFlag=='Y'">
+				<div class="col col-40" ng-show="!cancel_mode">
+					<button type="button" class="am-button am-button-blue"
+						ng-click="addDate()">增加资料</button>
+				</div>
+				<div class="col col-40" ng-show="!cancel_mode">
+					<button type="button" class="am-button am-button-red"
+						ng-click="uploadinfo()">保存</button>
+				</div>
+				<div class="col col-100" ng-show="cancel_mode">
+					<button type="button" class="am-button am-button-red"
+						ng-click="deleteFile()">删除</button>
+				</div>
+				</ion-footer-bar>
+			</div>
+		</div>
+		</div>
+	</div>
+	<!-- <div class="noDataBox" ng-show="details.length  == 0">
+		<div class="nodata">
+			<img src="img/empty_page.png" width="70px"> <span
+				class="nodata_span">暂无数据</span>
+		</div>
+	</div> -->
+</div>

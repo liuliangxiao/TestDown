@@ -1,0 +1,34 @@
+<!--修改ion-header-bar的高度， div 元素 hegin 与 line－height相对，div里的文字居中  -->
+
+<ion-side-menus>
+    <ion-side-menu-content>
+        <ion-header-bar align-title="center" style="height:{{imageAcqBarHeight}}px">
+            <div class="buttons row" style="margin: auto;width:{{windowWidth*0.6}}px">
+                <div class="button button-block col"
+                     style="text-align: center;border:3px,solid,#000000; height:{{imageAcqBarHeight*0.6}}px; line-height:{{imageAcqBarHeight*0.6}}px; font-size: large"
+                     ng-class="{'fstNav-content':tab0}" ng-click="selectTab(0)">贷前调查
+                </div>
+                <div class="button button-block col"
+                     style="text-align: center;border:3px,solid,#000000; height:{{imageAcqBarHeight*0.6}}px;line-height:{{imageAcqBarHeight*0.6}}px;font-size: large"
+                     ng-class="{'fstNav-content':tab1}" ng-click="selectTab(1)">核保
+                </div>
+                <div class="button button-block col"
+                     style="text-align: center;border:3px,solid,#000000; height:{{imageAcqBarHeight*0.6}}px;line-height:{{imageAcqBarHeight*0.6}}px; font-size: large"
+                     ng-class="{'fstNav-content':tab2}" ng-click="selectTab(2)">贷后检查
+                </div>
+            </div>
+        </ion-header-bar>
+        <div ng-include="'templates/screenage/screenageList.html'"></div>
+
+    </ion-side-menu-content>
+
+    <ion-side-menu class="fstNav" side="left" width="{{firstNavWidth}}"  expose-aside-when="large">
+        <!--***********************************************最左边的一级导航栏--***********************************************-->
+        <div ng-include="'templates/common/nav.html'">
+        </div>
+    </ion-side-menu>
+
+
+</ion-side-menus>
+
+<!--</ion-view>-->

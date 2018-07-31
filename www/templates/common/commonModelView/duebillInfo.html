@@ -1,0 +1,254 @@
+<ion-modal-view ng-style="guarantyInfoStyle" ng-controller = "DueBillInfoController" ng-show="rightContentListShowFlag1">
+	<!--借据详情页 start  -->
+    <ion-header-bar align-title="center" class="bar-ipad-nav">   
+	   	<div>
+	       <button class="button button-clear" ng-click="modal.remove()">
+	           <i class="ion ion-chevron-left" style="font-size: 25px;margin-left: 10px;margin-top: 12px;color:#fff"></i>
+	       </button>
+	   	</div>           
+        <h1 class="title">借据详情信息</h1>
+    </ion-header-bar> 
+     <ion-view>
+		<ion-content delegate-handle="smallScroll" style="top: 44px";>
+		      <table class="bm_tb_list" ng-show="!info.noData" ng-repeat = "item in details">
+		          <thead ng-click="showOrNot(item)">
+		          <tr>
+		              <th colspan="2">{{item.groupName}}</label>
+		                  <i class="icon-float-right" ng-class="item.showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+		              </th>
+		          </tr>
+		          </thead>
+		          <!--循环遍历生成页面元素  -->
+		           <tbody ng-repeat ="obj in item.groupColArray" ng-show="item.showGroup">            
+		           <!--Input框循环生成 -start -->
+		           <!--可更新可写input (只展示colVisable = 1 的属性) -->
+		           <tr ng-if="obj.ColEditStyle =='1' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td><input type="text" ng-model = 'detailInfo[obj.KeyId]' ng-readonly='obj.ReadOnly' class="ba-input"></td>
+		           </tr>
+		           <!--不更新input  -->	            
+		           <tr ng-if="obj.ColEditStyle =='1' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td><input type="text" ng-model = 'detailInfoNoUpdate[obj.KeyId]' ng-readonly='obj.ReadOnly' class="ba-input" ></td>
+		           </tr>
+		           <!--Input框循环生成 -end -->
+		           <!--通用下拉框循环生成 -start  -->
+		           <!--可更新可写select  -->	            	            
+				<tr ng-if="obj.ColEditStyle =='2' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td>
+		                   <select required="required" class="ba-select" ng-disabled='obj.ReadOnly' ng-options="option.ItemNo as option.ItemName for option in CODE_LIBRARY.{{obj.KeyId}}" ng-model='detailInfo[obj.KeyId]'>
+		                       <option value=""></option>
+		                   </select>
+		               </td>
+		         </tr>
+		         
+		         <!--添加利率与还款组件信息页面  start-->
+		         <tr ng-if="item.groupId === 'RatePart'" ng-hide='obj.Hide'> 
+	                <td colspan="2">
+             		     <div data-ng-include="'templates/common/RatePartInfo.html'"></div>
+	                </td>
+	             </tr>
+	             <tr ng-if="item.groupId === 'RPTPart' && RptPackFlag" ng-hide='obj.Hide'> 
+	                <td colspan="2">
+             		     <div data-ng-include="'templates/common/RPTPartInfo.html'"></div>
+	                </td>
+	             </tr>
+	             <!--添加利率与还款组件信息页面  end-->
+	             
+		           <!--不可更新select  -->	            	            	            
+		           <tr ng-if="obj.ColEditStyle =='2' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td>
+		                   <select required="required" class="ba-select" ng-disabled='obj.ReadOnly' ng-options="option.ItemNo as option.ItemName for option in CODE_LIBRARY.{{obj.KeyId}}" ng-model='detailInfoNoUpdate[obj.KeyId]'>
+		                       <option value=""></option>
+		                   </select>
+		               </td>
+		           </tr>
+		           <!--通用下拉框循环生成 -end  -->	             
+		           <!--文本框循环生成 -start-->
+		           <tr ng-if="obj.ColEditStyle =='3' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40" style="vertical-align: top;">{{obj.KeyName}}</td>
+		               <td>
+							<textarea rows="8" class="ba-input" ng-model="detailInfo[obj.KeyId]" ng-readonly='obj.ReadOnly' ng-change="checkText()">							                      
+		                   </textarea>
+		                   <p ng-if="obj.KeyId == 'Remark'" ng-show="inputShow">您还可以输入{{inputTextLength}}个汉字</p>
+		               </td>
+		           </tr>
+		           <tr ng-if="obj.ColEditStyle =='3' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40" style="vertical-align: top;">{{obj.KeyName}}</td>
+		               <td>
+							<textarea rows="8" class="ba-input" ng-model="detailInfoNoUpdate[obj.KeyId]" ng-readonly='obj.ReadOnly' ng-change="checkText()">							                      
+		                   </textarea>
+		                   <p ng-if="obj.KeyId == 'Remark'" ng-show="inputShow">您还可以输入{{inputTextLength}}个汉字</p>
+		               </td>
+		           </tr>
+		           <!--文本框循环生成 -end-->	            
+		          	<!--点选框循环遍历 -start  -->    
+		          	<tr ng-if="obj.ColEditStyle =='8' && obj.ColUpdateable =='1'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td><input type="text" ng-model = 'detailInfo[obj.KeyId]' ng-readonly='obj.ReadOnly' class="ba-input" ng-click="selectBusinessType()"></td>
+		           </tr>
+		           <tr ng-if="obj.ColEditStyle =='8' && obj.ColUpdateable =='0'" ng-hide='obj.Hide'> 
+		               <td class="td_width_40">{{obj.KeyName}}</td>
+		               <td><input type="text" ng-model = 'detailInfoNoUpdate[obj.KeyId]' ng-readonly='obj.ReadOnly' class="ba-input" ng-click="selectBusinessType()"></td>
+		           </tr>                 
+		          	<!--点选框循环遍历 -end  -->    	            	       
+		            </tbody>
+		        </table>
+		        
+		        <div class="noDataBox" ng-show="info.noData">
+		            <div class="nodata">
+		                <img src="img/empty_page.png" width="70px">
+		                <span class="nodata_span">暂无数据</span>
+		            </div>
+		        </div>
+		</ion-content>
+     </ion-view>
+    <ion-footer-bar>
+        <div class="btn-box row" ng-if ='isNotOutsideTable'>
+        	<div class="col col-100">
+                <button type="button" class="am-button am-button-blue" ng-click="modal.remove()">关闭</button>
+            </div>
+        </div>
+        <div class="btn-box row" ng-if ='!isNotOutsideTable'>
+	        <div class="col col-40">
+                <button type="button" class="am-button am-button-red" ng-click="lookPayPlan()">查看还款计划</button>
+            </div>
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-red" ng-click="lookPayRecord()">查看还款记录</button>
+            </div>
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-blue" ng-click="modal.remove()">关闭</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+	<!--借据详情页 end  -->   
+</ion-modal-view>        
+                
+<ion-modal-view ng-style="guarantyInfoStyle" ng-controller="PayMentListController" ng-show="rightContentListShowFlag2">        
+	<!--还款计划信息列表页  start  -->
+    <ion-header-bar align-title="center" class="bar-ipad-nav" >   
+	   	<div>
+	       <button class="button button-clear" ng-click="goToBack()">
+	           <i class="ion ion-chevron-left" style="font-size: 25px;margin-left: 10px;margin-top: 12px;color:#fff"></i>
+	       </button>
+	   	</div>           
+        <h1 class="title">还款信息-还款计划</h1>
+    </ion-header-bar> 
+    <ion-content delegate-handle="smallScroll" style="top: 44px";>
+	 <div style="width:1350px;position:absolute;top: 49px;" ng-controller="PayMentListController">
+	    <dl class="am-list arrow-list" ng-if="details4.length > 0 " ng-show="details4.length > 0 " width="500px">
+	    	<div class="dl_div" ng-click="showOrNot(details4[0])">
+	    		还款信息</label> 
+	    		<i class="icon-float-right" ng-class="details4[0].showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+			</div>
+			<div ng-if="details4[0].showGroup">
+				<dd class="item am-button-default"  ng-repeat="item in details4" ng-click="">
+				    <h4>流水号：{{item.SerialNo}}</h4>
+				    <h4>期次：{{item.SeqID}}</h4>
+				    <h4>还款计划类型：{{item.PayTypeName}}</h4>
+   				    <h4>到期日：{{item.PayDate}}</h4>
+   				    <h4>应还本金：{{item.PayPrincipalAmt}}</h4>
+   				    <h4>实还本金：{{item.ActualPayPrincipalAmt}}</h4>
+   				    <h4>调整本金：{{item.WaivePrincipalAmt}}</h4>
+   				    <h4>应还利息：{{item.PayInteAMT}}</h4>
+				    <h4>实还利息：{{item.ActualPayInteAMT}}</h4>
+   				    <h4>调整利率：{{item.WaiveInteAMT}}</h4>
+   				    <h4>应还逾期罚息：{{item.PayFineAMT}}</h4>
+   				    <h4>实还逾期罚息：{{item.ActualPayFineAMT}}</h4>
+   				    <h4>调整逾期罚息：{{item.WaiveFineAMT}}</h4>
+   				    <h4>应还逾期复息：{{item.PayCompdInteAMT}}</h4>
+   				    <h4>实收逾期复息：{{item.ActualPayCompdInteAMT}}</h4>
+   				    <h4>调整逾期复息：{{item.WaiveCompdInteAMT}}</h4>
+   				    <h4>应收宽限期利息：{{item.PayGraceInteAMT}}</h4>
+				    <h4>实收宽限期利息：{{item.ActualPayGraceInteAMT}}</h4>
+   				    <h4> 应贴利息：{{item.SubsidyInteAmt}}</h4>
+   				    <h4>实贴利息：{{item.ActualSubsidyInteAmt}}</h4>   		
+   				    <h4>逾期标志：{{item.OverDueFlag}}</h4>
+   				    <h4>结清日期：{{item.FINISHDATE}}</h4>
+				    <i class="am_iconfont am-icon-fl">&#xe61b;</i>						
+				</dd>	
+			</div>         
+	    </dl>		
+		 <div class="noDataBox" ng-show="details4.length == 0" style="width:720px">
+			<div class="nodata">
+			    <img src="img/empty_page.png" width="70px">
+			    <span class="nodata_span">暂无数据</span>
+			</div>
+	     </div>  
+	 </div> 
+   </ion-content> 
+    <ion-footer-bar>
+        <div class="btn-box row">
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-red" ng-click="goToBack()">返回借据详情</button>
+            </div>
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-blue" ng-click="closrModal()">关闭</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+		<!--还款计划信息列表页 end  -->
+
+</ion-modal-view>
+
+<ion-modal-view ng-style="guarantyInfoStyle" ng-controller="PayMentListController" ng-show="rightContentListShowFlag3">        
+	<!--还款记录列表页 start  -->
+    <ion-header-bar align-title="center" class="bar-ipad-nav" >   
+	   	<div>
+	       <button class="button button-clear" ng-click="goToBack()">
+	           <i class="ion ion-chevron-left" style="font-size: 25px;margin-left: 10px;margin-top: 12px;color:#fff"></i>
+	       </button>
+	   	</div>           
+        <h1 class="title">还款信息-还款记录</h1>
+    </ion-header-bar> 
+    <ion-content delegate-handle="smallScroll" style="top: 44px";>
+	 <div style="width:1350px;position:absolute;top: 49px;" ng-controller="PayMentListController">
+	    <dl class="am-list arrow-list" ng-if="details4.length > 0 " ng-show="details4.length > 0 " width="500px">
+	    	<div class="dl_div" ng-click="showOrNot(details4[0])">
+	    		还款信息</label> 
+	    		<i class="icon-float-right" ng-class="details4[0].showGroup?'ion-chevron-up':'ion-chevron-down'"></i>
+			</div>
+			<div ng-if="details4[0].showGroup">
+				<dd class="item am-button-default"  ng-repeat="item in details4" ng-click="">
+				    <h4>还款交易流水号：{{item.TRANSSERIALNO}} </h4>
+				    <h4>还款计划流水号：{{item.PSSERIALNO}}</h4>
+   				    <h4>应还日期：{{item.PAYDATE}}</h4>
+   				    <h4>实还日期：{{item.ACTUALPAYDATE}}</h4>
+   				    <h4>借据编号：{{item.LOANSERIALNO}}</h4>
+   				   	<h4>实还本金：{{item.ACTUALPAYPRINCIPALAMT}}</h4>
+   				    <h4>实还利息：{{item.ACTUALPAYINTEAMT}}</h4>
+				    <h4>实还逾期罚息：{{item.ACTUALPAYFINEAMT}}</h4>
+   				    <h4>实还复息：{{item.ACTUALPAYCOMPDINTEAMT}}</h4>
+   				    <h4>流水号：{{item.SERIALNO}}</h4>
+   				    <h4>应还本金：{{item.PAYPRINCIPALAMT}}</h4>
+   				    <h4>应还利息：{{item.PAYINTEAMT}}</h4>
+   				  	<h4>应还逾期罚息：{{item.PAYFINEAMT}}</h4>
+   				    <h4>应还逾期复息：{{item.PAYCOMPDINTEAMT}}</h4>		   
+				    <i class="am_iconfont am-icon-fl">&#xe61b;</i>						
+				</dd>	
+			</div>         
+	    </dl>		
+		 <div class="noDataBox" ng-show="details4.length == 0" style="width:720px">
+			<div class="nodata">
+			    <img src="img/empty_page.png" width="70px">
+			    <span class="nodata_span">暂无数据</span>
+			</div>
+	     </div>  
+	 </div> 
+   </ion-content> 
+    <ion-footer-bar>
+        <div class="btn-box row">
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-red" ng-click="goToBack()">返回借据详情</button>
+            </div>
+            <div class="col col-40">
+                <button type="button" class="am-button am-button-blue" ng-click="closrModal()">关闭</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+	<!--还款记录信息详情页 end  -->
+
+</ion-modal-view>
+

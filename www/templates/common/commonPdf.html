@@ -1,0 +1,12 @@
+<ion-scroll direction="xy"
+	style="width: 600px; height: 600px;position:absolute;top: 50px;"> <pdf-viewer ng-show="pdfUrl!='blank.pdf'"
+	delegate-handle="my-pdf-container" url="pdfUrl" scale="1" style="width: 5000px; height: 5000px;"
+	show-toolbar="true"
+	headers="{'x-you-know-whats-awesome': 'EVERYTHING'}"></pdf-viewer> <!-- <div style="width: 5000px; height: 5000px; background: url('http://www.runoob.com/try/demo_source/Europe_geological_map-en.jpg') repeat"></div> -->
+	<div class="noDataBox" ng-show="pdfUrl=='blank.pdf'">
+		<div class="nodata">
+ 					 <img src="img/empty_page.png" width="70px">
+  			 	<span class="nodata_span">暂无数据</span>
+		</div>
+	</div>
+</ion-scroll>

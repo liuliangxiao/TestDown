@@ -1,0 +1,46 @@
+<ion-modal-view ng-style="modelStyle" >
+<div >
+    <ion-header-bar align-title="center" class="bar-positive">
+        <div>
+            <button class="button button-clear" ng-click="modal1.remove()">
+                <i class="ion ion-chevron-left" style="font-size: 25px;margin-left: 10px;margin-top: 12px;color:#fff"></i>
+            </button>
+        </div>
+       <!--  <h1 class="title">签署意见</h1> -->
+    </ion-header-bar>
+
+    <ion-content class="scroll-content">
+    	<table class="bm_tb_list" >
+            <tbody>
+            <tr>
+                <td class="td_width_30">银行行号：</td>
+                <td ><input type="text" id = 'selectedBankID' ng-model = 'selectedBankID'  class="ba-input"></td>
+            </tr>
+            <tr>
+                <td class="td_width_30">银行名称：</td>
+                <td ><input type="text" id = 'selectedBankName' ng-model = 'selectedBankName'  class="ba-input"></td>
+            </tr>
+            </tbody>
+        </table>
+        <p>
+				<span class="Required">
+&nbsp;&nbsp;&nbsp;&nbsp;提示：<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录入银行名称时，%为通配符，例如查询“中国工商银行乌鲁木齐市扬子江路支行”的行号，则<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;输入工商银行%扬子江%即可查询出需要的结果
+				</span>
+			</p>
+    </ion-content>
+		
+    <ion-footer-bar>
+        <div class="col col-50">
+            <button type="button" class="am-button am-button-blue" ng-click="query()">查询
+            </button>
+        </div>
+        <div class="col col-50">
+            <button type="button" class="am-button am-button-blue" ng-click="modal1.remove()">取消
+            </button>
+        </div>
+    </ion-footer-bar>
+
+</div>
+</ion-modal-view>
